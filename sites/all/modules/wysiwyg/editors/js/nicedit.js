@@ -1,4 +1,4 @@
-// $Id: nicedit.js,v 1.3.4.2 2010/02/13 23:58:41 sun Exp $
+// $Id: nicedit.js,v 1.5 2010/02/07 14:36:00 sun Exp $
 (function($) {
 
 /**

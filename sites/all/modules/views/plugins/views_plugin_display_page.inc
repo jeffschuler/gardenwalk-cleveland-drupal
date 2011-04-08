@@ -1,5 +1,5 @@
 <?php
-// $Id: views_plugin_display_page.inc,v 1.8.2.4 2010/03/11 00:01:34 merlinofchaos Exp $
+// $Id: views_plugin_display_page.inc,v 1.8.4.14 2011/01/04 21:26:47 dereine Exp $
 /**
  * @file
  * Contains the page display plugin.
@@ -28,7 +28,7 @@ class views_plugin_display_page extends views_plugin_display {
         'title' => array('default' => '', 'translatable' => FALSE),
         'description' => array('default' => '', 'translatable' => FALSE),
         'weight' => array('default' => 0),
-        'name' => array('default' => 'navigation'),
+        'name' => array('default' => variable_get('menu_default_node_menu', 'navigation')),
        ),
     );
     $options['tab_options'] = array(
@@ -55,22 +55,56 @@ class views_plugin_display_page extends views_plugin_display {
 
     $bits = explode('/', $this->get_option('path'));
     $page_arguments = array($this->view->name, $this->display->id);
+    $view_arguments = $this->get_option('arguments');
 
     // Replace % with %views_arg for menu autoloading and add to the
     // page arguments so the argument actually comes through.
     foreach($bits as $pos => $bit) {
       if ($bit == '%') {
-        $bits[$pos] = '%views_arg';
+        $argument = array_shift($view_arguments);
+        if (isset($argument['validate_type']) && $argument['validate_type'] != 'none') {
+          $bits[$pos] = '%views_arg';
+        }
         $page_arguments[] = $pos;
       }
     }
 
     $path = implode('/', $bits);
 
-    $access_plugin = $this->get_access_plugin();
+    $access_plugin = $this->get_plugin('access');
     if (!isset($access_plugin)) {
       $access_plugin = views_get_plugin('access', 'none');
     }
+
+    // Get access callback might return an array of the callback + the dynamic arguments.
+    $access_plugin_callback = $access_plugin->get_access_callback();
+
+    if (is_array($access_plugin_callback)) {
+      $access_arguments = array();
+
+      // Find the plugin arguments.
+      $access_plugin_method = array_shift($access_plugin_callback);
+      $access_plugin_arguments = array_shift($access_plugin_callback);
+      if (!is_array($access_plugin_arguments)) {
+        $access_plugin_arguments = array();
+      }
+
+      $access_arguments[0] = array($access_plugin_method, &$access_plugin_arguments);
+
+      // Move the plugin arguments to the access arguments array.
+      $i = 1;
+      foreach ($access_plugin_arguments as $key => $value) {
+        if (is_int($value)) {
+          $access_arguments[$i] = $value;
+          $access_plugin_arguments[$key] = $i;
+          $i++;
+        }
+      }
+    }
+    else {
+      $access_arguments = array($access_plugin_callback);
+    }
+
     if ($path) {
       $items[$path] = array(
         // default views page entry
@@ -78,7 +112,7 @@ class views_plugin_display_page extends views_plugin_display {
         'page arguments' => $page_arguments,
         // Default access check (per display)
         'access callback' => 'views_access',
-        'access arguments' => array($access_plugin->get_access_callback()),
+        'access arguments' => $access_arguments,
         // Identify URL embedded arguments and correlate them to a handler
         'load arguments'  => array($this->view->name, $this->display->id, '%index'),
       );
@@ -179,7 +213,7 @@ class views_plugin_display_page extends views_plugin_display {
     $this->view->get_breadcrumb(TRUE);
 
     // And the title, which is much easier.
-    drupal_set_title(filter_xss_admin($this->view->get_title()));
+    drupal_set_title(filter_xss_admin($this->view->get_title()), PASS_THROUGH);
 
     // And now render the view.
     return $this->view->render();
@@ -271,7 +305,7 @@ class views_plugin_display_page extends views_plugin_display {
         $form['#title'] .= t('Menu item entry');
         $form['#help_topic'] = 'menu';
         $form['menu'] = array(
-          '#prefix' => '<div class="clear-block">',
+          '#prefix' => '<div class="clearfix">',
           '#suffix' => '</div>',
           '#tree' => TRUE,
         );
@@ -298,7 +332,7 @@ class views_plugin_display_page extends views_plugin_display {
           '#type' => 'textfield',
           '#default_value' => $menu['title'],
           '#description' => t('If set to normal or tab, enter the text to use for the menu item.'),
-          '#process' => array('views_process_dependency'),
+          '#process' => array('ctools_dependent_process'),
           '#dependency' => array('radio:menu[type]' => array('normal', 'tab', 'default tab')),
         );
         $form['menu']['description'] = array(
@@ -306,17 +340,8 @@ class views_plugin_display_page extends views_plugin_display {
           '#type' => 'textfield',
           '#default_value' => $menu['description'],
           '#description' => t("If set to normal or tab, enter the text to use for the menu item's description."),
-          '#process' => array('views_process_dependency'),
+          '#process' => array('ctools_dependent_process'),
           '#dependency' => array('radio:menu[type]' => array('normal', 'tab', 'default tab')),
-        );
-        $form['menu']['name-warning'] = array(
-          '#type' => 'markup',
-          '#prefix' => '<div class="warning">',
-          '#value' => t("Warning: Changing this item's menu will not work reliably in Drupal 6.4 or earlier. Please upgrade your copy of Drupal at !url.", array('!url' => l('drupal.org', 'http://drupal.org/project/Drupal+project'))),
-          '#suffix' => '</div>',
-          '#process' => array('views_process_dependency'),
-          '#dependency' => array('radio:menu[type]' => array('normal')),
-          '#access' => version_compare(VERSION, '6.5', '<'),
         );
 
         // Only display the menu selector if menu module is enabled.
@@ -327,7 +352,7 @@ class views_plugin_display_page extends views_plugin_display {
             '#options' => menu_get_menus(),
             '#default_value' => $menu['name'],
             '#description' => t('Insert item into an available menu.'), //
-            '#process' => array('views_process_dependency'),
+            '#process' => array('form_process_select', 'ctools_dependent_process'),
             '#dependency' => array('radio:menu[type]' => array('normal')),
           );
         }
@@ -337,7 +362,7 @@ class views_plugin_display_page extends views_plugin_display {
             '#value' => $menu['name'],
           );
           $form['menu']['markup'] = array(
-            '#value' => t('Menu selection requires the activation of menu module.'),
+            '#markup' => t('Menu selection requires the activation of menu module.'),
           );
         }
         $form['menu']['weight'] = array(
@@ -346,7 +371,7 @@ class views_plugin_display_page extends views_plugin_display {
           '#type' => 'textfield',
           '#default_value' => isset($menu['weight']) ? $menu['weight'] : 0,
           '#description' => t('The lower the weight the higher/further left it will appear.'),
-          '#process' => array('views_process_dependency'),
+          '#process' => array('ctools_dependent_process'),
           '#dependency' => array('radio:menu[type]' => array('normal', 'tab', 'default tab')),
         );
         break;
@@ -358,13 +383,11 @@ class views_plugin_display_page extends views_plugin_display {
         }
 
         $form['tab_markup'] = array(
-          '#prefix' => '<div class="form-item description">',
-          '#suffix' => '</div>',
-          '#value' => t('When providing a menu item as a tab, Drupal needs to know what the parent menu item of that tab will be. Sometimes the parent will already exist, but other times you will need to have one created. The path of a parent item will always be the same path with the last part left off. i.e, if the path to this view is <em>foo/bar/baz</em>, the parent path would be <em>foo/bar</em>.'),
+          '#markup' => '<div class="form-item description">' . t('When providing a menu item as a tab, Drupal needs to know what the parent menu item of that tab will be. Sometimes the parent will already exist, but other times you will need to have one created. The path of a parent item will always be the same path with the last part left off. i.e, if the path to this view is <em>foo/bar/baz</em>, the parent path would be <em>foo/bar</em>.') . '</div>',
         );
 
         $form['tab_options'] = array(
-          '#prefix' => '<div class="clear-block">',
+          '#prefix' => '<div class="clearfix">',
           '#suffix' => '</div>',
           '#tree' => TRUE,
         );
@@ -382,7 +405,7 @@ class views_plugin_display_page extends views_plugin_display {
           '#type' => 'textfield',
           '#default_value' => $tab_options['title'],
           '#description' => t('If creating a parent menu item, enter the title of the item.'),
-          '#process' => array('views_process_dependency'),
+          '#process' => array('ctools_dependent_process'),
           '#dependency' => array('radio:tab_options[type]' => array('normal', 'tab')),
         );
         $form['tab_options']['description'] = array(
@@ -390,7 +413,7 @@ class views_plugin_display_page extends views_plugin_display {
           '#type' => 'textfield',
           '#default_value' => $tab_options['description'],
           '#description' => t('If creating a parent menu item, enter the description of the item.'),
-          '#process' => array('views_process_dependency'),
+          '#process' => array('ctools_dependent_process'),
           '#dependency' => array('radio:tab_options[type]' => array('normal', 'tab')),
         );
         // Only display the menu selector if menu module is enabled.
@@ -401,7 +424,7 @@ class views_plugin_display_page extends views_plugin_display {
             '#options' => menu_get_menus(),
             '#default_value' => $tab_options['name'],
             '#description' => t('Insert item into an available menu.'),
-            '#process' => array('views_process_dependency'),
+            '#process' => array('form_process_select', 'ctools_dependent_process'),
             '#dependency' => array('radio:tab_options[type]' => array('normal')),
           );
         }
@@ -421,7 +444,7 @@ class views_plugin_display_page extends views_plugin_display {
           '#default_value' => $tab_options['weight'],
           '#size' => 5,
           '#description' => t('If the parent menu item is a tab, enter the weight of the tab. The lower the number, the more to the left it will be.'),
-          '#process' => array('views_process_dependency'),
+          '#process' => array('ctools_dependent_process'),
           '#dependency' => array('radio:tab_options[type]' => array('tab')),
         );
         break;

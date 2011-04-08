@@ -1,5 +1,5 @@
 <?php
-// $Id: views_plugin_style.inc,v 1.8.2.8 2010/04/29 18:21:52 merlinofchaos Exp $
+// $Id: views_plugin_style.inc,v 1.8.4.10 2010/12/10 08:12:31 dereine Exp $
 
 /**
  * @defgroup views_style_plugins Views' style plugins
@@ -64,6 +64,13 @@ class views_plugin_style extends views_plugin {
   }
 
   /**
+   * Return TRUE if this style also uses a row plugin.
+   */
+  function uses_row_class() {
+    return !empty($this->definition['uses row class']);
+  }
+
+  /**
    * Return TRUE if this style also uses fields.
    */
   function uses_fields() {
@@ -76,9 +83,58 @@ class views_plugin_style extends views_plugin {
     return !empty($this->definition['uses fields']);
   }
 
+  /**
+   * Return TRUE if this style uses tokens.
+   *
+   * Used to ensure we don't fetch tokens when not needed for performance.
+   */
+  function uses_tokens() {
+    if ($this->uses_row_class()) {
+      $class = $this->options['row_class'];
+      if (strpos($class, '[') !== FALSE || strpos($class, '!') !== FALSE || strpos($class, '%') !== FALSE) {
+        return TRUE;
+      }
+    }
+  }
+
+  /**
+   * Return the token replaced row class for the specified row.
+   */
+  function get_row_class($row_index) {
+    $class = $this->options['row_class'];
+    if ($this->uses_fields() && $this->view->field) {
+      $class = $this->tokenize_value($class, $row_index);
+    }
+
+    return drupal_clean_css_identifier($class);
+  }
+
+  /**
+   * Take a value and apply token replacement logic to it.
+   */
+  function tokenize_value($value, $row_index) {
+    if (strpos($value, '[') !== FALSE || strpos($value, '!') !== FALSE || strpos($value, '%') !== FALSE) {
+      $fake_item = array(
+        'alter_text' => TRUE,
+        'text' => $value,
+      );
+
+      $tokens = $this->row_tokens[$row_index];
+      // Grab a random field handler to perform the render.
+      $field = end($this->view->field);
+      $value = strip_tags($field->render_altered($fake_item, $tokens));
+    }
+
+    return $value;
+  }
+
   function option_definition() {
     $options = parent::option_definition();
     $options['grouping'] = array('default' => '');
+    if ($this->uses_row_class()) {
+      $options['row_class'] = array('default' => '');
+    }
+
     return $options;
   }
 
@@ -88,7 +144,7 @@ class views_plugin_style extends views_plugin {
     // key to FALSE.
     // @TODO: Document "uses grouping" in docs.php when docs.php is written.
     if ($this->uses_fields() && $this->definition['uses grouping']) {
-      $options = array('' => t('<None>'));
+      $options = array('' => t('- None -'));
       $options += $this->display->handler->get_field_labels();
 
       // If there are no fields, we can't group on them.
@@ -100,6 +156,19 @@ class views_plugin_style extends views_plugin {
           '#default_value' => $this->options['grouping'],
           '#description' => t('You may optionally specify a field by which to group the records. Leave blank to not group.'),
         );
+      }
+    }
+
+    if ($this->uses_row_class()) {
+      $form['row_class'] = array(
+        '#title' => t('Row class'),
+        '#description' => t('The class to provide on each row.'),
+        '#type' => 'textfield',
+        '#default_value' => $this->options['row_class'],
+      );
+
+      if ($this->uses_fields()) {
+        $form['row_class']['#description'] .= ' ' . t('You may use field tokens from as per the "Replacement patterns" used in "Rewrite the output of this field" for all fields.');
       }
     }
   }
@@ -134,7 +203,7 @@ class views_plugin_style extends views_plugin {
    */
   function render() {
     if ($this->uses_row_plugin() && empty($this->row_plugin)) {
-      vpr('views_plugin_style_default: Missing row plugin');
+      debug('views_plugin_style_default: Missing row plugin');
       return;
     }
 
@@ -149,14 +218,20 @@ class views_plugin_style extends views_plugin {
         $rows = array();
         foreach ($records as $row_index => $row) {
           $this->view->row_index = $row_index;
-          $rows[] = $this->row_plugin->render($row);
+          $rows[$row_index] = $this->row_plugin->render($row);
         }
       }
       else {
         $rows = $records;
       }
 
-      $output .= theme($this->theme_functions(), $this->view, $this->options, $rows, $title);
+      $output .= theme($this->theme_functions(),
+        array(
+          'view' => $this->view,
+          'options' => $this->options,
+          'rows' => $rows,
+          'title' => $title)
+        );
     }
     unset($this->view->row_index);
     return $output;
@@ -210,7 +285,6 @@ class views_plugin_style extends views_plugin {
       return;
     }
 
-    $start = views_microtime();
     if (isset($this->rendered_fields)) {
       return $this->rendered_fields;
     }
@@ -221,6 +295,10 @@ class views_plugin_style extends views_plugin {
       $this->view->row_index = $count;
       foreach ($keys as $id) {
         $this->rendered_fields[$count][$id] = $this->view->field[$id]->theme($row);
+      }
+
+      if ($this->uses_tokens()) {
+        $this->row_tokens[$count] = $this->view->field[$id]->get_render_tokens(array());
       }
     }
     unset($this->view->row_index);

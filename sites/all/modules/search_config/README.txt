@@ -1,4 +1,3 @@
-/* $Id: README.txt,v 1.2.2.1 2009/05/30 20:38:08 canen Exp $*/
 
 search_config is used to configure the advanced search form.
 

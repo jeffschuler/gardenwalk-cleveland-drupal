@@ -1,7 +1,9 @@
 <?php
-// $Id: views_handler_filter_history_user_timestamp.inc,v 1.3 2009/06/24 01:17:28 merlinofchaos Exp $
+// $Id: views_handler_filter_history_user_timestamp.inc,v 1.3.4.4 2010/12/25 22:03:47 dereine Exp $
 /**
  * Filter for new content
+ *
+ * The handler is named history_user, because of compability reasons, the table is history.
  */
 class views_handler_filter_history_user_timestamp extends views_handler_filter {
   // Don't display empty space where the operator would be.
@@ -45,14 +47,14 @@ class views_handler_filter_history_user_timestamp extends views_handler_filter {
     // Hey, Drupal kills old history, so nodes that haven't been updated
     // since NODE_NEW_LIMIT are bzzzzzzzt outta here!
 
-    $limit = time() - NODE_NEW_LIMIT;
+    $limit = REQUEST_TIME - NODE_NEW_LIMIT;
 
     $this->ensure_my_table();
     $field = "$this->table_alias.$this->real_field";
-    $node = $this->query->ensure_table('node');
+    $node = $this->query->ensure_table('node', $this->relationship);
 
     if (module_exists('comment')) {
-      $ncs = $this->query->ensure_table('node_comment_statistics');
+      $ncs = $this->query->ensure_table('node_comment_statistics', $this->relationship);
       $clause = ("OR $ncs.last_comment_timestamp > (***CURRENT_TIME*** - $limit)");
       $clause2 = "OR $field < $ncs.last_comment_timestamp";
     }
@@ -60,7 +62,7 @@ class views_handler_filter_history_user_timestamp extends views_handler_filter {
     // NULL means a history record doesn't exist. That's clearly new content.
     // Unless it's very very old content. Everything in the query is already
     // type safe cause none of it is coming from outside here.
-    $this->query->add_where($this->options['group'], "($field IS NULL AND ($node.changed > (***CURRENT_TIME*** - $limit) $clause)) OR $field < $node.changed $clause2");
+    $this->query->add_where($this->options['group'], "($field IS NULL AND ($node.changed > (***CURRENT_TIME*** - $limit) $clause)) OR $field < $node.changed $clause2", array(), 'formula');
   }
 
   function admin_summary() {
@@ -69,4 +71,3 @@ class views_handler_filter_history_user_timestamp extends views_handler_filter {
     }
   }
 }
-

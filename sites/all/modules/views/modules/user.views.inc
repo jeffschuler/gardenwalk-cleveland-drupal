@@ -1,5 +1,5 @@
 <?php
-//$Id: user.views.inc,v 1.59.2.3 2010/03/22 20:32:48 merlinofchaos Exp $
+//$Id: user.views.inc,v 1.59.4.13 2010/09/22 21:31:29 dereine Exp $
 /**
  * @file
  * Provide views data and handlers for user.module
@@ -12,7 +12,7 @@
  */
 
 /**
- * Implementation of hook_views_data()
+ * Implements hook_views_data()
  */
 function user_views_data() {
   // ----------------------------------------------------------------
@@ -26,6 +26,7 @@ function user_views_data() {
     'field' => 'uid',
     'title' => t('User'),
     'help' => t('Users who have created accounts on your site.'),
+    'access query tag' => 'user_access',
   );
 
   $data['users']['table']['join'] = array(
@@ -62,6 +63,15 @@ function user_views_data() {
     'sort' => array(
       'handler' => 'views_handler_sort',
     ),
+    'relationship' => array(
+      'title' => t('Nodes authored'),
+      'help' => t('Relate nodes to the user who created it. This relationship will create one record for every node created by the user.'),
+      'handler' => 'views_handler_relationship',
+      'base' => 'node',
+      'base field' => 'uid',
+      'field' => 'uid',
+      'label' => t('nodes'),
+    ),
   );
 
   // uid
@@ -88,6 +98,11 @@ function user_views_data() {
     ),
     'argument' => array(
       'handler' => 'views_handler_argument_string',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+      'title' => t('Name (raw)'),
+      'help' => t('The user or author name. This filter does not check if the user exists and allows partial matching. Does not utilize autocomplete.')
     ),
   );
 
@@ -197,7 +212,7 @@ function user_views_data() {
     ),
   );
 
-  // published status
+  // active status
   $data['users']['status'] = array(
     'title' => t('Active'), // The item it appears as on the UI,
     'help' => t('Whether a user is active or blocked.'), // The help that appears on the UI,
@@ -222,8 +237,9 @@ function user_views_data() {
     'help' => t("The user's signature."), // The help that appears on the UI,
      // Information for displaying a title as a field
     'field' => array(
-      'handler' => 'views_handler_field_xss',
-     ),
+      'handler' => 'views_handler_field_markup',
+      'format' => filter_fallback_format(),
+    ),
     'filter' => array(
       'handler' => 'views_handler_filter_string',
     ),
@@ -273,6 +289,7 @@ function user_views_data() {
     'help' => t('Roles that a user belongs to.'),
     'field' => array(
       'handler' => 'views_handler_field_user_roles',
+      'no group by' => TRUE,
     ),
     'filter' => array(
       'handler' => 'views_handler_filter_user_roles',
@@ -283,6 +300,7 @@ function user_views_data() {
       'name table' => 'role',
       'name field' => 'name',
       'empty field name' => t('No role'),
+      'zero is null' => TRUE,
       'numeric' => TRUE,
     ),
   );
@@ -316,7 +334,7 @@ function user_views_data() {
 
   // ----------------------------------------------------------------------
   // authmap table
-  
+
   $data['authmap']['table']['group']  = t('User');
   $data['authmap']['table']['join'] = array(
      // Directly links to users table.
@@ -371,12 +389,12 @@ function user_views_data() {
       'handler' => 'views_handler_argument_string',
     ),
   );
-  
+
   return $data;
 }
 
 /**
- * Implementation of hook_views_plugins
+ * Implements hook_views_plugins
  */
 function user_views_plugins() {
   return array(
@@ -386,13 +404,11 @@ function user_views_plugins() {
         'title' => t('User ID from URL'),
         'handler' => 'views_plugin_argument_default_user',
         'path' => drupal_get_path('module', 'views') . '/modules/user', // not necessary for most modules
-        'parent' => 'fixed', // so that the parent class is included
       ),
       'current_user' => array(
         'title' => t('User ID from logged in user'),
         'handler' => 'views_plugin_argument_default_current_user',
         'path' => drupal_get_path('module', 'views') . '/modules/user', // not necessary for most modules
-        'parent' => 'fixed', // so that the parent class is included
       ),
     ),
     'argument validator' => array(
@@ -404,63 +420,6 @@ function user_views_plugins() {
     ),
   );
 }
-
-/**
- * Implementation of hook_views_handlers() to register all of the basic handlers
- * views uses.
- */
-function user_views_handlers() {
-  return array(
-    'info' => array(
-      'path' => drupal_get_path('module', 'views') . '/modules/user',
-    ),
-    'handlers' => array(
-      'views_handler_argument_user_uid' => array(
-        'parent' => 'views_handler_argument_numeric',
-      ),
-      'views_handler_field_user' => array(
-        'parent' => 'views_handler_field',
-      ),
-      'views_handler_field_user_name' => array(
-        'parent' => 'views_handler_field_user',
-      ),
-      'views_handler_field_user_link' => array(
-        'parent' => 'views_handler_field',
-      ),
-      'views_handler_field_user_link_edit' => array(
-        'parent' => 'views_handler_field_user_link',
-      ),
-      'views_handler_field_user_link_delete' => array(
-        'parent' => 'views_handler_field_user_link',
-      ),
-      'views_handler_field_user_mail' => array(
-        'parent' => 'views_handler_field_user',
-      ),
-      'views_handler_field_user_language' => array(
-        'parent' => 'views_handler_field_user',
-      ),
-      'views_handler_field_user_picture' => array(
-        'parent' => 'views_handler_field',
-      ),
-      'views_handler_field_user_roles' => array(
-        'parent' => 'views_handler_field_prerender_list',
-      ),
-      'views_handler_filter_user_name' => array(
-        'parent' => 'views_handler_filter_in_operator',
-      ),
-      'views_handler_filter_user_current' => array(
-        'parent' => 'views_handler_filter_boolean_operator',
-      ),
-      'views_handler_filter_user_roles' => array(
-        'parent' => 'views_handler_filter_many_to_one',
-      ),
-      'views_handler_argument_users_roles_rid' => array(
-        'parent' => 'views_handler_argument_many_to_one',
-      ),
-    ),
-  );
-}
-
 
 /**
  * Allow replacement of current userid so we can cache these queries

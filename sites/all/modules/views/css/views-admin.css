@@ -1,4 +1,4 @@
-/* $Id: views-admin.css,v 1.14.2.1 2009/11/18 20:24:22 merlinofchaos Exp $ */
+/* $Id: views-admin.css,v 1.14.4.12 2010/12/24 13:42:00 dereine Exp $ */
 
 /*
  * Summary pad
@@ -95,6 +95,7 @@
 .views-tabset .extra input {
   margin-top: 0;
   margin-right: 0;
+  font-size: 10px;
   white-space: normal;
 }
 
@@ -209,6 +210,10 @@ div.views-display-deleted div.tab-section {
   margin-top: 0px;
 }
 
+#views-ajax-pad > div.ajax-progress {
+  display: none;
+}
+
 #views-ajax-title {
   background: #f6f6f6;
   color: #000;
@@ -237,6 +242,7 @@ div.views-display-deleted div.tab-section {
   border: #D6DBDE 1px solid;
   padding-top: 3px;
   border-top: 0;
+  float: none;
 }
 
 #views-ajax-pad .views-messages {
@@ -259,8 +265,7 @@ div.views-display-deleted div.tab-section {
 }
 
 #views-ajax-pad .form-buttons .form-submit {
-  margin: 0 .5em 0 0;
-  padding: 0;
+  font-size: 10px;
 }
 
 #views-ajax-pad .form-item {
@@ -426,7 +431,6 @@ a.views-button-remove {
 a.views-button-remove {
   background-position: 0px -72px;
   position: relative;
-  top: -4px;
 }
 a.views-button-remove:hover {
   background-position: 0px -84px;
@@ -465,6 +469,20 @@ html.js #arrange thead {
   display: none;
 }
 
+html.js #ungroupable_arrange .views-hide-label {
+  color: #D4E7F3;
+}
+
+#ungroupable_arrange thead tr {
+  /* this CSS mirrors what is found in core for blocks admin. */
+  background-color: #D4E7F3;
+  border-bottom: 1px solid #B4D7F0;
+  border-top: 1.5em solid #FFFFFF;
+  color: #455067;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 html.js .views-remove-checkbox {
   display: none;
 }
@@ -477,14 +495,14 @@ html.js a.views-button-remove {
   display: inline;
 }
 
-#arrange tr.even,
-#arrange tr.odd,
-#arrange td {
+.arrange tr.even,
+.arrange tr.odd,
+.arrange td {
   padding-top: 0;
   padding-bottom: 0;
 }
 
-#arrange .form-item {
+.arrange .form-item {
   padding: 0;
 }
 
@@ -549,6 +567,14 @@ div.changed div.view-changed {
   padding: .5em;
 }
 
+form#views-ui-reorder-displays-button {
+  margin-bottom: 0em;
+  border-bottom: 1px solid #ccc;
+}
+form#views-ui-reorder-displays-button input.form-submit{
+  margin-bottom: 2em;
+}
+
 form#views-add-display-form {
   margin-bottom: 0em;
   border-bottom: 1px solid #ccc;
@@ -559,30 +585,30 @@ form#views-add-display-form select {
 }
 
 #views-ui-edit-view-form {
-  margin: 0;
+  margin: 10px 0 0;
   padding: 0;
+  clear: both;
 }
 
 #views-live-preview {
   padding-top: .5em;
 }
 
-form#views-ui-preview-form,
-#center form#views-ui-preview-form {
+#views-live-preview form,
+#center #views-live-preview form {
   border: 1px solid #D6DBDE;
   margin: 0 0 .5em 0;
   padding: .5em;
 }
 
-form#views-ui-preview-form div#preview-display-id-wrapper,
-form#views-ui-preview-form div#preview-args-wrapper {
+#views-live-preview form div.form-item {
   float: left;
   margin: 0;
   padding: 0 1em 0 0;
 }
 
-form#views-ui-preview-form input#preview-submit {
-  margin: 1.7em 0 0 0;
+#views-live-preview form input#preview-submit {
+  margin: 1em 0 0 0;
 }
 
 .view-locked {
@@ -639,6 +665,7 @@ html.js .views-hidden {
   max-width: 95%;
 }
 
+.clone-display,
 .remove-display {
   float: right;
   margin: 0;
@@ -648,7 +675,9 @@ html.js .views-hidden {
 }
 
 .views-display .remove-display form,
-.remove-display input {
+.remove-display input,
+.views-display .clone-display form,
+.clone-display input {
   margin: 0 !important;
 }
 
@@ -656,4 +685,40 @@ html.js .views-hidden {
   padding: 0 1em;
   margin: 0 1em;
   border: 1px solid;
+}
+
+div.views-category #page-title {
+  background: none;
+  padding-top: 0px;
+}
+
+.group-populated {
+  display: none;
+}
+
+td.group {
+  /* this CSS mirrors what is found in core for blocks admin. */
+  background-color: #D4E7F3;
+  border-bottom: 1px solid #B4D7F0;
+  border-top: 1.5em solid #FFFFFF;
+  color: #455067;
+}
+
+td.group-title {
+  font-weight: bold;
+}
+
+tr.group-message {
+  font-style: italic;
+  color:#999999;
+}
+
+.group-message .form-submit,
+#views-add-group {
+  float: right;
+  clear: both;
+}
+
+html.js .views-group-select {
+  display: none;
 }

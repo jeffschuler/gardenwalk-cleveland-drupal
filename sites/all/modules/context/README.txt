@@ -1,6 +1,26 @@
-$Id: README.txt,v 1.1.4.2.2.7 2010/08/23 17:15:00 yhahn Exp $
 
-Context 3.x for Drupal 6.x
+Current state of Context for Drupal 7
+-------------------------------------
+Context for D7 is a straight port of Context 3.x from D6. There are no major
+API changes and any exported contexts from D6 should be compatible with the D7
+version. You will need the latest CTools (as of Sept. 16 2010) from here:
+
+- http://github.com/sdboyer/ctools
+
+### Working
+
+- all conditions except node taxonomy condition
+- all reactions
+- context UI
+- context layouts
+- inline editor (with Admin 2.x for D7)
+
+### Expect API changes
+
+- node taxonomy condition to generic field condition for entities
+
+
+Context 3.x for Drupal 7.x
 --------------------------
 Context allows you to manage contextual conditions and reactions for
 different portions of your site. You can think of each context as
@@ -17,7 +37,7 @@ Installation
 ------------
 Context can be installed like any other Drupal module -- place it in
 the modules directory for your site and enable it (and its requirement,
-CTools) on the `admin/build/modules` page.
+CTools) on the `admin/modules` page.
 
 You will probably also want to install Context UI which provides a way for
 you to edit contexts through the Drupal admin interface.
@@ -31,7 +51,7 @@ a book with media resources tightly to this section. You would also
 like a contact block you've made to appear whenever a user is in the
 pressroom section.
 
-1. Add a new context on admin/build/context
+1. Add a new context on admin/structure/context
 2. Under "Conditions", associate the pressroom nodetype, the pressroom view,
    and the media kit book with the context.
 3. Under "Reactions > Menu", choose the pressroom menu item to be set active.

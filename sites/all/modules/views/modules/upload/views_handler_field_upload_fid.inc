@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_field_upload_fid.inc,v 1.10 2009/08/11 22:06:19 dww Exp $
+// $Id: views_handler_field_upload_fid.inc,v 1.10.4.5 2010/12/03 20:46:32 dereine Exp $
 /**
  * Field handler to provide a list of roles.
  */
@@ -30,7 +30,7 @@ class views_handler_field_upload_fid extends views_handler_field_prerender_list 
     );
   }
 
-  function pre_render($values) {
+  function pre_render(&$values) {
     $vids = array();
     $this->items = array();
 
@@ -44,16 +44,16 @@ class views_handler_field_upload_fid extends views_handler_field_prerender_list 
       if (!empty($this->options['only_listed'])) {
         $where = " AND u.list <> 0";
       }
-      $result = db_query("SELECT u.vid, u.fid, f.filename, f.filepath, f.filesize, f.filemime, u.description FROM {upload} u LEFT JOIN {files} f ON f.fid = u.fid WHERE u.vid IN (" . implode(', ', $vids) . ")$where ORDER BY u.weight");
-      while ($file = db_fetch_array($result)) {
+      $result = db_query("SELECT u.vid, u.fid, f.filename, f.uri, f.filesize, f.filemime, u.description FROM {upload} u LEFT JOIN {file_managed} f ON f.fid = u.fid WHERE u.vid IN (" . implode(', ', $vids) . ")$where ORDER BY u.weight")->fetchAssoc();
+      foreach ($result as $file) {
         $file['filename'] = check_plain($file['filename']);
         $file['filemime'] = check_plain($file['filemime']);
         $file['description'] = check_plain($file['description']);
         $file['filesize'] = format_size($file['filesize']);
-        $file['filepath'] = file_create_url($file['filepath']);
+        $file['uri'] = file_create_url($file['uri']);
         if (!empty($this->options['link_to_file']) ) {
           $file['make_link'] = TRUE;
-          $file['path'] = $file['filepath'];
+          $file['path'] = $file['uri'];
         }
         $this->items[$file['vid']][$file['fid']] = $file;
       }
@@ -70,6 +70,8 @@ class views_handler_field_upload_fid extends views_handler_field_prerender_list 
     $tokens['[' . $this->options['id'] . '-type' . ']'] = t('The MIME type of the attached file.');
     $tokens['[' . $this->options['id'] . '-description' . ']'] = t('The name of the attached file.');
     $tokens['[' . $this->options['id'] . '-path' . ']'] = t('The path of the attached file.');
+    $tokens['[' . $this->options['id'] . '-url' . ']'] = t('The url of the attached file.');
+    $tokens['[' . $this->options['id'] . '-uri' . ']'] = t('The path of the attached file.');
     $tokens['[' . $this->options['id'] . '-size' . ']'] = t('The size of the attached file.');
   }
 
@@ -78,7 +80,9 @@ class views_handler_field_upload_fid extends views_handler_field_prerender_list 
     $tokens['[' . $this->options['id'] . '-name' . ']'] = $item['filename'];
     $tokens['[' . $this->options['id'] . '-type' . ']'] = $item['filemime'];
     $tokens['[' . $this->options['id'] . '-description' . ']'] = $item['description'];
-    $tokens['[' . $this->options['id'] . '-path' . ']'] = $item['filepath'];
+    $tokens['[' . $this->options['id'] . '-path' . ']'] = $item['uri'];
+    $tokens['[' . $this->options['id'] . '-url' . ']'] = url($item['uri']);
+    $tokens['[' . $this->options['id'] . '-uri' . ']'] = $item['uri'];
     $tokens['[' . $this->options['id'] . '-size' . ']'] = $item['filesize'];
   }
 }

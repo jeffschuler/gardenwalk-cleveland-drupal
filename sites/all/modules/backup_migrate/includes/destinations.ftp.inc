@@ -1,5 +1,5 @@
 <?php
-// $Id: destinations.ftp.inc,v 1.1.2.6 2010/09/13 02:41:49 ronan Exp $
+// $Id: destinations.ftp.inc,v 1.2.2.3 2010/12/07 06:22:59 ronan Exp $
 
 
 /**
@@ -215,7 +215,7 @@ function drupal_ftp_file_to_ftp($file, $ftp_filename, $ftp_directory, &$ftp) {
     return FALSE;
   }
 
-  if ($source = file_create_path($file)) {
+  if ($source = drupal_realpath($file)) {
     // Now we can try to write to the remote file
     $complete_filename = $ftp_directory .'/'. $ftp_filename;
     $put_file = @ftp_put($ftp->__conn, $complete_filename, $source, FTP_BINARY);

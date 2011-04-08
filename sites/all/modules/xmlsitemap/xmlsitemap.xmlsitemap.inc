@@ -1,5 +1,5 @@
 <?php
-// $Id: xmlsitemap.xmlsitemap.inc,v 1.5.2.8 2011/01/03 23:59:15 davereid Exp $
+// $Id: xmlsitemap.xmlsitemap.inc,v 1.13 2011/02/07 22:11:54 davereid Exp $
 
 /**
  * @file
@@ -26,7 +26,7 @@ class XMLSitemapWriter extends XMLWriter {
    * @param $page
    *   The current page of the sitemap being generated.
    */
-  function __construct(stdClass &$sitemap, $page) {
+  function __construct(stdClass $sitemap, $page) {
     $this->sitemap = $sitemap;
     $this->sitemap_page = $page;
     $this->uri = xmlsitemap_sitemap_get_file($sitemap, $page);
@@ -162,26 +162,12 @@ class XMLSitemapWriter extends XMLWriter {
 
     return $return;
   }
-
-  /**
-   * Explicitly define the writeRaw() function since it is not available
-   * before PHP 5.2.
-   */
-  public function writeRaw($content) {
-    static $writeraw_parent;
-
-    if (!isset($writeraw_parent)) {
-      $writeraw_parent = method_exists('XMLWriter', 'writeRaw');
-    }
-
-    return $writeraw_parent ? parent::writeRaw($content) : parent::text($content);
-  }
 }
 
 class XMLSitemapIndexWriter extends XMLSitemapWriter {
   protected $rootElement = 'sitemapindex';
 
-  function __construct(stdClass &$sitemap, $page = 'index') {
+  function __construct(stdClass $sitemap, $page = 'index') {
     parent::__construct($sitemap, 'index');
   }
 
@@ -237,7 +223,7 @@ function xmlsitemap_xmlsitemap_link_info() {
 function xmlsitemap_link_frontpage_settings(&$form) {
   module_load_include('admin.inc', 'xmlsitemap');
   if (user_access('administer site configuration')) {
-    $form['#description'] = t('The front page path can be changed in the <a href="@url-frontpage">site information configuration</a>.', array('@url-frontpage' => url('admin/settings/site-information')));
+    $form['#description'] = t('The front page path can be changed in the <a href="@url-frontpage">site information configuration</a>.', array('@url-frontpage' => url('admin/config/system/site-information')));
   }
   $form['xmlsitemap_frontpage_priority'] = array(
     '#type' => 'select',
@@ -302,4 +288,18 @@ function xmlsitemap_sitemap_multiple_update(array $smids) {
   module_load_include('generate.inc', 'xmlsitemap');
   $batch = xmlsitemap_regenerate_batch($smids);
   batch_set($batch);
+}
+
+/**
+ * Implements hook_query_TAG_alter().
+ */
+function xmlsitemap_query_xmlsitemap_link_bundle_access_alter(QueryAlterableInterface $query) {
+  if ($query instanceof EntityFieldQuery && $entity = $query->getMetaData('entity')) {
+    $info = $query->getMetaData('entity_info');
+    $bundle = $query->getMetaData('bundle');
+    if (empty($bundle)) {
+      $bundle = xmlsitemap_get_link_type_enabled_bundles($entity);
+    }
+    $query->entityCondition('bundle', $bundle, is_array($bundle) ? 'IN' : '=');
+  }
 }

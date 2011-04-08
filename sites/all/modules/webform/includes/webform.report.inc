@@ -20,10 +20,10 @@ function webform_results_submissions($node, $user_filter, $pager_count) {
     $pager_count = $_GET['results'];
   }
 
-  $header = theme('webform_results_submissions_header', $node);
+  $header = theme('webform_results_submissions_header', array('node' => $node));
   if ($user_filter) {
     if ($user->uid) {
-      drupal_set_title(t('Submissions for %user', array('%user' => $user->name)));
+      drupal_set_title(t('Submissions for %user', array('%user' => $user->name)), PASS_THROUGH);
     }
     else {
       drupal_set_title(t('Your submissions'));
@@ -48,7 +48,7 @@ function webform_results_submissions($node, $user_filter, $pager_count) {
       format_date($submission->submitted, 'small'),
     );
     if (webform_results_access($node, $user)) {
-      $row[] = theme('username', $submission);
+      $row[] = theme('username', array('account' => $submission));
       $row[] = $submission->remote_addr;
     }
     $row[] = l(t('View'), "node/$node->nid/submission/$sid");
@@ -74,6 +74,9 @@ function webform_results_submissions($node, $user_filter, $pager_count) {
   $element['#submissions'] = $submissions;
   $element['#total_count'] = $count;
   $element['#pager_count'] = $pager_count;
+  $element['#attached']['css'] = array(
+    drupal_get_path('module', 'webform') . '/css/webform-admin.css' => array('preprocess' => FALSE, 'group' => CSS_DEFAULT, 'weight' => 1),
+  );
 
   $element['table']['#theme'] = 'table';
   $element['table']['#header'] = $header;
@@ -81,6 +84,7 @@ function webform_results_submissions($node, $user_filter, $pager_count) {
   $element['table']['#operation_total'] = $operation_total;
 
   return drupal_render($element);
+
 }
 
 /**
@@ -91,7 +95,9 @@ function webform_results_submissions($node, $user_filter, $pager_count) {
  * @param $pager_count
  *   The current number of results displayed per page.
  */
-function theme_webform_results_per_page($total_count, $pager_count) {
+function theme_webform_results_per_page($variables) {
+  $total_count = $variables['total_count'];
+  $pager_count = $variables['pager_count'];
   $output = '';
 
   // Create a list of results-per-page options.
@@ -109,7 +115,7 @@ function theme_webform_results_per_page($total_count, $pager_count) {
 
   foreach ($counts as $number => $text) {
     if ($number < $total_count) {
-      $count_links[] = l($text, $_GET['q'], array('query' => 'results=' . $number, 'attributes' => array('class' => $pager_count == $number ? 'selected' : '')));
+      $count_links[] = l($text, $_GET['q'], array('query' => array('results' => $number), 'attributes' => array('class' => array($pager_count == $number ? 'selected' : ''))));
     }
   }
 
@@ -134,7 +140,9 @@ function theme_webform_results_per_page($total_count, $pager_count) {
  * This is done in it's own function so that webform can retrieve the header and
  * use it for sorting the results.
  */
-function theme_webform_results_submissions_header($node) {
+function theme_webform_results_submissions_header($variables) {
+  $node = $variables['node'];
+
   $columns = array(
     array('data' => t('#'), 'field' => 'sid', 'sort' => 'desc'),
     array('data' => t('Submitted'), 'field' => 'submitted'),
@@ -171,18 +179,18 @@ function webform_results_table($node, $pager_count = 0) {
   }
 
   // Get all the submissions for the node.
-  $header = theme('webform_results_table_header', $node);
+  $header = theme('webform_results_table_header', array('node' => $node));
   $submissions = webform_get_submissions($node->nid, $header, $pager_count);
   $total_count = webform_get_submission_count($node->nid);
 
-  $output = theme('webform_results_table', $node, $node->webform['components'], $submissions, $total_count, $pager_count);
+  $output = theme('webform_results_table', array('node' => $node, 'components' => $node->webform['components'], 'submissions' => $submissions, 'total_count' => $total_count, 'pager_count' => $pager_count));
   if ($pager_count) {
-    $output .= theme('pager', NULL, $pager_count, 0);
+    $output .= theme('pager');
   }
   return $output;
 }
 
-function theme_webform_results_table_header($node) {
+function theme_webform_results_table_header($variables) {
   return array(
     array('data' => t('#'), 'field' => 'sid', 'sort' => 'desc'),
     array('data' => t('Submitted'), 'field' => 'submitted'),
@@ -205,8 +213,14 @@ function theme_webform_results_table_header($node) {
  * @param $pager_count
  *   The number of results to be shown per page.
  */
-function theme_webform_results_table($node, $components, $submissions, $total_count, $pager_count) {
-  drupal_add_css(drupal_get_path('module', 'webform') . '/css/webform-admin.css', 'theme', 'all', FALSE);
+function theme_webform_results_table($variables) {
+  drupal_add_css(drupal_get_path('module', 'webform') . '/css/webform-admin.css', array('group' => CSS_THEME, 'preprocess' => FALSE));
+
+  $node = $variables['node'];
+  $components = $variables['components'];
+  $submissions = $variables['submissions'];
+  $total_count = $variables['total_count'];
+  $pager_count = $variables['pager_count'];
 
   $header = array();
   $rows = array();
@@ -214,13 +228,13 @@ function theme_webform_results_table($node, $components, $submissions, $total_co
 
   // This header has to be generated seperately so we can add the SQL necessary.
   // to sort the results.
-  $header = theme('webform_results_table_header', $node);
+  $header = theme('webform_results_table_header', array('node' => $node));
 
   // Generate a row for each submission.
   foreach ($submissions as $sid => $submission) {
     $cell[] = l($sid, 'node/' . $node->nid . '/submission/' . $sid);
     $cell[] = format_date($submission->submitted, 'small');
-    $cell[] = theme('username', $submission);
+    $cell[] = theme('username', array('account' => $submission));
     $cell[] = $submission->remote_addr;
     $component_headers = array();
 
@@ -247,8 +261,8 @@ function theme_webform_results_table($node, $components, $submissions, $total_co
 
 
   $output = '';
-  $output .= theme('webform_results_per_page', $total_count, $pager_count);
-  $output .= theme('table', $header, $rows);
+  $output .= theme('webform_results_per_page', array('total_count' => $total_count, 'pager_count' => $pager_count));
+  $output .= theme('table', array('header' => $header, 'rows' => $rows));
   return $output;
 }
 
@@ -272,7 +286,7 @@ function webform_results_clear($nid) {
  * @param $nid
  *   ID of node for which to clear submissions.
  */
-function webform_results_clear_form($form_state, $node) {
+function webform_results_clear_form($form, $form_state, $node) {
   drupal_set_title(t('Clear Form Submissions'));
 
   $form = array();
@@ -296,7 +310,7 @@ function webform_results_clear_form_submit($form, &$form_state) {
 /**
  * Form to configure the download of CSV files.
  */
-function webform_results_download_form(&$form_state, $node) {
+function webform_results_download_form($form, &$form_state, $node) {
   module_load_include('inc', 'webform', 'includes/webform.export');
   module_load_include('inc', 'webform', 'includes/webform.components');
 
@@ -356,7 +370,7 @@ function webform_results_download_form(&$form_state, $node) {
       'compact' => t('Compact'),
     ),
     '#default_value' => 'separate',
-    '#attributes' => array('class' => 'webform-select-list-format'),
+    '#attributes' => array('class' => array('webform-select-list-format')),
     '#theme' => 'webform_results_download_select_format',
   );
 
@@ -404,18 +418,21 @@ function webform_results_download_form_submit(&$form, &$form_state) {
 /**
  * Theme the output of the export form.
  */
-function theme_webform_results_download_form($form) {
-  drupal_add_css(drupal_get_path('module', 'webform') . '/css/webform-admin.css', 'theme', 'all', FALSE);
+function theme_webform_results_download_form($variables) {
+  drupal_add_css(drupal_get_path('module', 'webform') . '/css/webform-admin.css', array('group' => CSS_THEME, 'preprocess' => FALSE));
 
-  return drupal_render($form);
+  $form = $variables['form'];
+
+  return drupal_render_children($form);
 }
 
 /**
  * Theme the output of the select list format radio buttons.
  */
-function theme_webform_results_download_select_format($element) {
-  drupal_add_css(drupal_get_path('module', 'webform') . '/css/webform-admin.css', 'theme', 'all', FALSE);
+function theme_webform_results_download_select_format($variables) {
+  drupal_add_css(drupal_get_path('module', 'webform') . '/css/webform-admin.css', array('group' => CSS_THEME, 'preprocess' => FALSE));
 
+  $element = $variables['element'];
   $output = '';
 
   // Build an example table for the separate option.
@@ -426,8 +443,8 @@ function theme_webform_results_download_select_format($element) {
     array('', 'X', 'X'),
   );
 
-  $element['separate']['#attributes']['class'] = '';
-  $element['separate']['#description'] = theme('table', $header, $rows);
+  $element['separate']['#attributes']['class'] = array();
+  $element['separate']['#description'] = theme('table', array('header' => $header, 'rows' => $rows));
   $element['separate']['#description'] .= t('Separate options are more suitable for building reports, graphs, and statistics in a spreadsheet application.');
   $output .= drupal_render($element['separate']);
 
@@ -439,8 +456,8 @@ function theme_webform_results_download_select_format($element) {
     array('Option B,Option C'),
   );
 
-  $element['separate']['#attributes']['class'] = '';
-  $element['compact']['#description'] = theme('table', $header, $rows);
+  $element['compact']['#attributes']['class'] = array();
+  $element['compact']['#description'] = theme('table', array('header' => $header, 'rows' => $rows));
   $element['compact']['#description'] .= t('Compact options are more suitable for importing data into other systems.');
   $output .= drupal_render($element['compact']);
 
@@ -496,9 +513,8 @@ function webform_results_download($node, $format = 'delimited', $options = array
   if (empty($options)) {
     $options = array(
       'delimiter' => variable_get('webform_csv_delimiter', '\t'),
-      'components' => array_keys($submission_information) + array_keys(webform_component_list($node, 'csv', TRUE)),
       'components' => array_merge(array_keys($submission_information), array_keys(webform_component_list($node, 'csv', TRUE))),
-      'select_display' => 'value',
+      'select_keys' => 0,
       'select_format' => 'separate',
     );
   }
@@ -513,7 +529,7 @@ function webform_results_download($node, $format = 'delimited', $options = array
   // Open a new Webform exporter object.
   $exporter = webform_export_create_handler($format, $options);
 
-  $file_name = tempnam(variable_get('file_directory_temp', file_directory_temp()), 'webform');
+  $file_name = drupal_tempnam('temporary://', 'webform_');
   $handle = @fopen($file_name, 'w'); // The @ suppresses errors.
   $exporter->bof($handle);
 
@@ -645,7 +661,7 @@ function webform_results_analysis($node, $sids = array(), $analysis_component = 
     }
   }
 
-  return theme('webform_results_analysis', $node, $data, $sids, $analysis_component);
+  return theme('webform_results_analysis', array('node' => $node, 'data' => $data, 'sids' => $sids, 'component' => $analysis_component));
 }
 
 /**
@@ -653,7 +669,11 @@ function webform_results_analysis($node, $sids = array(), $analysis_component = 
  *
  * @see webform_results_analysis()
  */
-function theme_webform_results_analysis($node, $data, $sids = array(), $analysis_component = NULL) {
+function theme_webform_results_analysis($variables) {
+  $node = $variables['node'];
+  $data = $variables['data'];
+  $sids = $variables['sids'];
+  $analysis_component = $variables['component'];
 
   $rows = array();
   $question_number = 0;
@@ -681,5 +701,5 @@ function theme_webform_results_analysis($node, $data, $sids = array(), $analysis
     $rows[] = array(array('data' => t('There are no submissions for this form. <a href="!url">View this form</a>.', array('!url' => url('node/' . $node->nid))), 'colspan' => 20));
   }
 
-  return theme('table', $header, $rows);
+  return theme('table', array('header' => $header, 'rows' => $rows));
 }

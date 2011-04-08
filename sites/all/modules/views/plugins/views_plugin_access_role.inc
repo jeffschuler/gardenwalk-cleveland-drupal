@@ -1,5 +1,5 @@
 <?php
-// $Id: views_plugin_access_role.inc,v 1.2.4.1 2010/03/10 21:03:25 merlinofchaos Exp $
+// $Id: views_plugin_access_role.inc,v 1.2.6.3 2010/03/10 21:03:19 merlinofchaos Exp $
 
 /**
  * Access plugin that provides role-based access control.
@@ -18,7 +18,7 @@ class views_plugin_access_role extends views_plugin_access {
     if ($count < 1) {
       return t('No role(s) selected');
     }
-    else if ($count > 1) {
+    elseif ($count > 1) {
       return t('Multiple roles');
     }
     else {
@@ -28,8 +28,12 @@ class views_plugin_access_role extends views_plugin_access {
     }
   }
 
-  function option_defaults(&$options) {
-    $options['role'] = array();
+
+  function option_definition() {
+    $options = parent::option_definition();
+    $options['role'] = array('default' => array());
+
+    return $options;
   }
 
   function options_form(&$form, &$form_state) {

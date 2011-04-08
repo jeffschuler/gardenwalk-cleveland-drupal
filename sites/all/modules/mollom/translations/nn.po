@@ -1,4 +1,4 @@
-# $Id: nn.po,v 1.1.2.1 2009/11/14 19:52:49 dries Exp $
+# $Id: nn.po,v 1.2 2009/12/21 22:06:43 dries Exp $
 #
 # Norwegian Nynorsk translation of Drupal (general)
 # Copyright (c) 2009 rolf@cerpus.com

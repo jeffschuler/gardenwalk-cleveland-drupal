@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_filter_boolean_operator.inc,v 1.6.2.2 2010/03/13 00:51:00 merlinofchaos Exp $
+// $Id: views_handler_filter_boolean_operator.inc,v 1.6.4.8 2010/12/09 23:52:48 merlinofchaos Exp $
 /**
  * Simple filter to handle matching of boolean values
  *
@@ -9,6 +9,7 @@
  *    - true-false: True/false (this is the default)
  *    - yes-no: Yes/No
  *    - on-off: On/Off
+ * - accept null: Treat a NULL value as false.
  */
 class views_handler_filter_boolean_operator extends views_handler_filter {
   // exposed filter options
@@ -23,7 +24,10 @@ class views_handler_filter_boolean_operator extends views_handler_filter {
     if (isset($this->definition['label'])) {
       $this->value_value = $this->definition['label'];
     }
-    if (isset($this->definition['accept_null'])) {
+    if (isset($this->definition['accept null'])) {
+      $this->accept_null = (bool) $this->definition['accept null'];
+    }
+    else if (isset($this->definition['accept_null'])) {
       $this->accept_null = (bool) $this->definition['accept_null'];
     }
     $this->value_options = NULL;
@@ -91,19 +95,21 @@ class views_handler_filter_boolean_operator extends views_handler_filter {
     );
     if (!empty($this->options['exposed'])) {
       $identifier = $this->options['expose']['identifier'];
-      if (!isset($form_state['input'][$identifier])) {
+      if (!empty($form_state['exposed']) && !isset($form_state['input'][$identifier])) {
         $form_state['input'][$identifier] = $this->value;
       }
       // If we're configuring an exposed filter, add an <Any> option.
-      $any_label = variable_get('views_exposed_filter_any_label', 'old_any') == 'old_any' ? '<Any>' : t('- Any -');
-      if ($form['value']['#type'] != 'select') {
-        $any_label = check_plain($any_label);
+      if (empty($form_state['exposed']) || !empty($this->options['optional'])) {
+        $any_label = variable_get('views_exposed_filter_any_label', 'old_any') == 'old_any' ? '<Any>' : t('- Any -');
+        if ($form['value']['#type'] != 'select') {
+          $any_label = check_plain($any_label);
+        }
+        $form['value']['#options'] = array('All' => $any_label) + $form['value']['#options'];
       }
-      $form['value']['#options'] = array('All' => $any_label) + $form['value']['#options'];
     }
   }
 
-  function value_validate(&$form, &$form_state) {
+  function value_validate($form, &$form_state) {
     if ($form_state['values']['options']['value'] == 'All' && empty($form_state['values']['options']['expose']['optional'])) {
       form_set_error('value', t('You must select a value unless this is an optional exposed filter.'));
     }
@@ -132,18 +138,26 @@ class views_handler_filter_boolean_operator extends views_handler_filter {
 
   function query() {
     $this->ensure_my_table();
-
-    $where = "$this->table_alias.$this->real_field ";
+    $field = "$this->table_alias.$this->real_field";
 
     if (empty($this->value)) {
-      $where .= '= 0';
       if ($this->accept_null) {
-        $where = '(' . $where . " OR $this->table_alias.$this->real_field IS NULL)";
+        $or = db_or()
+          ->condition($field, 0, '=')
+          ->condition($field, NULL, 'IS NULL');
+        $this->query->add_where($this->options['group'], $or);
+      }
+      else {
+        $this->query->add_where($this->options['group'], $field, 0, '=');
       }
     }
     else {
-      $where .= '<> 0';
+      if (!empty($this->definition['use equal'])) {
+        $this->query->add_where($this->options['group'], $field, 1, '=');
+      }
+      else {
+        $this->query->add_where($this->options['group'], $field, 0, '<>');
+      }
     }
-    $this->query->add_where($this->options['group'], $where);
   }
 }

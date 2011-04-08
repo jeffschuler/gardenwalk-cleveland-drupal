@@ -1,5 +1,4 @@
 <?php
-// $Id: display-edit.inc,v 1.7.2.42 2010/07/26 19:44:29 merlinofchaos Exp $
 
 /*
  * @file
@@ -7,7 +6,6 @@
  * This includes all the basic editing forms (content, layout, layout settings)
  * as well as the ajax modal forms associated with them.
  */
-
 
 /**
  * Handle calling and processing of the form for editing display content.
@@ -52,7 +50,7 @@ function _panels_edit($display, $destination, $content_types, $title = FALSE) {
  * @ingroup forms
  * @see panels_edit_display_submit()
  */
-function panels_edit_display_form(&$form_state) {
+function panels_edit_display_form($form, &$form_state) {
   $display = &$form_state['display'];
   $renderer = &$form_state['renderer'];
 
@@ -76,16 +74,16 @@ function panels_edit_display_form(&$form_state) {
     '#value' => $links,
   );
 
-  $form += panels_edit_display_settings_form($form_state);
+  $form += panels_edit_display_settings_form($form, $form_state);
 
   $form['panel'] = array('#tree' => TRUE);
   $form['panel']['pane'] = array('#tree' => TRUE);
 
   $form['display'] = array(
-    '#value' => $renderer->render(),
+    '#markup' => $renderer->render(),
   );
 
-  foreach ($renderer->plugins['layout']['panels'] as $region_id => $title) {
+  foreach ($renderer->plugins['layout']['regions'] as $region_id => $title) {
     // Make sure we at least have an empty array for all possible locations.
     if (!isset($display->panels[$region_id])) {
       $display->panels[$region_id] = array();
@@ -124,7 +122,7 @@ function panels_edit_display_form(&$form_state) {
     $form['preview']['button'] = array(
       '#type' => 'submit',
       '#value' => t('Preview'),
-      '#attributes' => array('class' => 'ctools-use-ajax'),
+      '#attributes' => array('class' => array('use-ajax-submit')),
       '#id' => 'panels-live-preview-button',
       '#submit' => array('panels_edit_display_form_submit', 'panels_edit_display_form_preview'),
     );
@@ -189,15 +187,16 @@ function panels_edit_display_form_preview(&$form, &$form_state) {
     'output' => $output,
   );
 
-  ctools_ajax_render($commands);
+  print ajax_render($commands);
+  ajax_footer();
+  exit;
 }
 
 
 /**
  * Form for display settings.
  */
-function panels_edit_display_settings_form(&$form_state) {
-  $form = array();
+function panels_edit_display_settings_form($form, &$form_state) {
   $display = &$form_state['display'];
 
   $layout = panels_get_layout($display->layout);
@@ -236,14 +235,15 @@ function panels_edit_display_settings_form(&$form_state) {
       // We have to create a manual fieldset because fieldsets do not support IDs.
       // Use 'hidden' instead of 'markup' so that the process will run.
       // Add js for collapsible fieldsets manually
-      drupal_add_js('misc/collapse.js');
-      $form['display_title']['contexts_prefix'] = array(
-        '#type' => 'hidden',
-        '#id' => 'edit-display-substitutions',
-        '#prefix' => '<div><fieldset id="edit-display-substitutions" class="collapsed collapsible"><legend>' . t('Substitutions') . '</legend>',
-        '#process' => array('ctools_dependent_process'),
-        '#dependency' => array('edit-display-title-hide-title' => array(PANELS_TITLE_FIXED)),
-      );
+//      drupal_add_js('misc/form.js');
+//      drupal_add_js('misc/collapse.js');
+//      $form['display_title']['contexts_prefix'] = array(
+//        '#type' => 'hidden',
+//        '#id' => 'edit-display-substitutions',
+//        '#prefix' => '<div><fieldset id="edit-display-substitutions" class="collapsed collapsible"><legend>' . t('Substitutions') . '</legend><div class="fieldset-wrapper">',
+//        '#process' => array('ctools_dependent_process'),
+//        '#dependency' => array('edit-display-title-hide-title' => array(PANELS_TITLE_FIXED)),
+//      );
 
       $rows = array();
       foreach ($display->context as $context) {
@@ -257,11 +257,18 @@ function panels_edit_display_settings_form(&$form_state) {
 
       $header = array(t('Keyword'), t('Value'));
       $form['display_title']['contexts'] = array(
-        '#value' => theme('table', $header, $rows),
+        '#type' => 'fieldset',
+        '#title' => t('Substitutions'),
+        '#collapsible' => TRUE,
+        '#collapsed' => TRUE,
+        '#value' => theme('table', array('header' => $header, 'rows' => $rows)),
+//        '#process' => array('form_process_fieldset', 'ctools_dependent_process'),
+//        '#id' => 'edit-display-title-context',
+//        '#dependency' => array('edit-display-title-hide-title' => array(PANELS_TITLE_FIXED)),
       );
-      $form['display_title']['contexts_suffix'] = array(
-        '#value' => '</fieldset></div>',
-      );
+//      $form['display_title']['contexts_suffix'] = array(
+//        '#value' => '</div></fieldset></div>',
+//      );
     }
   }
 

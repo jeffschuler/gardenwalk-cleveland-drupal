@@ -1,5 +1,4 @@
 <?php
-// $Id: term_parent.inc,v 1.1.2.3 2010/08/20 21:05:17 merlinofchaos Exp $
 
 /**
  * @file
@@ -19,13 +18,13 @@ $plugin = array(
   'settings form validation' => 'ctools_term_parent_ctools_access_settings_validate',
   'settings form submit' => 'ctools_term_parent_ctools_access_settings_submit',
   'summary' => 'ctools_term_parent_ctools_access_summary',
-  'required context' => new ctools_context_required(t('Term'), array('term', 'terms')),
+  'required context' => new ctools_context_required(t('Term'), array('taxonomy_term', 'terms')),
 );
 
 /**
  * Settings form for the 'by parent term' access plugin
  */
-function ctools_term_parent_ctools_access_settings(&$form, &$form_state, $conf) {
+function ctools_term_parent_ctools_access_settings($form, &$form_state, $conf) {
   // If no configuration was saved before, set some defaults.
   if (empty($conf)) {
     $conf = array(
@@ -53,6 +52,7 @@ function ctools_term_parent_ctools_access_settings(&$form, &$form_state, $conf) 
     $options[$vid] = $vocabulary->name;
   }
   $form['settings']['vid']['#options'] = $options;
+  return $form;
 }
 
 /**

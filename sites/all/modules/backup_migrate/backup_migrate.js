@@ -1,5 +1,6 @@
-// $Id: backup_migrate.js,v 1.1.2.1.2.6 2010/03/24 04:02:58 ronan Exp $
+// $Id: backup_migrate.js,v 1.1.4.3 2010/10/16 23:08:56 ronan Exp $
 
+(function ($) {
 Drupal.backup_migrate = {
   callbackURL : "",  
   autoAttach  : function() {
@@ -54,7 +55,5 @@ Drupal.backup_migrate = {
   }
 }
 
-// Global Killswitch
-if (Drupal.jsEnabled) {
-  $(document).ready(Drupal.backup_migrate.autoAttach);
-}
+$(document).ready(Drupal.backup_migrate.autoAttach);
+})(jQuery);

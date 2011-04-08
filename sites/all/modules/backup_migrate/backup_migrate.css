@@ -1,4 +1,4 @@
-/* $Id: backup_migrate.css,v 1.1.2.1.2.1 2009/06/01 03:32:44 ronan Exp $ */
+/* $Id: backup_migrate.css,v 1.1.4.2 2010/10/05 03:27:01 ronan Exp $ */
 .schedule-list-disabled {
   filter:alpha(opacity=50);
   -moz-opacity: .50;

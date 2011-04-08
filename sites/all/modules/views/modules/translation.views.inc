@@ -1,5 +1,5 @@
 <?php
-// $Id: translation.views.inc,v 1.8.4.1 2010/03/19 23:09:54 merlinofchaos Exp $
+// $Id: translation.views.inc,v 1.8.6.5 2010/12/09 01:10:24 merlinofchaos Exp $
 
 /**
  * @file
@@ -14,7 +14,7 @@
  */
 
 /**
- * Implementation of hook_views_data_alter().
+ * Implements hook_views_data_alter().
  *
  * Add translation information to the node table.
  */
@@ -22,8 +22,8 @@ function translation_views_data_alter(&$data) {
 
   // Joins
   $data['node']['table']['join']['node'] = array(
-	  'left_field' => 'tnid',
-	  'field' => 'tnid',
+    'left_field' => 'tnid',
+    'field' => 'tnid',
   );
 
   // Language field
@@ -41,6 +41,9 @@ function translation_views_data_alter(&$data) {
     'argument' => array(
       'handler' => 'views_handler_argument_node_language',
     ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
   );
 
   // The translation ID (nid of the "source" translation)
@@ -57,7 +60,6 @@ function translation_views_data_alter(&$data) {
     ),
     'argument' => array(
       'handler' => 'views_handler_argument_node_tnid',
-      'parent' => 'views_handler_argument_numeric', // make sure parent is included
       'name field' => 'title', // the field to display in the summary.
       'numeric' => TRUE,
       'validate type' => 'tnid',
@@ -142,49 +144,6 @@ function translation_views_data_alter(&$data) {
   );
 
 
-}
-
-/**
- * Implementation of hook_views_handlers() to register all of the basic handlers
- * views uses.
- */
-function translation_views_handlers() {
-  return array(
-    'info' => array(
-      'path' => drupal_get_path('module', 'views') . '/modules/translation',
-    ),
-    'handlers' => array(
-      // field handlers
-      'views_handler_field_node_language' => array(
-        'parent' => 'views_handler_field_node',
-      ),
-      'views_handler_field_node_link_translate' => array(
-        'parent' => 'views_handler_field_node_link',
-      ),
-      // argument handlers
-      'views_handler_argument_node_language' => array(
-        'parent' => 'views_handler_argument',
-      ),
-      'views_handler_argument_node_tnid' => array(
-        'parent' => 'views_handler_argument',
-      ),
-      // filters
-      'views_handler_filter_node_language' => array(
-        'parent' => 'views_handler_filter_in_operator',
-      ),
-      'views_handler_filter_node_tnid' => array(
-        'parent' => 'views_handler_filter',
-      ),
-      // relationships
-      'views_handler_relationship_translation' => array(
-        'parent' => 'views_handler_relationship',
-      ),
-      'views_handler_filter_node_tnid_child' => array(
-        'parent' => 'views_handler_filter',
-      ),
-
-    ),
-  );
 }
 
 /**

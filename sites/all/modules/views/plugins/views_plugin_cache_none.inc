@@ -1,5 +1,5 @@
 <?php
-// $Id: views_plugin_cache_none.inc,v 1.2 2009/06/03 23:39:52 merlinofchaos Exp $
+// $Id: views_plugin_cache_none.inc,v 1.2.4.1 2009/11/02 22:01:27 merlinofchaos Exp $
 
 /**
  * Caching plugin that provides no caching at all.

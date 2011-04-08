@@ -1,4 +1,4 @@
-// $Id: yui.js,v 1.1.6.2 2010/02/13 23:58:41 sun Exp $
+// $Id: yui.js,v 1.3 2010/02/06 22:34:16 sun Exp $
 (function($) {
 
 /**

@@ -1,4 +1,4 @@
-// $Id: markitup.js,v 1.2.2.1 2010/02/13 23:58:41 sun Exp $
+// $Id: markitup.js,v 1.3 2009/09/26 05:37:57 sun Exp $
 (function($) {
 
 /**

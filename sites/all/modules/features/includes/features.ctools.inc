@@ -1,5 +1,4 @@
 <?php
-// $Id: features.ctools.inc,v 1.1.2.28 2010/08/19 21:55:48 yhahn Exp $
 
 /**
  * This is a wild hack, but effective.
@@ -70,18 +69,30 @@ function ctools_features_export_render($module, $data) {
   $code = array();
   $code[] = '  list($module, $api) = func_get_args();';
 
-  $first = TRUE;
+  $component_exports =  array();
   foreach ($data as $component) {
+    $code = array();
+    $code[] = '  list($module, $api) = func_get_args();';
+
     if ($info = _ctools_features_get_info($component)) {
-      $if = $first ? 'if' : 'elseif';
-      $code[] = '  '. $if .' ($module == "'. $info['module'] .'" && $api == "'. $info['api'] .'") {';
+
+      $code[] = '  if ($module == "'. $info['module'] .'" && $api == "'. $info['api'] .'") {';
       $code[] = '    return array("version" => '. $info['current_version'] .');';
       $code[] = '  }';
+    }
 
-      $first = FALSE;
+    $plugin_api_hook_name = ctools_plugin_api_get_hook($info['module'], $info['api']);
+
+    if (key_exists($plugin_api_hook_name, $component_exports)) {
+        $component_exports[$plugin_api_hook_name] .= "\n" . implode("\n", $code);
+    }
+    else {
+        $component_exports[$plugin_api_hook_name] = implode("\n", $code);
     }
   }
-  return array('ctools_plugin_api' => implode("\n", $code));
+
+  return $component_exports;
+
 }
 
 /**
@@ -168,13 +179,12 @@ function ctools_component_features_export_render($component, $module, $data) {
     $code = implode('}', $code);
   }
   else {
-    $code = '  $export = array();'."\n";
+    $code = '  $export = array();'."\n\n";
     foreach ($data as $object_name) {
       if ($object = _ctools_features_export_crud_load($component, $object_name)) {
         $identifier = $schema['export']['identifier'];
         $code .= _ctools_features_export_crud_export($component, $object, '  ');
-        $code .= "\n";
-        $code .= "  \$export[" . ctools_var_export($object_name) . "] = \${$identifier};\n";
+        $code .= "  \$export[" . ctools_var_export($object_name) . "] = \${$identifier};\n\n";
       }
     }
     $code .= '  return $export;';
@@ -210,14 +220,18 @@ function _ctools_features_get_info($identifier = NULL, $reset = FALSE) {
           $api_module = isset($schema['export']['api']['owner']) ? $schema['export']['api']['owner'] : $module;
           $components[$table] = array(
             'name' => isset($modules[$api_module]->info['name']) ? $modules[$api_module]->info['name'] : $api_module,
-            'api' => $schema['export']['api']['api'],
             'default_hook' => $schema['export']['default hook'],
             'default_file' => FEATURES_DEFAULTS_CUSTOM,
-            'default_filename' => $schema['export']['api']['api'],
-            'current_version' => $schema['export']['api']['current_version'],
             'module' => $api_module,
             'feature_source' => TRUE,
           );
+          if (isset($schema['export']['api'])) {
+            $components[$table] += array(
+              'api' => $schema['export']['api']['api'],
+              'default_filename' => $schema['export']['api']['api'],
+              'current_version' => $schema['export']['api']['current_version'],
+            );
+          }
         }
       }
     }

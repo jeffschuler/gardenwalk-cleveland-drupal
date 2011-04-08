@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_argument_string.inc,v 1.5 2009/06/25 21:58:17 merlinofchaos Exp $
+// $Id: views_handler_argument_string.inc,v 1.5.4.7 2011/01/05 22:40:08 dereine Exp $
 
 /**
  * Basic argument handler to implement string arguments that may have length
@@ -51,7 +51,7 @@ class views_handler_argument_string extends views_handler_argument {
       '#title' => t('Character limit'),
       '#description' => t('How many characters of the argument to filter against. If set to 1, all fields starting with the letter in the argument would be matched.'),
       '#default_value' => $this->options['limit'],
-      '#process' => array('views_process_dependency'),
+      '#process' => array('ctools_dependent_process'),
       '#dependency' => array('edit-options-glossary' => array(TRUE)),
     );
 
@@ -124,7 +124,14 @@ class views_handler_argument_string extends views_handler_argument {
     else {
       // Add the field.
       $formula = $this->get_formula();
-      $this->base_alias = $this->name_alias = $this->query->add_field(NULL, $formula, $this->field . '_truncated');
+      $placeholder_length = $this->placeholder_length;
+      $params = array(
+        'placeholders' => array(
+          $placeholder_length => intval($this->options['limit']),
+        ),
+      );
+
+      $this->base_alias = $this->name_alias = $this->query->add_field(NULL, $formula, $this->field . '_truncated', $params);
       $this->query->set_count_field(NULL, $formula, $this->field, $this->field . '_truncated');
     }
 
@@ -137,7 +144,7 @@ class views_handler_argument_string extends views_handler_argument {
    * $this->ensure_my_table() MUST have been called prior to this.
    */
   function get_formula() {
-    return "SUBSTR($this->table_alias.$this->real_field, 1, " . intval($this->options['limit']) . ")";
+    return "SUBSTRING($this->table_alias.$this->real_field, 1, $this->placeholder_length)";
   }
 
   /**
@@ -148,6 +155,7 @@ class views_handler_argument_string extends views_handler_argument {
     if (!empty($this->options['transform_dash'])) {
       $argument = strtr($argument, '-', ' ');
     }
+    $this->placeholder_length = $this->placeholder();
 
     if (!empty($this->definition['many to one'])) {
       if (!empty($this->options['glossary'])) {
@@ -155,19 +163,35 @@ class views_handler_argument_string extends views_handler_argument {
       }
       $this->value = array($argument);
       $this->helper->ensure_my_table();
+
+      $this->helper->placeholders = array($this->placeholder_length => intval($this->options['limit']));
       $this->helper->add_filter();
       return;
     }
 
     $this->ensure_my_table();
+    $formula = FALSE;
     if (empty($this->options['glossary'])) {
       $field = "$this->table_alias.$this->real_field";
     }
     else {
+      $formula = TRUE;
       $field = $this->get_formula();
     }
 
-    $this->query->add_where(0, "$field = '%s'", $argument);
+    if ($formula) {
+      $placeholder = $this->placeholder();
+      $placeholder_length = $this->placeholder_length;
+      $field .= ' = ' . $placeholder;
+      $placeholders = array(
+        $placeholder_length => intval($this->options['limit']),
+        $placeholder => $argument,
+      );
+      $this->query->add_where_expression(0, $field, $placeholders);
+    }
+    else {
+      $this->query->add_where(0, $field, $argument);
+    }
   }
 
   function summary_argument($data) {
@@ -179,8 +203,8 @@ class views_handler_argument_string extends views_handler_argument {
   }
 
   function case_transform($string, $option) {
-		global $multibyte;
-		
+    global $multibyte;
+
     switch ($this->options[$option]) {
       default:
         return $string;

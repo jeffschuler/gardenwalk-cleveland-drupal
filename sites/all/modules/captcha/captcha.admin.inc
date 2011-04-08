@@ -1,5 +1,5 @@
 <?php
-// $Id: captcha.admin.inc,v 1.32.2.4 2010/12/01 00:14:55 soxofaan Exp $
+// $Id: captcha.admin.inc,v 1.40 2010/12/30 00:29:15 soxofaan Exp $
 
 /**
  * @file
@@ -17,14 +17,15 @@
  *   and $type the name of the CAPTCHA type.
  */
 function _captcha_available_challenge_types($add_special_options=TRUE) {
+  $captcha_types = array();
   if ($add_special_options) {
-    $captcha_types['none'] = '['. t('none') .']';
-    $captcha_types['default'] = '['. t('default challenge type') .']';
+    $captcha_types['none'] = '[' . t('none') . ']';
+    $captcha_types['default'] = '[' . t('default challenge type') . ']';
   }
   // We do our own version of Drupal's module_invoke_all() here because
   // we want to build an array with custom keys and values.
   foreach (module_implements('captcha') as $module) {
-    $result = call_user_func_array($module .'_captcha', array('list'));
+    $result = call_user_func_array($module . '_captcha', array('list'));
     if (is_array($result)) {
       foreach ($result as $type) {
         $captcha_types["$module/$type"] = t('@type (from module @module)', array('@type' => $type, '@module' => $module));
@@ -37,11 +38,11 @@ function _captcha_available_challenge_types($add_special_options=TRUE) {
 /**
  * Form builder function for the general CAPTCHA configuration
  */
-function captcha_admin_settings(&$form_state) {
+function captcha_admin_settings() {
   module_load_include('inc', 'captcha');
 
   // Use javascript for some added usability on admin form.
-  drupal_add_js(drupal_get_path('module', 'captcha') .'/captcha.js');
+  drupal_add_js(drupal_get_path('module', 'captcha') . '/captcha.js');
 
   // Configuration of which forms to protect, with what challenge.
   $form['captcha_form_protection'] = array(
@@ -65,16 +66,15 @@ function captcha_admin_settings(&$form_state) {
   );
   $form['captcha_form_protection']['captcha_form_id_overview']['captcha_captcha_points'] = array();
   $captcha_type_options = _captcha_available_challenge_types();
-  // TODO: make a wrapper for this query to make it a bit cleaner?
-  $result = db_query("SELECT * FROM {captcha_points} ORDER BY form_id");
-  while ($captcha_point = db_fetch_object($result)) {
+  $result = db_select('captcha_points', 'cp')->fields('cp')->orderBy('form_id')->execute();
+  foreach ($result as $captcha_point) {
     $form['captcha_form_protection']['captcha_form_id_overview']['captcha_captcha_points'][$captcha_point->form_id] = array();
     $form['captcha_form_protection']['captcha_form_id_overview']['captcha_captcha_points'][$captcha_point->form_id]['form_id'] = array(
-      '#value' => $captcha_point->form_id,
+      '#markup' => $captcha_point->form_id,
     );
     // Select widget for CAPTCHA type.
     if (isset($captcha_point->module) && $captcha_point->module) {
-      $captcha_type = $captcha_point->module .'/'. $captcha_point->captcha_type;
+      $captcha_type = $captcha_point->module . '/' . $captcha_point->captcha_type;
     }
     elseif ($captcha_point->captcha_type == 'default') {
       $captcha_type = 'default';
@@ -89,8 +89,8 @@ function captcha_admin_settings(&$form_state) {
     );
     // Additional operations.
     $form['captcha_form_protection']['captcha_form_id_overview']['captcha_captcha_points'][$captcha_point->form_id]['operations'] = array(
-      '#value' => implode(", ", array(
-        l(t('delete'), "admin/user/captcha/captcha/captcha_point/{$captcha_point->form_id}/delete"),
+      '#markup' => implode(", ", array(
+        l(t('delete'), "admin/config/people/captcha/captcha/captcha_point/{$captcha_point->form_id}/delete"),
       ))
     );
   }
@@ -123,26 +123,6 @@ function captcha_admin_settings(&$form_state) {
     '#default_value' => variable_get('captcha_allow_on_admin_pages', FALSE),
     '#description' => t('This option makes it possible to add CAPTCHAs to forms on administrative pages. CAPTCHAs are disabled by default on administrative pages (which shouldn\'t be accessible to untrusted users normally) to avoid the related overhead. In some situations, e.g. in the case of demo sites, it can be usefull to allow CAPTCHAs on administrative pages.'),
   );
-
-  // Button for flushing the CAPTCHA placement cache.
-  $form['captcha_form_protection']['captcha_placement_caching'] = array(
-    '#type' => 'item',
-    '#title' => t('CAPTCHA placement caching'),
-    '#description' => t('For efficiency, the positions of the CAPTCHA elements in each of the configured forms are cached. Most of the time, the structure of a form does not change and it would be a waste to recalculate the positions every time. Occasionally however, the form structure can change (e.g. during site building) and flushing the CAPTCHA placement cache can be required to fix the CAPTCHA placement.'),
-  );
-  $form['captcha_form_protection']['captcha_placement_caching']['captcha_placement_cache_flush'] = array(
-    '#type' => 'button',
-    '#value' => t('Flush the CAPTCHA placement cache'),
-    '#submit' => array('captcha_placement_cache_flush'),
-  );
-  // Handle the button for flushing the CAPTCHA placement cache.
-  // This is done here instead of in a submit handler because the button is
-  // not a submitting button.
-  if (isset($form_state['post']['op']) && $form_state['post']['op'] ==  t('Flush the CAPTCHA placement cache')) {
-    variable_del('captcha_placement_map_cache');
-    drupal_set_message(t('Flushed the CAPTCHA placement cache.'));
-  }
-
 
   // Configuration option for adding a CAPTCHA description.
   $form['captcha_add_captcha_description'] = array(
@@ -215,7 +195,7 @@ function captcha_admin_settings(&$form_state) {
   $form['captcha_log_wrong_responses'] = array(
     '#type' => 'checkbox',
     '#title' => t('Log wrong responses'),
-    '#description' => t('Report information about wrong responses to the !log.', array('!log' => l(t('log'), 'admin/reports/dblog'))),
+    '#description' => t('Report information about wrong responses to the <a href="!dblog">log</a>.', array('!dblog' => url('admin/reports/dblog'))),
     '#default_value' => variable_get('captcha_log_wrong_responses', FALSE),
   );
 
@@ -231,7 +211,8 @@ function captcha_admin_settings(&$form_state) {
 /**
  * Custom theme function for a table of (form_id -> CAPTCHA type) settings
  */
-function theme_captcha_admin_settings_captcha_points($form) {
+function theme_captcha_admin_settings_captcha_points($variables) {
+  $form = $variables['form'];
   $header = array('form_id', t('Challenge type'), t('Operations'));
   $rows = array();
   // Existing CAPTCHA points.
@@ -249,7 +230,7 @@ function theme_captcha_admin_settings_captcha_points($form) {
   $row[] = '';
   $rows[] = $row;
 
-  $output = theme('table', $header, $rows);
+  $output = theme('table', array('header' => $header, 'rows' => $rows));
   return $output;
 }
 
@@ -344,7 +325,7 @@ function captcha_point_admin($captcha_point_form_id=NULL, $op=NULL) {
   return drupal_get_form('captcha_point_admin_form');
 }
 
-function captcha_point_admin_form($form_state, $captcha_point_form_id=NULL) {
+function captcha_point_admin_form($form, $form_state, $captcha_point_form_id=NULL) {
   $form = array();
   $default_captcha_type = 'none';
   if (isset($captcha_point_form_id)) {
@@ -378,7 +359,7 @@ function captcha_point_admin_form($form_state, $captcha_point_form_id=NULL) {
     '#options' => _captcha_available_challenge_types(),
   );
   // redirect to general CAPTCHA settings page after submission
-  $form['#redirect'] = 'admin/user/captcha';
+  $form['#redirect'] = 'admin/config/people/captcha';
   // submit button
   $form['submit'] = array(
     '#type' => 'submit',
@@ -411,7 +392,7 @@ function captcha_point_admin_form_submit($form, $form_state) {
 /**
  * Confirm dialog for disabling/deleting a CAPTCHA point
  */
-function captcha_point_disable_confirm(&$form_state, $captcha_point_form_id, $delete) {
+function captcha_point_disable_confirm($form, &$form_state, $captcha_point_form_id, $delete) {
   $form = array();
   $form['captcha_point_form_id'] = array(
     '#type' => 'value',
@@ -429,7 +410,7 @@ function captcha_point_disable_confirm(&$form_state, $captcha_point_form_id, $de
     $message = t('Are you sure you want to disable the CAPTCHA for form_id %form_id?', array('%form_id' => $captcha_point_form_id));
     $yes = t('Disable');
   }
-  return confirm_form($form, $message, 'admin/user/captcha/captcha', '', $yes);
+  return confirm_form($form, $message, 'admin/config/people/captcha/captcha', '', $yes);
 }
 
 /**
@@ -446,7 +427,7 @@ function captcha_point_disable_confirm_submit($form, &$form_state) {
     captcha_set_form_id_setting($captcha_point_form_id, 'none');
     drupal_set_message(t('Disabled CAPTCHA for form %form_id.', array('%form_id' => $captcha_point_form_id)));
   }
-  $form_state['redirect'] = 'admin/user/captcha/captcha';
+  $form_state['redirect'] = 'admin/config/people/captcha/captcha';
 }
 
 /**
@@ -455,7 +436,7 @@ function captcha_point_disable_confirm_submit($form, &$form_state) {
 function _captcha_generate_example_challenge($module, $type) {
   return array(
     '#type' => 'captcha',
-    '#captcha_type' => $module .'/'. $type,
+    '#captcha_type' => $module . '/' . $type,
     '#captcha_admin_mode' => TRUE,
   );
 }
@@ -468,7 +449,7 @@ function _captcha_generate_example_challenge($module, $type) {
  * If $module and $challenge are set, generate 10 examples of the concerning
  * CAPTCHA.
  */
-function captcha_examples($form_state, $module, $challenge) {
+function captcha_examples($form, $form_state, $module, $challenge) {
   module_load_include('inc', 'captcha');
 
   $form = array();
@@ -481,10 +462,10 @@ function captcha_examples($form_state, $module, $challenge) {
   else {
     // generate a list with examples of the available CAPTCHA types
     $form['info'] = array(
-      '#value' => t('This page gives an overview of all available challenge types, generated with their current settings.'),
+      '#markup' => t('This page gives an overview of all available challenge types, generated with their current settings.'),
     );
     foreach (module_implements('captcha') as $mkey => $module) {
-      $challenges = call_user_func_array($module .'_captcha', array('list'));
+      $challenges = call_user_func_array($module . '_captcha', array('list'));
       if ($challenges) {
         foreach ($challenges as $ckey => $challenge) {
           $form["captcha_{$mkey}_{$ckey}"] = array(
@@ -492,7 +473,7 @@ function captcha_examples($form_state, $module, $challenge) {
             '#title' => t('Challenge "%challenge" by module "%module"', array('%challenge' => $challenge, '%module' => $module)),
             'challenge' => _captcha_generate_example_challenge($module, $challenge),
             'more_examples' => array(
-              '#value' => l(t('10 more examples of this challenge.'), "admin/user/captcha/captcha/examples/$module/$challenge"),
+              '#markup' => l(t('10 more examples of this challenge.'), "admin/config/people/captcha/captcha/examples/$module/$challenge"),
             ),
           );
         }

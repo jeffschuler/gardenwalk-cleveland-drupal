@@ -1,5 +1,4 @@
 <?php
-// $Id: views_content.views.inc,v 1.2.2.2 2010/10/29 20:13:15 merlinofchaos Exp $
 
 /**
  * @file
@@ -7,7 +6,7 @@
  */
 
 /**
- * Implementation of hook_views_plugins
+ * Implements hook_views_plugins
  */
 function views_content_views_plugins() {
   return array(
@@ -24,7 +23,6 @@ function views_content_views_plugins() {
         'use more' => TRUE,
         'accept attachments' => TRUE,
         'help topic' => 'display-pane',
-        'admin' => t('Content pane'),
       ),
       'ctools_context' => array(
         'title' => t('Context'),
@@ -39,7 +37,6 @@ function views_content_views_plugins() {
         'accept attachments' => TRUE,
         'returns context' => TRUE,
         'help topic' => 'display-context',
-        'admin' => t('Context'),
       ),
     ),
     'style' => array(

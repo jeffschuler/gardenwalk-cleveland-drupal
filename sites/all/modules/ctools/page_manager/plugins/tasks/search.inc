@@ -1,5 +1,4 @@
 <?php
-// $Id: search.inc,v 1.1.2.3 2010/07/16 00:40:13 merlinofchaos Exp $
 
 /**
  * @file
@@ -134,7 +133,6 @@ function page_manager_search_menu_alter(&$items, $task) {
       }
     }
     else {
-
       // automatically disable this task if it cannot be enabled.
       variable_set('page_manager_search_disabled_' . $name, TRUE);
       if (!empty($GLOBALS['page_manager_enabling_search'])) {
@@ -151,8 +149,10 @@ function page_manager_search_menu_alter(&$items, $task) {
  * of it due to the special way we're handling search items.
  */
 function page_manager_search_view($type = 'node') {
-  ctools_include('menu');
-  menu_set_active_trail(ctools_get_menu_trail('search/' . $type));
+  // @TODO: test that this actually works once page_manager is upgraded.
+  drupal_static_reset('menu_set_active_trail');
+  drupal_static_reset('menu_tree_page_data');
+  menu_set_active_trail();
 
   module_load_include('inc', 'search', 'search.pages');
   return search_view($type);
@@ -253,8 +253,9 @@ function page_manager_search_enable($cache, $status) {
  * Return a list of all subtasks.
  */
 function page_manager_search_subtasks($task) {
+  $return = array();
   foreach (module_implements('search') as $name) {
-    if(module_invoke($name, 'search', 'name')) {
+    if (module_invoke($name, 'search', 'name')) {
       $return[$name] = page_manager_search_build_subtask($task, $name);
     }
   }

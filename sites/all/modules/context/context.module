@@ -1,5 +1,4 @@
 <?php
-// $Id: context.module,v 1.6.2.6.2.6.2.25 2010/08/06 17:56:50 yhahn Exp $
 
 require('context.core.inc');
 
@@ -131,12 +130,15 @@ function context_clear() {
  */
 
 /**
- * Implementation of hook_ctools_plugin_plugins().
+ * Implementation of hook_ctools_plugin_type().
  */
-function context_ctools_plugin_plugins() {
+function context_ctools_plugin_type() {
   return array(
-    'cache' => TRUE,
-    'use hooks' => TRUE,
+    'plugins' => array(
+      'cache' => TRUE,
+      'use hooks' => TRUE,
+      'classes' => array('handler'),
+    ),
   );
 }
 
@@ -460,33 +462,14 @@ function context_get_plugin($type = 'condition', $key, $reset = FALSE) {
       $info = $registry[$key];
       $plugins = ctools_get_plugins('context', 'plugins');
       if (isset($plugins[$info['plugin']]) && $class = ctools_plugin_get_class($plugins[$info['plugin']], 'handler')) {
-        $cache[$type][$key] = new $class($key, $info);
+        // Check that class exists until CTools & registry issues are resolved.
+        if (class_exists($class)) {
+          $cache[$type][$key] = new $class($key, $info);
+        }
       }
     }
   }
   return isset($cache[$type][$key]) ? $cache[$type][$key] : FALSE;
-}
-
-/**
- * Get info for modules.
- * @TODO: It really hurts that we have to do this. See a similar function in
- * features.module and recognize that this should be in system.module but is not...
- */
-function context_get_info($type = NULL, $name = NULL, $reset = FALSE) {
-  static $info;
-  if (!isset($info) || $reset) {
-    $result = db_query("SELECT name,type,info FROM {system}");
-    while ($row = db_fetch_object($result)) {
-      $info[$row->type][$row->name] = unserialize($row->info);
-    }
-  }
-  if (isset($type, $name)) {
-    return isset($info[$type][$name]) ? $info[$type][$name] : FALSE;
-  }
-  else if (isset($type)) {
-    return isset($info[$type]) ? $info[$type] : FALSE;
-  }
-  return $info;
 }
 
 /**
@@ -522,4 +505,16 @@ function _context_registry($key = NULL, $reset = FALSE) {
     return isset($registry[$key]) ? $registry[$key] : array();
   }
   return $registry;
+}
+
+/**
+ * hook_block_view_alter - if the context editor block is on this page,
+ * ensure that all blocks have some content so that empty blocks are
+ * not dropped
+ */
+function context_block_view_alter(&$data, $block) {
+  $context_ui_editor_present = &drupal_static('context_ui_editor_present', FALSE);
+  if ($context_ui_editor_present && empty($data['content'])) {
+    $data['content']['#markup'] = "<div class='context-block-empty'>". t('This block appears empty when displayed on this page.') . "</div>";
+  }
 }

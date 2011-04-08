@@ -1,5 +1,4 @@
 <?php
-// $Id: views_content.module,v 1.4.2.3 2010/08/12 20:35:37 merlinofchaos Exp $
 
 /**
  * @file views_content.module
@@ -10,13 +9,13 @@
  */
 
 /**
- * Implementation of hook_menu().
+ * Implements hook_menu().
  */
 function views_content_menu() {
   $items = array();
 
   if (!module_exists('panels')) {
-    $items['admin/settings/content-views'] = array(
+    $items['admin/config/content-views'] = array(
       'title' => 'Views panes',
       'access arguments' => array('administer views content plugin'),
       'page callback' => 'drupal_get_form',
@@ -66,7 +65,7 @@ function views_ctools_block_info($module, $delta, &$info) {
 /**
  * Add settings to the "exposed form in block" views.
  */
-function views_content_exposed_form_pane_edit(&$form, &$form_state) {
+function views_content_exposed_form_pane_edit($form, &$form_state) {
   // This is a cheesy way to add defaults only to new versions of the block
   // but leave older blocks without the setting alone. We can tell because
   // all older content will have something set for override_title which is
@@ -80,12 +79,14 @@ function views_content_exposed_form_pane_edit(&$form, &$form_state) {
     '#title' => t('Inherit path'),
     '#default_value' => !empty($form_state['conf']['inherit_path']),
   );
+
+  return $form;
 }
 
 /**
  * Store data for the exposed form in block settings page.
  */
-function views_content_exposed_form_pane_edit_submit(&$form, &$form_state) {
+function views_content_exposed_form_pane_edit_submit($form, &$form_state) {
   $form_state['conf']['inherit_path'] = $form_state['values']['inherit_path'];
 }
 
@@ -126,7 +127,7 @@ function views_content_exposed_form_pane_render($subtype, $conf, $panel_args, $c
 }
 
 /**
- * Implementation of hook_views_api().
+ * Implements hook_views_api().
  *
  * This one is used as the base to reduce errors when updating.
  */
@@ -164,6 +165,7 @@ function views_content_context_get_view(&$context) {
     $context->view = views_get_view($context->data['name']);
     if ($context->view) {
       $context->view->set_display($context->data['display']);
+      $context->view->set_arguments($context->data['args']);
     }
   }
 

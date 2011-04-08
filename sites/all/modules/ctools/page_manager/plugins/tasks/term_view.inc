@@ -1,5 +1,4 @@
 <?php
-// $Id: term_view.inc,v 1.5.2.1 2010/06/22 14:48:38 merlinofchaos Exp $
 
 /**
  * @file
@@ -23,7 +22,7 @@ function page_manager_term_view_page_manager_tasks() {
       'title' => t('Taxonomy term template'),
       'admin title' => t('Taxonomy term template'),
       'admin description' => t('When enabled, this overrides the default Drupal behavior for displaying taxonomy terms at <em>taxonomy/term/%term</em>. If you add variants, you may use selection criteria such as vocabulary or user access to provide different displays of the taxonomy term and associated nodes. If no variant is selected, the default Drupal taxonomy term display will be used. This page only affects items actually displayed ad taxonomy/term/%term. Some taxonomy terms, such as forums, have their displays moved elsewhere. Also please note that if you are using pathauto, aliases may make a taxonomy terms appear somewhere else, but as far as Drupal is concerned, they are still at taxonomy/term/%term.'),
-      'admin path' => 'taxonomy/term/%term',
+      'admin path' => 'taxonomy/term/%taxonomy_term',
       'admin summary' => 'page_manager_term_view_admin_summary',
 
       // Menu hooks so that we can alter the term/%term menu entry to point to us.
@@ -73,16 +72,28 @@ function page_manager_term_view_menu_alter(&$items, $task) {
 
   // Override the term view handler for our purpose, but only if someone else
   // has not already done so.
-  if (isset($items['taxonomy/term/%']) && $items['taxonomy/term/%']['page callback'] == 'taxonomy_term_page' || variable_get('page_manager_override_anyway', FALSE)) {
-    $items['taxonomy/term/%']['page callback'] = 'page_manager_term_view';
-    $items['taxonomy/term/%']['file path'] = $task['path'];
-    $items['taxonomy/term/%']['file'] = $task['file'];
+  if (isset($items['taxonomy/term/%taxonomy_term']) && $items['taxonomy/term/%taxonomy_term']['page callback'] == 'taxonomy_term_page' || variable_get('page_manager_override_anyway', FALSE)) {
+    $items['taxonomy/term/%taxonomy_term']['page callback'] = 'page_manager_term_view_page';
+    $items['taxonomy/term/%taxonomy_term']['file path'] = $task['path'];
+    $items['taxonomy/term/%taxonomy_term']['file'] = $task['file'];
   }
   else {
     // automatically disable this task if it cannot be enabled.
     variable_set('page_manager_term_view_disabled', TRUE);
+
+    if (isset($items['taxonomy/term/%taxonomy_term']['page callback'])) {
+      $callback = $items['taxonomy/term/%taxonomy_term']['page callback'];
+    }
+    // Because Views changes %taxonomy_term to %views_arg, check to see if that
+    // is why we can't enable:
+    else if (isset($items['taxonomy/term/%views_arg']['page callback'])) {
+      $callback = $items['taxonomy/term/%views_arg']['page callback'];
+    }
+    else {
+      $callback = t('an unknown callback');
+    }
     if (!empty($GLOBALS['page_manager_enabling_term_view'])) {
-      drupal_set_message(t('Page manager module is unable to enable taxonomy/term/%term because some other module already has overridden with %callback.', array('%callback' => $items['taxonomy/term/%']['page callback'])), 'error');
+      drupal_set_message(t('Page manager module is unable to enable taxonomy/term/%taxonomy_term because some other module already has overridden with %callback.', array('%callback' => $callback)), 'error');
     }
   }
 }
@@ -94,42 +105,40 @@ function page_manager_term_view_menu_alter(&$items, $task) {
  * to run with it. If no one does, it passes through to Drupal core's
  * term view, which is term_page_view().
  */
-function page_manager_term_view($terms, $depth = 0, $op = 'page') {
+function page_manager_term_view_page($term) {
   // While we ordinarily should never actually get feeds through here,
   // just in case
-  if ($op != 'feed') {
-    // Load my task plugin
-    $task = page_manager_get_task('term_view');
+  // Load my task plugin
+  $task = page_manager_get_task('term_view');
 
-    // Load the term into a context.
-    ctools_include('context');
-    ctools_include('context-task-handler');
-    $contexts = ctools_context_handler_get_task_contexts($task, '', array($terms, $depth));
+  // Load the term into a context.
+  ctools_include('context');
+  ctools_include('context-task-handler');
+  $contexts = ctools_context_handler_get_task_contexts($task, '', array($term));
 
-    if (empty($contexts)) {
-      return drupal_not_found();
-    }
+  if (empty($contexts)) {
+    return drupal_not_found();
+  }
 
-    // Add a fake tab for 'View' so that edit tabs can be added.
-    if (user_access('administer page manager')) {
-      ctools_include('menu');
-      ctools_menu_add_tab(array(
-        'title' => t('View'),
-        'href' => $_GET['q'],
-        'type' => MENU_DEFAULT_LOCAL_TASK,
-        'weight' => -10,
-      ));
-    }
+  $output = ctools_context_handler_render($task, '', $contexts, array($term->tid));
+  if ($output !== FALSE) {
+    return $output;
+  }
 
-    $output = ctools_context_handler_render($task, '', $contexts, array($terms, $depth, $op));
-    if ($output !== FALSE) {
-      return $output;
+  $function = 'taxonomy_term_page';
+  foreach (module_implements('page_manager_override') as $module) {
+    $call = $module . '_page_manager_override';
+    if (($rc = $call('term_view')) && function_exists($rc)) {
+      $function = $rc;
+      break;
     }
   }
 
   // Otherwise, fall back.
-  module_load_include('inc', 'taxonomy', 'taxonomy.pages');
-  return taxonomy_term_page($terms, $depth, $op);
+  if ($function == 'taxonomy_term_page') {
+    module_load_include('inc', 'taxonomy', 'taxonomy.pages');
+  }
+  return $function($term);
 }
 
 /**
@@ -141,10 +150,11 @@ function page_manager_term_view($terms, $depth = 0, $op = 'page') {
 function page_manager_term_view_get_arguments($task, $subtask_id) {
   return array(
     array(
-      'keyword' => 'term',
+      'keyword' => 'taxonomy_term',
       'identifier' => variable_get('page_manager_term_view_type', 'multiple') == 'multiple' ? t('Term(s) being viewed') : t('Term being viewed'),
       'id' => 1,
-      'name' => variable_get('page_manager_term_view_type', 'multiple') == 'multiple' ? 'terms' : 'term',
+      //'name' => variable_get('page_manager_term_view_type', 'multiple') == 'multiple' ? 'terms' : 'term',
+      'name' => 'entity_id:taxonomy_term',
       'settings' => array('input_form' => 'tid', 'breadcrumb' => variable_get('page_manager_taxonomy_breadcrumb', TRUE)),
       'default' => '404',
     ),
@@ -239,23 +249,23 @@ function page_manager_term_view_admin_summary($task, $subtask) {
   $task_name = page_manager_make_task_name($task['name'], $subtask['name']);
 
   $rows[] = array(
-    array('class' => t('page-summary-label'), 'data' => t('Path')),
-    array('class' => t('page-summary-data'), 'data' => 'taxonomy/term/%term'),
-    array('class' => t('page-summary-operation'), 'data' => ''),
+    array('class' => array('page-summary-label'), 'data' => t('Path')),
+    array('class' => array('page-summary-data'), 'data' => 'taxonomy/term/%term'),
+    array('class' => array('page-summary-operation'), 'data' => ''),
   );
 
   $rows[] = array(
-    array('class' => t('page-summary-label'), 'data' => t('Access')),
-    array('class' => t('page-summary-data'), 'data' => t('This page is publicly accessible.')),
-    array('class' => t('page-summary-operation'), 'data' => ''),
+    array('class' => array('page-summary-label'), 'data' => t('Access')),
+    array('class' => array('page-summary-data'), 'data' => t('This page is publicly accessible.')),
+    array('class' => array('page-summary-operation'), 'data' => ''),
   );
 
   $menu = t('No menu entry');
 
   $rows[] = array(
-    array('class' => t('page-summary-label'), 'data' => t('Menu')),
-    array('class' => t('page-summary-data'), 'data' => $menu),
-    array('class' => t('page-summary-operation'), 'data' => ''),
+    array('class' => array('page-summary-label'), 'data' => t('Menu')),
+    array('class' => array('page-summary-data'), 'data' => $menu),
+    array('class' => array('page-summary-operation'), 'data' => ''),
   );
 
   if (variable_get('page_manager_term_view_type', 'multiple') == 'multiple') {
@@ -266,9 +276,9 @@ function page_manager_term_view_admin_summary($task, $subtask) {
   }
 
   $rows[] = array(
-    array('class' => t('page-summary-label'), 'data' => t('%term')),
-    array('class' => t('page-summary-data'), 'data' => $message),
-    array('class' => t('page-summary-operation'), 'data' => ''),
+    array('class' => array('page-summary-label'), 'data' => t('%term')),
+    array('class' => array('page-summary-data'), 'data' => $message),
+    array('class' => array('page-summary-operation'), 'data' => ''),
   );
 
   if (variable_get('page_manager_taxonomy_breadcrumb', TRUE)) {
@@ -279,9 +289,9 @@ function page_manager_term_view_admin_summary($task, $subtask) {
   }
 
   $rows[] = array(
-    array('class' => t('page-summary-label'), 'data' => t('Breadcrumb')),
-    array('class' => t('page-summary-data'), 'data' => $message),
-    array('class' => t('page-summary-operation'), 'data' => ''),
+    array('class' => array('page-summary-label'), 'data' => t('Breadcrumb')),
+    array('class' => array('page-summary-data'), 'data' => $message),
+    array('class' => array('page-summary-operation'), 'data' => ''),
   );
 
   $output = theme('table', array(), $rows, array('id' => 'page-manager-page-summary'));

@@ -1,5 +1,4 @@
 <?php
-// $Id: search_result.inc,v 1.1.2.4 2010/07/22 22:26:04 merlinofchaos Exp $
 
 if (module_exists('search')) {
   /**
@@ -19,11 +18,11 @@ if (module_exists('search')) {
       'override_empty' => FALSE,
       'empty_title' => '',
       'empty' => '',
-      'empty_format' => FILTER_FORMAT_DEFAULT,
+      'empty_format' => filter_fallback_format(),
       'override_no_key' => FALSE,
       'no_key_title' => '',
       'no_key' => '',
-      'no_key_format' => FILTER_FORMAT_DEFAULT,
+      'no_key_format' => filter_fallback_format(),
     ),
   );
 }
@@ -83,7 +82,7 @@ function ctools_search_result_content_type_render($subtype, $conf, $panel_args, 
 /**
  * Returns an edit form for custom type settings.
  */
-function ctools_search_result_content_type_edit_form(&$form, &$form_state) {
+function ctools_search_result_content_type_edit_form($form, &$form_state) {
   $conf = $form_state['conf'];
 
   // Add js for collapsible fieldsets manually
@@ -181,13 +180,13 @@ function ctools_search_result_content_type_edit_form(&$form, &$form_state) {
   $form['no_key_field']['format_suffix'] = array(
     '#value' => '</fieldset></div>',
   );
-
+  return $form;
 }
 
 /**
  * Submit handler for search form.
  */
-function ctools_search_result_content_type_edit_form_submit(&$form, &$form_state) {
+function ctools_search_result_content_type_edit_form_submit($form, &$form_state) {
   // Copy everything from our defaults.
   foreach (array_keys($form_state['plugin']['defaults']) as $key) {
     $form_state['conf'][$key] = $form_state['values'][$key];

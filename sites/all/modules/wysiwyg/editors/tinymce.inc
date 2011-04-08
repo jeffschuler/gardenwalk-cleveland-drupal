@@ -1,5 +1,5 @@
 <?php
-// $Id: tinymce.inc,v 1.35.2.11 2010/12/19 23:27:09 sun Exp $
+// $Id: tinymce.inc,v 1.46 2010/12/19 23:26:56 sun Exp $
 
 /**
  * @file
@@ -315,17 +315,7 @@ function wysiwyg_tinymce_plugin_settings($editor, $profile, $plugins) {
     if (!empty($plugin['load'])) {
       // Add path for native external plugins; internal ones are loaded
       // automatically.
-      if (empty($plugin['internal']) && isset($plugin['path'])) {
-        // TinyMCE plugins commonly use the filename editor_plugin.js, but there
-        // is no default. Previously, Wysiwyg's API documentation suggested to
-        // have the 'path' contain the 'filename' property, so if 'filename' is
-        // not defined, automatically extract it from 'path' for backwards
-        // compatibility.
-        if (!isset($plugin['filename'])) {
-          $parts = explode('/', $plugin['path']);
-          $plugin['filename'] = array_pop($parts);
-          $plugin['path'] = implode('/', $parts);
-        }
+      if (empty($plugin['internal']) && isset($plugin['filename'])) {
         $settings[$name] = base_path() . $plugin['path'] . '/' . $plugin['filename'];
       }
     }

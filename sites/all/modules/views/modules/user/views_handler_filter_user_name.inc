@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_filter_user_name.inc,v 1.2 2008/09/22 23:41:14 merlinofchaos Exp $
+// $Id: views_handler_filter_user_name.inc,v 1.2.6.2 2010/08/26 09:41:55 dereine Exp $
 
 /**
  * Filter handler for usernames
@@ -10,8 +10,8 @@ class views_handler_filter_user_name extends views_handler_filter_in_operator {
   function value_form(&$form, &$form_state) {
     $values = array();
     if ($this->value) {
-      $result = db_query("SELECT * FROM {users} u WHERE uid IN ("  . implode(', ', $this->value) . ")");
-      while ($account = db_fetch_object($result)) {
+      $result = db_query("SELECT * FROM {users} u WHERE uid IN (:uids)", array(':uids' => $this->value));
+      foreach ($result as $account) {
         if ($account->uid) {
           $values[] = $account->name;
         }
@@ -36,7 +36,7 @@ class views_handler_filter_user_name extends views_handler_filter_in_operator {
     }
   }
 
-  function value_validate(&$form, &$form_state) {
+  function value_validate($form, &$form_state) {
     $values = drupal_explode_tags($form_state['values']['options']['value']);
     $uids = $this->validate_user_strings($form['value'], $values);
 
@@ -102,8 +102,8 @@ class views_handler_filter_user_name extends views_handler_filter_in_operator {
       return $uids;
     }
 
-    $result = db_query("SELECT * FROM {users} WHERE name IN (" . implode(', ', $placeholders) . ")", $args);
-    while ($account = db_fetch_object($result)) {
+    $result = db_query("SELECT * FROM {users} WHERE name IN (:names)", array(':names' => $args));
+    foreach ($result as $account) {
       unset($missing[strtolower($account->name)]);
       $uids[] = $account->uid;
     }
@@ -127,9 +127,9 @@ class views_handler_filter_user_name extends views_handler_filter_in_operator {
     $this->value_options = array();
 
     if ($this->value) {
-      $result = db_query("SELECT * FROM {users} u WHERE uid IN ("  . implode(', ', $this->value) . ")");
+      $result = db_query("SELECT * FROM {users} u WHERE uid IN (:uids)", array(':uids' => $this->value));
 
-      while ($account = db_fetch_object($result)) {
+      foreach ($result as $account) {
         if ($account->uid) {
           $this->value_options[$account->uid] = $account->name;
         }

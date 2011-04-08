@@ -1,5 +1,5 @@
 <?php
-// $Id: views_plugin_display_feed.inc,v 1.7 2009/09/15 22:20:01 merlinofchaos Exp $
+// $Id: views_plugin_display_feed.inc,v 1.7.4.5 2010/12/18 08:02:38 dereine Exp $
 /**
  * @file
  * Contains the feed display plugin.
@@ -30,7 +30,7 @@ class views_plugin_display_feed extends views_plugin_display_page {
   }
 
   function preview() {
-    if (!empty($this->live_preview)) {
+    if (!empty($this->view->live_preview)) {
       return '<pre>' . check_plain($this->view->render()) . '</pre>';
     }
     return $this->view->render();
@@ -68,7 +68,7 @@ class views_plugin_display_feed extends views_plugin_display_page {
 
     // Overrides for standard stuff:
     $options['style_plugin']['default'] = 'rss';
-    $options['style_options']['default']  = array('mission_description' => FALSE, 'description' => '');
+    $options['style_options']['default']  = array('description' => '');
     $options['sitename_title']['default'] = FALSE;
     $options['row_plugin']['default'] = '';
     $options['defaults']['default']['style_plugin'] = FALSE;
@@ -100,7 +100,7 @@ class views_plugin_display_feed extends views_plugin_display_page {
     if (count($displays) > 1) {
       $attach_to = t('Multiple displays');
     }
-    else if (count($displays) == 1) {
+    elseif (count($displays) == 1) {
       $display = array_shift($displays);
       if (!empty($this->view->display[$display])) {
         $attach_to = check_plain($this->view->display[$display]->display_title);
@@ -136,7 +136,7 @@ class views_plugin_display_feed extends views_plugin_display_page {
           '#default_value' => $this->get_option('sitename_title'),
         );
         $form['title'] = $title;
-        $form['title']['#process'] = array('views_process_dependency');
+        $form['title']['#process'] = array('ctools_dependent_process');
         $form['title']['#dependency'] = array('edit-sitename-title' => array(FALSE));
         break;
       case 'displays':
@@ -195,7 +195,7 @@ class views_plugin_display_feed extends views_plugin_display_page {
       $plugin->attach_to($display_id, $this->get_path(), $clone->get_title());
     }
   }
-  
+
   function uses_link_display() {
     return TRUE;
   }

@@ -1,13 +1,13 @@
-; $Id: search_config.info,v 1.3.2.3 2010/04/26 16:31:32 jbomb Exp $
 name = Search config
 description = Configure display of the advanced search form
 dependencies[] = search
+files[] = search_config.module
+project = Search
+core = 7.x
 
-core = 6.x
-
-; Information added by drupal.org packaging script on 2010-05-03
-version = "6.x-1.6"
-core = "6.x"
+; Information added by drupal.org packaging script on 2011-02-25
+version = "7.x-1.x-dev"
+core = "7.x"
 project = "search_config"
-datestamp = "1272914708"
+datestamp = "1298620133"
 

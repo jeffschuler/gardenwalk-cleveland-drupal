@@ -1,5 +1,5 @@
 <?php
-// $Id: comment.views.inc,v 1.33.2.3 2009/12/02 21:51:40 merlinofchaos Exp $
+// $Id: comment.views.inc,v 1.33.4.17 2010/11/25 20:56:40 dereine Exp $
 /**
  * @file
  * Provide views data and handlers for comment.module
@@ -13,22 +13,22 @@
  */
 
 /**
- * Implementation of hook_views_data()
+ * Implements hook_views_data()
  */
 
 function comment_views_data() {
   // Define the base group of this table. Fields that don't
   // have a group defined will go into this field by default.
-  $data['comments']['table']['group']  = t('Comment');
+  $data['comment']['table']['group']  = t('Comment');
 
-  $data['comments']['table']['base'] = array(
+  $data['comment']['table']['base'] = array(
     'field' => 'cid',
     'title' => t('Comment'),
     'help' => t("Comments are responses to node content."),
   );
 
   //joins
-  $data['comments']['table']['join'] = array(
+  $data['comment']['table']['join'] = array(
     //...to the node table
     'node' => array(
       'left_field' => 'nid',
@@ -40,7 +40,7 @@ function comment_views_data() {
   // Fields
 
   // subject
-  $data['comments']['subject'] = array(
+  $data['comment']['subject'] = array(
     'title' => t('Title'),
     'help' => t('The title of the comment.'),
     'field' => array(
@@ -58,21 +58,8 @@ function comment_views_data() {
     ),
   );
 
-  // comment (the comment body)
-  $data['comments']['comment'] = array(
-    'title' => t('Body'),
-    'help' => t('The text of the comment.'),
-    'field' => array(
-      'handler' => 'views_handler_field_markup',
-      'format' => 'format',
-    ),
-    'filter' => array(
-      'handler' => 'views_handler_filter_string',
-    ),
-  );
-
   // cid
-  $data['comments']['cid'] = array(
+  $data['comment']['cid'] = array(
     'title' => t('ID'),
     'help' => t('The comment ID of the field'),
     'field' => array(
@@ -86,12 +73,12 @@ function comment_views_data() {
       'handler' => 'views_handler_sort',
     ),
     'argument' => array(
-      'handler' => 'views_handler_argument',
+      'handler' => 'views_handler_argument_numeric',
     ),
   );
 
   // name (of comment author)
-  $data['comments']['name'] = array(
+  $data['comment']['name'] = array(
     'title' => t('Author'),
     'help' => t("The name of the comment's author. Can be rendered as a link to the author's homepage."),
     'field' => array(
@@ -110,7 +97,7 @@ function comment_views_data() {
   );
 
   // homepage
-  $data['comments']['homepage'] = array(
+  $data['comment']['homepage'] = array(
     'title' => t("Author's website"),
     'help' => t("The website address of the comment's author. Can be rendered as a link. Will be empty if the author is a registered user."),
     'field' => array(
@@ -129,7 +116,7 @@ function comment_views_data() {
   );
 
   // hostname
-  $data['comments']['hostname'] = array(
+  $data['comment']['hostname'] = array(
     'title' => t('Hostname'),
     'help' => t('Hostname of user that posted the comment.'),
     'field' => array(
@@ -148,7 +135,7 @@ function comment_views_data() {
   );
 
   // mail
-  $data['comments']['mail'] = array(
+  $data['comment']['mail'] = array(
     'title' => t('Mail'),
     'help' => t('Email of user that posted the comment. Will be empty if the author is a registered user.'),
     'field' => array(
@@ -166,10 +153,10 @@ function comment_views_data() {
     ),
   );
 
-  // timestamp (when comment was posted)
-  $data['comments']['timestamp'] = array(
+  // created (when comment was posted)
+  $data['comment']['created'] = array(
     'title' => t('Post date'),
-    'help' => t('Date and time of when the comment was posted.'),
+    'help' => t('Date and time of when the comment was created.'),
     'field' => array(
       'handler' => 'views_handler_field_date',
       'click sortable' => TRUE,
@@ -182,17 +169,87 @@ function comment_views_data() {
     ),
   );
 
+  // changed (when comment was last updated)
+  $data['comment']['changed'] = array(
+    'title' => t('Post date'),
+    'help' => t('Date and time of when the comment was last updated.'),
+    'field' => array(
+      'handler' => 'views_handler_field_date',
+      'click sortable' => TRUE,
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort_date',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_date',
+    ),
+  );
+  
+  $data['comments']['timestamp_fulldate'] = array(
+    'title' => t('Created date'),
+    'help' => t('In the form of CCYYMMDD.'),
+    'argument' => array(
+      'field' => 'timestamp',
+      'handler' => 'views_handler_argument_node_created_fulldate',
+    ),
+  );
+
+  $data['comments']['timestamp_year_month'] = array(
+    'title' => t('Created year + month'),
+    'help' => t('In the form of YYYYMM.'),
+    'argument' => array(
+      'field' => 'timestamp',
+      'handler' => 'views_handler_argument_node_created_year_month',
+    ),
+  );
+
+  $data['comments']['timestamp_year'] = array(
+    'title' => t('Created year'),
+    'help' => t('In the form of YYYY.'),
+    'argument' => array(
+      'field' => 'timestamp',
+      'handler' => 'views_handler_argument_node_created_year',
+    ),
+  );
+
+  $data['comments']['timestamp_month'] = array(
+    'title' => t('Created month'),
+    'help' => t('In the form of MM (01 - 12).'),
+    'argument' => array(
+      'field' => 'timestamp',
+      'handler' => 'views_handler_argument_node_created_month',
+    ),
+  );
+
+  $data['comments']['timestamp_day'] = array(
+    'title' => t('Created day'),
+    'help' => t('In the form of DD (01 - 31).'),
+    'argument' => array(
+      'field' => 'timestamp',
+      'handler' => 'views_handler_argument_node_created_day',
+    ),
+  );
+
+  $data['comments']['timestamp_week'] = array(
+    'title' => t('Created week'),
+    'help' => t('In the form of WW (01 - 53).'),
+    'argument' => array(
+      'field' => 'timestamp',
+      'handler' => 'views_handler_argument_node_created_week',
+    ),
+  );
+
   // status (approved or not)
-  $data['comments']['status'] = array(
-    'title' => t('In moderation'),
-    'help' => t('Whether or not the comment is currently in moderation.'),
+  $data['comment']['status'] = array(
+    'title' => t('Approved'),
+    'help' => t('Whether the comment is approved (or still in the moderation queue).'),
     'field' => array(
       'handler' => 'views_handler_field_boolean',
       'click sortable' => TRUE,
     ),
     'filter' => array(
       'handler' => 'views_handler_filter_boolean_operator',
-      'label' => t('Moderated'),
+      'label' => t('Approved comment'),
       'type' => 'yes-no',
     ),
     'sort' => array(
@@ -201,7 +258,7 @@ function comment_views_data() {
   );
 
   // link to view comment
-  $data['comments']['view_comment'] = array(
+  $data['comment']['view_comment'] = array(
     'field' => array(
       'title' => t('View link'),
       'help' => t('Provide a simple link to view the comment.'),
@@ -210,7 +267,7 @@ function comment_views_data() {
   );
 
   // link to edit comment
-  $data['comments']['edit_comment'] = array(
+  $data['comment']['edit_comment'] = array(
     'field' => array(
       'title' => t('Edit link'),
       'help' => t('Provide a simple link to edit the comment.'),
@@ -219,7 +276,7 @@ function comment_views_data() {
   );
 
   // link to delete comment
-  $data['comments']['delete_comment'] = array(
+  $data['comment']['delete_comment'] = array(
     'field' => array(
       'title' => t('Delete link'),
       'help' => t('Provide a simple link to delete the comment.'),
@@ -228,7 +285,7 @@ function comment_views_data() {
   );
 
   // link to reply to comment
-  $data['comments']['replyto_comment'] = array(
+  $data['comment']['replyto_comment'] = array(
     'field' => array(
       'title' => t('Reply-to link'),
       'help' => t('Provide a simple link to reply to the comment.'),
@@ -236,7 +293,7 @@ function comment_views_data() {
     ),
   );
 
-  $data['comments']['thread'] = array(
+  $data['comment']['thread'] = array(
     'field' => array(
       'title' => t('Depth'),
       'help' => t('Display the depth of the comment if it is threaded.'),
@@ -249,7 +306,7 @@ function comment_views_data() {
     ),
   );
 
-  $data['comments']['nid'] = array(
+  $data['comment']['nid'] = array(
     'title' => t('Node'),
     'help' => t('The node the comment is a reply to.'),
     'relationship' => array(
@@ -260,7 +317,7 @@ function comment_views_data() {
     ),
   );
 
-  $data['comments']['uid'] = array(
+  $data['comment']['uid'] = array(
     'title' => t('User'),
     'help' => t("The User ID of the comment's author."),
     'relationship' => array(
@@ -271,7 +328,7 @@ function comment_views_data() {
     ),
   );
 
-  $data['comments']['pid'] = array(
+  $data['comment']['pid'] = array(
     'title' => t('Parent CID'),
     'help' => t('The Comment ID of the parent comment.'),
     'field' => array(
@@ -280,7 +337,7 @@ function comment_views_data() {
     'relationship' => array(
       'title' => t('Parent comment'),
       'help' => t('The parent comment.'),
-      'base' => 'comments',
+      'base' => 'comment',
       'base field' => 'cid',
       'handler' => 'views_handler_relationship',
       'label' => t('Parent comment'),
@@ -308,7 +365,7 @@ function comment_views_data() {
     'title' => t('Last comment time'),
     'help' => t('Date and time of when the last comment was posted.'),
     'field' => array(
-      'handler' => 'views_handler_field_date',
+      'handler' => 'views_handler_field_last_comment_timestamp',
       'click sortable' => TRUE,
     ),
     'sort' => array(
@@ -367,6 +424,20 @@ function comment_views_data() {
     ),
   );
 
+  $data['node_comment_statistics']['cid'] = array(
+    'title' => t('Last comment CID'),
+    'help' => t('Display the last comment of a node'),
+    'relationship' => array(
+      'title' => t('Last Comment'),
+      'help' => t('The last comment of a node.'),
+      'group' => t('Comment'),
+      'base' => 'comment',
+      'base field' => 'cid',
+      'handler' => 'views_handler_relationship',
+      'label' => t('Last Comment'),
+    ),
+  );
+
   return $data;
 }
 
@@ -381,6 +452,7 @@ function comment_views_data_alter(&$data) {
     'help' => t('The number of new comments on the node.'),
     'field' => array(
       'handler' => 'views_handler_field_node_new_comments',
+      'no group by' => TRUE,
     ),
   );
 
@@ -428,19 +500,19 @@ function comment_views_data_alter(&$data) {
 }
 
 /**
- * Implementation of hook_views_plugins
+ * Implements hook_views_plugins
  */
 function comment_views_plugins() {
   return array(
-    'module' => 'views', // This just tells views our themes are in Views.
+    'module' => 'views',
     'row' => array(
       'comment' => array(
         'title' => t('Comment'),
         'help' => t('Display the comment with standard comment view.'),
         'handler' => 'views_plugin_row_comment_view',
-        'path' => drupal_get_path('module', 'views') . '/modules/comment', // not necessary for most modules
         'theme' => 'views_view_row_comment',
-        'base' => array('comments'), // only works with 'comment' as base.
+        'path' => drupal_get_path('module', 'views') . '/modules/comment', // not necessary for most modules
+        'base' => array('comment'), // only works with 'comment' as base.
         'uses options' => TRUE,
         'type' => 'normal',
         'help topic' => 'style-comment',
@@ -449,88 +521,11 @@ function comment_views_plugins() {
         'title' => t('Comment'),
         'help' => t('Display the comment as RSS.'),
         'handler' => 'views_plugin_row_comment_rss',
-        'path' => drupal_get_path('module', 'views') . '/modules/comment', // not necessary for most modules
         'theme' => 'views_view_row_rss',
-        'base' => array('comments'), // only works with 'comment' as base.
+        'path' => drupal_get_path('module', 'views') . '/modules/comment', // not necessary for most modules
+        'base' => array('comment'), // only works with 'comment' as base.
         'type' => 'feed',
         'help topic' => 'style-comment-rss',
-      ),
-    ),
-  );
-}
-
-/**
- * Implementation of hook_views_handlers() to register all of the basic handlers
- * views uses.
- */
-function comment_views_handlers() {
-  return array(
-    'info' => array(
-      'path' => drupal_get_path('module', 'views') . '/modules/comment',
-    ),
-    'handlers' => array(
-      'views_handler_field_comment' => array(
-        'parent' => 'views_handler_field',
-      ),
-      'views_handler_field_comment_username' => array(
-        'parent' => 'views_handler_field',
-      ),
-      'views_handler_field_comment_depth' => array(
-        'parent' => 'views_handler_field',
-      ),
-      'views_handler_field_comment_link' => array(
-        'parent' => 'views_handler_field',
-      ),
-      'views_handler_field_comment_link_edit' => array(
-        'parent' => 'views_handler_field_comment_link',
-      ),
-      'views_handler_field_comment_link_delete' => array(
-        'parent' => 'views_handler_field_comment_link',
-      ),
-      'views_handler_field_comment_link_reply' => array(
-        'parent' => 'views_handler_field_comment_link',
-      ),
-      'views_handler_field_comment_node_link' => array(
-       'parent' => 'views_handler_field',
-      ),
-      'views_handler_field_ncs_last_comment_name' => array(
-        'parent' => 'views_handler_field',
-      ),
-      'views_handler_field_ncs_last_updated' => array(
-        'parent' => 'views_handler_field_date',
-      ),
-      'views_handler_field_node_new_comments' => array(
-        'parent' => 'views_handler_field_numeric',
-      ),
-      'views_handler_field_node_comment' => array(
-        'parent' => 'views_handler_field',
-      ),
-
-      // sort handlers
-      'views_handler_sort_comment_thread' => array(
-        'parent' => 'views_handler_sort',
-      ),
-      'views_handler_sort_ncs_last_comment_name' => array(
-        'parent' => 'views_handler_sort',
-      ),
-      'views_handler_sort_ncs_last_updated' => array(
-        'parent' => 'views_handler_sort_date',
-      ),
-
-      // filter handlers
-      'views_handler_filter_ncs_last_updated' => array(
-        'parent' => 'views_handler_filter_date',
-      ),
-      'views_handler_filter_node_comment' => array(
-        'parent' => 'views_handler_filter_in_operator',
-      ),
-      'views_handler_filter_comment_user_uid' => array(
-        'parent' => 'views_handler_filter_user_name',
-      ),
-
-      // argument handlers
-      'views_handler_argument_comment_user_uid' => array(
-        'parent' => 'views_handler_argument',
       ),
     ),
   );
@@ -543,18 +538,12 @@ function template_preprocess_views_view_row_comment(&$vars) {
   $options = $vars['options'];
   $view = &$vars['view'];
   $plugin = &$view->style_plugin->row_plugin;
-  $comment = $plugin->comments[$vars['row']->cid];
+  $comment = $plugin->comments[$vars['row']->{$vars['field_alias']}];
   $node = node_load($comment->nid);
   // Put the view on the node so we can retrieve it in the preprocess.
   $node->view = &$view;
 
-  $links = array();
-  if (!empty($options['links'])) {
-    $links = module_invoke_all('link', 'comment', $comment, 0);
-    drupal_alter('link', $links, $node);
-  }
-
-  $vars['comment'] = theme('comment_view', $comment, $node, $links);
+  $vars['comment'] = drupal_render(comment_view_multiple(array($comment->cid => $comment), $node));
 }
 
 /**

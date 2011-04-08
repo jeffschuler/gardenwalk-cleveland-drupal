@@ -1,5 +1,5 @@
 <?php
-// $Id: xmlsitemap.drush.inc,v 1.1.2.16 2010/10/07 08:43:10 davereid Exp $
+// $Id: xmlsitemap.drush.inc,v 1.15 2010/10/07 08:42:49 davereid Exp $
 
 /**
  * @file
@@ -73,10 +73,10 @@ function drush_xmlsitemap_rebuild() {
  */
 function drush_xmlsitemap_index() {
   $limit = (int) drush_get_option('limit', variable_get('xmlsitemap_batch_limit', 100));
-  $count_before = db_result(db_query("SELECT COUNT(id) FROM {xmlsitemap}"));
+  $count_before = db_query("SELECT COUNT(id) FROM {xmlsitemap}")->fetchField();
 
   module_invoke_all('xmlsitemap_index_links', $limit);
-  $count_after = db_result(db_query("SELECT COUNT(id) FROM {xmlsitemap}"));
+  $count_after = db_query("SELECT COUNT(id) FROM {xmlsitemap}")->fetchField();
 
   if ($count_after == $count_before) {
     drush_print(dt('No new XML sitemap links to index.'));

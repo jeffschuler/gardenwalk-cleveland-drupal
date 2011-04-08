@@ -1,5 +1,5 @@
 <?php
-// $Id: destinations.file.inc,v 1.1.2.1.2.13 2009/12/09 22:07:42 ronan Exp $
+// $Id: destinations.file.inc,v 1.2.2.6 2010/12/27 17:55:33 ronan Exp $
 
 
 /**
@@ -21,26 +21,37 @@ class backup_migrate_destination_files extends backup_migrate_destination {
   }
 
   /**
+   * Get the file location.
+   */
+  function get_realpath() {
+    return drupal_realpath($this->get_location());
+  }
+
+  /**
    * File save destination callback.
    */
   function save_file($file, $settings) {
     if ($dir = $this->get_location()) {
-      if ($this->check_dir($dir)) {
+      if ($dir = $this->check_dir($dir)) {
         $filepath = rtrim($dir, "/") ."/". $file->filename();
-        rename($file->filepath(), $filepath);
-
-        // chmod, chown and chgrp the file if needed.
-        if ($chmod = $this->settings('chmod')) {
-          if (!@chmod($filepath, octdec($chmod))) {
-            _backup_migrate_message('Unable to set the file mode for: @file', array('@file' => $filepath), 'error');
+        if (file_unmanaged_move($file->filepath(), $filepath)) {
+  
+          // chmod, chown and chgrp the file if needed.
+          if ($chmod = $this->settings('chmod')) {
+            if (!@chmod($filepath, octdec($chmod))) {
+              _backup_migrate_message('Unable to set the file mode for: @file', array('@file' => $filepath), 'error');
+            }
           }
-        }
-        if ($chgrp = $this->settings('chgrp')) {
-          if (!@chgrp($filepath, $chgrp)) {
-            _backup_migrate_message('Unable to set the file group for: @file', array('@file' => $filepath), 'error');
+          if ($chgrp = $this->settings('chgrp')) {
+            if (!@chgrp($filepath, $chgrp)) {
+              _backup_migrate_message('Unable to set the file group for: @file', array('@file' => $filepath), 'error');
+            }
           }
+          return $file;
         }
-        return $file;
+        else {
+          _backup_migrate_message('Unable to save the file to the directory: @dir', array('@dir' => $dir), 'error');
+        }
       }
     }
   }
@@ -68,7 +79,7 @@ class backup_migrate_destination_files extends backup_migrate_destination {
    */
   function list_files() {
     $files = array();
-    if ($dir = $this->get_location()) {
+    if ($dir = $this->get_realpath()) {
       if ($handle = @opendir($dir)) {
         backup_migrate_include('files');
         while (FALSE !== ($file = readdir($handle))) {
@@ -85,15 +96,18 @@ class backup_migrate_destination_files extends backup_migrate_destination {
    */
   function delete_file($file_id) {
     $filepath = $this->get_filepath($file_id);
-    file_delete($filepath);
+    file_unmanaged_delete($filepath);
   }
 
   /**
    * Get the filepath from the given file id.
    */
   function get_filepath($file_id) {
-    $filepath = rtrim($this->get_location(), '/') .'/'. $file_id;
-    return $filepath;
+    if ($dir = $this->get_realpath()) {
+      $filepath = rtrim($dir, '/') .'/'. $file_id;
+      return $filepath;
+    }
+    return FALSE;
   }
 
   /**
@@ -135,7 +149,7 @@ class backup_migrate_destination_files extends backup_migrate_destination {
     }
     return $form;
   }
- 
+
   /**
    * Validate the form for the settings for the files destination.
    */
@@ -162,22 +176,11 @@ class backup_migrate_destination_files extends backup_migrate_destination {
    * Prepare the destination directory for the backups.
    */
   function check_dir($directory) {
-    $out = TRUE;
-    $dirs = array();
-    foreach (explode('/', $directory) as $dir) {
-      $dirs[] = $dir;
-      $path = implode($dirs, '/');
-      if ($path && !is_dir(realpath($path)) && !file_check_directory($path, FILE_CREATE_DIRECTORY)) {
-        $out = FALSE;
-      }
-    }
-
-    if (!$out || !file_check_directory($directory)) {
+    if (!file_prepare_directory($directory, FILE_CREATE_DIRECTORY)) {
       // Unable to create destination directory.
       _backup_migrate_message("Unable to create or write to the save directory '%directory'. Please check the file permissions that directory and try again.", array('%directory' => $directory), "error");
       return FALSE;
     }
-
     // If the destination directory is within the webroot, then secure it as best we can.
     if ($this->dir_in_webroot($directory)) {
       $directory = $this->check_web_dir($directory);
@@ -190,23 +193,7 @@ class backup_migrate_destination_files extends backup_migrate_destination {
    * Check that a web accessible directory has been properly secured, othewise attempt to secure it.
    */
   function check_web_dir($directory) {
-    // Check for a htaccess file which adequately protects the backup files.
-    $htaccess_lines = "order allow,deny\ndeny from all\n";
-    if (!is_file($directory .'/.htaccess') || !is_readable($directory .'/.htaccess') || strpos(file_get_contents($directory .'/.htaccess'), $htaccess_lines) === FALSE) {
-      // Attempt to protect the backup files from public access using htaccess.
-      if (($fp = @fopen($directory .'/.htaccess', 'w')) && @fputs($fp, $htaccess_lines)) {
-        fclose($fp);
-        chmod($directory .'/.htaccess', 0664);
-      }
-      // Unable to create htaccess... warn the user.
-      else {
-        $message = "Security warning: Couldn't modify .htaccess file. Please create a .htaccess file in your %directory directory which contains the following lines: <code>!htaccess</code> or add them to the existing .htaccess file";
-        $replace = array('%directory' => $directory, '!htaccess' => '<br />'. nl2br(check_plain($htaccess_lines)));
-        drupal_set_message(t($message, $replace), "error");
-        watchdog('security', t($message, $replace), WATCHDOG_ERROR);
-        return FALSE;
-      }
-    }
+    file_create_htaccess($directory, TRUE);
 
     // Check the user agent to make sure we're not responding to a request from drupal itself.
     // That should prevent infinite loops which could be caused by poormanscron in some circumstances.
@@ -231,8 +218,7 @@ class backup_migrate_destination_files extends backup_migrate_destination {
 
     // Attempt to read the test file via http. This may fail for other reasons,
     // so it's not a bullet-proof check.
-    $path = trim(drupal_substr($directory .'/test.txt', drupal_strlen(file_directory_path())), '\\/');
-    if ($this->test_file_readable_remotely($path, $test_contents)) {
+    if ($this->test_file_readable_remotely($directory .'/test.txt', $test_contents)) {
       $message = t("Security notice: Backup and Migrate will not save backup files to the server because the destination directory is publicly accessible. If you want to save files to the server, please secure the '%directory' directory", array('%directory' => $directory));
       drupal_set_message($message, "error");
       return FALSE;
@@ -244,7 +230,7 @@ class backup_migrate_destination_files extends backup_migrate_destination {
    * Check if the given directory is within the webroot and is therefore web accessible.
    */
   function dir_in_webroot($directory) {
-    if (strpos(realpath($directory), realpath($_SERVER['DOCUMENT_ROOT'])) !== FALSE) {
+    if (strpos(drupal_realpath($directory), realpath($_SERVER['DOCUMENT_ROOT'])) !== FALSE) {
       return TRUE;
     }
     return FALSE;
@@ -254,9 +240,10 @@ class backup_migrate_destination_files extends backup_migrate_destination {
    * Check if a file can be read remotely via http.
    */
   function test_file_readable_remotely($path, $contents) {
-    $url = $GLOBALS['base_url'] .'/'. file_directory_path() .'/'. str_replace('\\', '/', $path);
+    $url = file_create_url($path);
+    // TODO: Proper checking for absolute paths.
     $result = drupal_http_request($url);
-    if (strpos($result->data, $contents) !== FALSE) {
+    if (!empty($result->data) && strpos($result->data, $contents) !== FALSE) {
       return TRUE;
     }
     return FALSE;
@@ -269,7 +256,7 @@ class backup_migrate_destination_files extends backup_migrate_destination {
 class backup_migrate_destination_files_manual extends backup_migrate_destination_files {
   var $supported_ops = array('manual backup', 'restore', 'list files', 'configure', 'delete');
   function __construct($params = array()) {
-    $dir = file_directory_path() .'/backup_migrate/manual';
+    $dir = 'private://backup_migrate/manual';
     parent::__construct($params + array('location' => $dir, 'name' => t('Manual Backups Directory')));
   }
 }
@@ -280,8 +267,7 @@ class backup_migrate_destination_files_manual extends backup_migrate_destination
 class backup_migrate_destination_files_scheduled extends backup_migrate_destination_files {
   var $supported_ops = array('scheduled backup', 'restore', 'list files', 'configure', 'delete');
   function __construct($params = array()) {
-    $dir = file_directory_path() .'/backup_migrate/scheduled';
+    $dir = 'private://backup_migrate/scheduled';
     parent::__construct($params + array('location' => $dir, 'name' => t('Scheduled Backups Directory')));
   }
 }
-

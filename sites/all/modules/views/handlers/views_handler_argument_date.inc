@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_argument_date.inc,v 1.3.4.2 2010/03/11 00:49:52 merlinofchaos Exp $
+// $Id: views_handler_argument_date.inc,v 1.3.6.3 2010/03/11 08:30:24 dereine Exp $
 /**
  * Abstract argument handler for dates.
  *
@@ -36,7 +36,7 @@ class views_handler_argument_date extends views_handler_argument_formula {
    */
   function get_default_argument($raw = FALSE) {
     if (!$raw && $this->options['default_argument_type'] == 'date') {
-      return date($this->arg_format, time());
+      return date($this->arg_format, REQUEST_TIME);
     }
     else if (!$raw && in_array($this->options['default_argument_type'], array('node_created', 'node_changed'))) {
       foreach (range(1, 3) as $i) {
@@ -45,7 +45,7 @@ class views_handler_argument_date extends views_handler_argument_formula {
           continue;
         }
       }
-  
+
       if (arg(0) == 'node' && is_numeric(arg(1))) {
         $node = node_load(arg(1));
       }
@@ -53,10 +53,10 @@ class views_handler_argument_date extends views_handler_argument_formula {
       if (empty($node)) {
         return parent::get_default_argument();
       }
-      else if ($this->options['default_argument_type'] == 'node_created') {
+      elseif ($this->options['default_argument_type'] == 'node_created') {
         return date($this->arg_format, $node->created);
       }
-      else if ($this->options['default_argument_type'] == 'node_changed') {
+      elseif ($this->options['default_argument_type'] == 'node_changed') {
         return date($this->arg_format, $node->changed);
       }
     }

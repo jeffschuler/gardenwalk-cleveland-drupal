@@ -1,5 +1,5 @@
 <?php
-// $Id: destinations.browser.inc,v 1.1.2.1.2.6 2009/07/06 04:02:48 ronan Exp $
+// $Id: destinations.browser.inc,v 1.2.2.1 2010/01/16 21:02:57 ronan Exp $
 
 
 /**
@@ -42,8 +42,8 @@ class backup_migrate_destination_browser_upload extends backup_migrate_destinati
   function load_file($file_id) {
     backup_migrate_include('files');
     if ($file = file_save_upload('backup_migrate_restore_upload')) {
-      $out = new backup_file(array('filepath' => $file->filepath));
-      backup_migrate_temp_files_add($file->filepath);
+      $out = new backup_file(array('filepath' => $file->uri));
+      backup_migrate_temp_files_add($file->uri);
       return $out;
     }
     return NULL;

@@ -1,22 +1,21 @@
 <?php
-// $Id: node.views_default.inc,v 1.11.4.1 2010/03/10 20:02:26 merlinofchaos Exp $
+// $Id: node.views_default.inc,v 1.11.6.5 2011/01/05 23:14:39 dereine Exp $
 /**
  * @file
  * Contains default views on behalf of the node module.
  */
 
 /**
- * Implementation of hook_views_default_views().
+ * Implements hook_views_default_views().
  */
 function node_views_default_views() {
   $view = new view;
   $view->name = 'frontpage';
   $view->description = 'Emulates the default Drupal front page; you may set the default home page path to this view to make it your front page.';
   $view->tag = 'default';
-  $view->view_php = '';
   $view->base_table = 'node';
-  $view->is_cacheable = '0';
   $view->api_version = 2;
+  $view->version = 7;
   $view->disabled = TRUE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('sorts', array(
@@ -93,7 +92,6 @@ function node_views_default_views() {
   $handler->override_option('sitename_title', '1');
   $handler->override_option('title', 'Front page feed');
   $handler->override_option('style_options', array(
-    'mission_description' => 1,
     'description' => '',
   ));
   $handler->override_option('row_plugin', 'node_rss');
@@ -121,10 +119,9 @@ function node_views_default_views() {
   $view->name = 'glossary';
   $view->description = 'A list of all content, by letter.';
   $view->tag = 'default';
-  $view->view_php = '';
   $view->base_table = 'node';
-  $view->is_cacheable = '0';
   $view->api_version = 2;
+  $view->version = 7;
   $view->disabled = TRUE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('fields', array(
@@ -278,10 +275,9 @@ function node_views_default_views() {
   $view->name = 'archive';
   $view->description = 'Display a list of months that link to content for that month.';
   $view->tag = 'default';
-  $view->view_php = '';
   $view->base_table = 'node';
-  $view->is_cacheable = '0';
   $view->api_version = 2;
+  $view->version = 7;
   $view->disabled = TRUE; /* Edit this to true to make a default view disabled initially */
   $handler = $view->new_display('default', 'Defaults', 'default');
   $handler->override_option('title', 'Monthly archive');

@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_field_user_language.inc,v 1.1 2009/06/02 20:18:26 merlinofchaos Exp $ 
+// $Id: views_handler_field_user_language.inc,v 1.1.6.1 2009/11/02 22:01:27 merlinofchaos Exp $
 /**
  * @file
  *   Views field handler for userlanguage.

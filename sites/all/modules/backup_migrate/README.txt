@@ -1,4 +1,4 @@
-// $Id: README.txt,v 1.1.2.1.2.1.2.3 2009/12/09 22:07:42 ronan Exp $
+// $Id: README.txt,v 1.3.2.2 2010/05/10 03:53:41 ronan Exp $
 
 -------------------------------------------------------------------------------
 Backup and Migrate 2 for Drupal 6.x
@@ -26,7 +26,7 @@ INSTALLATION:
   admin/build/modules. 
 * Go to admin/user/permissions and grant permission to any roles that need to be 
   able to backup or restore the databse.
-* Configure and use the module at admin/content/backup_migrate
+* Configure and use the module at admin/structure/backup_migrate
 
 OPTIONAL:
 * Enable token.module to allow token replacement in backup file names.

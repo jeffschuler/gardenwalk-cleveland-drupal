@@ -1,4 +1,4 @@
-// $Id: tinymce-3.js,v 1.17.2.5 2010/10/17 20:52:54 twod Exp $
+// $Id: tinymce-3.js,v 1.22 2010/10/17 20:52:40 twod Exp $
 (function($) {
 
 /**
@@ -12,10 +12,6 @@
  *   An object containing editor settings for each input format.
  */
 Drupal.wysiwyg.editor.init.tinymce = function(settings) {
-  // @see #454992: drupal_get_js() must not use 'q' as query string.
-  if (tinymce.query == 'q') {
-    tinymce.query = '';
-  }
   // If JS compression is enabled, TinyMCE is unable to autodetect its global
   // settinge, hence we need to define them manually.
   // @todo Move global library settings somewhere else.

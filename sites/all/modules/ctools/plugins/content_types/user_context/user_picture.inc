@@ -1,5 +1,4 @@
 <?php
-// $Id: user_picture.inc,v 1.3.2.1 2010/01/29 20:18:26 merlinofchaos Exp $
 
 /**
  * Plugins are described by creating a $plugin array which will be used
@@ -15,7 +14,7 @@ $plugin = array(
 );
 
 function ctools_user_picture_content_type_render($subtype, $conf, $panel_args, $context) {
-  $account = isset($context->data) ? drupal_clone($context->data) : NULL;
+  $account = isset($context->data) ? clone($context->data) : FALSE;
   $block = new stdClass();
   $block->module = 'term-list';
 
@@ -24,7 +23,7 @@ function ctools_user_picture_content_type_render($subtype, $conf, $panel_args, $
   }
 
   $block->title = check_plain($account->name);
-  $block->content = theme('user_picture', $account);
+  $block->content = theme('user_picture', array('account' => $account));
 
   return $block;
 }
@@ -36,6 +35,7 @@ function ctools_user_picture_content_type_admin_title($subtype, $conf, $context)
   return t('"@s" user picture', array('@s' => $context->identifier));
 }
 
-function ctools_user_picture_content_type_edit_form(&$form, &$form_state) {
+function ctools_user_picture_content_type_edit_form($form, &$form_state) {
   // provide a blank form so we have a place to have context setting.
+  return $form;
 }

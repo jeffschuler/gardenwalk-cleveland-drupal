@@ -1,4 +1,4 @@
-// $Id: wysiwyg.js,v 1.15.2.5 2010/11/13 19:37:54 sun Exp $
+// $Id: wysiwyg.js,v 1.22 2011/01/06 00:11:48 sun Exp $
 (function($) {
 
 /**
@@ -38,43 +38,49 @@ Drupal.wysiwygInit = function() {
  * @param context
  *   A DOM element, supplied by Drupal.attachBehaviors().
  */
-Drupal.behaviors.attachWysiwyg = function(context) {
-  // This breaks in Konqueror. Prevent it from running.
-  if (/KDE/.test(navigator.vendor)) {
-    return;
-  }
+Drupal.behaviors.attachWysiwyg = {
+  attach: function(context, settings) {
+    // This breaks in Konqueror. Prevent it from running.
+    if (/KDE/.test(navigator.vendor)) {
+      return;
+    }
 
-  $('.wysiwyg:not(.wysiwyg-processed)', context).each(function() {
-    var params = Drupal.wysiwyg.getParams(this);
-    var $this = $(this).addClass('wysiwyg-processed');
-    // Directly attach this editor, if the input format is enabled or there is
-    // only one input format at all.
-    if (($this.is(':input') && $this.is(':checked')) || $this.is('div')) {
-      Drupal.wysiwygAttach(context, params);
-    }
-    // Attach onChange handlers to input format selector elements.
-    if ($this.is(':input')) {
-      $this.change(function() {
-        // If not disabled, detach the current and attach a new editor.
-        Drupal.wysiwygDetach(context, params);
-        Drupal.wysiwygAttach(context, params);
-      });
-      // IE triggers onChange after blur only.
-      if ($.browser.msie) {
-        $this.click(function () {
-          this.blur();
-        });
-      }
-    }
-    // Detach any editor when the containing form is submitted.
-    $('#' + params.field).parents('form').submit(function (event) {
-      // Do not detach if the event was cancelled.
-      if (event.originalEvent.returnValue === false) {
+    $('.wysiwyg', context).once('wysiwyg', function() {
+      if (!this.id || typeof Drupal.settings.wysiwyg.triggers[this.id] === 'undefined') {
         return;
       }
-      Drupal.wysiwygDetach(context, params);
+      var $this = $(this);
+      var params = Drupal.settings.wysiwyg.triggers[this.id];
+      for (var format in params) {
+        params[format].format = format;
+        params[format].trigger = this.id;
+        params[format].field = params.field;
+      }
+      var format = 'format' + this.value;
+      // Directly attach this editor, if the input format is enabled or there is
+      // only one input format at all.
+      if ($this.is(':input')) {
+        Drupal.wysiwygAttach(context, params[format]);
+      }
+      // Attach onChange handlers to input format selector elements.
+      if ($this.is('select')) {
+        $this.change(function() {
+          // If not disabled, detach the current and attach a new editor.
+          Drupal.wysiwygDetach(context, params[format]);
+          format = 'format' + this.value;
+          Drupal.wysiwygAttach(context, params[format]);
+        });
+      }
+      // Detach any editor when the containing form is submitted.
+      $('#' + params.field).parents('form').submit(function (event) {
+        // Do not detach if the event was cancelled.
+        if (event.originalEvent.returnValue === false) {
+          return;
+        }
+        Drupal.wysiwygDetach(context, params[format]);
+      });
     });
-  });
+  }
 };
 
 /**
@@ -188,7 +194,7 @@ Drupal.wysiwyg.toggleWysiwyg = function (event) {
     // Before enabling the editor, detach default behaviors.
     Drupal.wysiwyg.editor.detach.none(context, params);
     // Attach new editor using parameters of the currently selected input format.
-    Drupal.wysiwyg.getParams($('.wysiwyg-field-' + params.field + ':checked, div.wysiwyg-field-' + params.field, context).get(0), params);
+    params = Drupal.settings.wysiwyg.triggers[params.trigger]['format' + $('#' + params.trigger).val()];
     params.status = true;
     Drupal.wysiwygAttach(context, params);
     $(this).html(Drupal.settings.wysiwyg.disable).blur();

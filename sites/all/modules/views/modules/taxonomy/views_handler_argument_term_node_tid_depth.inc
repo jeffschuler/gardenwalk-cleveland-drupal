@@ -1,5 +1,5 @@
 <?php
-// $Id: views_handler_argument_term_node_tid_depth.inc,v 1.3.2.1 2010/03/16 23:38:23 merlinofchaos Exp $
+// $Id: views_handler_argument_term_node_tid_depth.inc,v 1.3.4.7 2010/11/27 20:53:28 dereine Exp $
 /**
  * Argument handler for taxonomy terms with depth.
  *
@@ -46,7 +46,7 @@ class views_handler_argument_term_node_tid_depth extends views_handler_argument 
       '#title' => t("Use Drupal's taxonomy term path to create breadcrumb links"),
       '#description' => t('If selected, the links in the breadcrumb trail will be created using the standard drupal method instead of the custom views method. This is useful if you are using modules like taxonomy redirect to modify your taxonomy term links.'),
       '#default_value' => !empty($this->options['use_taxonomy_term_path']),
-      '#process' => array('views_process_dependency'),
+      '#process' => array('form_process_checkbox', 'ctools_dependent_process'),
       '#dependency' => array('edit-options-set-breadcrumb' => array(TRUE)),
     );
   }
@@ -87,47 +87,47 @@ class views_handler_argument_term_node_tid_depth extends views_handler_argument 
       }
 
       if (count($tids->value) > 1) {
-        $placeholder = " IN (" . implode(', ', array_fill(0, sizeof($tids->value), '%d')) . ")";
+        $operator = 'IN';
       }
       else {
-        $placeholder = " = %d";
+        $operator = '=';
       }
 
       $tids = $tids->value;
     }
     else {
-      $placeholder = "= %d";
+      $operator = "=";
       $tids = array($this->argument);
     }
-    $subquery = "\n  SELECT tn.vid FROM {term_node} tn\n";
-    $where = "  WHERE tn.tid $placeholder\n";
-    $args = $tids;
+    // Now build the subqueries.
+    $subquery = db_select('taxonomy_index', 'tn');
+    $subquery->addField('tn', 'nid');
+    $where = db_or()->condition('tn.tid', $tids, $operator);
     $last = "tn";
 
     if ($this->options['depth'] > 0) {
-      $subquery .= "    LEFT JOIN {term_hierarchy} th ON th.tid = tn.tid\n";
+      $subquery->leftJoin('taxonomy_term_hierarchy', 'th', "th.tid = tn.tid");
       $last = "th";
       foreach (range(1, abs($this->options['depth'])) as $count) {
-        $subquery .= "    LEFT JOIN {term_hierarchy} th$count ON $last.parent = th$count.tid\n";
-        $where .= "    OR th$count.tid $placeholder\n";
-        $args = array_merge($args, $tids);
+        $subquery->leftJoin('taxonomy_term_hierarchy', "th$count", "$last.parent = th$count.tid");
+        $where->condition("th$count.tid", $tids, $operator);
         $last = "th$count";
       }
     }
-    else if ($this->options['depth'] < 0) {
+    elseif ($this->options['depth'] < 0) {
       foreach (range(1, abs($this->options['depth'])) as $count) {
-        $subquery .= "    LEFT JOIN {term_hierarchy} th$count ON $last.tid = th$count.parent\n";
-        $where .= "    OR th$count.tid $placeholder\n";
-        $args = array_merge($args, $tids);
+        $subquery->leftJoin('taxonomy_term_hierarchy', "th$count", "$last.tid = th$count.parent");
+        $where->condition("th$count.tid", $tids, $operator);
         $last = "th$count";
       }
     }
 
-    $this->query->add_where(0, "$this->table_alias.$this->real_field IN ($subquery$where  )", $args);
+    $subquery->condition($where);
+    $this->query->add_where(0, "$this->table_alias.$this->real_field", $subquery, 'IN');
   }
 
   function title() {
-    $term = taxonomy_get_term($this->argument);
+    $term = taxonomy_term_load($this->argument);
     if (!empty($term)) {
       return check_plain($term->name);
     }

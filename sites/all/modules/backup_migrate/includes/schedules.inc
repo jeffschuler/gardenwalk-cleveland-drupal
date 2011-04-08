@@ -1,5 +1,5 @@
 <?php
-// $Id: schedules.inc,v 1.1.2.1.2.15 2009/11/26 21:16:59 ronan Exp $
+// $Id: schedules.inc,v 1.2.2.3 2011/01/24 05:37:19 ronan Exp $
 
 /**
  * @file
@@ -204,7 +204,6 @@ class backup_migrate_schedule extends backup_migrate_item {
     $form['enabled'] = array(
       "#type" => "checkbox",
       "#title" => t("Enabled"),
-      "#field_suffix" => t("Hour(s)"),
       "#default_value" => $this->get('enabled'),
     );
     $form['name'] = array(
@@ -221,7 +220,7 @@ class backup_migrate_schedule extends backup_migrate_item {
       "#options" => _backup_migrate_get_profile_form_item_options(),
       "#default_value" => $this->get('profile_id'),
     );
-    $form['profile_id']['#description'] = ' '. l(t("Create new profile"), "admin/content/backup_migrate/profile/add");
+    $form['profile_id']['#description'] = ' '. l(t("Create new profile"), BACKUP_MIGRATE_MENU_PATH . "/profile/add");
     if (!$form['profile_id']['#options']) {
       $form['profile_id']['#options'] = array('0' => t('-- None Available --'));
     }
@@ -266,7 +265,7 @@ class backup_migrate_schedule extends backup_migrate_item {
       "#options" => $destination_options,
       "#default_value" => $this->get('destination_id'),
     );
-    $form['destination_id']['#description'] .= ' '. l(t("Create new destination"), "admin/content/backup_migrate/destination/add");
+    $form['destination_id']['#description'] .= ' '. l(t("Create new destination"), BACKUP_MIGRATE_MENU_PATH . "/destination/add");
 
     return $form;
   }
@@ -357,10 +356,12 @@ class backup_migrate_schedule extends backup_migrate_item {
       $timestamp = time();
     }
     db_query("UPDATE {backup_migrate_schedules}
-                 SET last_run = %d
-               WHERE schedule_id = '%s'",
-      $timestamp,
-      $this->get_id()
+                 SET last_run = :timestamp
+               WHERE schedule_id = :schedule_id",
+      array(
+        ':timestamp' => $timestamp,
+        ':schedule_id' => $this->get_id()
+      )
     );
   }
 

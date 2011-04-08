@@ -1,5 +1,5 @@
 <?php
-// $Id: views_plugin_style_rss.inc,v 1.2 2008/12/02 00:02:06 merlinofchaos Exp $
+// $Id: views_plugin_style_rss.inc,v 1.2.6.7 2010/12/18 08:02:38 dereine Exp $
 /**
  * @file
  * Contains the RSS style plugin.
@@ -18,6 +18,7 @@ class views_plugin_style_rss extends views_plugin_style {
     if ($input) {
       $url_options['query'] = $input;
     }
+    $url_options['absolute'] = TRUE;
 
     $url = url($this->view->get_url(NULL, $path), $url_options);
     if ($display->has_path()) {
@@ -30,8 +31,8 @@ class views_plugin_style_rss extends views_plugin_style {
         $this->view->feed_icon = '';
       }
 
-      $this->view->feed_icon .= theme('feed_icon', $url, $title);
-      drupal_add_link(array(
+      $this->view->feed_icon .= theme('feed_icon', array('url' => $url, 'title' => $title));
+      drupal_add_html_head_link(array(
         'rel' => 'alternate',
         'type' => 'application/rss+xml',
         'title' => $title,
@@ -44,23 +45,19 @@ class views_plugin_style_rss extends views_plugin_style {
     $options = parent::option_definition();
 
     $options['description'] = array('default' => '', 'translatable' => TRUE);
-    $options['mission_description'] = array('default' => '', 'translatable' => TRUE);
 
     return $options;
   }
 
   function options_form(&$form, &$form_state) {
-    $form['mission_description'] = array(
-      '#type' => 'checkbox',
-      '#default_value' => !empty($this->options['mission_description']),
-      '#title' => t('Use the site mission for the description'),
-    );
+    parent::options_form($form, $form_state);
+
     $form['description'] = array(
       '#type' => 'textfield',
       '#title' => t('RSS description'),
       '#default_value' => $this->options['description'],
       '#description' => t('This will appear in the RSS feed itself.'),
-      '#process' => array('views_process_dependency'),
+      '#process' => array('ctools_dependent_process'),
       '#dependency' => array('edit-style-options-override' => array(FALSE)),
     );
   }
@@ -77,7 +74,7 @@ class views_plugin_style_rss extends views_plugin_style {
 
   function render() {
     if (empty($this->row_plugin)) {
-      vpr('views_plugin_style_default: Missing row plugin');
+      debug('views_plugin_style_default: Missing row plugin');
       return;
     }
     $rows = '';
@@ -99,6 +96,11 @@ class views_plugin_style_rss extends views_plugin_style {
       $rows .= $this->row_plugin->render($row);
     }
 
-    return theme($this->theme_functions(), $this->view, $this->options, $rows);
+    return theme($this->theme_functions(),
+      array(
+        'view' => $this->view,
+        'options' => $this->options,
+        'rows' => $rows
+      ));
   }
 }

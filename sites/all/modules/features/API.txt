@@ -1,6 +1,5 @@
-$Id: API.txt,v 1.1.2.5 2010/07/04 17:44:41 yhahn Exp $
 
-Features 1.x API for Drupal 6.x
+Features 1.x API for Drupal 7.x
 -------------------------------
 This file contains documentation for two audiences: site builders interested in
 creating and managing features and module developers interested in integrating

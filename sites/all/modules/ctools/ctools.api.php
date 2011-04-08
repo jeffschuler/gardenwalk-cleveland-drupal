@@ -1,5 +1,4 @@
 <?php
-// $Id: ctools.api.php,v 1.1.2.1 2010/06/06 20:16:17 sdboyer Exp $
 
 /**
  * @file

@@ -1,5 +1,5 @@
 <?php
-//$Id: taxonomy.views_convert.inc,v 1.4 2009/06/30 19:14:27 merlinofchaos Exp $
+//$Id: taxonomy.views_convert.inc,v 1.4.4.1 2009/11/02 22:01:26 merlinofchaos Exp $
 
 /**
  * @file
@@ -7,7 +7,7 @@
  */
 
 /**
- * Implementation of hook_views_convert().
+ * Implements hook_views_convert().
  *
  * Intervene to convert field values from the Views 1 format to the
  * Views 2 format. Intervene only if $view->add_item() won't produce
@@ -63,7 +63,7 @@ function taxonomy_views_convert($display, $type, &$view, $field, $id = NULL) {
       elseif ($field['tablename'] == 'term_data') {
         switch ($field['field']) {
           case 'vid':
-            $operators = array('AND' => 'in', 'OR' => 'in', 'NOR' => 'not in');
+            $operators = array('AND' => 'IN', 'OR' => 'IN', 'NOR' => 'NOT IN');
             $view->set_item_option($display, 'filter', $id, 'operator', $operators[$field['operator']]);
             break;
         }

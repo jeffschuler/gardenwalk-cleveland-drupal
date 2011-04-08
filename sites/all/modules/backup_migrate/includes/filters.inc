@@ -1,5 +1,5 @@
 <?php
-// $Id: filters.inc,v 1.1.2.10 2010/09/13 02:51:27 ronan Exp $
+// $Id: filters.inc,v 1.2.2.5 2011/01/24 05:37:19 ronan Exp $
 
 
 /**
@@ -149,14 +149,14 @@ function backup_migrate_filters_settings_form_set_parents($form) {
  * Validate all the filters.
  */
 function backup_migrate_filters_settings_form_validate($op, $form, &$form_state) {
-  backup_migrate_filters_invoke_all($op .'_settings_form_validate', $form, $form_state);
+  //backup_migrate_filters_invoke_all($op .'_settings_form_validate', $form, $form_state);
 }
 
 /**
  * Submit all of the filters.
  */
 function backup_migrate_filters_settings_form_submit($op, $form, &$form_state) {
-  backup_migrate_filters_invoke_all($op .'_settings_form_submit', $form, $form_state);
+  //backup_migrate_filters_invoke_all($op .'_settings_form_submit', $form, $form_state);
 }
 
 
@@ -215,6 +215,7 @@ class backup_migrate_filter {
    * Submit the settings form. Any values returned will be saved.
    */
   function backup_settings_form_submit($form, &$form_state) {
+    return $form_state['values'];
   }
 
   /**
@@ -234,14 +235,14 @@ class backup_migrate_filter {
   /**
    * Get the form for the settings for this filter.
    */
-  function restore_settings_form_validate($form_values) {
+  function restore_settings_form_validate($form, &$form_state) {
   }
 
   /**
    * Submit the settings form. Any values returned will be saved.
    */
-  function restore_settings_form_submit($form_values) {
-    return $form_values;
+  function restore_settings_form_submit($form, &$form_state) {
+    return $form_state['values'];
   }
 
   /**
@@ -262,14 +263,14 @@ class backup_migrate_filter {
   /**
    * This function is called on a backup file after the backup has been completed.
    */
-  function backup($file, $settings) {
+  function backup($file, &$settings) {
     return $file;
   }
 
   /**
    * This function is called on a backup file before importing it.
    */
-  function restore($file, $settings) {
+  function restore($file, &$settings) {
     return $file;
   }
 

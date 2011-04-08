@@ -1,5 +1,4 @@
 <?php
-// $Id: views_header.inc,v 1.1.2.1 2010/07/20 00:17:09 merlinofchaos Exp $
 
 /**
  * @file
@@ -38,7 +37,7 @@ function views_content_views_header_content_type_render($subtype, $conf, $panel_
   return $block;
 }
 
-function views_content_views_header_content_type_edit_form(&$form, &$form_state) {
+function views_content_views_header_content_type_edit_form($form, &$form_state) {
 }
 
 function views_content_views_header_content_type_edit_form_submit(&$form, &$form_state) {

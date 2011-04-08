@@ -1,13 +1,13 @@
-// $Id: mollom.admin.js,v 1.1.2.3 2010/10/15 11:20:41 sun Exp $
+// $Id: mollom.admin.js,v 1.2 2010/10/13 00:18:52 dries Exp $
 (function ($) {
 
 /**
  * Filters blacklist entries.
  */
-Drupal.behaviors.mollomBlacklistFilter = function (context) {
-  // Intentionally wrong indentation for simplified maintenance.
-    var self = {};
-    $('#mollom-blacklist:not(.mollom-processed)', context).addClass('mollom-processed').each(function () {
+Drupal.behaviors.mollomBlacklistFilter = {
+  attach: function (context) {
+    var self = this;
+    $('#mollom-blacklist', context).once('mollom-blacklist-filter', function () {
       // Prepare a list of all entries to optimize performance. Each key is a
       // blacklisted text and each value is an object containing the
       // corresponding table row, context, and match.
@@ -70,6 +70,7 @@ Drupal.behaviors.mollomBlacklistFilter = function (context) {
       $filterContext.change(filterRows);
       $filterMatch.change(filterRows);
     });
+  }
 };
 
 })(jQuery);

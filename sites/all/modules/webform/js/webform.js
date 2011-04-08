@@ -5,7 +5,9 @@
 
 (function ($) {
 
-Drupal.behaviors.webform = function(context) {
+Drupal.behaviors.webform = Drupal.behaviors.webform || {};
+
+Drupal.behaviors.webform.attach = function(context) {
   // Calendar datepicker behavior.
   Drupal.webform.datepicker(context);
 };

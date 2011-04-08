@@ -1,5 +1,5 @@
 <?php
-// $Id: wysiwyg.admin.inc,v 1.15.2.12 2010/12/19 21:00:25 sun Exp $
+// $Id: wysiwyg.admin.inc,v 1.29 2011/01/06 00:03:13 sun Exp $
 
 /**
  * @file
@@ -9,11 +9,11 @@
 /**
  * Form builder for Wysiwyg profile form.
  */
-function wysiwyg_profile_form($form_state, $profile) {
+function wysiwyg_profile_form($form, &$form_state, $profile) {
   // Merge in defaults.
   $profile = (array) $profile;
   $profile += array(
-    'format' => 0,
+    'format' => '',
     'editor' => '',
   );
   if (empty($profile['settings'])) {
@@ -48,7 +48,7 @@ function wysiwyg_profile_form($form_state, $profile) {
 
   $formats = filter_formats();
   $editor = wysiwyg_get_editor($profile->editor);
-  drupal_set_title(t('%editor profile for %format', array('%editor' => $editor['title'], '%format' => $formats[$profile->format]->name)));
+  drupal_set_title(t('%editor profile for %format', array('%editor' => $editor['title'], '%format' => $formats[$profile->format]->name)), PASS_THROUGH);
 
   $form['format'] = array('#type' => 'value', '#value' => $profile->format);
   $form['input_format'] = array('#type' => 'value', '#value' => $formats[$profile->format]->name);
@@ -96,7 +96,7 @@ function wysiwyg_profile_form($form_state, $profile) {
     '#default_value' => $profile->settings['language'],
   );
   // @see _locale_prepare_predefined_list()
-  require_once './includes/locale.inc';
+  require_once DRUPAL_ROOT . '/includes/iso.inc';
   $predefined = _locale_get_predefined_list();
   foreach ($predefined as $key => $value) {
     // Include native name in output, if possible
@@ -296,7 +296,7 @@ function wysiwyg_profile_form($form_state, $profile) {
     '#weight' => 100,
   );
   $form['cancel'] = array(
-    '#value' => l(t('Cancel'), 'admin/settings/wysiwyg'),
+    '#value' => l(t('Cancel'), 'admin/config/content/wysiwyg'),
     '#weight' => 110,
   );
 
@@ -333,17 +333,19 @@ function wysiwyg_profile_form_submit($form, &$form_state) {
   unset($values['submit'], $values['form_id'], $values['op'], $values['form_token'], $values['form_build_id']);
 
   // Insert new profile data.
-  db_query("UPDATE {wysiwyg} SET settings = '%s' WHERE format = %d", serialize($values), $format);
+  db_query("UPDATE {wysiwyg} SET settings = :settings WHERE format = :format", array(':settings' => serialize($values), ':format' => $format));
+  cache_clear_all('wysiwyg_profiles', 'cache');
 
   drupal_set_message(t('Wysiwyg profile for %format has been saved.', array('%format' => $input_format)));
 
-  $form_state['redirect'] = 'admin/settings/wysiwyg';
+  $form_state['redirect'] = 'admin/config/content/wysiwyg';
 }
 
 /**
  * Layout for the buttons in the Wysiwyg Editor profile form.
  */
-function theme_wysiwyg_admin_button_table($form) {
+function theme_wysiwyg_admin_button_table($variables) {
+  $form = $variables['form'];
   $buttons = array();
 
   // Flatten forms array.
@@ -368,7 +370,7 @@ function theme_wysiwyg_admin_button_table($form) {
     $rows[] = $row;
   }
 
-  $output = theme('table', array(), $rows, array('width' => '100%'));
+  $output = theme('table', array('rows' => $rows, 'attributes' => array('width' => '100%')));
 
   return $output;
 }
@@ -376,7 +378,7 @@ function theme_wysiwyg_admin_button_table($form) {
 /**
  * Display overview of setup Wysiwyg Editor profiles; menu callback.
  */
-function wysiwyg_profile_overview() {
+function wysiwyg_profile_overview($form, &$form_state) {
   include_once './includes/install.inc';
 
   // Check which wysiwyg editors are installed.
@@ -384,6 +386,9 @@ function wysiwyg_profile_overview() {
   $count = count($editors);
   $status = array();
   $options = array('' => t('No editor'));
+
+  // D7's seven theme displays links in table headers as block elements.
+  drupal_add_css('table.system-status-report th a {display: inline;}', 'inline');
 
   foreach ($editors as $name => $editor) {
     $status[$name] = array(
@@ -425,7 +430,7 @@ function wysiwyg_profile_overview() {
     '#description' => (!$count ? t('There are no editor libraries installed currently. The following list contains a list of currently supported editors:') : ''),
     '#weight' => 10,
   );
-  $form['status']['report'] = array('#value' => theme('status_report', $status));
+  $form['status']['report'] = array('#markup' => theme('status_report', array('requirements' => $status)));
 
   if (!$count) {
     return $form;
@@ -442,13 +447,13 @@ function wysiwyg_profile_overview() {
   $enable_save = FALSE;
   foreach ($formats as $id => $format) {
     $form['formats'][$id]['name'] = array(
-      '#value' => check_plain($format->name),
+      '#markup' => check_plain($format->name),
     );
     // Only display editor selection for associated input formats to avoid
     // confusion about disabled selection.
     if (isset($profiles[$id]) && !empty($profiles[$id]->editor)) {
       $form['formats'][$id]['editor'] = array(
-        '#value' => $options[$profiles[$id]->editor],
+        '#markup' => $options[$profiles[$id]->editor],
       );
     }
     else {
@@ -461,10 +466,10 @@ function wysiwyg_profile_overview() {
     }
     if (isset($profiles[$id]) && !empty($profiles[$id]->editor)) {
       $form['formats'][$id]['edit'] = array(
-        '#value' => l(t('Edit'), "admin/settings/wysiwyg/profile/$id/edit"),
+        '#markup' => l(t('Edit'), "admin/config/content/wysiwyg/profile/$id/edit"),
       );
       $form['formats'][$id]['delete'] = array(
-        '#value' => l(t('Delete'), "admin/settings/wysiwyg/profile/$id/delete"),
+        '#markup' => l(t('Delete'), "admin/config/content/wysiwyg/profile/$id/delete"),
       );
     }
   }
@@ -479,7 +484,8 @@ function wysiwyg_profile_overview() {
 /**
  * Return HTML for the Wysiwyg profile overview form.
  */
-function theme_wysiwyg_profile_overview($form) {
+function theme_wysiwyg_profile_overview($variables) {
+  $form = $variables['form'];
   if (!isset($form['formats'])) {
     return;
   }
@@ -495,8 +501,8 @@ function theme_wysiwyg_profile_overview($form) {
       isset($format['delete']) ? drupal_render($format['delete']) : '',
     );
   }
-  $form['formats']['table']['#value'] = theme('table', $header, $rows);
-  $output .= drupal_render($form);
+  $form['formats']['table']['#markup'] = theme('table', array('header' => $header, 'rows' => $rows));
+  $output .= drupal_render_children($form);
   return $output;
 }
 
@@ -505,24 +511,27 @@ function theme_wysiwyg_profile_overview($form) {
  */
 function wysiwyg_profile_overview_submit($form, &$form_state) {
   foreach ($form_state['values']['formats'] as $format => $values) {
-    db_query("UPDATE {wysiwyg} SET editor = '%s' WHERE format = %d", $values['editor'], $format);
-    if (!db_affected_rows()) {
-      db_query("INSERT INTO {wysiwyg} (format, editor) VALUES (%d, '%s')", $format, $values['editor']);
-    }
+    db_merge('wysiwyg')
+      ->key(array('format' => $format))
+      ->fields(array(
+        'editor' => $values['editor'],
+      ))
+      ->execute();
   }
+  cache_clear_all('wysiwyg_profiles', 'cache');
 }
 
 /**
  * Delete editor profile confirmation form.
  */
-function wysiwyg_profile_delete_confirm(&$form_state, $profile) {
+function wysiwyg_profile_delete_confirm($form, &$form_state, $profile) {
   $formats = filter_formats();
   $format = $formats[$profile->format];
   $form['format'] = array('#type' => 'value', '#value' => $format);
   return confirm_form(
     $form,
     t('Are you sure you want to remove the profile for %name?', array('%name' => $format->name)),
-    'admin/settings/wysiwyg',
+    'admin/config/content/wysiwyg',
     t('This action cannot be undone.'), t('Remove'), t('Cancel')
   );
 }
@@ -535,14 +544,18 @@ function wysiwyg_profile_delete_confirm(&$form_state, $profile) {
 function wysiwyg_profile_delete_confirm_submit($form, &$form_state) {
   $format = $form_state['values']['format'];
   wysiwyg_profile_delete($format->format);
+  cache_clear_all('wysiwyg_profiles', 'cache');
+
   drupal_set_message(t('Wysiwyg profile for %name has been deleted.', array('%name' => $format->name)));
-  $form_state['redirect'] = 'admin/settings/wysiwyg';
+  $form_state['redirect'] = 'admin/config/content/wysiwyg';
 }
 
 /**
  * Remove a profile from the database.
  */
 function wysiwyg_profile_delete($format) {
-  db_query("DELETE FROM {wysiwyg} WHERE format = %d", $format);
+  db_delete('wysiwyg')
+    ->condition('format', $format)
+    ->execute();
 }
 

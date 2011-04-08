@@ -1,5 +1,4 @@
 <?php
-// $Id: term.inc,v 1.1.2.6 2010/10/15 22:44:31 merlinofchaos Exp $
 
 /**
  * @file
@@ -19,13 +18,13 @@ $plugin = array(
   'settings form validation' => 'ctools_term_ctools_access_settings_validate',
   'settings form submit' => 'ctools_term_ctools_access_settings_submit',
   'summary' => 'ctools_term_ctools_access_summary',
-  'required context' => new ctools_context_required(t('Term'), array('term', 'terms')),
+  'required context' => new ctools_context_required(t('Term'), array('taxonomy_term', 'terms')),
 );
 
 /**
  * Settings form for the 'by term' access plugin
  */
-function ctools_term_ctools_access_settings(&$form, &$form_state, $conf) {
+function ctools_term_ctools_access_settings($form, &$form_state, $conf) {
   // If no configuration was saved before, set some defaults.
   if (empty($conf)) {
     $conf = array(
@@ -85,6 +84,7 @@ function ctools_term_ctools_access_settings(&$form, &$form_state, $conf) {
     }
   }
   $form['settings']['vid']['#options'] = $options;
+  return $form;
 }
 
 /**
@@ -139,7 +139,7 @@ function ctools_term_ctools_access_summary($conf, $context) {
   else {
     $terms = array();
     foreach ($conf[$vocab->vid] as $tid) {
-      $term = taxonomy_get_term($tid);
+      $term = taxonomy_term_load($tid);
       $terms[] = $term->name;
     }
   }

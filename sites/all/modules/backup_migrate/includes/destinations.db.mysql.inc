@@ -1,5 +1,5 @@
 <?php
-// $Id: destinations.db.mysql.inc,v 1.1.2.4 2009/11/26 21:58:21 ronan Exp $
+// $Id: destinations.db.mysql.inc,v 1.1.4.4 2010/12/07 06:22:59 ronan Exp $
 
 backup_migrate_include('destinations.db');
 
@@ -44,25 +44,28 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
    */
   function destinations() {
     $out = array();
-    global $db_url;
-    $urls = is_array($db_url) ? $db_url : array('default' => $db_url);
-    foreach ((array)$urls as $key => $url) {
-      // Only mysql/mysqli supported by this destination.
-      if (strpos($url, 'mysql') === 0) {
-        if ($destination = backup_migrate_create_destination('mysql', array('url' => $url))) {
-          // Treat the default database differently because it is probably the only one available.
-          if ($key == 'default') {
-            $destination->set_id('db');
-            $destination->set_name(t('Default Database'));
-            // Dissalow backing up to the default database because that's confusing and potentially dangerous.
-            $destination->remove_op('scheduled backup');
-            $destination->remove_op('manual backup');
+    global $databases;
+    foreach ((array)$databases as $db_key => $target) {
+      foreach ((array)$target as $tgt_key => $info) {
+        // Only mysql/mysqli supported by this destination.
+        $key = $db_key . ':' . $tgt_key;
+        if ($info['driver'] === 'mysql') {
+          $url = $info['driver'] . '://' . $info['username'] . ':' . $info['password'] . '@' . $info['host'] . (isset($info['port']) ? ':' . $info['port'] : '') . '/' . $info['database'];
+          if ($destination = backup_migrate_create_destination('mysql', array('url' => $url))) {
+            // Treat the default database differently because it is probably the only one available.
+            if ($key == 'default:default') {
+              $destination->set_id('db');
+              $destination->set_name(t('Default Database'));
+              // Dissalow backing up to the default database because that's confusing and potentially dangerous.
+              $destination->remove_op('scheduled backup');
+              $destination->remove_op('manual backup');
+            }
+            else {
+              $destination->set_id('db:'. $key);
+              $destination->set_name($key .": ". $destination->get_display_location());
+            }
+            $out[$destination->get_id()] = $destination;
           }
-          else {
-            $destination->set_id('db:'. $key);
-            $destination->set_name($key .": ". $destination->get_display_location());
-          }
-          $out[$destination->get_id()] = $destination;
         }
       }
     }
@@ -94,10 +97,10 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
         if (_backup_migrate_check_timeout()) {
           return FALSE;
         }
-        if ($table['Name'] && !isset($exclude[$table['Name']])) {
+        if ($table['name'] && !isset($exclude[$table['name']])) {
           $file->write($this->_get_table_structure_sql($table));
           $lines++;
-          if (!in_array($table['Name'], $nodata)) {
+          if (!in_array($table['name'], $nodata)) {
             $lines += $this->_dump_table_data_sql_to_file($file, $table);
           }
         }
@@ -116,7 +119,8 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
    */
   function _restore_db_from_file($file, $settings) {
     $num = 0;
-    if ($file->open()) {
+
+    if ($file->open() && $conn = $this->_get_db_connection()) {
       // Read one line at a time and run the query.
       while ($line = $file->read()) {
         if (_backup_migrate_check_timeout()) {
@@ -125,8 +129,9 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
   
         $line = trim($line);
         if ($line) {
-          // Use the helper instead of the api function to avoid substitution of '{' etc.
-          _db_query($line);
+          // Prepeare and exexute the statement instead of the api function to avoid substitution of '{' etc.
+          $stmt = $conn->prepare($line);
+          $stmt->execute();
           $num++;
         }
       }
@@ -146,7 +151,7 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
   function get_table_names() {
     $out = array();
     foreach ($this->_get_tables() as $table) {
-      $out[$table['Name']] = $table['Name'];
+      $out[$table['name']] = $table['name'];
     }
     return $out;
   }
@@ -160,15 +165,15 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
       foreach ($tables as $table) {
         $tables_escaped[] = '`'. db_escape_table($table) .'`  WRITE';
       }
-      db_query('LOCK TABLES '. implode(', ', $tables_escaped));
+      $this->query('LOCK TABLES '. implode(', ', $tables_escaped));
     }
   }
 
   /**
    * Unlock all tables in the database.
    */
-  function _unlock_tables() {
-    db_query('UNLOCK TABLES');
+  function _unlock_tables($settings) {
+    $this->query('UNLOCK TABLES');
   }
 
   /**
@@ -177,9 +182,9 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
   function _get_tables() {
     $out = array();
     // get auto_increment values and names of all tables
-    $tables = db_query("show table status");
-    while ($table = db_fetch_array($tables)) {
-      $out[$table['Name']] = $table;
+    $tables = $this->query("show table status", array(), array('fetch' => PDO::FETCH_ASSOC));
+    foreach ($tables as $table) {
+      $out[$table['name']] = $table;
     }
     return $out;
   }
@@ -189,12 +194,13 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
    */
   function _get_table_structure_sql($table) {
     $out = "";
-    $result = db_query("SHOW CREATE TABLE `". $table['Name'] ."`");
-    if ($create = db_fetch_array($result)) {
-      $out .= "DROP TABLE IF EXISTS `". $table['Name'] ."`;\n";
-      $out .= strtr($create['Create Table'], "\n", " ");
-      if ($table['Auto_increment']) {
-        $out .= " AUTO_INCREMENT=". $table['Auto_increment'];
+    $result = $this->query("SHOW CREATE TABLE `". $table['name'] ."`", array(), array('fetch' => PDO::FETCH_ASSOC));
+    foreach ($result as $create) {
+      $out .= "DROP TABLE IF EXISTS `". $table['name'] ."`;\n";
+      // Remove newlines and convert " to ` because PDO seems to convert those for some reason.
+      $out .= strtr($create['create table'], array("\n" => ' ', '"' => '`'));
+      if ($table['auto_increment']) {
+        $out .= " AUTO_INCREMENT=". $table['auto_increment'];
       }
       $out .= ";\n";
     }
@@ -209,22 +215,26 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
     $bytes_per_line = variable_get('backup_migrate_data_bytes_per_line', 2000);
   
     $lines = 0;
-    $data = db_query("SELECT * FROM `". $table['Name'] ."`");
+    $data = $this->query("SELECT * FROM `". $table['name'] ."`", array(), array('fetch' => PDO::FETCH_ASSOC));
     $rows = $bytes = 0;
+
+    // Escape backslashes, PHP code, special chars
+    $search = array('\\', "'", "\x00", "\x0a", "\x0d", "\x1a");
+    $replace = array('\\\\', "''", '\0', '\n', '\r', '\Z');
   
     $line = array();
-    while ($row = db_fetch_array($data)) {
+    foreach ($data as $row) {
       // DB Escape the values.
       $items = array();
       foreach ($row as $key => $value) {
-        $items[] = is_null($value) ? "null" : "'". db_escape_string($value) ."'";
+        $items[] = is_null($value) ? "null" : "'". str_replace($search, $replace, $value) ."'";
       }
   
       // If there is a row to be added.
       if ($items) {
         // Start a new line if we need to.
         if ($rows == 0) {
-          $file->write("INSERT INTO `". $table['Name'] ."` VALUES ");
+          $file->write("INSERT INTO `". $table['name'] ."` VALUES ");
           $bytes = $rows = 0;
         }
         // Otherwise add a comma to end the previous entry.
@@ -254,7 +264,16 @@ class backup_migrate_destination_db_mysql extends backup_migrate_destination_db 
   
     return $lines;
   }
-  
+
+  /**
+   * Run a db query on this destination's db.
+   */
+  function query($query, $args = array(), $options = array()) {
+    if ($conn = $this->_get_db_connection()) {
+      return $conn->query($query, $args, $options);
+    }
+  }
+
   /**
    * The header for the top of the sql dump file. These commands set the connection
    *  character encoding to help prevent encoding conversion issues.

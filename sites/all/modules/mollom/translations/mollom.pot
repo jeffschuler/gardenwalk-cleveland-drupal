@@ -1,17 +1,18 @@
-# LANGUAGE translation of mollom (6.x-1.x-dev)
+# $Id: mollom.pot,v 1.4 2010/08/21 21:50:59 razorraser Exp $
+# LANGUAGE translation of mollom (7.x-1.x-dev)
 # Copyright (c) 2010
 # Generated from files:
-#  mollom.admin.inc,v 1.1.2.33 2010/08/11 00:47:10 dries
-#  mollom.module,v 1.2.2.156 2010/08/07 02:49:44 dries
-#  mollom.pages.inc,v 1.1.2.16 2010/08/07 02:49:44 dries
-#  mollom.inc,v 1.1.2.3 2010/01/29 15:06:32 dries
-#  mollom.info,v 1.2.2.2 2009/11/17 17:01:49 dries
-#  mollom.install,v 1.2.2.31 2010/04/06 22:17:51 davereid
+#  mollom.admin.inc,v 1.32 2010/08/10 19:33:51 dries
+#  mollom.module,v 1.67 2010/08/16 02:26:08 dries
+#  mollom.pages.inc,v 1.14 2010/08/04 03:58:46 dries
+#  mollom.inc,v 1.5 2010/08/16 02:26:08 dries
+#  mollom.info,v 1.5 2009/12/22 08:10:34 dries
+#  mollom.install,v 1.24 2010/08/10 19:33:51 dries
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: mollom (6.x-1.x-dev)\n"
-"POT-Creation-Date: 2010-08-22 00:16+0200\n"
+"Project-Id-Version: mollom (7.x-1.x-dev)\n"
+"POT-Creation-Date: 2010-08-21 23:40+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Language-Team: LANGUAGE\n"
 "MIME-Version: 1.0\n"
@@ -20,22 +21,22 @@ msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: mollom.admin.inc:14
-msgid "No protection"
+msgid "None"
 msgstr ""
 
-#: mollom.admin.inc:137,15
-msgid "CAPTCHA only"
+#: mollom.admin.inc:144,15
+msgid "CAPTCHA"
 msgstr ""
 
-#: mollom.admin.inc:145,16
-msgid "Text analysis and CAPTCHA backup"
+#: mollom.admin.inc:141,16
+msgid "Text analysis"
 msgstr ""
 
-#: mollom.admin.inc:268,130,109,20
+#: mollom.admin.inc:291,118,20
 msgid "Form"
 msgstr ""
 
-#: mollom.admin.inc:135,21
+#: mollom.admin.inc:148,21
 msgid "Protection mode"
 msgstr ""
 
@@ -43,7 +44,7 @@ msgstr ""
 msgid "Operations"
 msgstr ""
 
-#: mollom.module:218; mollom.admin.inc:31
+#: mollom.module:212; mollom.admin.inc:31
 msgid "Configure"
 msgstr ""
 
@@ -51,179 +52,149 @@ msgstr ""
 msgid "Unprotect"
 msgstr ""
 
-#: mollom.module:210; mollom.admin.inc:38
+#: mollom.module:204; mollom.admin.inc:40
 msgid "Add form"
 msgstr ""
 
-#: mollom.admin.inc:59
+#: mollom.admin.inc:61
 msgid "All available forms are protected already."
 msgstr ""
 
-#: mollom.admin.inc:115
+#: mollom.admin.inc:124
 msgid "Next"
 msgstr ""
 
-#: mollom.admin.inc:153
-msgid ""
-"If %text-analysis-option is selected, a CAPTCHA will only be displayed "
-"if Mollom is unsure about the content."
+#: mollom.admin.inc:130
+msgid "Configure %form-title protection"
 msgstr ""
 
-#: mollom.admin.inc:178
-msgid "Fields to analyze"
+#: mollom.admin.inc:162
+msgid "Analyze text for"
 msgstr ""
 
-#: mollom.admin.inc:187
-msgid "Save"
-msgstr ""
-
-#: mollom.pages.inc:98; mollom.admin.inc:428,193
-msgid "Cancel"
-msgstr ""
-
-#: mollom.admin.inc:251
-msgid "The form protection has been added."
-msgstr ""
-
-#: mollom.admin.inc:254
-msgid "The form protection has been updated."
-msgstr ""
-
-#: mollom.admin.inc:277
-msgid "Are you sure you want to unprotect this form?"
-msgstr ""
-
-#: mollom.admin.inc:279
-msgid "Mollom will no longer protect this form from spam."
-msgstr ""
-
-#: mollom.module:132; mollom.admin.inc:296
-msgid "Mollom blacklist"
-msgstr ""
-
-#: mollom.admin.inc:308
-msgid "All fields"
-msgstr ""
-
-#: mollom.admin.inc:309
-msgid "Links"
-msgstr ""
-
-#: mollom.admin.inc:310
-msgid "Author name"
-msgstr ""
-
-#: mollom.admin.inc:313
+#: mollom.admin.inc:336,164
 msgid "Spam"
 msgstr ""
 
-#: mollom.admin.inc:314
+#: mollom.admin.inc:337,165
 msgid "Profanity"
 msgstr ""
 
-#: mollom.admin.inc:315
+#: mollom.admin.inc:196
+msgid "Text fields to analyze"
+msgstr ""
+
+#: mollom.admin.inc:209
+msgid "Save"
+msgstr ""
+
+#: mollom.pages.inc:102; mollom.admin.inc:455,216
+msgid "Cancel"
+msgstr ""
+
+#: mollom.admin.inc:246
+msgid "At least one text analysis check is required."
+msgstr ""
+
+#: mollom.admin.inc:249
+msgid "At least one field is required for text analysis."
+msgstr ""
+
+#: mollom.admin.inc:275
+msgid "The form protection has been added."
+msgstr ""
+
+#: mollom.admin.inc:278
+msgid "The form protection has been updated."
+msgstr ""
+
+#: mollom.admin.inc:300
+msgid "Are you sure you want to unprotect this form?"
+msgstr ""
+
+#: mollom.admin.inc:302
+msgid "Mollom will no longer protect this form from spam."
+msgstr ""
+
+#: mollom.module:135; mollom.admin.inc:319
+msgid "Mollom blacklist"
+msgstr ""
+
+#: mollom.admin.inc:331
+msgid "All fields"
+msgstr ""
+
+#: mollom.admin.inc:332
+msgid "Links"
+msgstr ""
+
+#: mollom.admin.inc:333
+msgid "Author name"
+msgstr ""
+
+#: mollom.admin.inc:338
 msgid "Unwanted"
 msgstr ""
 
-#: mollom.admin.inc:330
+#: mollom.admin.inc:354
 msgid "delete"
 msgstr ""
 
-#: mollom.admin.inc:359
+#: mollom.admin.inc:385
 msgid "Add"
 msgstr ""
 
-#: mollom.admin.inc:372
+#: mollom.admin.inc:398
 msgid "The entry was added to the blacklist."
 msgstr ""
 
-#: mollom.admin.inc:375
+#: mollom.admin.inc:401
 msgid "An error occurred upon trying to add the text to the blacklist."
 msgstr ""
 
-#: mollom.admin.inc:384
+#: mollom.admin.inc:411
 msgid "Context"
 msgstr ""
 
-#: mollom.admin.inc:385
+#: mollom.admin.inc:412
 msgid "Text"
 msgstr ""
 
-#: mollom.admin.inc:386
+#: mollom.admin.inc:413
 msgid "Reason"
 msgstr ""
 
-#: mollom.admin.inc:425
+#: mollom.admin.inc:452
 msgid "Are you sure you want to delete %text from the blacklist?"
 msgstr ""
 
-#: mollom.pages.inc:97; mollom.admin.inc:427
+#: mollom.pages.inc:101; mollom.admin.inc:454
 msgid "This action cannot be undone."
 msgstr ""
 
-#: mollom.module:241; mollom.pages.inc:98; mollom.admin.inc:428
+#: mollom.module:235; mollom.pages.inc:102; mollom.admin.inc:455
 msgid "Delete"
 msgstr ""
 
-#: mollom.admin.inc:439
+#: mollom.admin.inc:466
 msgid "The entry was removed from the blacklist."
 msgstr ""
 
-#: mollom.admin.inc:442
+#: mollom.admin.inc:469
 msgid "An error occurred upon trying to remove the item from the blacklist."
 msgstr ""
 
-#: mollom.admin.inc:459
+#: mollom.admin.inc:493
 msgid ""
 "We contacted the Mollom servers to verify your keys: the Mollom "
 "services are operating correctly. We are now blocking spam."
 msgstr ""
 
-#: mollom.admin.inc:462
-msgid ""
-"We tried to contact the Mollom servers but we encountered a network "
-"error. Please make sure that your web server can make outgoing HTTP "
-"requests."
+#: mollom.admin.inc:499
+msgid "Access keys"
 msgstr ""
 
-#: mollom.admin.inc:465
-msgid ""
-"We contacted the Mollom servers to verify your keys: your keys do not "
-"exist or are no longer valid. Please visit the <em>Manage sites</em> "
-"page on the Mollom website again: <a "
-"href=\"@mollom-user\">@mollom-user</a>."
-msgstr ""
-
-#: mollom.admin.inc:471
-msgid "Fallback strategy"
-msgstr ""
-
-#: mollom.admin.inc:472
-msgid ""
-"When the Mollom servers are down or otherwise unreachable, no text "
-"analysis is performed and no CAPTCHAs are generated. If this occurs, "
-"your site will use the configured fallback strategy. Subscribers to <a "
-"href=\"@pricing-url\">Mollom Plus</a> receive access to <a "
-"href=\"@sla-url\">Mollom's high-availability backend "
-"infrastructure</a>, not available to free users, reducing potential "
-"downtime."
-msgstr ""
-
-#: mollom.admin.inc:482
-msgid ""
-"Block all submissions of protected forms until the server problems are "
-"resolved"
-msgstr ""
-
-#: mollom.admin.inc:483
-msgid "Leave all forms unprotected and accept all submissions"
-msgstr ""
-
-#: mollom.admin.inc:489
-msgid "Mollom access keys"
-msgstr ""
-
-#: mollom.admin.inc:490
+#: mollom.admin.inc:500
 msgid ""
 "To use Mollom, you need a public and private key. To obtain your keys, "
 "<a href=\"@mollom-login-url\">register and login on mollom.com</a>, "
@@ -233,30 +204,52 @@ msgid ""
 "manager</a> into the form fields below, and you are ready to go."
 msgstr ""
 
-#: mollom.admin.inc:498
+#: mollom.admin.inc:513
 msgid "Public key"
 msgstr ""
 
-#: mollom.admin.inc:500
-msgid "The public key is used to uniquely identify you."
+#: mollom.admin.inc:515
+msgid "Used to uniquely identify you."
 msgstr ""
 
-#: mollom.admin.inc:504
+#: mollom.admin.inc:519
 msgid "Private key"
 msgstr ""
 
-#: mollom.admin.inc:506
+#: mollom.admin.inc:521
 msgid ""
-"The private key is used to prevent someone from hijacking your "
-"requests. Similar to a password, it should never be shared with "
-"anyone."
+"Used to prevent someone else from hijacking your requests. Similar to "
+"a password, it should never be shared with anyone."
 msgstr ""
 
-#: mollom.admin.inc:511
+#: mollom.admin.inc:526
+msgid "Fallback strategy for protected forms"
+msgstr ""
+
+#: mollom.admin.inc:530
+msgid "Block all form submissions"
+msgstr ""
+
+#: mollom.admin.inc:531
+msgid "Accept all form submissions"
+msgstr ""
+
+#: mollom.admin.inc:533
+msgid ""
+"In case the Mollom services are unreachable, no text analysis is "
+"performed and no CAPTCHAs are generated. If this occurs, your site "
+"will use the configured fallback strategy until the server problems "
+"are resolved. Subscribers to <a href=\"@pricing-url\">Mollom Plus</a> "
+"receive access to <a href=\"@sla-url\">Mollom's high-availability "
+"backend infrastructure</a>, not available to free users, reducing "
+"potential downtime."
+msgstr ""
+
+#: mollom.admin.inc:541
 msgid "Link to Mollom's privacy policy on forms protected by textual analysis"
 msgstr ""
 
-#: mollom.admin.inc:514
+#: mollom.admin.inc:544
 msgid ""
 "Displays a link to the recommended <a "
 "href=\"@privacy-policy-url\">privacy policy on mollom.com</a> on all "
@@ -267,11 +260,11 @@ msgid ""
 "subscription."
 msgstr ""
 
-#: mollom.admin.inc:523
+#: mollom.admin.inc:553
 msgid "Enable testing mode"
 msgstr ""
 
-#: mollom.admin.inc:525
+#: mollom.admin.inc:555
 msgid ""
 "Submitting \"ham\", \"unsure\", or \"spam\" on a protected form will "
 "trigger the corresponding behavior, and similarly, word verifications "
@@ -280,43 +273,11 @@ msgid ""
 "production environments."
 msgstr ""
 
-#: mollom.admin.inc:562
-msgid ""
-"The selected comments have been reported as inappropriate and are "
-"deleted."
-msgstr ""
-
-#: mollom.admin.inc:565
-msgid ""
-"The selected comments have been reported as inappropriate and are "
-"unpublished."
-msgstr ""
-
-#: mollom.admin.inc:598
-msgid ""
-"The selected posts have been reported as inappropriate and are "
-"deleted."
-msgstr ""
-
-#: mollom.admin.inc:601
-msgid ""
-"The selected posts have been reported as inappropriate and are "
-"unpublished."
-msgstr ""
-
-#: mollom.admin.inc:625
+#: mollom.admin.inc:580
 msgid "Statistics"
 msgstr ""
 
-#: mollom.admin.inc:637
-msgid "Recent Mollom messages"
-msgstr ""
-
-#: mollom.admin.inc:638
-msgid "None"
-msgstr ""
-
-#: mollom.module:1691,1416,1412,1363,1357,1352,1302,1298,1295,1291,1114; mollom.pages.inc:28; mollom.inc:79
+#: mollom.module:1574,1374,1367,1286,1280,1275,1269,1094; mollom.inc:79
 msgid "mollom"
 msgstr ""
 
@@ -324,31 +285,31 @@ msgstr ""
 msgid "Error @errno: %server - %message - mollom.getServerList"
 msgstr ""
 
-#: mollom.pages.inc:77
+#: mollom.pages.inc:81
 msgid "Optionally report this to Mollom"
 msgstr ""
 
-#: mollom.pages.inc:79
+#: mollom.pages.inc:83
 msgid "Don't send feedback to Mollom"
 msgstr ""
 
-#: mollom.pages.inc:80
+#: mollom.pages.inc:84
 msgid "Report as spam or unsolicited advertising"
 msgstr ""
 
-#: mollom.pages.inc:81
+#: mollom.pages.inc:85
 msgid "Report as obscene, violent or profane content"
 msgstr ""
 
-#: mollom.pages.inc:82
+#: mollom.pages.inc:86
 msgid "Report as low-quality content or writing"
 msgstr ""
 
-#: mollom.pages.inc:83
+#: mollom.pages.inc:87
 msgid "Report as unwanted, taunting or off-topic content"
 msgstr ""
 
-#: mollom.pages.inc:86
+#: mollom.pages.inc:90
 msgid ""
 "Mollom is a web service that helps you moderate your site's content: "
 "see <a href=\"http://mollom.com\">http://mollom.com</a> for more "
@@ -359,18 +320,14 @@ msgid ""
 "content and comment administration pages."
 msgstr ""
 
-#: mollom.pages.inc:95
+#: mollom.pages.inc:99
 msgid ""
 "Are you sure you want to delete and report the content as "
 "inappropriate?"
 msgstr ""
 
-#: mollom.module:515; mollom.pages.inc:123
+#: mollom.module:506; mollom.pages.inc:127
 msgid "The content was successfully reported as inappropriate."
-msgstr ""
-
-#: mollom.module:1291; mollom.pages.inc:28
-msgid "Bogus session id %session."
 msgstr ""
 
 #: mollom.module:95
@@ -440,7 +397,15 @@ msgid ""
 "the <a href=\"@mollom-faq\">Mollom FAQ</a>."
 msgstr ""
 
-#: mollom.module:134
+#: mollom.module:133
+msgid ""
+"If Mollom may not block a spam post for any reason, you can help to "
+"train and improve its filters. To do so, choose the appropriate "
+"feedback option to report to Mollom when deleting the post on your "
+"site."
+msgstr ""
+
+#: mollom.module:137
 msgid ""
 "Mollom's filters are shared and trained globally over all "
 "participating sites. Due to this, unwanted content might still be "
@@ -451,14 +416,14 @@ msgid ""
 "filtering."
 msgstr ""
 
-#: mollom.module:137
+#: mollom.module:140
 msgid ""
 "All blacklist entries are applied to a context: the entire submitted "
 "post, or only links in the post. When limiting the context to links, "
 "both the link URL and the link text is taken into account."
 msgstr ""
 
-#: mollom.module:140
+#: mollom.module:143
 msgid ""
 "If a blacklist entry contains multiple words, various combinations "
 "will be matched. For example, when adding "
@@ -466,7 +431,7 @@ msgid ""
 "links will be blocked:"
 msgstr ""
 
-#: mollom.module:150
+#: mollom.module:153
 msgid ""
 "The blacklist is optional. There is no whitelist, i.e., if a blacklist "
 "entry is matched in a post, it overrides any other filter result and "
@@ -474,54 +439,61 @@ msgid ""
 "words should be avoided."
 msgstr ""
 
-#: mollom.module:173,166
-msgid "report to Mollom"
+#: mollom.module:343
+msgid "Administer Mollom-protected forms and Mollom settings"
 msgstr ""
 
-#: mollom.module:348
-msgid ""
-"Mollom testing mode is still enabled. Visit the <a "
-"href=\"@settings-url\">Mollom settings page</a> to disable developer "
-"mode."
+#: mollom.module:346
+msgid "Bypass Mollom protection on forms"
 msgstr ""
 
-#: mollom.module:487
+#: mollom.module:478
 msgid "Report as inappropriate"
 msgstr ""
 
-#: mollom.module:489
+#: mollom.module:480
 msgid "Do no report"
 msgstr ""
 
-#: mollom.module:490
+#: mollom.module:481
 msgid "Spam, unsolicited advertising"
 msgstr ""
 
-#: mollom.module:491
+#: mollom.module:482
 msgid "Obscene, violent, profane"
 msgstr ""
 
-#: mollom.module:492
+#: mollom.module:483
 msgid "Low-quality"
 msgstr ""
 
-#: mollom.module:493
+#: mollom.module:484
 msgid "Unwanted, taunting, off-topic"
 msgstr ""
 
-#: mollom.module:496
+#: mollom.module:487
 msgid ""
 "Sending feedback to <a href=\"@mollom-url\">Mollom</a> improves the "
 "automated moderation of new submissions."
 msgstr ""
 
-#: mollom.module:645
+#: mollom.module:571
+msgid ""
+"Visit the <a href=\"@settings-url\">Mollom settings page</a> to "
+"disable it."
+msgstr ""
+
+#: mollom.module:575
+msgid "Mollom testing mode is still enabled. !admin-message"
+msgstr ""
+
+#: mollom.module:620
 msgid ""
 "By submitting this form, you accept the <a "
 "href=\"@privacy-policy-url\">Mollom privacy policy</a>."
 msgstr ""
 
-#: mollom.module:1105
+#: mollom.module:1085
 msgid ""
 "The spam filter installed on this site is currently unavailable. Per "
 "site policy, we are unable to accept new submissions until that "
@@ -529,228 +501,209 @@ msgid ""
 "minutes."
 msgstr ""
 
-#: mollom.module:1252
+#: mollom.module:1184
 msgid "Word verification"
 msgstr ""
 
-#: mollom.module:1255
+#: mollom.module:1187
 msgid ""
 "Type the characters you see in the picture above; if you can't read "
 "them, submit the form and a new image will be generated. Not case "
 "sensitive."
 msgstr ""
 
-#: mollom.module:1356
+#: mollom.module:1268
+msgid ""
+"Your submission has triggered the profanity filter and will not be "
+"accepted until the inappropriate language is removed."
+msgstr ""
+
+#: mollom.module:1279
 msgid ""
 "Your submission has triggered the spam filter and will not be "
 "accepted."
 msgstr ""
 
-#: mollom.module:1362
+#: mollom.module:1285
 msgid "To complete this form, please complete the word verification below."
 msgstr ""
 
-#: mollom.module:1387
-msgid "The word verification field is required."
-msgstr ""
-
-#: mollom.module:1415
+#: mollom.module:1373
 msgid ""
 "The word verification was not completed correctly. Please complete "
 "this new word verification and try again."
 msgstr ""
 
-#: mollom.info:0; mollom.module:198,1760
+#: mollom.info:0; mollom.module:192,1655
 msgid "Mollom"
 msgstr ""
 
-#: mollom.module:1761
+#: mollom.module:1656
 msgid "Mollom CAPTCHA or privacy policy link"
 msgstr ""
 
-#: mollom.module:1812
+#: mollom.module:1708
 msgid "verify using image"
 msgstr ""
 
-#: mollom.module:1819
+#: mollom.module:1715
 msgid "Type the characters you see in this picture."
 msgstr ""
 
-#: mollom.module:1821
+#: mollom.module:1717
 msgid "verify using audio"
 msgstr ""
 
-#: mollom.module:1855
+#: mollom.module:1751
 msgid "Report as inappropriate: @link"
 msgstr ""
 
-#: mollom.module:1900,1882
+#: mollom.module:1789,1771
 msgid "@name form"
 msgstr ""
 
-#: mollom.module:2093,1956
-msgid "Report to Mollom and unpublish"
+#: mollom.module:1902,1833
+msgid "The posts were successfully reported as inappropriate."
 msgstr ""
 
-#: mollom.module:2094,1957
-msgid "Report to Mollom and delete"
-msgstr ""
-
-#: mollom.module:2003,1990
+#: mollom.module:1865,1853
 msgid "Comment form"
 msgstr ""
 
-#: mollom.module:2227,2209,2008
+#: mollom.module:2044,2026,1870
 msgid "Subject"
 msgstr ""
 
-#: mollom.module:2009
+#: mollom.module:1872
 msgid "Comment"
 msgstr ""
 
-#: mollom.module:2112
-msgid "The comment has been deleted."
-msgstr ""
-
-#: mollom.module:2146,2129
+#: mollom.module:1941,1922
 msgid "User registration form"
 msgstr ""
 
-#: mollom.module:2160,2133
+#: mollom.module:1955,1927
 msgid "User password request form"
 msgstr ""
 
-#: mollom.module:2204,2189
+#: mollom.module:1986
+msgid "The users were successfully reported."
+msgstr ""
+
+#: mollom.module:2021,2006
 msgid "Site-wide contact form"
 msgstr ""
 
-#: mollom.module:2222,2192
+#: mollom.module:2039,2009
 msgid "User contact form"
 msgstr ""
 
-#: mollom.module:2228,2210
+#: mollom.module:2045,2027
 msgid "Message"
 msgstr ""
 
-#: mollom.module:1114
+#: mollom.module:1094
 msgid "All servers unavailable: %servers, last error: @errno - %error_msg"
 msgstr ""
 
-#: mollom.module:1295
-msgid "Expired session id %session."
+#: mollom.module:1269
+msgid "Profanity: <pre>@message</pre>Result: <pre>@result</pre>"
 msgstr ""
 
-#: mollom.module:1298
-msgid ""
-"Unknown session id %session. This is not a bug in Mollom. If this "
-"happens too often, check your site for attacks."
-msgstr ""
-
-#: mollom.module:1302
-msgid ""
-"Invalid form id %form_id for session id %session (generated for "
-"%form_id_session).  This is not a bug in Mollom. If this happens too "
-"often, check your site for attacks."
-msgstr ""
-
-#: mollom.module:1352
+#: mollom.module:1275
 msgid "Ham: <pre>@message</pre>Result: <pre>@result</pre>"
 msgstr ""
 
-#: mollom.module:1357
+#: mollom.module:1280
 msgid "Spam: <pre>@message</pre>Result: <pre>@result</pre>"
 msgstr ""
 
-#: mollom.module:1363
+#: mollom.module:1286
 msgid "Unsure: <pre>@message</pre>Result: <pre>@result</pre>"
 msgstr ""
 
-#: mollom.module:1412
+#: mollom.module:1367
 msgid "Correct CAPTCHA: <pre>@data<pre>"
 msgstr ""
 
-#: mollom.module:1416
+#: mollom.module:1374
 msgid "Incorrect CAPTCHA: <pre>@data<pre>"
 msgstr ""
 
-#: mollom.module:1691
+#: mollom.module:1574
 msgid "Reported session id %session as %feedback."
 msgstr ""
 
-#: mollom.module:360
-msgid "administer mollom"
-msgstr ""
-
-#: mollom.module:361
-msgid "bypass mollom protection"
-msgstr ""
-
-#: mollom.module:188
+#: mollom.module:182
 msgid "Report to Mollom"
 msgstr ""
 
-#: mollom.module:199
+#: mollom.module:193
 msgid "Mollom is a web service that helps you manage your community."
 msgstr ""
 
-#: mollom.module:205
+#: mollom.module:199
 msgid "Forms"
 msgstr ""
 
-#: mollom.module:225
+#: mollom.module:219
 msgid "Unprotect form"
 msgstr ""
 
-#: mollom.module:233
+#: mollom.module:227
 msgid "Blacklist"
 msgstr ""
 
-#: mollom.module:234
+#: mollom.module:228
 msgid "Configure blacklist."
 msgstr ""
 
-#: mollom.module:249
+#: mollom.module:243
 msgid "Settings"
 msgstr ""
 
-#: mollom.module:250
+#: mollom.module:244
 msgid "Configure Mollom keys and global settings."
 msgstr ""
 
-#: mollom.module:259
+#: mollom.module:253
 msgid "Mollom statistics"
 msgstr ""
 
-#: mollom.module:260
+#: mollom.module:254
 msgid "Reports and usage statistics for the Mollom module."
 msgstr ""
 
-#: mollom.install:29
+#: mollom.install:43
+msgid ""
+"Visit the <a href=\"@settings-url\">Mollom settings page</a> to "
+"configure your keys."
+msgstr ""
+
+#: mollom.install:50
 msgid "Not configured"
 msgstr ""
 
-#: mollom.install:30
-msgid "Mollom API keys are not <a href=\"@settings-url\">configured</a> yet."
+#: mollom.install:51
+msgid "The Mollom API keys are not configured yet. !admin-message"
 msgstr ""
 
-#: mollom.install:33
-msgid "Network error"
-msgstr ""
-
-#: mollom.install:34
-msgid ""
-"The Mollom servers could not be contacted. Please make sure that your "
-"web server can make outgoing HTTP requests."
-msgstr ""
-
-#: mollom.install:37
+#: mollom.install:57
 msgid "Invalid"
 msgstr ""
 
-#: mollom.install:38
+#: mollom.install:58
+msgid "The configured Mollom API keys are invalid. !admin-message"
+msgstr ""
+
+#: mollom.install:64
+msgid "Network error"
+msgstr ""
+
+#: mollom.install:65
 msgid ""
-"The <a href=\"@settings-url\">configured</a> Mollom API keys are "
-"invalid."
+"The Mollom servers could not be contacted. Please make sure that your "
+"web server can make outgoing HTTP requests."
 msgstr ""
 
 #: mollom.info:0

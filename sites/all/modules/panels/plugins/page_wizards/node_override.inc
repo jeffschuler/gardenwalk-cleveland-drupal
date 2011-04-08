@@ -1,5 +1,4 @@
 <?php
-// $Id: node_override.inc,v 1.1.2.2 2010/08/30 22:32:55 merlinofchaos Exp $
 
 /**
  * @file
@@ -60,7 +59,7 @@ function panels_node_override_start($form_info, $step, &$form_state) {
   $form_state['page'] = page_manager_get_page_cache('node_view');
   if (!empty($form_state['page']->locked)) {
     $account  = user_load($form_state['page']->locked->uid);
-    $name     = theme('username', $account);
+    $name     = theme('username', array('account' => $account));
     $lock_age = format_interval(time() - $form_state['page']->locked->updated);
     $break    = url(page_manager_edit_url($form_state['page']->task_name, array('actions', 'break-lock')));
 
@@ -71,8 +70,8 @@ function panels_node_override_start($form_info, $step, &$form_state) {
 /**
  * First page of our page creator wizard.
  */
-function panels_node_override_basic(&$form, &$form_state) {
-  $types = node_get_types();
+function panels_node_override_basic($form, &$form_state) {
+  $types = node_type_get_types();
   $form_state['types'] = $types;
 
   $already_done = array();
@@ -98,7 +97,7 @@ function panels_node_override_basic(&$form, &$form_state) {
     $form['already_done'] = array(
       '#type' => 'item',
       '#title' => t('Existing node templates'),
-      '#value' => theme('item_list', $items),
+      '#value' => theme('item_list', array('items' => $items)),
     );
   }
 
@@ -113,18 +112,20 @@ function panels_node_override_basic(&$form, &$form_state) {
     '#type' => 'select',
     '#title' => t('Node type'),
     '#options' => $options,
-    '#default_value' => $form_state['cache']->type,
+    '#default_value' => $form_state['wizard cache']->type,
   );
 
   ctools_include('page-wizard', 'panels');
   panels_page_wizard_add_layout($form, $form_state);
+
+  return $form;
 }
 
 /**
  * Submit function to store the form data in our cache.
  */
 function panels_node_override_basic_submit(&$form, &$form_state) {
-  $cache = &$form_state['cache'];
+  $cache = &$form_state['wizard cache'];
   $cache->display->layout = $form_state['values']['layout'];
   $cache->type = $form_state['values']['type'];
 
@@ -199,6 +200,9 @@ function panels_node_override_basic_submit(&$form, &$form_state) {
   $pane->position = 0;
   $cache->display->content['new-1'] = $pane;
   $cache->display->panels[$region][0] = 'new-1';
+  $cache->display->title_pane = 'new-1';
+  $cache->display->hide_title = PANELS_TITLE_PANE;
+
   $pane = new stdClass;
   $pane->pid = 'new-2';
   $pane->panel = $region;
@@ -207,8 +211,7 @@ function panels_node_override_basic_submit(&$form, &$form_state) {
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
-    'mode' => variable_get('comment_default_mode', COMMENT_MODE_THREADED_EXPANDED),
-    'order' => variable_get('comment_default_order', COMMENT_ORDER_NEWEST_FIRST),
+    'mode' => variable_get('comment_default_mode', COMMENT_MODE_THREADED),
     'comments_per_page' => variable_get('comment_default_per_page', '50'),
     'context' => 'argument_nid_1',
     'override_title' => 0,
@@ -257,9 +260,11 @@ function panels_node_override_basic_submit(&$form, &$form_state) {
  * Second page of our wizard. This one provides a layout and lets the
  * user add content.
  */
-function panels_node_override_content(&$form, &$form_state) {
+function panels_node_override_content($form, &$form_state) {
   ctools_include('page-wizard', 'panels');
   panels_page_wizard_add_content($form, $form_state);
+
+  return $form;
 }
 
 /**
@@ -275,7 +280,7 @@ function panels_node_override_content_submit(&$form, &$form_state) {
  */
 function panels_node_override_finish(&$form_state) {
   $page = &$form_state['page'];
-  $cache = &$form_state['cache'];
+  $cache = &$form_state['wizard cache'];
 
   // Add the new handler to the page
   $cache->handler->conf['display'] = $cache->display;

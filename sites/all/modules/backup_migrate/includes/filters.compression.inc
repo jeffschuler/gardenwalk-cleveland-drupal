@@ -1,5 +1,5 @@
 <?php
-// $Id: filters.compression.inc,v 1.1.2.5 2010/03/24 04:02:58 ronan Exp $
+// $Id: filters.compression.inc,v 1.2.2.3 2011/01/24 05:37:19 ronan Exp $
 
 
 /**
@@ -18,7 +18,7 @@ class backup_migrate_filter_compression extends backup_migrate_filter {
   /**
    * This function is called on a backup file after the backup has been completed.
    */
-  function backup($file, $settings) {
+  function backup($file, &$settings) {
     return $this->_backup_migrate_file_compress($file, $settings);
   }
 

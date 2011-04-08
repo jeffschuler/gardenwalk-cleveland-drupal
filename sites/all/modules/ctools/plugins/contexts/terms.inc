@@ -1,5 +1,4 @@
 <?php
-// $Id: terms.inc,v 1.4.2.4 2010/10/15 21:06:51 merlinofchaos Exp $
 
 /**
  * @file
@@ -15,8 +14,6 @@ $plugin = array(
   'title' => t("Taxonomy terms"),
   'description' => t('Multiple taxonomy terms, as a group.'),
   'context' => 'ctools_context_create_terms',
-  'settings form' => 'ctools_context_terms_settings_form',
-  'settings form validate' => 'ctools_context_terms_settings_form_validate',
   'keyword' => 'terms',
   'no ui' => TRUE,
   'context name' => 'terms',
@@ -53,7 +50,7 @@ function ctools_context_create_terms($empty, $data = NULL, $conf = FALSE) {
     if (!isset($data->term)) {
       // load the first term:
       reset($context->tids);
-      $data->term = taxonomy_get_term(current($context->tids));
+      $data->term = taxonomy_term_load(current($context->tids));
     }
     $context->data     = $data->term;
     $context->title    = $data->term->name;
@@ -83,9 +80,8 @@ function ctools_context_terms_convert($context, $type) {
           $context->names = '';
         }
         else {
-          $names = array();
-          $result = db_query("SELECT tid, name FROM {term_data} WHERE tid IN (" . db_placeholders($context->tids) . ")", $context->tids);
-          while ($term = db_fetch_object($result)) {
+          $result = db_query('SELECT tid, name FROM {taxonomy_term_data} WHERE tid IN :tids', array(':tids' => $context->tids));
+          foreach ($result as $term) {
             $names[$term->tid] = $term->name;
             if ($type == 'names_dashed') {
               $names[$term->tid] = drupal_strtolower(str_replace(' ', '-', $names[$term->tid]));

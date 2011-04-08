@@ -1,5 +1,4 @@
 <?php
-// $Id: node_type.inc,v 1.7.2.2 2009/11/13 00:44:16 merlinofchaos Exp $
 
 /**
  * @file
@@ -25,8 +24,8 @@ $plugin = array(
 /**
  * Settings form for the 'by node_type' access plugin
  */
-function ctools_node_type_ctools_access_settings(&$form, &$form_state, $conf) {
-  $types = node_get_types();
+function ctools_node_type_ctools_access_settings($form, &$form_state, $conf) {
+  $types = node_type_get_types();
   foreach ($types as $type => $info) {
     $options[$type] = check_plain($info->name);
   }
@@ -38,12 +37,13 @@ function ctools_node_type_ctools_access_settings(&$form, &$form_state, $conf) {
     '#description' => t('Only the checked node types will be valid.'),
     '#default_value' => $conf['type'],
   );
+  return $form;
 }
 
 /**
  * Compress the node_types allowed to the minimum.
  */
-function ctools_node_type_ctools_access_settings_submit(&$form, &$form_state) {
+function ctools_node_type_ctools_access_settings_submit($form, &$form_state) {
   $form_state['values']['settings']['type'] = array_filter($form_state['values']['settings']['type']);
 }
 
@@ -84,7 +84,7 @@ function ctools_node_type_ctools_access_summary($conf, $context) {
   if (!isset($conf['type'])) {
     $conf['type'] = array();
   }
-  $types = node_get_types();
+  $types = node_type_get_types();
 
   $names = array();
   foreach (array_filter($conf['type']) as $type) {

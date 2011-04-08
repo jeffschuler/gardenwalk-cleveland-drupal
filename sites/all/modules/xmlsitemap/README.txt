@@ -1,4 +1,4 @@
-$Id: README.txt,v 1.3.2.5.2.15 2009/12/23 07:34:55 davereid Exp $
+$Id: README.txt,v 1.6 2009/12/23 07:34:46 davereid Exp $
 
 CONTENTS OF THIS FILE
 ---------------------
@@ -32,8 +32,8 @@ See http://drupal.org/getting-started/install-contrib for instructions on
 how to install or update Drupal modules.
 
 Once XML Sitemap is installed and enabled, you can adjust the settings for your
-site's sitemap at admin/settings/xmlsitemap. Your can view your site's sitemap
-at http://yoursite.com/sitemap.xml.
+site's sitemap at admin/config/search/xmlsitemap. Your can view your site's
+sitemap at http://yoursite.com/sitemap.xml.
 
 It is highly recommended that you have clean URLs enabled for this module.
 

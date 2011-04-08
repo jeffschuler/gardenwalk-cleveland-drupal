@@ -1,4 +1,4 @@
-// $Id: jwysiwyg.js,v 1.3.4.1 2010/02/13 23:58:41 sun Exp $
+// $Id: jwysiwyg.js,v 1.4 2009/09/26 05:37:57 sun Exp $
 (function($) {
 
 /**

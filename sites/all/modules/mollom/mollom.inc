@@ -1,5 +1,5 @@
 <?php
-// $Id: mollom.inc,v 1.1.2.7 2010/09/13 23:52:36 sun Exp $
+// $Id: mollom.inc,v 1.10 2010/12/22 17:54:53 sun Exp $
 
 /**
  * @file
@@ -40,7 +40,7 @@ function _mollom_authentication($public_key = NULL, $private_key = NULL) {
   }
 
   // Generate a timestamp according to the dateTime format (http://www.w3.org/TR/xmlschema-2/#dateTime):
-  $time = gmdate("Y-m-d\TH:i:s.\\0\\0\\0O", time());
+  $time = gmdate("Y-m-d\TH:i:s.\\0\\0\\0O", REQUEST_TIME);
 
   // Generate a random number:
   $nonce = md5(mt_rand());
@@ -78,7 +78,7 @@ function _mollom_retrieve_server_list() {
   // which case there must be a configuration error (e.g., invalid API keys).
   $method = 'mollom.getServerList';
   foreach ($servers as $server) {
-    $result = xmlrpc($server . '/' . MOLLOM_API_VERSION, $method, _mollom_authentication());
+    $result = xmlrpc($server . '/' . MOLLOM_API_VERSION, array($method => array(_mollom_authentication())));
     if ($result === FALSE && ($error = xmlrpc_error())) {
       // In any case, log the error.
       $messages[] = array(
@@ -101,6 +101,10 @@ function _mollom_retrieve_server_list() {
       break;
     }
   }
+
+  // Allow other modules to alter the server list. Internal use only.
+  drupal_alter('mollom_server_list', $result);
+
   if (is_array($result)) {
     _mollom_watchdog_multiple($messages, WATCHDOG_DEBUG);
     return $result;
