@@ -1655,3 +1655,9 @@ div.admin-panel .description {
 #footer-wrapper .poll .bar .foreground {
   background-color: #ddd;
 }
+
+
+
+#edit-field-address fieldset .fieldset-wrapper {
+  padding-top: 30px;
+}
