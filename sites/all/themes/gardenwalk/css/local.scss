@@ -1,7 +1,122 @@
+$brown: #726965;
+$khaki: #F2ECE9;
+$tan: #D3CCCB;
+$purple: #615FC1;
+$orange: #F15B2A;
+
+
 body {
-  background-color: #F2ECE9;
+  background: $khaki url('../images/page-bg-edges.png') repeat-y top center;
 }
 
+
+/* General
+-------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: museo-1;
+  font-weight: 500;
+}
+
+
+/* Header Top
+-------------------------------------------------------------- */
+#header-top-wrapper {
+  background-color: $tan;
+}
+
+#header-top-inner {
+  text-align: right;
+  padding: 5px 0;
+}
+
+#header-top .block {
+  margin-bottom: 0;
+}
+
+
+/* Header
+-------------------------------------------------------------- */
+#header-group {
+  background-color: #FFFFFF;
+}
+
+#header-group-inner {
+  padding-top: 35px;
+}
+
+#header-group .block .inner {
+  margin: 0;  
+}
+
+#site-name a {
+  background: transparent url('../images/gardenwalk-header-logo.png') no-repeat left top;
+  height: 0;
+  padding-top: 202px;
+  display: block;
+  overflow: hidden;
+}
+
+
+/* Header - Main Menu
+-------------------------------------------------------------- */
+#block-menu-primary-links {
+}
+
+#block-menu-primary-links li {
+  
+}
+#block-menu-primary-links li a {
+  
+}
+
+/* Main
+-------------------------------------------------------------- */
 #main {
   background-color: #FFFFFF;
+}
+
+#main a,
+#main a:link,
+#main a:visited {
+  color: $orange;
+}
+
+#main a:hover,
+#main a:focus,
+#main a:active {
+  color: darken($orange, 20%);
+}
+
+#main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
+  color: $purple;
+}
+
+
+/* Footer
+-------------------------------------------------------------- */
+#footer-wrapper {
+  background-color: $brown;
+}
+
+#footer-inner {
+  padding: 20px 0;
+}
+
+#footer,
+#footer a,
+#footer a:link,
+#footer a:visited,
+#footer h2 {
+  color: #FFFFFF;
+}
+
+#footer ul li,
+#footer ol li {
+  list-style-type: none;
+  list-style-image: none;
+}
+
+#footer ul,
+#footer ol {
+  margin: 0;
 }

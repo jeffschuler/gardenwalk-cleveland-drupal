@@ -1,5 +1,82 @@
 body {
-  background-color: #F2ECE9; }
+  background: #f2ece9 url("../images/page-bg-edges.png") repeat-y top center; }
 
+/* General
+-------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: museo-1;
+  font-weight: 500; }
+
+/* Header Top
+-------------------------------------------------------------- */
+#header-top-wrapper {
+  background-color: #d3cccb; }
+
+#header-top-inner {
+  text-align: right;
+  padding: 5px 0; }
+
+#header-top .block {
+  margin-bottom: 0; }
+
+/* Header
+-------------------------------------------------------------- */
+#header-group {
+  background-color: #FFFFFF; }
+
+#header-group-inner {
+  padding-top: 35px; }
+
+#header-group .block .inner {
+  margin: 0; }
+
+#site-name a {
+  background: transparent url("../images/gardenwalk-header-logo.png") no-repeat left top;
+  height: 0;
+  padding-top: 202px;
+  display: block;
+  overflow: hidden; }
+
+/* Header - Main Menu
+-------------------------------------------------------------- */
+/* Main
+-------------------------------------------------------------- */
 #main {
   background-color: #FFFFFF; }
+
+#main a,
+#main a:link,
+#main a:visited {
+  color: #f15b2a; }
+
+#main a:hover,
+#main a:focus,
+#main a:active {
+  color: #aa320b; }
+
+#main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
+  color: #615fc1; }
+
+/* Footer
+-------------------------------------------------------------- */
+#footer-wrapper {
+  background-color: #726965; }
+
+#footer-inner {
+  padding: 20px 0; }
+
+#footer,
+#footer a,
+#footer a:link,
+#footer a:visited,
+#footer h2 {
+  color: #FFFFFF; }
+
+#footer ul li,
+#footer ol li {
+  list-style-type: none;
+  list-style-image: none; }
+
+#footer ul,
+#footer ol {
+  margin: 0; }
