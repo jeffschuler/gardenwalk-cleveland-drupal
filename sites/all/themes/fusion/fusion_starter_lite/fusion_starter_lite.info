@@ -7,6 +7,9 @@ engine = phptemplate
 
 stylesheets[all][] = css/fusion-starter-lite-style.css
 
+skinr[api] = 2
+skinr[directory] = skins
+
 regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
 regions[header] = Header
@@ -59,14 +62,14 @@ settings[grid_adjusted_regions][content][] = sidebar_second
 settings[grid_adjusted_groups][content_group][] = sidebar_first
 settings[grid_adjusted_groups][content_group][] = sidebar_second
 ; Nested region fluid width adjustments: regions outside a parent group to subtract to get correct parent width
-settings[grid_adjusted_regions_fluid][help][] = sidebar_first
-settings[grid_adjusted_regions_fluid][help][] = sidebar_second
+settings[grid_adjusted_regions_fluid][sidebar_second][] = sidebar_first
 settings[grid_adjusted_regions_fluid][content][] = sidebar_first
 settings[grid_adjusted_regions_fluid][content][] = sidebar_second
-
-; Information added by drupal.org packaging script on 2011-03-14
+; Nested group fluid width adjustments: regions inside a parent group to subtract to get remaining width
+settings[grid_adjusted_groups_fluid][content_group][] = sidebar_second
+; Information added by drupal.org packaging script on 2011-04-28
 version = "7.x-1.x-dev"
 core = "7.x"
 project = "fusion"
-datestamp = "1300061216"
+datestamp = "1303949598"
 

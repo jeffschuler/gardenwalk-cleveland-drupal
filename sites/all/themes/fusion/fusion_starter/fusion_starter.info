@@ -7,6 +7,9 @@ engine = phptemplate
 
 stylesheets[all][] = css/fusion-starter-style.css
 
+skinr[api] = 2
+skinr[directory] = skins
+
 regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
 regions[header_top] = Header top
@@ -87,9 +90,9 @@ settings[grid_adjusted_regions_fluid][content][] = sidebar_second
 ; Nested group fluid width adjustments: regions inside a parent group to subtract to get remaining width
 settings[grid_adjusted_groups_fluid][content_group][] = sidebar_second
 
-; Information added by drupal.org packaging script on 2011-03-14
+; Information added by drupal.org packaging script on 2011-04-28
 version = "7.x-1.x-dev"
 core = "7.x"
 project = "fusion"
-datestamp = "1300061216"
+datestamp = "1303949598"
 

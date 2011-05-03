@@ -247,7 +247,7 @@ function fusion_core_preprocess_search_result(&$vars) {
   $vars['info'] = implode(' - ', $info);
 
   // Provide alternate search result template.
-  $vars['template_files'][] = 'search-result-'. $vars['type'];
+  $vars['template_files'][] = 'search-result-'. $vars['module'];
 }
 
 

@@ -909,7 +909,6 @@ fieldset.collapsible .resizable-textarea .grippie {
 /* User Login Form - Horizontal (Skinr selectable)
 /-------------------------------------------------------------- */
 .fusion-horiz-login#block-user-login {
-  float: right;
   margin: 20px 0 10px 0;
   position: relative;
 }
@@ -948,7 +947,6 @@ html.js .fusion-horiz-login#block-user-login #user-login-form label {
   font-weight: normal;
   margin: 0 0 0 7px;
   position: absolute;
-  top: 2px;
 }
 
 .fusion-horiz-login#block-user-login #user-login-form input.form-text {
@@ -1171,12 +1169,12 @@ div.comment ul.links a {
 /-------------------------------------------------------------- */
 div.content-messages div.messages,
 div.content-help div.help {
-  border-style: solid;
-  border-width: 6px;
+  border: none;
+  border-top: solid 6px;
+  border-bottom: solid 6px;
   font-weight: bold;
   margin-bottom: 1.5em;
-  overflow: hidden;
-  padding: 14px;
+  padding: 14px 14px 14px 37px;
 }
 
 div.content-messages-inner div.status {

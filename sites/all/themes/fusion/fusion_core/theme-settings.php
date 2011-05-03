@@ -125,36 +125,23 @@ function fusion_core_form_system_theme_settings_alter(&$form, $form_state) {
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  // Font family settings
-  $form['tnt_container']['general_settings']['theme_font_config']['theme_font_config_font'] = array(
-    '#type'        => 'fieldset',
-    '#title'       => t('Font family'),
-    '#collapsible' => TRUE,
-    '#collapsed'   => TRUE,
-   );
-  $form['tnt_container']['general_settings']['theme_font_config']['theme_font_config_font']['theme_font'] = array(
-    '#type'          => 'radios',
+  $form['tnt_container']['general_settings']['theme_font_config']['theme_font'] = array(
+    '#type'          => 'select',
     '#title'         => t('Select a new font family'),
     '#default_value' => theme_get_setting('theme_font'),
     '#options'       => array(
       'none' => t('Theme default'),
-      'font-family-sans-serif-sm' => '<span class="font-family-sans-serif-sm">' . t('Sans serif - smaller (Helvetica Neue, Arial, Helvetica, sans-serif)') . '</span>',
-      'font-family-sans-serif-lg' => '<span class="font-family-sans-serif-lg">' . t('Sans serif - larger (Verdana, Geneva, Arial, Helvetica, sans-serif)') . '</span>',
-      'font-family-serif-sm' => '<span class="font-family-serif-sm">' . t('Serif - smaller (Garamond, Perpetua, Nimbus Roman No9 L, Times New Roman, serif)') . '</span>',
-      'font-family-serif-lg' => '<span class="font-family-serif-lg">' . t('Serif - larger (Baskerville, Georgia, Palatino, Palatino Linotype, Book Antiqua, URW Palladio L, serif)') . '</span>',
-      'font-family-myriad' => '<span class="font-family-myriad">' . t('Myriad (Myriad Pro, Myriad, Trebuchet MS, Arial, Helvetica, sans-serif)') . '</span>',
-      'font-family-lucida' => '<span class="font-family-lucida">' . t('Lucida (Lucida Sans, Lucida Grande, Lucida Sans Unicode, Verdana, Geneva, sans-serif)') . '</span>',
+      'font-family-sans-serif-sm' => t('Sans serif - smaller (Helvetica Neue, Arial, Helvetica, sans-serif)'),
+      'font-family-sans-serif-lg' => t('Sans serif - larger (Verdana, Geneva, Arial, Helvetica, sans-serif)'),
+      'font-family-serif-sm' => t('Serif - smaller (Garamond, Perpetua, Nimbus Roman No9 L, Times New Roman, serif)'),
+      'font-family-serif-lg' => t('Serif - larger (Baskerville, Georgia, Palatino, Palatino Linotype, Book Antiqua, URW Palladio L, serif)'),
+      'font-family-myriad' => t('Myriad (Myriad Pro, Myriad, Trebuchet MS, Arial, Helvetica, sans-serif)'),
+      'font-family-lucida' => t('Lucida (Lucida Sans, Lucida Grande, Lucida Sans Unicode, Verdana, Geneva, sans-serif)'),
+      'font-family-tahoma' => t('Tahoma (Tahoma, Arial, Verdana, sans-serif)'),
     ),
   );
-  // Font size settings
-  $form['tnt_container']['general_settings']['theme_font_config']['theme_font_config_size'] = array(
-    '#type'        => 'fieldset',
-    '#title'       => t('Font size'),
-    '#collapsible' => TRUE,
-    '#collapsed'   => TRUE,
-  );
-  $form['tnt_container']['general_settings']['theme_font_config']['theme_font_config_size']['theme_font_size'] = array(
-    '#type'          => 'radios',
+  $form['tnt_container']['general_settings']['theme_font_config']['theme_font_size'] = array(
+    '#type'          => 'select',
     '#title'         => t('Change the base font size'),
     '#description'   => t('Adjusts all text in proportion to your base font size.'),
     '#default_value' => theme_get_setting('theme_font_size'),
@@ -170,7 +157,7 @@ function fusion_core_form_system_theme_settings_alter(&$form, $form_state) {
       'font-size-18' => t('18px'),
     ),
   );
-  $form['tnt_container']['general_settings']['theme_font_config']['theme_font_config_size']['theme_font_size']['#options'][$defaults['theme_font_size']] .= t(' - Theme Default');
+  $form['tnt_container']['general_settings']['theme_font_config']['theme_font_size']['#options'][$defaults['theme_font_size']] .= t(' - Theme Default');
 
   // Navigation
   $form['tnt_container']['general_settings']['navigation'] = array(
