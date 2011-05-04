@@ -3,17 +3,24 @@ $khaki: #F2ECE9;
 $tan: #D3CCCB;
 $purple: #615FC1;
 $orange: #F15B2A;
+$ltgreen: #A3C6B1;
+$white: #FFFFFF;
+
+$meta: "ff-meta-web-pro-1";
+$museo: "museo-1";
+$georgia: Georgia, "Times New Roman", Times, serif;
 
 
 body {
   background: $khaki url('../images/page-bg-edges.png') repeat-y top center;
+  font-family: $meta;
 }
 
 
 /* General
 -------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
-  font-family: museo-1;
+  font-family: $museo;
   font-weight: 500;
 }
 
@@ -22,6 +29,10 @@ h1, h2, h3, h4, h5, h6 {
 -------------------------------------------------------------- */
 #header-top-wrapper {
   background-color: $tan;
+}
+
+#header-top {
+  height: 35px;
 }
 
 #header-top-inner {
@@ -33,11 +44,59 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0;
 }
 
+/* Date Banner
+--------------------- */
+
+#block-block-1 {
+  position: absolute;
+  font-family: $museo;
+  text-align: center;
+  color: $white;
+}
+#block-block-1 .inner {
+  margin: 0;
+}
+#block-block-1 .month {
+  font-weight: 300;
+  font-size: 21px;
+  background-color: $ltgreen;
+  height: 28px;
+  width: 65px;
+  position: relative;
+  top: -5px;
+  padding-top: 7px;
+}
+#block-block-1 .day {
+  font-weight: 700;
+  font-size: 32px;
+  width: 65px;
+  position: relative;
+  left: 10px;
+  top: -5px;
+  background-image: url('../images/date-tag-bottom.png');
+  overflow: visible;
+  padding-top: 10px;
+}
+#block-block-1 .year {
+  font-weight: 300;
+  font-size: 21px;
+  width: 65px;
+  position: relative;
+  left: 10px;
+  top: -5px;
+  background-color: $ltgreen;
+  padding: 5px 0 5px;
+}
+
 
 /* Header
 -------------------------------------------------------------- */
 #header-group {
-  background-color: #FFFFFF;
+  background-color: $white;
+}
+
+#header-site-info {
+  width: 480px;
 }
 
 #header-group-inner {
@@ -48,31 +107,73 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;  
 }
 
+#site-name-wrapper {
+  float: right;
+}
+
 #site-name a {
   background: transparent url('../images/gardenwalk-header-logo.png') no-repeat left top;
   height: 0;
   padding-top: 202px;
   display: block;
   overflow: hidden;
+  width: 409px;
 }
 
 
-/* Header - Main Menu
--------------------------------------------------------------- */
+/* Main Menu
+--------------------- */
 #block-menu-primary-links {
 }
 
+#block-menu-primary-links ul {
+  margin-left: 40px;
+}
+
 #block-menu-primary-links li {
-  
+  list-style-type: none;
+  list-style-image: none;
+  float: left;
+  padding: 0 10px;
 }
 #block-menu-primary-links li a {
-  
+  height: 150px;
+  width: 120px;
+  background: transparent url('../images/menu-pot.png') no-repeat 50% bottom;
+  display: block;
+  text-align: center;
+}
+#block-menu-primary-links li a .title {
+  font-family: $museo;
+  font-weight: 500;
+  font-size: 18px;
+}
+#block-menu-primary-links li a .description {
+  margin-top: 10px;
+  font-family: $georgia;
+  font-style: italic;
+}
+#block-menu-primary-links li a a,
+#block-menu-primary-links li a:link,
+#block-menu-primary-links li a:visited {
+  color: $brown;
+}
+#block-menu-primary-links li a:hover,
+#block-menu-primary-links li a:focus,
+#block-menu-primary-links li a:active {
+  color: $orange;
+  text-decoration: none;
+  background-image: url('../images/menu-pot-hover.png');
+}
+#block-menu-primary-links li a.active {
+  color: $purple;
+  background-image: url('../images/menu-pot-active.png');
 }
 
 /* Main
 -------------------------------------------------------------- */
 #main {
-  background-color: #FFFFFF;
+  background-color: $white;
 }
 
 #main a,
@@ -107,7 +208,7 @@ h1, h2, h3, h4, h5, h6 {
 #footer a:link,
 #footer a:visited,
 #footer h2 {
-  color: #FFFFFF;
+  color: $white;
 }
 
 #footer ul li,
