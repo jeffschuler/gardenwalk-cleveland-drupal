@@ -57,19 +57,19 @@ function fusion_core_skinr_skin_core_info() {
     'default status' => TRUE,
     'options' => array(
       'fusion-callout' => array(
-        'title' => '<span class="preview-text">Text: large, bold callout style <span class="preview-icon" id="fusion-general-styles-fusion-callout"></span></span>',
+        'title' => t('Text: large, bold callout style'),
         'class' => array('fusion-callout'),
       ),
       'fusion-bold-links' => array(
-        'title' => '<span class="preview-text">Links: bold all links <span class="preview-icon" id="fusion-general-styles-bold-links"></span></span>',
+        'title' => t('Links: bold all links'),
         'class' => array('fusion-bold-links'),
       ),
       'fusion-padding' => array(
-        'title' => '<span class="preview-text">Padding: add 30px extra padding inside block <span class="preview-icon" id="fusion-general-styles-fusion-padding"></span></span>',
+        'title' => 'Padding: add 30px extra padding inside block',
         'class' => array('fusion-padding'),
       ),
       'fusion-border' => array(
-        'title' => '<span class="preview-text">Border: add 1px border and 10px padding <span class="preview-icon" id="fusion-general-styles-fusion-border"></span></span>',
+        'title' => 'Border: add 1px border and 10px padding',
         'class' => array('fusion-border'),
       ),
     ),
@@ -87,7 +87,7 @@ function fusion_core_skinr_skin_core_info() {
     ),
     'options' => array(
       'equal-heights' => array(
-        'title' => '<span class="preview-text">Equal heights: equalize the heights of blocks with this style in the same region <span class="preview-icon" id="fusion-general-styles-equal-heights"></span></span>',
+        'title' => 'Equal heights: equalize the heights of blocks with this style in the same region',
         'class' => array('equal-heights'),
       ),
     ),
@@ -121,11 +121,11 @@ function fusion_core_skinr_skin_core_info() {
     'default status' => TRUE,
     'options' => array(
       'fusion-inline-menu' => array(
-        'title' => '<span class="preview-text">Single line menu with separators <span class="preview-icon" id="fusion-menu-fusion-inline-menu"></span></span>',
+        'title' => 'Single line menu with separators',
         'class' => array('fusion-inline-menu'),
       ),
       'fusion-multicol-menu' => array(
-        'title' => '<span class="preview-text">Multi-column menu with bold headers (set menu items to Expanded) <span class="preview-icon" id="fusion-menu-fusion-multicol-menu"></span></span>',
+        'title' => t('Multi-column menu with bold headers (set menu items to Expanded)'),
         'class' => array('fusion-multicol-menu', 'clearfix')
       )
     ),
@@ -139,11 +139,11 @@ function fusion_core_skinr_skin_core_info() {
     'default status' => TRUE,
     'options' => array(
       'fusion-list-bottom-border' => array(
-        'title' => '<span class="preview-text">Bottom border (no bullets) <span class="preview-icon" id="list-styles-bottom-border"></span></span>',
+        'title' => t('Bottom border (no bullets)'),
         'class' => array('fusion-list-bottom-border'),
       ),
       'fusion-multicol-menu' => array(
-        'title' => '<span class="preview-text">Extra vertical spacing (no bullets) <span class="preview-icon" id="list-styles-extra-vertical-spacing"></span></span>',
+        'title' => t('Extra vertical spacing (no bullets)'),
         'class' => array('fusion-list-vertical-spacing')
       )
     ),
@@ -158,7 +158,7 @@ function fusion_core_skinr_skin_core_info() {
     'default status' => TRUE,
     'options' => array(
       'superfish' => array(
-        'title' => '<span class="preview-text">Vertical menu (for sidebar blocks) <span class="preview-icon" id="fusion-superfish-superfish-vertical"></span></span>',
+        'title' => t('Vertical menu (for sidebar blocks)'),
         'class' => array('superfish', 'superfish-vertical'),
       ),
     ),
@@ -194,12 +194,13 @@ function fusion_core_skinr_skin_core_info() {
     ),
     'options' => array(
       'fusion_float_imagefield_left' => array(
-        'title' => '<span class="preview-text">Horizontal: puts user login block on a single line with label overlays (good for Header Top region) <span class="preview-icon" id="fusion-login-fusion-horiz-login"></span></span>',
+        'title' => t('Horizontal: puts user login block on a single line with label overlays (good for Header Top region)'),
         'class' => array('fusion-horiz-login'),
       ),
     ),
   );
   
+  // TODO: detect current grid, and add column settings accordingly.
   $skins['fusion_skins_grid16_width'] = array(
     'title' => t('Width (16 column grid)'),
     'description' => t("Change the width of this block. Fluid grid % widths are relative to the parent region's width. Default widths: sidebar blocks default to the sidebar width; in other regions width is divided equally among all blocks."),    

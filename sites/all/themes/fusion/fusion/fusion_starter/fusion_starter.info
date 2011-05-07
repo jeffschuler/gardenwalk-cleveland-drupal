@@ -1,17 +1,14 @@
 
-name = Fusion Core
-description = <a href="http://drupal.org/project/fusion">Fusion Core</a> is the grid-enabled base theme for powerful sub-themes.  With the <a href="http://drupal.org/project/skinr">Skinr</a> module, it enables easy point-and-click theming. By <a href="http://www.topnotchthemes.com">TopNotchThemes</a>
+name = Fusion Starter
+description = Fusion Starter sub-theme. Requires <a href="http://drupal.org/project/fusion">Fusion Core</a> and the <a href="http://drupal.org/project/skinr">Skinr</a> module to enable easy point-and-click theming.
+base theme = fusion_core
 core = 7.x
 engine = phptemplate
 
-stylesheets[all][] = css/style.css
-stylesheets[all][] = css/typography.css
-
+stylesheets[all][] = css/fusion-starter-style.css
 
 skinr[api] = 2
 skinr[directory] = skins
-
-scripts[] = js/script.js
 
 regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
@@ -37,7 +34,8 @@ features[] = node_user_picture
 features[] = comment_user_picture
 features[] = favicon
 
-; Default theme settings
+; Default theme settings (override values inherited from fusion_core)
+; REMOVE THESE ONCE PATCH TO FIX SETTINGS INHERITANCE (#563708) IS IN CORE
 settings[theme_grid] = grid16-960
 settings[theme_grid_options][] = grid16-960
 settings[theme_grid_options][] = grid16-fluid
@@ -56,10 +54,10 @@ settings[search_info_user] = 1
 settings[search_info_date] = 1
 settings[search_info_comment] = 1
 settings[search_info_upload] = 1
-settings[block_config_link] = 1
 settings[grid_mask] = 0
 
-; Grid layout settings (Advanced)
+; Grid layout settings
+; REMOVE THESE ONCE PATCH TO FIX SETTINGS INHERITANCE (#563708) IS IN CORE
 ; Nested grid regions without full-width wrappers
 settings[grid_nested_regions][] = sidebar_first
 settings[grid_nested_regions][] = sidebar_second
@@ -92,9 +90,9 @@ settings[grid_adjusted_regions_fluid][content][] = sidebar_second
 ; Nested group fluid width adjustments: regions inside a parent group to subtract to get remaining width
 settings[grid_adjusted_groups_fluid][content_group][] = sidebar_second
 
-; Information added by drupal.org packaging script on 2011-04-28
+; Information added by drupal.org packaging script on 2011-05-05
 version = "7.x-1.x-dev"
 core = "7.x"
 project = "fusion"
-datestamp = "1303949598"
+datestamp = "1304597244"
 
