@@ -38,55 +38,57 @@ h1, h2, h3, h4, h5, h6 {
 
 #header-top-inner {
   text-align: right;
-  padding: 5px 0;
 }
 
 #header-top .block {
-  margin-bottom: 0;
+  margin: 5px 0;
 }
+
 
 /* Date Banner
 --------------------- */
-
 #block-block-1 {
   position: absolute;
   font-family: $museo;
   text-align: center;
   color: $white;
+  margin: 0 !important;
 }
 #block-block-1 .inner {
   margin: 0;
 }
+#block-block-1 .top {
+  background-color: $ltgreen;
+  width: 65px;
+  height: 35px;
+}
 #block-block-1 .month {
+  height: 35px;
+  width: 65px;
+  padding-top: 10px;
   font-weight: 300;
   font-size: 21px;
-  background-color: $ltgreen;
-  height: 28px;
-  width: 65px;
+}
+#block-block-1 .bottom {
   position: relative;
-  top: -5px;
-  padding-top: 7px;
+  left: 6px;
+  background-image: url('../images/date-tag-bottom.png');
+  width: 65px;
+  height: 75px;
 }
 #block-block-1 .day {
   font-weight: 700;
   font-size: 32px;
   width: 65px;
-  position: relative;
-  left: 10px;
-  top: -5px;
-  background-image: url('../images/date-tag-bottom.png');
   overflow: visible;
-  padding-top: 10px;
+  padding-top: 14px;
+  height: 27px;
 }
 #block-block-1 .year {
   font-weight: 300;
   font-size: 21px;
   width: 65px;
-  position: relative;
-  left: 10px;
-  top: -5px;
   background-color: $ltgreen;
-  padding: 5px 0 5px;
 }
 
 

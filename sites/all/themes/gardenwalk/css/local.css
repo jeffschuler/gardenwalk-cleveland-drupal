@@ -17,11 +17,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 35px; }
 
 #header-top-inner {
-  text-align: right;
-  padding: 5px 0; }
+  text-align: right; }
 
 #header-top .block {
-  margin-bottom: 0; }
+  margin: 5px 0; }
 
 /* Date Banner
 --------------------- */
@@ -29,41 +28,44 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   font-family: "museo-1";
   text-align: center;
-  color: white; }
+  color: white;
+  margin: 0 !important; }
 
 #block-block-1 .inner {
   margin: 0; }
 
-#block-block-1 .month {
-  font-weight: 300;
-  font-size: 21px;
+#block-block-1 .top {
   background-color: #a3c6b1;
-  height: 28px;
   width: 65px;
+  height: 35px; }
+
+#block-block-1 .month {
+  height: 35px;
+  width: 65px;
+  padding-top: 10px;
+  font-weight: 300;
+  font-size: 21px; }
+
+#block-block-1 .bottom {
   position: relative;
-  top: -5px;
-  padding-top: 7px; }
+  left: 6px;
+  background-image: url("../images/date-tag-bottom.png");
+  width: 65px;
+  height: 75px; }
 
 #block-block-1 .day {
   font-weight: 700;
   font-size: 32px;
   width: 65px;
-  position: relative;
-  left: 10px;
-  top: -5px;
-  background-image: url("../images/date-tag-bottom.png");
   overflow: visible;
-  padding-top: 10px; }
+  padding-top: 14px;
+  height: 27px; }
 
 #block-block-1 .year {
   font-weight: 300;
   font-size: 21px;
   width: 65px;
-  position: relative;
-  left: 10px;
-  top: -5px;
-  background-color: #a3c6b1;
-  padding: 5px 0 5px; }
+  background-color: #a3c6b1; }
 
 /* Header
 -------------------------------------------------------------- */
