@@ -5,6 +5,7 @@ $purple: #615FC1;
 $orange: #F15B2A;
 $ltgreen: #A3C6B1;
 $white: #FFFFFF;
+$black: #000000;
 
 $meta: "ff-meta-web-pro-1";
 $museo: "museo-1";
@@ -195,8 +196,30 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Footer
 -------------------------------------------------------------- */
+#footer-wrapper-wrapper {
+}
+
+#footer-wrapper-top-wrapper {
+  height: 65px;
+  background: transparent url('../images/footer-grass.png') repeat-x bottom left;
+  height: 68px;
+}
+#footer-wrapper-top {
+  position: relative;
+  margin: 0px auto;
+}
+#footer-wrapper-top-inner {
+  position: relative;
+  background: transparent url('../images/footer-tools.png') no-repeat top center;
+  top: -4px;
+  height: 68px;
+}
+
 #footer-wrapper {
   background-color: $brown;
+}
+
+#footer {
 }
 
 #footer-inner {
@@ -220,4 +243,18 @@ h1, h2, h3, h4, h5, h6 {
 #footer ul,
 #footer ol {
   margin: 0;
+}
+
+
+/* Gardens List Block
+-------------------------------------------------------------- */
+#main .view-id-gardens.view-display-id-block_1 .views-field-title a,
+#main .view-id-gardens.view-display-id-block_1 .views-field-title a:link,
+#main .view-id-gardens.view-display-id-block_1 .views-field-title a:visited {
+  color: $purple;
+}
+#main .view-id-gardens.view-display-id-block_1 .views-field-tid a,
+#main .view-id-gardens.view-display-id-block_1 .views-field-tid a:link,
+#main .view-id-gardens.view-display-id-block_1 .views-field-tid a:visited {
+    color: $black;
 }
