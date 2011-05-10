@@ -39,7 +39,45 @@ h1, h2, h3, h4, h5, h6 {
 #header-top .block {
   margin: 5px 0; }
 
-/* Date Banner
+#header-top .block .inner {
+  margin: 0; }
+
+#header-top a,
+#header-top a:link,
+#header-top a:visited {
+  color: #726965; }
+
+#header-top a:hover,
+#header-top a:focus {
+  color: #f15b2a; }
+
+#header-top a:active {
+  color: #615fc1; }
+
+/* Search Block (Header Top)
+--------------------- */
+#block-search-form input.form-submit {
+  font-weight: normal; }
+
+#block-search-form,
+#block-search-form .form-text {
+  color: #726965; }
+
+/* Contact Links (Header Top)
+--------------------- */
+#block-block-2 div {
+  display: inline; }
+
+#block-block-2 .content div {
+  margin: 0 5px; }
+
+#block-block-2 .content div img {
+  vertical-align: middle; }
+
+#block-block-2 .content div a {
+  vertical-align: middle; }
+
+/* Date Banner (Header Top)
 --------------------- */
 #block-block-1 {
   position: absolute;
@@ -47,9 +85,6 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   color: white;
   margin: 0 !important; }
-
-#block-block-1 .inner {
-  margin: 0; }
 
 #block-block-1 .top {
   background-color: #a3c6b1;

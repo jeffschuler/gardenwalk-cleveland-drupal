@@ -19,11 +19,9 @@ $georgia: Georgia, "Times New Roman", Times, serif;
 * {
   margin: 0;
 }
-
 html, body {
   height: 100%;
 }
-  
 #page
 {
   min-height: 100%;
@@ -31,7 +29,6 @@ html, body {
   height: 100%;
   margin: 0 auto -229px;
 }
-
 #footer-wrapper-wrapper, #push-footer {
   height: $footer_height;
 }
@@ -43,7 +40,6 @@ body {
   background: $khaki url('../images/page-bg-edges.png') repeat-y top center;
   font-family: $meta;
 }
-
 h1, h2, h3, h4, h5, h6 {
   font-family: $museo;
   font-weight: 500;
@@ -55,21 +51,60 @@ h1, h2, h3, h4, h5, h6 {
 #header-top-wrapper {
   background-color: $tan;
 }
-
 #header-top {
   height: 35px;
 }
-
 #header-top-inner {
   text-align: right;
 }
-
 #header-top .block {
   margin: 5px 0;
 }
+#header-top .block .inner {
+  margin: 0;
+}
+#header-top a,
+#header-top a:link,
+#header-top a:visited {
+  color: $brown;
+}
+#header-top a:hover,
+#header-top a:focus {
+  color: $orange;
+}
+#header-top a:active {
+  color: $purple;
+}
 
 
-/* Date Banner
+/* Search Block (Header Top)
+--------------------- */
+#block-search-form input.form-submit {
+  font-weight: normal;
+}
+#block-search-form,
+#block-search-form .form-text {
+  color: $brown;
+}
+
+
+/* Contact Links (Header Top)
+--------------------- */
+#block-block-2 div {
+  display: inline;
+}
+#block-block-2 .content div {
+  margin: 0 5px;
+}
+#block-block-2 .content div img {
+  vertical-align: middle;
+}
+#block-block-2 .content div a {
+  vertical-align: middle;
+}
+
+
+/* Date Banner (Header Top)
 --------------------- */
 #block-block-1 {
   position: absolute;
@@ -77,9 +112,6 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   color: $white;
   margin: 0 !important;
-}
-#block-block-1 .inner {
-  margin: 0;
 }
 #block-block-1 .top {
   background-color: $ltgreen;
@@ -152,11 +184,9 @@ h1, h2, h3, h4, h5, h6 {
 --------------------- */
 #block-menu-primary-links {
 }
-
 #block-menu-primary-links ul {
   margin-left: 40px;
 }
-
 #block-menu-primary-links li {
   list-style-type: none;
   list-style-image: none;
@@ -202,19 +232,16 @@ h1, h2, h3, h4, h5, h6 {
 #main {
   background-color: $white;
 }
-
 #main a,
 #main a:link,
 #main a:visited {
   color: $orange;
 }
-
 #main a:hover,
 #main a:focus,
 #main a:active {
   color: darken($orange, 20%);
 }
-
 #main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
   color: $purple;
 }
