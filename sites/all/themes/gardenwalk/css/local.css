@@ -1,9 +1,26 @@
+/* Footer Stick to Bottom
+-------------------------------------------------------------- */
+* {
+  margin: 0; }
+
+html, body {
+  height: 100%; }
+
+#page {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -229px; }
+
+#footer-wrapper-wrapper, #push-footer {
+  height: 229px; }
+
+/* General
+-------------------------------------------------------------- */
 body {
   background: #f2ece9 url("../images/page-bg-edges.png") repeat-y top center;
   font-family: "ff-meta-web-pro-1"; }
 
-/* General
--------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 {
   font-family: "museo-1";
   font-weight: 500; }
@@ -156,6 +173,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Footer
 -------------------------------------------------------------- */
+#footer-wrapper-wrapper {
+  height: 229px; }
+
 #footer-wrapper-top-wrapper {
   height: 65px;
   background: transparent url("../images/footer-grass.png") repeat-x bottom left;

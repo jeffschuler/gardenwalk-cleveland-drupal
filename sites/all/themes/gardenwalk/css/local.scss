@@ -7,19 +7,43 @@ $ltgreen: #A3C6B1;
 $white: #FFFFFF;
 $black: #000000;
 
+$footer_height: 229px;
+
 $meta: "ff-meta-web-pro-1";
 $museo: "museo-1";
 $georgia: Georgia, "Times New Roman", Times, serif;
 
 
-body {
-  background: $khaki url('../images/page-bg-edges.png') repeat-y top center;
-  font-family: $meta;
+/* Footer Stick to Bottom
+-------------------------------------------------------------- */
+* {
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+  
+#page
+{
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -229px;
+}
+
+#footer-wrapper-wrapper, #push-footer {
+  height: $footer_height;
 }
 
 
 /* General
 -------------------------------------------------------------- */
+body {
+  background: $khaki url('../images/page-bg-edges.png') repeat-y top center;
+  font-family: $meta;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $museo;
   font-weight: 500;
@@ -199,6 +223,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Footer
 -------------------------------------------------------------- */
 #footer-wrapper-wrapper {
+  height: $footer_height;
 }
 
 #footer-wrapper-top-wrapper {
