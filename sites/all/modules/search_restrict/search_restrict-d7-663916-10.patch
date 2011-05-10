@@ -1,0 +1,298 @@
+diff --git a/README.txt b/README.txt
+index a58696f..5de4806 100644
+--- a/README.txt
++++ b/README.txt
+@@ -3,7 +3,7 @@
+ ********************************************************************
+ Name: Search Restrict
+ Author: Robert Castelo <www.codepositive.com>
+-Drupal: 6.x
++Drupal: 7.x
+ ********************************************************************
+ DESCRIPTION:
+ 
+@@ -64,4 +64,5 @@ Drupal 6 update by:
+ Hans Nilsson (Blackdog) <http://drupal.org/user/110169>
+ Daniel F. Kudwien (Sun) <http://drupal.org/user/54136> 
+ 
+-
++Drupal 7 update by:
++Alan Davison (Alan D.) <http://drupal.org/user/198838>
+diff --git a/search_restrict.info b/search_restrict.info
+index c7505e3..b4d3547 100644
+--- a/search_restrict.info
++++ b/search_restrict.info
+@@ -1,3 +1,6 @@
+ name = Search Restrict
+ description =  "Exclude specific content from search results if user doesn't have privileges."
+-core = 6.x
++core = 7.x
++
++files[] = search_restrict.install
++files[] = search_restrict.module
+diff --git a/search_restrict.install b/search_restrict.install
+index 3e7c2be..57b3d9d 100644
+--- a/search_restrict.install
++++ b/search_restrict.install
+@@ -1,27 +1,30 @@
+ <?php
+ 
+-/** 
+-  * Implementation of hook_install(). 
+-  */
++/**
++ * @file
++ * Install, update and uninstall functions for the Search Restrict module.
++ */
++
++/**
++ * Implements hook_install().
++ */
+ function search_restrict_install() {
+   // Set a low weight so the module is called before node module.
+   db_query("UPDATE {system} SET weight = -10 WHERE name = 'search_restrict'");
+ }
+ 
+ /**
+- * Implementation of hook_uninstall().
++ * Implements hook_uninstall().
+  */
+ function search_restrict_uninstall() {
+   variable_del('search_restrict_content_type');
+ }
+ 
+ /**
+-* Remove extra variables set by the content type form.
+-*/
++ * Remove extra variables set by the content type form.
++ */
+ function search_restrict_update_6001() {
+   $ret = array();
+   $ret[] = update_sql("DELETE FROM {variable} WHERE NAME LIKE 'search_restrict_roles_%'");
+   return $ret;
+ }
+-
+-
+diff --git a/search_restrict.module b/search_restrict.module
+index d6552f0..454dc8b 100644
+--- a/search_restrict.module
++++ b/search_restrict.module
+@@ -1,14 +1,23 @@
+-<?php  
++<?php
+ 
+ /**
+- * Implementation of hook_perm().
++ * @file
++ * Restrict by role who can search for each content type.
+  */
+-function search_restrict_perm() {
+-  return array('administer search_restrict');
++
++/**
++ * Implements hook_permission().
++ */
++function search_restrict_permission() {
++  return array(
++    'administer search_restrict' => array(
++      'title' => t('Administer search restrict'),
++    ),
++  );
+ }
+- 
++
+ /**
+- * Implementation of hook_form_FORM_alter().
++ * Implements hook_form_FORM_alter().
+  */
+ function search_restrict_form_node_type_form_alter(&$form, &$form_state) {
+   search_restrict_content_type_form($form);
+@@ -19,101 +28,76 @@ function search_restrict_form_node_type_form_alter(&$form, &$form_state) {
+  */
+ function search_restrict_content_type_form(&$form) {
+   $roles = user_roles();
+-  ksort($roles);
++  natcasesort($roles);
++  $msg = t('Exclude all roles from search');
++  $roles = array('-1' => $msg) + $roles;
+   $content_type_restrictions = variable_get('search_restrict_content_type', array());
+-
++  $content_type_restrictions += array($form['#node_type']->type => array());
+   $form['search_restrict'] = array(
+     '#type' => 'fieldset',
+     '#title' => t('Search Restrict'),
+-    '#description' => t('Select which user roles can search for this content type. By default all roles can search.'),
++    '#description' => t('Select which user roles can search for this content type. By default all roles can search unless "%msg" is selected, which overrides all other role restrictions.', array('%msg' => $msg)),
+     '#collapsible' => TRUE,
+     '#collapsed' => TRUE,
+     '#access' => user_access('administer search_restrict'),
+   );
+-  
++
+   $form['search_restrict']['search_restrict_roles'] = array(
+     '#type' => 'checkboxes',
+     '#title' => t('Roles'),
+     '#description' => t('If all checkboxes are unselected then everyone can search.'),
+     '#options' => $roles,
+-    '#default_value' => is_array($content_type_restrictions[$form['#node_type']->type]) ? $content_type_restrictions[$form['#node_type']->type] : array(),
++    '#default_value' => $content_type_restrictions[$form['#node_type']->type],
+   );
+-  // Use custom submit function to avoid a query at time of search to get the
+-  // list of content types. 
+-  // Add to front of array so that we can clear search_restrict_roles_<content_type>. 
++
+   array_unshift($form['#submit'], 'search_restrict_content_type_form_submit');
+ }
+ 
+ /**
+- *  use custom submit function to avoid a query at time of search to get the list of content types
++ * Submit callback handler.
+  */
+ function search_restrict_content_type_form_submit($form, &$form_state) {
+   $content_type_restrictions = variable_get('search_restrict_content_type', array());
+   $content_type_restrictions[$form_state['values']['type']] = $form_state['values']['search_restrict_roles'];
+   variable_set('search_restrict_content_type', $content_type_restrictions);
+   unset($form_state['values']['search_restrict_roles']);
+-} 
++}
+ 
+ /**
+- * Implementation of hook_db_rewrite_sql().
++ * Implements hook_query_node_access_alter().
+  */
+-function search_restrict_db_rewrite_sql($query, $primary_table, $primary_field, $args) {
++function search_restrict_query_node_access_alter(QueryAlterableInterface $query) {
+   global $user;
+-
+   if ($user->uid == 1) {
+     return;
+   }
+-
+-  $user_roles = $user->roles;
+-  $excluded_types = array();
+-
+-  if ($query == '' && $primary_table == 'n' && $primary_field == 'nid' && empty($args)) {
+-    $content_type_restrictions = variable_get('search_restrict_content_type', array());
+-
+-    foreach ($content_type_restrictions as $type => $roles) {
+-       
+-      $access = FALSE;
+-      $access_false = array();
+-      $access_true = array();
+-      
+-      // list included and excluded roles
+-      foreach ($roles as $role_id => $selected) {
+-        if (empty($selected)) { 
+-          $access_false[] = $role_id;
+-        }
+-        else {
+-          $access_true[] = $role_id;  
+-        } 
+-      }
+-    
+-      // If no roles or all roles have been selected then everyone has access
+-      // skip this content type.
+-      if (!empty($access_true) && !empty($access_false)) {
+-        // If user has role in include list skip this content type.
+-        foreach ($access_true as $role_selected) {
+-          if (!empty($user_roles[$role_selected])) $access = TRUE;
+-        } 
+-      
+-        // User doesn't have any roles that are allowed to search this content type.
+-        if (empty($access)) $excluded_types[] =  $type; 
+-      }
++  $search = FALSE;
++  $node = FALSE;
++  foreach ($query->getTables() as $alias => $table) {
++    if ($table['table'] == 'search_index') {
++      $search = $alias;
+     }
++    elseif ($table['table'] == 'node') {
++      $node = $alias;
++    }
++  }
+ 
+-    if (!empty($excluded_types)) {
+-      $where = " n.type NOT IN ('". join("','", $excluded_types) ."') ";
+-
+-      return array('where' => $where);
++  if ($node && $search) {
++    $excluded_content_types = _search_restrict_excluded_content_types();
++    if (!empty($excluded_content_types)) {
++      $query->condition($node . '.type', array($excluded_content_types), 'NOT IN');
+     }
+   }
+ }
+-
+ /**
+- * Implementation of hook_form_alter().
++ * Implements hook_form_alter().
+  */
+ function search_restrict_form_alter(&$form, $form_state, $form_id) {
+   switch ($form_id) {
+     case 'search_form':
+-      $form['#after_build'][] = '_search_restrict_advanced_form';
++      if (array_key_exists('advanced', $form)) {
++        $form['#after_build'][] = '_search_restrict_advanced_form';
++      }
+       break;
+   }
+ }
+@@ -121,30 +105,42 @@ function search_restrict_form_alter(&$form, $form_state, $form_id) {
+ /**
+  * Remove restricted content types from the advanced search form. We use
+  * after_build due to the method the node module uses to add the advanced
+- * search options. 
++ * search options.
+  */
+-function _search_restrict_advanced_form($form_element, &$form_state) {
++function _search_restrict_advanced_form($form, &$form_state) {
+   global $user;
+ 
+   if ($user->uid == 1) {
+-    return $form_element;
++    return $form;
+   }
++  foreach (_search_restrict_excluded_content_types() as $type) {
++    unset($form['advanced']['type']['#options'][$type]);
++    unset($form['advanced']['type'][$type]);
++  }
++
++  // TODO - If there are no available types to search,
++  // then maybe the form should be replaced with an error
++  // element instead.
++  if (count($form['advanced']['type']['#options']) < 2) {
++    $form['advanced']['type']['#access'] = FALSE;
++  }
++  return $form;
++}
+ 
++function _search_restrict_excluded_content_types() {
++  global $user;
++  $excluded_content_types = array();
+   $content_type_restrictions = variable_get('search_restrict_content_type', array());
+ 
+-  $role_ids = array_keys($user->roles);
+   foreach ($content_type_restrictions as $type => $roles) {
+-    $access = FALSE;
+-    foreach ($roles as $role_id => $selected) {
+-      if (!empty($selected) && in_array($role_id, $role_ids)) {
+-        $access = TRUE;
+-        break;
+-      }
++    $roles = array_filter($roles);
++    if (empty($roles)) {
++      continue;
+     }
+-    if (!$access) {
+-      unset($form_element['advanced']['type']['#options'][$type]);
+-      unset($form_element['advanced']['type'][$type]);
++    elseif (array_key_exists('-1', $roles) ||
++      !count(array_intersect_key($roles, $user->roles))) {
++      $excluded_content_types[] =  $type;
+     }
+   }
+-  return $form_element;
++  return $excluded_content_types;
+ }
+\ No newline at end of file

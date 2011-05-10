@@ -1,0 +1,6 @@
+name = Search Restrict
+description =  "Exclude specific content from search results if user doesn't have privileges."
+core = 7.x
+
+files[] = search_restrict.install
+files[] = search_restrict.module
