@@ -3,7 +3,6 @@
 
   <div id="page" class="page">
     <div id="page-inner" class="page-inner">
-      
         <?php print render($page['header_top']); ?>
         
         <!-- header-group region: width = grid_width -->
@@ -11,7 +10,7 @@
           <div id="header-group" class="header-group region <?php print $grid_width; ?>">
             <div id="header-group-inner" class="header-group-inner inner clearfix">
               <div id="header-site-info" class="header-site-info block grid12-6">
-                <div id="header-site-info-inner" class="header-site-info-inner inner">
+                <div id="header-site-info-inner" class="header-site-info-inner gutter">
                   <div id="site-name-wrapper" class="clearfix">
                     <?php if ($title): ?>
                     <div id="site-name"><a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>" rel="home"><?php print $site_name; ?></a></div>
@@ -53,23 +52,17 @@
                               <a name="main-content-area" id="main-content-area"></a>
                               <?php print theme('grid_block', array('content' => render($tabs), 'id' => 'content-tabs')); ?>
                               <?php print theme('grid_block', array('content' => render($page['help']), 'id' => 'content-help')); ?>
-                              <div id="content-inner" class="content-inner block">
-                                <div id="content-inner-inner" class="content-inner-inner inner">
-                                  <?php print render($title_prefix); ?>
-                                  <?php if ($title): ?>
-                                  <h1 class="title"><?php print $title; ?></h1>
-                                  <?php endif; ?>
-                                  <?php print render($title_suffix); ?>
-                                  <?php if ($action_links): ?>
-                                  <ul class="action-links"><?php print render($action_links); ?></ul>
-                                  <?php endif; ?>
-                                  <?php if ($page['content']): ?>
-                                  <div id="content-content" class="content-content">
-                                    <?php print render($page['content']); ?>
-                                  </div><!-- /content-content -->
-                                  <?php endif; ?>
-                                </div><!-- /content-inner-inner -->
-                              </div><!-- /content-inner -->
+                              <?php print render($title_prefix); ?>
+                              <?php if ($title): ?>
+                              <h1 class="title gutter"><?php print $title; ?></h1>
+                              <?php endif; ?>
+                              <?php print render($title_suffix); ?>
+                              <?php if ($action_links): ?>
+                              <ul class="action-links"><?php print render($action_links); ?></ul>
+                              <?php endif; ?>
+                              <?php if ($page['content']): ?>
+                                <?php print render($page['content']); ?>
+                              <?php endif; ?>
                             </div><!-- /content-region-inner -->
                           </div><!-- /content-region -->
         

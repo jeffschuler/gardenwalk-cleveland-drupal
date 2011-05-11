@@ -6,6 +6,9 @@ engine = phptemplate
 
 stylesheets[all][] = css/gardenwalk-style.css
 
+skinr[api] = 2
+skinr[directory] = skins
+
 regions[sidebar_first] = Sidebar first
 regions[sidebar_second] = Sidebar second
 regions[header_top] = Header top

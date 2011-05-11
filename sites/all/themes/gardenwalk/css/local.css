@@ -26,11 +26,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   margin-top: 1em; }
 
-/* Fix for Fusion's removal of right margin
--------------------------------------------------------------- */
-#block-system-main > .inner {
-  padding-right: 10px; }
-
 /* Header Top
 -------------------------------------------------------------- */
 #header-top-wrapper {
@@ -278,3 +273,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .view-id-gardener_stories.view-display-id-block_1 td.col-last {
   padding-left: 10px; }
+
+/* 3-column Panels Layout - Straightening out for Fusion
+-------------------------------------------------------------- */
+.panel-3col-33-stacked .panel-col-first .inside {
+  margin: 0 10px 10px 0; }
+
+.panel-3col-33-stacked .panel-col .inside {
+  margin: 0 0 10px 10px; }
+
+.panel-3col-33-stacked .panel-col-last .inside {
+  margin: 0 -10px 10px 20px; }
