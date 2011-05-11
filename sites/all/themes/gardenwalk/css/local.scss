@@ -43,6 +43,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: $museo;
   font-weight: 500;
+  margin-top: 1em;
 }
 
 
@@ -312,3 +313,20 @@ h1, h2, h3, h4, h5, h6 {
 #main .view-id-gardens.view-display-id-block_1 .views-field-tid a:visited {
     color: $black;
 }
+
+
+/* Gardener Stories Pane (Front Page)
+-------------------------------------------------------------- */
+.view-id-gardener_stories.view-display-id-block_1 td {
+  vertical-align: top;
+  width: 50%;
+}
+.view-id-gardener_stories.view-display-id-block_1 td.col-first {
+  padding-right: 10px;  
+}
+.view-id-gardener_stories.view-display-id-block_1 td.col-last {
+  padding-left: 10px;
+}
+.view-id-gardener_stories.view-display-id-block_1 td .views-field-field-images {}
+.view-id-gardener_stories.view-display-id-block_1 td .views-field-body {}
+.view-id-gardener_stories.view-display-id-block_1 td .views-field-title {}

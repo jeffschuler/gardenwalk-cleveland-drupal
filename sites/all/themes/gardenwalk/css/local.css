@@ -23,7 +23,8 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "museo-1";
-  font-weight: 500; }
+  font-weight: 500;
+  margin-top: 1em; }
 
 /* Header Top
 -------------------------------------------------------------- */
@@ -259,3 +260,15 @@ h1, h2, h3, h4, h5, h6 {
 #main .view-id-gardens.view-display-id-block_1 .views-field-tid a:link,
 #main .view-id-gardens.view-display-id-block_1 .views-field-tid a:visited {
   color: black; }
+
+/* Gardener Stories Pane (Front Page)
+-------------------------------------------------------------- */
+.view-id-gardener_stories.view-display-id-block_1 td {
+  vertical-align: top;
+  width: 50%; }
+
+.view-id-gardener_stories.view-display-id-block_1 td.col-first {
+  padding-right: 10px; }
+
+.view-id-gardener_stories.view-display-id-block_1 td.col-last {
+  padding-left: 10px; }
