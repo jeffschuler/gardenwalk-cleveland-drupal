@@ -1,5 +1,4 @@
 <?php
-// $Id: page_title.module,v 1.21.4.14 2010/11/02 00:04:24 njt1982 Exp $
 
 /**
  * @file
@@ -273,6 +272,7 @@ function page_title_form_node_type_form_alter(&$form, $form_state) {
     '#title' => t('Page Title Pattern'),
     '#default_value' => variable_get('page_title_type_'. $form['#node_type']->type, ''),
     '#description' => t('Enter the <em>Page Title</em> pattern you want to use for this node type. For more information, please use the !link settings page', array('!link' => l('Page Title', 'admin/content/page_title'))),
+    '#maxlength' => 255,
   );
 
   $form['#submit'][] = 'page_title_node_type_form_submit';
@@ -444,7 +444,7 @@ function page_title_load_title($id, $type) {
 
 /**
  * Wrapper for old function...
- * NOTE: This has been depricated in favor of page_title_load_title().
+ * NOTE: This has been deprecated in favor of page_title_load_title().
  */
 function page_title_node_get_title($nid) {
   return page_title_load_title($nid, 'node');
@@ -453,7 +453,7 @@ function page_title_node_get_title($nid) {
 
 /**
  * Legacy page title setting function...
- * NOTE: This has been depreicated in favour of hook_page_title_alter().
+ * NOTE: This has been deprecated in favour of hook_page_title_alter().
  */
 function page_title_set_title($title = NULL) {
   $stored_title = &drupal_static(__FUNCTION__);
@@ -495,7 +495,7 @@ function page_title_page_get_title($raw = FALSE) {
     $page_title_pattern .= isset($_REQUEST['page']) ? variable_get('page_title_pager_pattern', '') : '';
 
     // Apply token patterns using token_replace
-    $title = token_replace($page_title_pattern, $types);
+    $title = token_replace($page_title_pattern, $types, array('sanitize' => FALSE));
   }
 
   // Trim trailing whitespace from the title
@@ -517,12 +517,115 @@ function page_title_preprocess_html(&$vars) {
  * Implement hook_init().
  */
 function page_title_init() {
-  // Include relevant page_title.inc's
+  // Using $runonce, we can ensure the include code below only gets run once.
+  $runonce = &drupal_static(__FUNCTION__, FALSE);
+  if ($runonce) return;
+
+  // Include relevant page_title.inc's. We cannot use drupal_load() here due to the folder structure.
+  // We also avoice using include_once due to its performance hit on the Filesystem
   foreach (page_title_get_module_apis() as $module => $info) {
-    if (file_exists("./{$info['path']}/{$module}.page_title.inc")) {
-      include "./{$info['path']}/{$module}.page_title.inc";
+    if (file_exists(DRUPAL_ROOT ."/{$info['path']}/{$module}.page_title.inc")) {
+      include DRUPAL_ROOT ."/{$info['path']}/{$module}.page_title.inc";
     }
   }
+
+  $runonce = TRUE;
+}
+
+
+/**
+ * Form Alter handler for the views ui config form (used for filters and args)
+ */
+/*
+  TODO: Views 3.x uses the unpack function on arguments. This is clobbering any attempts to sneak a setting in on an argument
+
+
+function page_title_form_views_ui_config_item_form_alter(&$form, &$form_state) {
+  // Don't bother altering non-argument forms
+  if ($form_state['type'] != 'argument') return;
+
+  // Check the display handler is a page - if not, dont bother altering.
+  $type = get_class($form_state['view']->display_handler);
+  if ($type != 'page_title_plugin_display_page_with_page_title') return;
+
+  // Now check the display is overriding the default - this is necessary as we cannot assign a page title to the default display.
+  if (!isset($form_state['view']->display_handler->options['arguments'])) return;
+
+  // Build a page title options fieldset wrapper
+  $temp_form['page_title_pattern'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Page Title'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+
+  // Add the Page Title field
+  $temp_form['page_title_pattern']['page_title_pattern'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Page Title Pattern'),
+    '#description' => t('Optionally enter a Page Title Pattern for this argument. This will override the main view Page Title Pattern. You can also use the tokens below.'),
+    '#default_value' => $form_state['handler']->options['page_title_pattern'],
+    '#parents' => array('options', 'page_title_pattern'),
+    '#element_validate' => array('token_element_validate_token_context'),
+    '#token_types' => array(),
+  );
+
+  // Add the token help to a collapsed fieldset at the end of the configuration page.
+  $temp_form['page_title_pattern']['token_help'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Available Tokens List'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $temp_form['page_title_pattern']['token_help']['content'] = array(
+    '#theme' => 'token_tree',
+    '#token_types' => array(),
+  );
+
+
+  // Splice the temp form into the main form. We do this because there are no weights in the views form meaning Page Title can either be top or bottom (-1 or 1).
+  $offset = array_search('title', array_keys($form['options']));
+  $spliced_form = array_splice($form['options'], 0, $offset);
+  $form['options'] = array_merge($spliced_form, $temp_form, $form['options']);
+}
+*/
+
+/**
+ * Implementation of hook_views_api().
+ */
+function page_title_views_api() {
+    return array(
+    'api' => 2,
+  );
+}
+
+
+/**
+ * Implementation of hook_views_plugins().
+ */
+function page_title_views_plugins() {
+  return array(
+    'module' => 'page_title',
+    'display' => array(
+      'page_with_page_title' => array(
+        'title' => t('Page (with Page Title)'),
+        'help' => t('Same as a normal Page, but also includes the Page Title control.'),
+        'parent' => 'page',
+        'uses hook menu' => TRUE,
+        'use ajax' => FALSE,
+        'use pager' => TRUE,
+        'accept attachments' => TRUE,
+        'admin' => t('Page with Page Title'),
+        'module' => 'page_title',
+        'path' => drupal_get_path('module', 'page_title') .'/views/plugins',
+        'file' => 'page_title_plugin_display_page_with_page_title.inc',
+        'handler' => 'page_title_plugin_display_page_with_page_title',
+        'theme' => 'views_view',
+        'theme path' => drupal_get_path('module', 'views') .'/theme',
+        'theme file' => 'theme.inc',
+      ),
+    ),
+  );
 }
 
 
@@ -530,6 +633,7 @@ function page_title_init() {
  * Get a list of modules that support the current Page Title API.
  */
 function page_title_get_module_apis() {
+  // For efficiency, cache the hook implementations and settings
   $cache = &drupal_static(__FUNCTION__);
 
   if (!isset($cache)) {
@@ -560,6 +664,7 @@ function page_title_page_title_api() {
   );
 }
 
+
 /**
  * Core implementations of hook_page_title_api().
  */
@@ -568,4 +673,5 @@ function node_page_title_api() { return page_title_page_title_api(); }
 function comment_page_title_api() { return page_title_page_title_api(); }
 function forum_page_title_api() { return page_title_page_title_api(); }
 function user_page_title_api() { return page_title_page_title_api(); }
+function blog_page_title_api() { return page_title_page_title_api(); }
 function views_page_title_api() { return page_title_page_title_api(); }

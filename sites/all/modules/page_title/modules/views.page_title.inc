@@ -1,5 +1,4 @@
 <?php
-// $Id: views.page_title.inc,v 1.1.4.2 2010/08/25 14:33:30 njt1982 Exp $
 
 /**
  * @file
@@ -22,6 +21,9 @@ function views_page_title_pattern_alter(&$pattern, &$types) {
     // Get the active page view
     $view = views_get_page_view();
 
+    // If there is no view - then return - this helps protect from errors below
+    if (!$view) return;
+
     // If there are args for this view, process to see if this argument has a SPECIFIC page title pattern
     if (!empty($args) && !empty($view->handlers['argument'])) {
       // Grab the argument handlers
@@ -43,7 +45,7 @@ function views_page_title_pattern_alter(&$pattern, &$types) {
       }
     }
     // This is a view with no args provided, or the specific arg has no title - lets use the base display title
-    else {
+    elseif($view->display->display_plugin == 'page_with_page_title') {
       $pattern = $view->display->handler->get_option('page_title_pattern');
     }
   }

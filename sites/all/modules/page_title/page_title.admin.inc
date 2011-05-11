@@ -1,5 +1,4 @@
 <?php
-// $Id: page_title.admin.inc,v 1.4.4.5 2010/11/01 23:30:32 njt1982 Exp $
 
 /**
  * @file
@@ -24,7 +23,7 @@ function page_title_admin_settings() {
   $pattern_form_element = array(
     '#type' => 'textfield',
     '#size' => 60,
-    '#maxlength' => 256,
+    '#maxlength' => 255,
     '#element_validate' => array('token_element_validate_token_context'),
     '#token_types' => array(),
   );
@@ -78,7 +77,7 @@ function page_title_admin_settings() {
       '#title' => t('Comment Child Reply'),
       '#default_value' => variable_get('page_title_comment_child_reply', ''),
       '#description' => t('This pattern with be used for comment reply pages where the reply is to an existing "comment" (eg a comment thread)'),
-      '#token_types' => array('comment'),
+      '#token_types' => array('comment', 'node'),
     ) + $pattern_form_element,
 
     // Define the user profile page pattern. This is used on any 'user/[0-9]' pages
@@ -109,7 +108,7 @@ function page_title_admin_settings() {
       '#title' => t('Content Type - %type', array('%type' => $type->name)),
       '#default_value' => variable_get($key, ''),
       '#description' => t('This pattern will be used for all %type node-type pages', array('%type' => $type->name)),
-      '#token_types' => array('node'),
+      '#token_types' => array('node', 'term'),
     ) + $pattern_form_element;
 
     $form['patterns']['showfield'][$key .'_showfield'] = array(
@@ -117,7 +116,7 @@ function page_title_admin_settings() {
       '#default_value' => variable_get($key .'_showfield', 0),
     ) + $showfield_form_element;
 
-    $form['patterns']['scope'][$key] = array('#markup' => t('Node'),);
+    $form['patterns']['scope'][$key] = array('#markup' => t('Node') . ', ' . t('Taxonomy'),);
   }
 
 
@@ -141,7 +140,7 @@ function page_title_admin_settings() {
         '#default_value' => variable_get($key .'_showfield', 0),
       ) + $showfield_form_element;
 
-      $form['patterns']['scope'][$key] = array('#markup' => t('Taxonomy'),);
+      $form['patterns']['scope'][$key] = array('#markup' => t('Taxonomy'));
     }
   }
 
@@ -152,9 +151,10 @@ function page_title_admin_settings() {
     $form['patterns']['pattern'][$key] = array(
       '#title' => t('Blog Homepage'),
       '#default_value' => variable_get($key, ''),
+      '#token_types' => array('user'),
     ) + $pattern_form_element;
 
-    $form['patterns']['scope'][$key] = array('#markup' => t('User'),);
+    $form['patterns']['scope'][$key] = array('#markup' => t('User'));
   }
 
 
@@ -164,9 +164,9 @@ function page_title_admin_settings() {
       '#title' => t('Forum Root'),
       '#default_value' => variable_get('page_title_forum_root_title', ''),
       '#description' => t('This pattern will be used on the forum root page (ie, <code>/forum</code>)'),
-      '#token_types' => array('user'),
+      '#token_types' => array('vocabulary'),
     ) + $pattern_form_element;
-    $form['patterns']['scope']['page_title_forum_root_title'] = array('#type' => 'markup', '#value' => t('Global'));
+    $form['patterns']['scope']['page_title_forum_root_title'] = array('#markup' => t('Vocabulary'));
   }
 
 
@@ -179,7 +179,7 @@ function page_title_admin_settings() {
   );
   $form['token_help']['content'] = array(
     '#theme' => 'token_tree',
-    '#token_types' => array('node', 'comment', 'term', 'user'),
+    '#token_types' => array('node', 'comment', 'term', 'vocabulary', 'user'),
   );
 
 
