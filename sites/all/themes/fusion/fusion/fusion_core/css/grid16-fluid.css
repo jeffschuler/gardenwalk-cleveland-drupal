@@ -38,7 +38,7 @@
 .grid16-indent-15 {margin-left: 93.75%;}
 
 /* gutters (2 x margin) */
-.block .inner {
+.gutter {
   margin-left: 10px;
   margin-right: 10px;
 }

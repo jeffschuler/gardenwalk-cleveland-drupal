@@ -305,7 +305,6 @@ div.superfish {
   outline: 0;
 }
 
-
 /* Regions
 -------------------------------------------------------------- */
 
@@ -327,6 +326,7 @@ div.superfish {
 -------------------------------------------------------------- */
 #header-top-wrapper,
 #header-group-wrapper,
+#main-menu-wrapper,
 #preface-top-wrapper,
 #main-wrapper,
 #preface-bottom,
@@ -652,112 +652,6 @@ div.fusion-center {
   font-weight: bold;
 }
 
-/* Float imagefield images left and add margin */
-.fusion-float-imagefield-left .field-type-image,
-.fusion-float-imagefield-left .image-insert {
-  float: left; /* LTR */
-  margin: 0 15px 15px 0; /* LTR */
-}
-
-/* Clear float on new Views item so each row drops to a new line */
-.fusion-float-imagefield-left .views-row {
-  clear: left; /* LTR */
-}
-
-/* Float imagefield images right and add margin */
-.fusion-float-imagefield-right .field-type-image,
-.fusion-float-imagefield-right .image-insert {
-  float: right; /* LTR */
-  margin: 0 0 15px 15px; /* LTR */
-}
-
-/* Clear float on new Views item so each row drops to a new line */
-.fusion-float-imagefield-right .views-row {
-  clear: right; /* LTR */
-}
-
-/* Superfish: all menus */
-
-/* unhide child menu items with Superfish style applied */
-.region-main-menu ul.sf-menu ul.menu {
-  display: block;
-}
-
-.sf-menu li:hover,
-.sf-menu li.hover {
-  z-index: 100;
-}
-
-.sf-menu li {
-  list-style: none;
-  list-style-image: none;
-  list-style-type: none;
-}
-
-/* Superfish: vertical menus */
-.superfish-vertical {
-  position: relative;
-  z-index: 9;
-}
-
-ul.sf-vertical {
-  background: #fafafa;
-  margin: 0;
-  width: 100%;
-}
-
-ul.sf-vertical li {
-  border-bottom: 1px solid #ccc;
-  font-weight: bold;
-  line-height: 200%; /* 24px */
-  padding: 0;
-  width: 100%;
-}
-
-ul.sf-vertical li a:link,
-ul.sf-vertical li a:visited,
-ul.sf-vertical li .nolink {
-  margin-left: 10px;
-  padding: 2px;
-}
-
-ul.sf-vertical li a:hover,
-ul.sf-vertical li a.active {
-  text-decoration: underline;
-}
-
-ul.sf-vertical li ul {
-  background: #fafafa;
-  border-top: 1px solid #ccc;
-  margin-left: 0;
-  width: 150px;
-}
-
-ul.sf-vertical li ul li.last {
-  border-top: 1px solid #ccc;
-  margin-bottom: -1px;
-  margin-top: -1px;
-}
-
-ul.sf-vertical li ul {
-  border-top: none;
-  padding: 4px 0;
-}
-
-ul.sf-vertical li ul li {
-  border-bottom: none;
-  line-height: 150%; /* 24px */
-}
-
-ul.sf-vertical li ul li.last {
-  border-top: none;
-}
-
-ul.sf-vertical li ul li ul {
-  margin-top: -4px;
-}
-
-
 /* Pagers
 -------------------------------------------------------------- */
 ul.pager {
@@ -1013,8 +907,9 @@ html.js .fusion-horiz-login#block-user-login #user-login-form div#edit-openid-id
   width: 100%;
 }
 
-/* no gutters for blocks in content region */
-#content-content .inner {
+/* no gutters for blocks in node-top or node-bottom  */
+#node-top .gutter,
+#node-bottom .gutter {
   margin-left: 0;
   margin-right: 0;
 }
@@ -1044,7 +939,6 @@ th img {
 /-------------------------------------------------------------- */
 div.comment {
   margin: 15px 0;
-  padding: 10px;
 }
 
 div.comment h3.title {

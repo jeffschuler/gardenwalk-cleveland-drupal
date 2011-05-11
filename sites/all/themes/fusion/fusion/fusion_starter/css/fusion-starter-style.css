@@ -564,6 +564,7 @@ tr.drag-previous td {
 /-------------------------------------------------------------- */
 /* Style for each individual comment */
 div.comment {
+  padding: 0px;
 }
 
 /* Subject (title) of each comment */
@@ -576,11 +577,11 @@ div.comment ul.links a {
 }
 
 /* Alternating styles for even/odd comments */
-.comments div.odd {
+.comments .comment.odd {
   background-color: #fff;
 }
 
-.comments div.even {
+.comments .comment.even {
   background-color: #eee;
 }
 

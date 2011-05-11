@@ -11,8 +11,8 @@
           <div id="header-group-inner" class="header-group-inner inner clearfix">
 
             <?php if ($logo || $site_name || $site_slogan): ?>
-            <div id="header-site-info" class="header-site-info block">
-              <div id="header-site-info-inner" class="header-site-info-inner inner">
+            <div id="header-site-info" class="header-site-info">
+              <div id="header-site-info-inner" class="header-site-info-inner gutter">
                 <?php if ($logo): ?>
                 <div id="logo">
                   <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
@@ -57,26 +57,33 @@
 
                 <div id="main-content" class="main-content region nested">
                   <div id="main-content-inner" class="main-content-inner inner">
+                    <!-- content group: width = grid_width - sidebar_first_width - sidebar_second_width -->
+                    <div id="content-group" class="content-group region nested <?php print $content_group_width; ?>">
+                      <div id="content-group-inner" class="content-group-inner inner">
+                        <?php print theme('grid_block', array('content' => $breadcrumb, 'id' => 'breadcrumbs')); ?>
+                        <?php print theme('grid_block', array('content' => $messages, 'id' => 'content-messages')); ?>
 
-                    <?php print theme('grid_block', array('content' => $breadcrumb, 'id' => 'breadcrumbs')); ?>
-                    <?php print theme('grid_block', array('content' => $messages, 'id' => 'content-messages')); ?>
+                        <div id="content-region" class="content-region region nested">
+                          <div id="content-region-inner" class="content-region-inner inner">
+                            <a name="main-content-area" id="main-content-area"></a>
+                            <?php print theme('grid_block', array('content' => render($tabs), 'id' => 'content-tabs')); ?>
+                            <?php print theme('grid_block', array('content' => render($page['help']), 'id' => 'content-help')); ?>
+                            <?php print render($title_prefix); ?>
+                            <?php if ($title): ?>
+                            <h1 class="title gutter"><?php print $title; ?></h1>
+                            <?php endif; ?>
+                            <?php print render($title_suffix); ?>
+                            <?php if ($action_links): ?>
+                            <ul class="action-links"><?php print render($action_links); ?></ul>
+                            <?php endif; ?>
+                            <?php if ($page['content']): ?>
+                              <?php print render($page['content']); ?>
+                            <?php endif; ?>
+                          </div><!-- /content-region-inner -->
+                        </div><!-- /content-region -->
 
-                    <a name="main-content-area" id="main-content-area"></a>
-                    <?php print theme('grid_block', array('content' => render($tabs), 'id' => 'content-tabs')); ?>
-                    <?php print theme('grid_block', array('content' => render($page['help']), 'id' => 'content-help')); ?>
-
-                    <?php print render($title_prefix); ?>
-                    <?php if ($title): ?>
-                    <h1 class="title"><?php print $title; ?></h1>
-                    <?php endif; ?>
-                    <?php print render($title_suffix); ?>
-                    <?php if ($action_links): ?>
-                    <ul class="action-links"><?php print render($action_links); ?></ul>
-                    <?php endif; ?>
-                    <?php if ($page['content']): ?>
-                    <?php print render($page['content']); ?>
-                    <?php endif; ?>
-
+                      </div><!-- /content-group-inner -->
+                    </div><!-- /content-group -->
                     <?php print render($page['sidebar_second']); ?>
                   </div><!-- /main-content-inner -->
                 </div><!-- /main-content -->
