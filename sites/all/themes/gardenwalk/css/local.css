@@ -26,6 +26,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   margin-top: 1em; }
 
+/* Fix for Fusion's removal of right margin
+-------------------------------------------------------------- */
+#block-system-main > .inner {
+  padding-right: 10px; }
+
 /* Header Top
 -------------------------------------------------------------- */
 #header-top-wrapper {
@@ -123,7 +128,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Header
 -------------------------------------------------------------- */
 #header-group {
-  background-color: white; }
+  background: white url("../images/dot-border-horiz-tan.png") no-repeat bottom center;
+  padding-bottom: 12px; }
 
 #header-site-info {
   width: 480px; }
