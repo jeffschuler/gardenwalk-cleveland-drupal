@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 35px; }
 
 #header-top-inner {
-  text-align: right; }
+  position: relative; }
 
 #header-top .block {
   margin: 5px 0; }
@@ -58,6 +58,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Search Block (Header Top)
 --------------------- */
+#block-search-form {
+  text-align: right; }
+
 #block-search-form input.form-submit {
   font-weight: normal; }
 
@@ -68,7 +71,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Contact Links (Header Top)
 --------------------- */
 #block-block-2 div {
-  display: inline; }
+  display: inline;
+  text-align: right; }
 
 #block-block-2 .content div {
   margin: 0 5px; }
@@ -174,7 +178,8 @@ h1, h2, h3, h4, h5, h6 {
 #block-menu-primary-links li a .description {
   margin-top: 10px;
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-style: italic; }
+  font-style: italic;
+  font-size: .9em; }
 
 #block-menu-primary-links li a a,
 #block-menu-primary-links li a:link,
