@@ -1,0 +1,4 @@
+name = Dismiss Messages
+description = "Add a close button to dismiss Drupal's status messages."
+core = 7.x
+files[] = dismiss_messages.module
