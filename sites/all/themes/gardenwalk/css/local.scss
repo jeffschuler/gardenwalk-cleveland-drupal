@@ -56,7 +56,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 35px;
 }
 #header-top-inner {
-  text-align: right;
+  position: relative;
 }
 #header-top .block {
   margin: 5px 0;
@@ -81,6 +81,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Search Block (Header Top)
 --------------------- */
+#block-search-form  {
+  text-align: right;
+}
 #block-search-form input.form-submit {
   font-weight: normal;
 }
@@ -94,6 +97,7 @@ h1, h2, h3, h4, h5, h6 {
 --------------------- */
 #block-block-2 div {
   display: inline;
+  text-align: right;
 }
 #block-block-2 .content div {
   margin: 0 5px;
@@ -157,23 +161,18 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 15px;
   margin-bottom: 20px;
 }
-
 #header-site-info {
   width: 480px;
 }
-
 #header-group-inner {
   padding-top: 35px;
 }
-
 #header-group .block .inner {
   margin: 0;  
 }
-
 #site-name-wrapper {
   float: right;
 }
-
 #site-name a {
   background: transparent url('../images/gardenwalk-header-logo.png') no-repeat left top;
   height: 0;
@@ -213,6 +212,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 10px;
   font-family: $georgia;
   font-style: italic;
+  font-size: .9em;
 }
 #block-menu-primary-links li a a,
 #block-menu-primary-links li a:link,
