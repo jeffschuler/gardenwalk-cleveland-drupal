@@ -1,5 +1,4 @@
 <?php
-// $Id: nodequeue.views_default.inc,v 1.7 2010/12/24 20:55:09 ezrag Exp $
 
 /**
  * @file

@@ -1,5 +1,4 @@
 <?php
-// $Id: nodequeue.views.inc,v 1.6 2010/12/24 20:55:09 ezrag Exp $
 
 /**
  * @file nodequeue.views.inc
@@ -107,6 +106,24 @@ function nodequeue_views_data() {
     'filter' => array(
       'handler' => 'nodequeue_handler_filter_in_queue',
       'label' => t('In queue'),
+    ),
+  );
+
+  $data['nodequeue_queue']['name'] = array(
+    'title' => t('Queue machine name'),
+    'help' => t('The machine name of the queue.'),
+    'field' => array(
+      'handler' => 'views_handler_field',
+      'click sortable' => TRUE,
+    ),
+    'sort' => array(
+      'handler' => 'views_handler_sort',
+    ),
+    'filter' => array(
+      'handler' => 'views_handler_filter_string',
+    ),
+    'argument' => array(
+      'handler' => 'views_handler_argument_string',
     ),
   );
 

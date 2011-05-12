@@ -1,5 +1,4 @@
 <?php
-//$Id: nodequeue_handler_field_all_queues.inc,v 1.3 2010/12/24 20:55:09 ezrag Exp $
 /**
  * Field handler for all queues.
  *
