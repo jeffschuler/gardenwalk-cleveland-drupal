@@ -125,7 +125,8 @@ h1, h2, h3, h4, h5, h6 {
 -------------------------------------------------------------- */
 #header-group {
   background: white url("../images/dot-border-horiz-tan.png") no-repeat bottom center;
-  padding-bottom: 12px; }
+  padding-bottom: 15px;
+  margin-bottom: 20px; }
 
 #header-site-info {
   width: 480px; }
@@ -285,3 +286,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .panel-3col-33-stacked .panel-col-last .inside {
   margin: 0 -10px 10px 20px; }
+
+/* Image Rotator (Front Page)
+-------------------------------------------------------------- */
+.pane-views-image-rotator-block {
+  background: white url("../images/dot-border-horiz-tan.png") no-repeat bottom center; }
