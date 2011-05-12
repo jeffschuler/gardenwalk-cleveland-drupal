@@ -70,9 +70,11 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Contact Links (Header Top)
 --------------------- */
-#block-block-2 div {
-  display: inline;
+#block-block-2 {
   text-align: right; }
+
+#block-block-2 div {
+  display: inline; }
 
 #block-block-2 .content div {
   margin: 0 5px; }
