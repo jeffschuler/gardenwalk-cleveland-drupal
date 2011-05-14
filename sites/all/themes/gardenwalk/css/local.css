@@ -298,3 +298,25 @@ h1, h2, h3, h4, h5, h6 {
 .panel-3col-33-stacked .panel-col-top .inside {
   padding-bottom: 20px;
   background: white url("../images/dot-border-horiz-tan.png") no-repeat bottom center; }
+
+/* Sponsors Page
+-------------------------------------------------------------- */
+#view-id-sponsors-page_1 td {
+  width: 25%; }
+
+#view-id-sponsors-page_1 h3 {
+  margin: 2em 0 1em; }
+
+#view-id-sponsors-page_1 .views-field-title {
+  font-size: .9em;
+  vertical-align: bottom; }
+
+/* Sponsors Logo Rotator Block
+-------------------------------------------------------------- */
+#block-views-sponsors-block_2 img {
+  border: 1px solid #d3cccb; }
+
+/* Sponsors List Block
+-------------------------------------------------------------- */
+#block-views-sponsors-block_1 h2 {
+  color: #726965; }
