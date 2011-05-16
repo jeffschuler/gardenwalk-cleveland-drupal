@@ -1,3 +1,5 @@
+.panel-3col-66-66-33 .panel-row-top {
+}
 .panel-3col-66-66-33 .panel-row-top .panel-col-first {
   float: left;
   width: 66%;
@@ -7,6 +9,8 @@
   width: 33%;
 }
 
+.panel-3col-66-66-33 .panel-row-middle {
+}
 .panel-3col-66-66-33 .panel-row-middle .panel-col-first {
   float: left;
   width: 66%;
@@ -16,6 +20,9 @@
   width: 33%;
 }
 
+.panel-3col-66-66-33 .panel-row-bottom {
+  margin-top: 20px;
+}
 .panel-3col-66-66-33 .panel-row-bottom .panel-col-first {
   float: left;
   width: 33%;
