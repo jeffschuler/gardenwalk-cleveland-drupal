@@ -1,0 +1,36 @@
+.panel-3col-66-66-33 .panel-row-top .panel-col-first {
+  float: left;
+  width: 66%;
+}
+.panel-3col-66-66-33 .panel-row-top .panel-col-last {
+  float: left;
+  width: 33%;
+}
+
+.panel-3col-66-66-33 .panel-row-middle .panel-col-first {
+  float: left;
+  width: 66%;
+}
+.panel-3col-66-66-33 .panel-row-middle .panel-col-last {
+  float: left;
+  width: 33%;
+}
+
+.panel-3col-66-66-33 .panel-row-bottom .panel-col-first {
+  float: left;
+  width: 66%;
+}
+.panel-3col-66-66-33 .panel-row-bottom .panel-col-last {
+  float: left;
+  width: 33%;
+}
+
+.panel-3col-66-66-33 .panel-panel .inside {
+  margin: 0;
+}
+.panel-3col-66-66-33 .panel-col-first .inside {
+  margin-right: 10px;
+}
+.panel-3col-66-66-33 .panel-col-last .inside {
+  margin-left: 10px;
+}
