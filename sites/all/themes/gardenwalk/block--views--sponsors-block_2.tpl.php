@@ -44,7 +44,7 @@
   <div class="gutter clearfix">
     <?php print render($title_prefix); ?>
     <?php if ($block->subject): ?>
-    <h2 class="title block-title"<?php print $title_attributes; ?>><a href="sponsors"><?php print $block->subject ?></a></h2>
+    <h2 class="title block-title"<?php print $title_attributes; ?>><a href="/sponsors"><?php print $block->subject ?></a></h2>
     <?php endif;?>
     <?php print render($title_suffix); ?>
 
