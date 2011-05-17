@@ -1,4 +1,5 @@
 $brown: #726965;
+$brown_darker: darken($brown, 10%);
 $khaki: #F2ECE9;
 $tan: #D3CCCB;
 $purple: #615FC1;
@@ -39,6 +40,7 @@ html, body {
 body {
   background: $khaki url('../images/page-bg-edges.png') repeat-y top center;
   font-family: $meta;
+  color: $brown_darker;
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: $museo;
@@ -187,6 +189,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Main Menu
 --------------------- */
 #block-menu-primary-links {
+  margin-bottom: 0;
 }
 #block-menu-primary-links ul {
   margin-left: 40px;
@@ -315,8 +318,20 @@ h1, h2, h3, h4, h5, h6 {
 #main .view-id-gardens.view-display-id-block_1 .views-field-tid a,
 #main .view-id-gardens.view-display-id-block_1 .views-field-tid a:link,
 #main .view-id-gardens.view-display-id-block_1 .views-field-tid a:visited {
-    color: $black;
+    color: $brown_darker;
 }
+#main .view-id-gardens.view-display-id-block_1 ul {
+  margin-left: 0;
+}
+#main .view-id-gardens.view-display-id-block_1 li {
+  border: 1px solid $tan;
+  padding: 5px;
+  list-style-type: none;
+}
+#main .view-id-gardens.view-display-id-block_1 li.views-row-even {
+  background-color: $khaki;
+}
+
 
 
 /* Gardener Stories Pane (Front Page)
@@ -334,6 +349,21 @@ h1, h2, h3, h4, h5, h6 {
 .view-id-gardener_stories.view-display-id-block_1 td .views-field-field-images {}
 .view-id-gardener_stories.view-display-id-block_1 td .views-field-body {}
 .view-id-gardener_stories.view-display-id-block_1 td .views-field-title {}
+
+
+/* Gardener Stories Pane (Neighborhood Page)
+-------------------------------------------------------------- */
+.pane-views-gardener-stories-block .views-row {
+  clear: both;
+  margin-bottom: 20px;
+}
+.pane-views-gardener-stories-block .view-id-gardener_stories.view-display-id-block .views-field-field-images {
+  float: left;
+  margin-right: 10px;
+}
+.pane-views-gardener-stories-block .view-id-gardener_stories.view-display-id-block .views-field-field-images img {
+  border: 1px solid $brown;
+}
 
 
 /* 3-column Panels Layout - Straightening out for Fusion
@@ -382,4 +412,14 @@ h1, h2, h3, h4, h5, h6 {
 -------------------------------------------------------------- */
 #block-views-sponsors-block_1 h2 {
   color: $brown;
+}
+
+
+/* Headquarters Block (Neighborhood Page)
+-------------------------------------------------------------- */
+.pane-views-headquarters-block-2 h2.block-title {
+  margin-top: 0;
+}
+.pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content {
+  color: $purple;
 }
