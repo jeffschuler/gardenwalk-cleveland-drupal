@@ -63,22 +63,25 @@ h1, h2, h3, h4, h5, h6 {
   text-align: right; }
 
 #block-search-form input.form-submit {
-  font-weight: normal; }
+  font-weight: normal;
+  max-height: 22px;
+  margin: 0; }
 
 #block-search-form,
 #block-search-form .form-text {
   color: #726965; }
+
+#edit-search-block-form--2 {
+  height: 13px; }
 
 /* Contact Links (Header Top)
 --------------------- */
 #block-block-2 {
   text-align: right; }
 
-#block-block-2 div {
-  display: inline; }
-
 #block-block-2 .content div {
-  margin: 0 5px; }
+  margin: 0 5px;
+  display: inline; }
 
 #block-block-2 .content div img {
   vertical-align: middle; }
@@ -163,52 +166,52 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Main Menu
 --------------------- */
-#block-menu-primary-links {
+#block-menu_block-2 {
   margin-bottom: 0;
   position: absolute;
   bottom: 0;
   right: 20px; }
 
-#block-menu-primary-links ul {
+#block-menu_block-2 ul {
   margin-left: 40px; }
 
-#block-menu-primary-links li {
+#block-menu_block-2 li {
   list-style-type: none;
   list-style-image: none;
   float: left;
   padding: 0 10px; }
 
-#block-menu-primary-links li a {
+#block-menu_block-2 li a {
   height: 150px;
   width: 120px;
   background: transparent url("../images/menu-pot.png") no-repeat 50% bottom;
   display: block;
   text-align: center; }
 
-#block-menu-primary-links li a .title {
+#block-menu_block-2 li a .title {
   font-family: "museo-1", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
   font-weight: 500;
   font-size: 18px; }
 
-#block-menu-primary-links li a .description {
+#block-menu_block-2 li a .description {
   margin-top: 10px;
   font-family: Georgia, "Times New Roman", Times, serif;
   font-style: italic;
   font-size: .9em; }
 
-#block-menu-primary-links li a a,
-#block-menu-primary-links li a:link,
-#block-menu-primary-links li a:visited {
+#block-menu_block-2 li a a,
+#block-menu_block-2 li a:link,
+#block-menu_block-2 li a:visited {
   color: #726965; }
 
-#block-menu-primary-links li a:hover,
-#block-menu-primary-links li a:focus,
-#block-menu-primary-links li a:active {
+#block-menu_block-2 li a:hover,
+#block-menu_block-2 li a:focus,
+#block-menu_block-2 li a:active {
   color: #f15b2a;
   text-decoration: none;
   background-image: url("../images/menu-pot-hover.png"); }
 
-#block-menu-primary-links li a.active {
+#block-menu_block-2 li a.active {
   color: #615fc1;
   background-image: url("../images/menu-pot-active.png"); }
 
