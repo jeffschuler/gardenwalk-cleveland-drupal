@@ -10,8 +10,8 @@ $black: #000000;
 
 $footer_height: 229px;
 
-$meta: "ff-meta-web-pro-1";
-$museo: "museo-1";
+$meta: "ff-meta-web-pro-1", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
+$museo: "museo-1", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 $georgia: Georgia, "Times New Roman", Times, serif;
 
 
@@ -141,6 +141,7 @@ h1, h2, h3, h4, h5, h6 {
   background-image: url('../images/date-tag-bottom.png');
   width: 65px;
   height: 75px;
+  z-index: 10; /* higher than [over] header logo #site-name */
 }
 #block-block-1 .day {
   font-weight: 700;
@@ -166,9 +167,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 #header-site-info {
   width: 480px;
+  margin-bottom: 0;
 }
 #header-group-inner {
   padding-top: 35px;
+  margin-bottom: 20px;
+  position: relative;
 }
 #header-group .block .inner {
   margin: 0;  
@@ -183,6 +187,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   overflow: hidden;
   width: 409px;
+  z-index: 0; /* lower than [under] date banner #block-block-1 */
 }
 
 
@@ -190,6 +195,9 @@ h1, h2, h3, h4, h5, h6 {
 --------------------- */
 #block-menu-primary-links {
   margin-bottom: 0;
+  position: absolute;
+  bottom: 0;
+  right: 20px;
 }
 #block-menu-primary-links ul {
   margin-left: 40px;
