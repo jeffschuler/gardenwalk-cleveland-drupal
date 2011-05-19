@@ -377,6 +377,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+/* Gardener Story Page
+-------------------------------------------------------------- */
+.node-story.full-node .field-name-field-images {
+  float: right;
+  margin-left: 20px;
+  border: 1px solid $tan;
+}
+.node-story.full-node .field-name-field-images img {
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
 /* 3-column Panels Layout - Straightening out for Fusion
 -------------------------------------------------------------- */
 .panel-3col-33-stacked .panel-col-first .inside {
