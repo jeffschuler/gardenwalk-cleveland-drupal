@@ -38,14 +38,16 @@ function gardenwalk_preprocess_page(&$vars) {
   // Prefix node page titles of certain content types with the type name
   if (arg(0)=='node') {
     $node = node_load(arg(1));
-    switch ($node->type) {
-      case 'story':
-      case 'garden':
-        $types = node_type_get_types();
-        $vars['type_title_prefix'] = check_plain($types[$node->type]->name) . ": ";
-        break;
-      default:
-        break;
+    if (isset($node->type)) {
+      switch ($node->type) {
+        case 'story':
+        case 'garden':
+          $types = node_type_get_types();
+          $vars['type_title_prefix'] = check_plain($types[$node->type]->name) . ": ";
+          break;
+        default:
+          break;
+      }
     }
   }
 }
