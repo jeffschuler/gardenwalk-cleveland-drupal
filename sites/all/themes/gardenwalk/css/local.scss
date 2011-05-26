@@ -354,7 +354,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-
 /* Gardener Stories Pane (Front Page)
 -------------------------------------------------------------- */
 .view-id-gardener_stories.view-display-id-block_1 td {
@@ -367,9 +366,9 @@ h1, h2, h3, h4, h5, h6 {
 .view-id-gardener_stories.view-display-id-block_1 td.col-last {
   padding-left: 10px;
 }
-.view-id-gardener_stories.view-display-id-block_1 td .views-field-field-images {}
-.view-id-gardener_stories.view-display-id-block_1 td .views-field-body {}
-.view-id-gardener_stories.view-display-id-block_1 td .views-field-title {}
+.view-id-gardener_stories.view-display-id-block_1 td .views-field-field-images img {
+  border: 1px solid $brown;
+}
 
 
 /* Gardener Stories Pane (Neighborhood Page)
@@ -456,4 +455,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content {
   color: $purple;
+}
+
+
+/* Maps
+-------------------------------------------------------------- */
+.openlayers-container {
+  border: 1px solid $tan;
 }

@@ -319,6 +319,9 @@ h1, h2, h3, h4, h5, h6 {
 .view-id-gardener_stories.view-display-id-block_1 td.col-last {
   padding-left: 10px; }
 
+.view-id-gardener_stories.view-display-id-block_1 td .views-field-field-images img {
+  border: 1px solid #726965; }
+
 /* Gardener Stories Pane (Neighborhood Page)
 -------------------------------------------------------------- */
 .pane-views-gardener-stories-block .views-row {
@@ -390,3 +393,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content {
   color: #615fc1; }
+
+/* Maps
+-------------------------------------------------------------- */
+.openlayers-container {
+  border: 1px solid #d3cccb; }
