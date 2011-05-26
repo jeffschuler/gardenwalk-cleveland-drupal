@@ -277,14 +277,18 @@ function nodequeue_node_view($node, $view_mode) {
           'title' => nodequeue_title_substitute($queue->link, $queue, $subqueue),
           'href' => "nodequeue/$queue->qid/add-node/$subqueue->sqid/$id",
           'attributes' => array('class' => array($class . ' toggle-add')),
-          'query' => $query_string);
+          'query' => $query_string,
+          'purl' => array('disabled' => TRUE),
+        );
       }
-      else if ($queue->link_remove) {
+      elseif ($queue->link_remove) {
         $links[$class] = array(
           'title' => nodequeue_title_substitute($queue->link_remove, $queue, $subqueue),
           'href' => "nodequeue/$queue->qid/remove-node/$subqueue->sqid/$id",
           'attributes' => array('class' => array($class . ' toggle-remove')),
-          'query' => $query_string);
+          'query' => $query_string,
+          'purl' => array('disabled' => TRUE),
+        );
       }
     }
     drupal_add_js(drupal_get_path('module', 'nodequeue') . '/nodequeue.js');
@@ -659,12 +663,12 @@ function nodequeue_load_queues($qids = array(), $bypass_cache = FALSE) {
       $loaded[$queue->qid]->count = 0;
     }
 
-    $result = db_query("SELECT qid, rid FROM {nodequeue_roles} WHERE qid IN (:to_load)", array(':to_load' =>$to_load));
+    $result = db_query("SELECT qid, rid FROM {nodequeue_roles} WHERE qid IN (:to_load)", array(':to_load' => $to_load));
     foreach ($result as $obj) {
       $loaded[$obj->qid]->roles[] = $obj->rid;
     }
 
-    $result = db_query("SELECT qid, type FROM {nodequeue_types} WHERE qid IN (:to_load)", array(':to_load' =>$to_load));
+    $result = db_query("SELECT qid, type FROM {nodequeue_types} WHERE qid IN (:to_load)", array(':to_load' => $to_load));
     foreach ($result as $obj) {
       $loaded[$obj->qid]->types[] = $obj->type;
     }
@@ -1409,7 +1413,7 @@ function nodequeue_subqueue_size_text($max, $count, $long = TRUE) {
   if (empty($count)) {
     $message = theme('nodequeue_subqueue_empty_text');
   }
-  else if ($count == $max) {
+  elseif ($count == $max) {
     $message = theme('nodequeue_subqueue_full_text');
   }
   else {
@@ -1502,7 +1506,7 @@ function nodequeue_nodequeue_form_submit(&$queue, $form_state) {
 /**
  * in general it's preferable to use Views for this functionality.
  */
-function nodequeue_node_titles($sqid, $title = '', $backward = true, $from = 0, $count = 0, $published_only = TRUE) {
+function nodequeue_node_titles($sqid, $title = '', $backward = TRUE, $from = 0, $count = 0, $published_only = TRUE) {
   $orderby = ($backward ? "DESC" : "ASC");
   $query = db_select('node', 'n')
     ->fields('n', array('nid', 'title'))
@@ -1528,9 +1532,10 @@ function nodequeue_node_titles($sqid, $title = '', $backward = true, $from = 0, 
  * Get node_view output from a nodequeue
  */
 function nodequeue_view_nodes($sqid, $backward = TRUE, $teaser = TRUE, $links = TRUE, $from = 0, $count = 0) {
+  $output = array();
   $nodes = nodequeue_load_nodes($sqid, $backward, $from, $count);
   foreach ($nodes as $node) {
-    $output .= node_view($node, $teaser, FALSE, $links);
+    $output[] = node_view($node, $teaser, FALSE, $links);
   }
   return $output;
 }
@@ -1584,15 +1589,15 @@ function nodequeue_load_back($sqid, $teaser = TRUE, $links = TRUE) {
  * View a random node from a queue
  */
 function nodequeue_view_random_node($sqid, $teaser = TRUE, $links = TRUE) {
-  $count = db_select('node', 'n')
-    ->fields('n', array('nid'))
-    ->addTag('node_access')
-    ->condition('nn.sqid', $sqid)
-    ->condition('n.status', 1)
-    ->countQuery()
-    ->execute()
-    ->fetchField();
+  $query = db_select('node', 'n')
+    ->fields('n', array('nid'));
   $query->join('nodequeue_nodes', 'nn', 'n.nid = nn.nid');
+  $count = $query->addTag('node_access')
+     ->condition('nn.sqid', $sqid)
+     ->condition('n.status', 1)
+     ->countQuery()
+     ->execute()
+     ->fetchField();
 
   return nodequeue_view_nodes($sqid, FALSE, $teaser, $links, rand(0, $count - 1), 1);
 }
@@ -1601,15 +1606,15 @@ function nodequeue_view_random_node($sqid, $teaser = TRUE, $links = TRUE) {
  * Load a random node object from a queue
  */
 function nodequeue_load_random_node($sqid) {
-  $count = db_select('node', 'n')
-    ->fields('n', array('nid'))
-    ->addTag('node_access')
-    ->condition('nn.sqid', $sqid)
-    ->condition('n.status', 1)
-    ->countQuery()
-    ->execute()
-    ->fetchField();
+  $query = db_select('node', 'n')
+    ->fields('n', array('nid'));
   $query->join('nodequeue_nodes', 'nn', 'n.nid = nn.nid');
+  $count = $query->addTag('node_access')
+     ->condition('nn.sqid', $sqid)
+     ->condition('n.status', 1)
+     ->countQuery()
+     ->execute()
+     ->fetchField();
 
   return array_shift(nodequeue_load_nodes($sqid, TRUE, rand(0, $count - 1), 1));
 }
@@ -1751,7 +1756,7 @@ function nodequeue_api_autocomplete($queue, $subqueue, $string) {
     ->addTag('node_access')
     ->fields('n', array('nid', 'title'))
     ->condition('n.type', $queue->types, 'IN')
-    ->range(0, 10);
+    ->range(0, variable_get('nodequeue_autocomplete_limit', 10));
 
   $where_args = array();
   global $user;
