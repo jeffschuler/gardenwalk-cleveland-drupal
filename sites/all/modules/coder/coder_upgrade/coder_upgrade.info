@@ -29,9 +29,9 @@ configure = admin/config/development/coder/upgrade/settings
 
 core = 7.x
 
-; Information added by drupal.org packaging script on 2011-05-10
+; Information added by drupal.org packaging script on 2011-05-12
 version = "7.x-1.x-dev"
 core = "7.x"
 project = "coder"
-datestamp = "1304985917"
+datestamp = "1305158753"
 
