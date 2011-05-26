@@ -1,5 +1,4 @@
 <?php
-// $Id: menu.test,v 1.42 2010/12/02 17:34:24 webchick Exp $
 
 /**
  * @file
@@ -32,6 +31,18 @@ class MenuRouterTestCase extends DrupalWebTestCase {
     $this->drupalGet('node');
     $this->assertText('A title with @placeholder', t('Raw text found on the page'));
     $this->assertNoText(t('A title with @placeholder', array('@placeholder' => 'some other text')), t('Text with placeholder substitutions not found.'));
+  }
+
+  /**
+   * Tests page title of MENU_CALLBACKs.
+   */
+  function testTitleMenuCallback() {
+    // Verify that the menu router item title is not visible.
+    $this->drupalGet('');
+    $this->assertNoText(t('Menu Callback Title'));
+    // Verify that the menu router item title is output as page title.
+    $this->drupalGet('menu_callback_title');
+    $this->assertText(t('Menu Callback Title'));
   }
 
   /**
