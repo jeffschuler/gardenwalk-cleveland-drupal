@@ -4,6 +4,7 @@ $khaki: #F2ECE9;
 $tan: #D3CCCB;
 $purple: #615FC1;
 $orange: #F15B2A;
+$green: #059347;
 $ltgreen: #A3C6B1;
 $white: #FFFFFF;
 $black: #000000;
@@ -241,6 +242,11 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   background-image: url('../images/menu-pot-hover.png');
 }
+#block-menu_block-2 li a:hover .description,
+#block-menu_block-2 li a:focus .description,
+#block-menu_block-2 li a:active .description {
+  color: $green;
+}
 #block-menu_block-2 li a.active {
   color: $purple;
   background-image: url('../images/menu-pot-active.png');
@@ -321,6 +327,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Gardens List Block
 -------------------------------------------------------------- */
+#main .view-id-gardens.view-display-id-block_1 {
+  overflow-y: scroll;
+  height: 500px;
+}
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a,
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a:link,
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a:visited {
