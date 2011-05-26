@@ -157,9 +157,10 @@ function boost_init() {
   $_boost = boost_transform_url();
   // Make sure the page is/should be cached according to our current configuration.
   if (   strpos($_SERVER['SCRIPT_FILENAME'], 'index.php') === FALSE
-      || ($_SERVER['REQUEST_METHOD'] != 'GET' && $_SERVER['REQUEST_METHOD'] != 'HEAD')
       || $_SERVER['SERVER_SOFTWARE'] === 'PHP CLI'
+      || ($_SERVER['REQUEST_METHOD'] != 'GET' && $_SERVER['REQUEST_METHOD'] != 'HEAD')
       || isset($_GET['nocache'])
+      || empty($_boost['menu_item']['status'])
       || $_boost['menu_item']['status'] != 200
       || variable_get('site_offline', 0)
   ) {
@@ -1261,7 +1262,7 @@ function boost_htaccess_cache_dir_generate() {
       if ($values['enabled']) {
         $forcetype = '\.' . $values['extension'];
         if ($values['gzip']) {
-          $forcetype .= '(?:\.gz)?$';
+          $forcetype .= '(\.gz)?$';
           $gzip = TRUE;
         }
         else {
@@ -1297,11 +1298,11 @@ function boost_htaccess_cache_dir_generate() {
   }
 
   // Set html expiration time to the past and put in boost header if desired.
-  $files = implode('|' , $files);
+  $files = '(' . implode('|' , $files) . ')';
   if ($gzip) {
-    $files .= '(?:\.gz)?';
+    $files .= '(\.gz)?';
   }
-  $string .= "<FilesMatch \"\.($files)$\">\n";
+  $string .= "<FilesMatch \"\.$files$\">\n";
   $string .= "  <IfModule mod_expires.c>\n";
   $string .= "    ExpiresDefault A5\n";
   $string .= "  </IfModule>\n";
