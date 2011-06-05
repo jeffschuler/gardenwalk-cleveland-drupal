@@ -109,13 +109,48 @@ function nodequeue_node_tab($node) {
     return FALSE;
   }
   $header = array();
-  $header[] = array('data' => t('Title'), 'class' => array('nodequeue-title'));
-  $header[] = array('data' => t('Max nodes'), 'class' => array('nodequeue-max-nodes'));
-  $header[] = array('data' => t('In queue'), 'class' => array('nodequeue-in-queue'));
+  $header[] = array('data' => t('Title'), 'field' => 'title', 'sort' => 'asc', 'class' => array('nodequeue-title'));
+  $header[] = array('data' => t('Max nodes'), 'field' => 'size', 'class' => array('nodequeue-max-nodes'));
+  $header[] = array('data' => t('In queue'), 'field' => 'count', 'class' => array('nodequeue-in-queue'));
   $header[] = array('data' => t('Operation'), 'class' => array('nodequeue-operation'));
+  $table_sort = tablesort_init($header);
+
   $subqueues = nodequeue_get_subqueues_by_node($queues, $node);
 
   nodequeue_set_subqueue_positions($subqueues, $node->nid);
+
+  $sort_primary = array();
+  $sort_secondary = array();
+  $sort_direction_regular = array('asc' => SORT_ASC, 'desc' => SORT_DESC);
+  $sort_direction_reverse = array('asc' => SORT_DESC, 'desc' => SORT_ASC);
+  foreach ($subqueues as $subqueue) {
+    $queue = $queues[$subqueue->qid];
+    $sort_secondary[] = $queue->title;
+    switch ($table_sort['sql']) {
+      case 'title':
+      default:
+        $sort_primary[] = $queue->title;
+        $sort_direction = $sort_direction_regular;
+        break;
+      case 'size':
+        $sort_primary[] = $queue->size;
+        $sort_direction = $sort_direction_reverse;
+        break;
+      case 'count':
+        $sort_primary[] = $subqueue->count;
+        $sort_direction = $sort_direction_reverse;
+        break;
+    }
+  }
+
+  if (!empty($table_sort)) {
+    if (strtolower($table_sort['sort']) == 'desc') {
+      array_multisort($sort_primary, $sort_direction['desc'], $sort_secondary, $subqueues); // Re-indexes array keys; key no longer equals qid.
+    }
+    else {
+      array_multisort($sort_primary, $sort_direction['asc'], $sort_secondary, $subqueues); // Re-indexes array keys; key no longer equals qid.
+    }
+  }
 
   $rows = array();
   foreach ($subqueues as $subqueue) {
@@ -401,13 +436,9 @@ function nodequeue_edit_queue_form($form, &$form_state, $queue) {
     '#description' => t('Enter the text for the corresponding link to remove a node from a queue. This may be blank (in which case no link will appear) but a remove link will only appear if link, above, is set.'),
   );
 
-
-  $result = db_query("SELECT r.* FROM {role} r LEFT JOIN {role_permission} p ON p.rid = r.rid WHERE p.permission LIKE '%manipulate queues%' ORDER BY r.name");
-
-  $roles = array();
-  foreach ($result as $role) {
-    $roles[$role->rid] = $role->name;
-  }
+  $manipulate_all_queues = user_roles(FALSE, 'manipulate all queues');
+  $manipulate_queues = user_roles(FALSE, 'manipulate queues');
+  $roles = $manipulate_all_queues + $manipulate_queues;
 
   if (!empty($roles)) {
     $form['roles'] = array(
@@ -417,6 +448,15 @@ function nodequeue_edit_queue_form($form, &$form_state, $queue) {
       '#options' => $roles,
       '#description' => t('Check each role that can add nodes to the queue. Be sure that roles you want to appear here have "manipulate queues" access in the main access control panel.'),
     );
+
+    foreach ($roles as $rid => $role) {
+      $form['roles'][$rid] = array(
+        '#type' => 'checkbox',
+        '#title' => $role,
+        '#default_value' => (isset($manipulate_all_queues[$rid]) || in_array($rid, $queue->roles)) ? TRUE : FALSE,
+        '#disabled' => (isset($manipulate_all_queues[$rid])) ? TRUE : FALSE,
+      );
+    }
   }
   else {
     $form['roles'] = array(
@@ -425,7 +465,9 @@ function nodequeue_edit_queue_form($form, &$form_state, $queue) {
     );
 
     $form['roles_markup'] = array(
-      '#value' => t('No roles have the "manipulate queues" permission, so only the administrator account will be able to add or remove items from this queue.'),
+      '#type' => 'item',
+      '#title' => t('Roles'),
+      '#description' => '<strong>' . t('No roles have the "manipulate queues" permission, so only the administrator account will be able to add or remove items from this queue.') . '</strong>',
     );
   }
 
@@ -520,7 +562,7 @@ function nodequeue_edit_queue_form_validate($form, &$form_state) {
     form_set_error('title', t('Please enter a title for this queue.'));
   }
   $queue = (object) $form_state['values'];
-  // fix checkboxes
+  // Fix checkboxes.
   $queue->roles = array_keys(array_filter($queue->roles));
   $queue->types = array_keys(array_filter($queue->types));
 
@@ -536,9 +578,13 @@ function nodequeue_edit_queue_form_validate($form, &$form_state) {
  */
 function nodequeue_edit_queue_form_submit($formid, &$form_state) {
   $queue = (object) $form_state['values'];
-  // fix checkboxes
+  // Fix checkboxes.
   $queue->roles = array_keys(array_filter($queue->roles));
   $queue->types = array_keys(array_filter($queue->types));
+
+  // Remove roles that have the 'manipulate all queues' permission.
+  $manipulate_all_queues = array_keys(user_roles(FALSE, 'manipulate all queues'));
+  $queue->roles = array_diff($queue->roles, $manipulate_all_queues);
 
   if (!isset($queue->qid)) {
     $queue->new = TRUE;
@@ -661,7 +707,7 @@ function nodequeue_arrange_subqueue($queue, $subqueue = NULL) {
   // get nodes from the queue
   $nodes = _nodequeue_dragdrop_get_nodes($queue, $subqueue);
 
-  return drupal_get_form('nodequeue_arrange_subqueue_form', $queue, $nodes, $subqueue);
+  return drupal_get_form('nodequeue_arrange_subqueue_form_' . $subqueue->sqid, $queue, $nodes, $subqueue);
 }
 
 /**
@@ -756,6 +802,7 @@ function nodequeue_arrange_subqueue_form($form, $form_state, $queue, $nodes, $su
     '#autocomplete_path' => 'nodequeue/autocomplete/' . $subqueue->sqid,
     '#maxlength' => 1024,
     '#default_value' => t('Enter the title of a node to add it to the queue'),
+    '#attributes' => array('class' => array('subqueue-add-nid')),
   );
   $form['add']['submit'] = array(
     '#type' => 'submit',
@@ -767,7 +814,8 @@ function nodequeue_arrange_subqueue_form($form, $form_state, $queue, $nodes, $su
   $form['actions'] = array('#type' => 'actions');
   $form['actions']['submit'] = array(
     '#type' => 'submit',
-    '#value' => t('Save')
+    '#value' => t('Save'),
+    '#submit' => array('nodequeue_arrange_subqueue_form_submit'),
   );
   $form['actions']['reverse'] = array(
     '#type' => 'submit',
@@ -906,8 +954,8 @@ function nodequeue_save_subqueue_order($nodes, $qid, $sqid) {
       $count++;
     }
     elseif ($pos == 'r') {
-      // call nodequeue_remove hook
-      module_invoke_all('nodequeue_remove', $sqid, $node['nid']);
+      // Remove the node from this subqueue.
+      nodequeue_subqueue_remove_node($sqid, $node['nid']);
     }
     else {
       return array(NODEQUEUE_INVALID_POSITION, 'Invalid position value. New subqueue order not saved.');

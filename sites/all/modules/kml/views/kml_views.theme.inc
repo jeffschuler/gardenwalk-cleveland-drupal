@@ -32,7 +32,7 @@ function template_preprocess_views_view_kml(&$vars) {
 
   if (empty($vars['view']->live_preview)) {
     drupal_add_http_header('Content-Type', 'application/vnd.google-earth.kml+xml; charset=utf-8');
-    drupal_add_http_header("Content-Disposition: attachment; filename=$filename");
+    drupal_add_http_header('Content-Disposition', "attachment; filename=$filename");
   }
 }
 

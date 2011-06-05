@@ -61,7 +61,7 @@ class ViewsUiBaseViewsWizard implements ViewsWizardInterface {
 
     $entities = entity_get_info();
     foreach ($entities as $entity_type => $entity_info) {
-      if ($this->base_table == $entity_info['base table']) {
+      if (isset($entity_info['base table']) && $this->base_table == $entity_info['base table']) {
         $this->entity_info = $entity_info;
         $this->entity_type = $entity_type;
       }
@@ -133,11 +133,11 @@ class ViewsUiBaseViewsWizard implements ViewsWizardInterface {
 
     $this->build_form_style($form, $form_state, 'page');
     $form['displays']['page']['options']['items_per_page'] = array(
-      '#title' => t('Items per page'),
+      '#title' => t('Items to display'),
       '#type' => 'textfield',
       '#default_value' => '10',
       '#size' => 5,
-      '#element_validate' => array('_element_validate_integer_positive'),
+      '#element_validate' => array('views_element_validate_integer_positive'),
     );
     $form['displays']['page']['options']['link'] = array(
       '#title' => t('Create a menu link'),
@@ -263,7 +263,7 @@ class ViewsUiBaseViewsWizard implements ViewsWizardInterface {
       '#type' => 'textfield',
       '#default_value' => '5',
       '#size' => 5,
-      '#element_validate' => array('_element_validate_integer_positive'),
+      '#element_validate' => array('views_element_validate_integer_positive'),
     );
 
     return $form;
