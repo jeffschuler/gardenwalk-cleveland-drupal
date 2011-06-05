@@ -8,8 +8,10 @@
  *  Implements hook_init().
  */
 function dismiss_messages_init() {
-  drupal_add_css(drupal_get_path('module', 'dismiss_messages') . '/dismiss_messages.css');
-  drupal_add_js(drupal_get_path('module', 'dismiss_messages') . '/dismiss_messages.js');
+  if (user_access('dismiss messages')) {
+    drupal_add_css(drupal_get_path('module', 'dismiss_messages') . '/dismiss_messages.css');
+    drupal_add_js(drupal_get_path('module', 'dismiss_messages') . '/dismiss_messages.js');
+  }
 }
 
 /*
@@ -36,7 +38,9 @@ function theme_dismiss_messages($variables) {
   );
   foreach (drupal_get_messages($display) as $type => $messages) {
     $output .= "<div class=\"messages $type\">\n";
-    $output .= "<div class=\"dismiss-message\"><a href=\"#\"><img alt=\"close\" title=\"hide this message\" src=\"/$close_button_image\" /></a></div>\n";
+    if (user_access('dismiss messages')) {
+      $output .= "<div class=\"dismiss-message\"><a href=\"#\"><img alt=\"close\" title=\"hide this message\" src=\"/$close_button_image\" /></a></div>\n";
+    }
     if (!empty($status_heading[$type])) {
       $output .= '<h2 class="element-invisible">' . $status_heading[$type] . "</h2>\n";
     }
@@ -57,4 +61,16 @@ function theme_dismiss_messages($variables) {
   ';
 
   return $output;
+}
+
+/**
+ * Implements hook_permission().
+ */
+function dismiss_messages_permission() {
+  return array(
+    'dismiss messages' => array(
+      'title' => t('Dismiss Messages'),
+      'description' => t('Manually hide Drupal\'s status messages that appear on the page.'),
+    ),
+  );
 }
