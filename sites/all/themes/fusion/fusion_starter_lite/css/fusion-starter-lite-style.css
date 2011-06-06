@@ -426,10 +426,10 @@ div.comment ul.links a {
 }
 
 /* Alternating styles for even/odd comments */
-.comments div.odd {
+.comments .comment.odd {
 }
 
-.comments div.even {
+.comments .comment.even {
 }
 
 /* A special highlight style for a comment by the author of the node */
