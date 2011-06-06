@@ -125,11 +125,7 @@ class views_plugin_style_kml extends views_plugin_style {
     $renders = array();
     $keys = array_keys($this->view->field);
 
-    foreach ($rows as $count => $row) {
-      foreach ($keys as $id) {
-        $renders[$count][$id] = $this->view->field[$id]->theme($row);
-      }
-    }
+    $renders = $this->render_fields($rows);
 
     $points = array();
     foreach ($renders as $id => $row) {
