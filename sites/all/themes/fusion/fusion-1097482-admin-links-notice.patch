@@ -1,0 +1,107 @@
+From 02d0bc6167f24ba78dd4e9f57dc9b1ac50202f4a Mon Sep 17 00:00:00 2001
+From: Jason Yergeau <jason@storybynumbers.com>
+Date: Sat, 21 May 2011 18:58:01 -0300
+Subject: [PATCH] Issue #1097482: override for views-view.tpl.php was based on an older version of the file, and threw a notice due to missing $admin_links variable.  This template is no longer needed in D7 now that content is a region instead of a variable.  Its original intension was to add a gutter.
+
+---
+ fusion_core/views-view--page.tpl.php |   88 ----------------------------------
+ 1 files changed, 0 insertions(+), 88 deletions(-)
+ delete mode 100644 fusion_core/views-view--page.tpl.php
+
+diff --git a/fusion_core/views-view--page.tpl.php b/fusion_core/views-view--page.tpl.php
+deleted file mode 100644
+index 07da387..0000000
+--- a/fusion_core/views-view--page.tpl.php
++++ /dev/null
+@@ -1,88 +0,0 @@
+-<?php
+-
+-/**
+- * @file views-view.tpl.php
+- * Main view template
+- *
+- * Variables available:
+- * - $css_name: A css-safe version of the view name.
+- * - $header: The view header
+- * - $footer: The view footer
+- * - $rows: The results of the view query, if any
+- * - $empty: The empty text to display if the view is empty
+- * - $pager: The pager next/prev links to display, if any
+- * - $exposed: Exposed widget form/info to display
+- * - $feed_icon: Feed icon to display, if any
+- * - $more: A link to view more, if any
+- * - $admin_links: A rendered list of administrative links
+- * - $admin_links_raw: A list of administrative links suitable for theme('links')
+- *
+- * @ingroup views_templates
+- */
+-
+-/**
+- * <div class="inner content"> classes added for Fusion theming
+- */
+-?>
+-<div id="view-id-<?php print $name; ?>-<?php print $display_id; ?>" class="view view-<?php print $css_name; ?> view-id-<?php print $name; ?> view-display-id-<?php print $display_id; ?> view-dom-id-<?php print $dom_id; ?>">
+-  <?php if ($admin_links): ?>
+-    <div class="views-admin-links views-hide">
+-      <?php print $admin_links; ?>
+-    </div>
+-  <?php endif; ?>
+-  <div class="inner content">
+-    <?php if ($header): ?>
+-      <div class="view-header">
+-        <?php print $header; ?>
+-      </div>
+-    <?php endif; ?>
+-
+-    <?php if ($exposed): ?>
+-      <div class="view-filters">
+-        <?php print $exposed; ?>
+-      </div>
+-    <?php endif; ?>
+-
+-    <?php if ($attachment_before): ?>
+-      <div class="attachment attachment-before">
+-        <?php print $attachment_before; ?>
+-      </div>
+-    <?php endif; ?>
+-
+-    <?php if ($rows): ?>
+-      <div class="view-content">
+-        <?php print $rows; ?>
+-      </div>
+-    <?php elseif ($empty): ?>
+-      <div class="view-empty">
+-        <?php print $empty; ?>
+-      </div>
+-    <?php endif; ?>
+-
+-    <?php if ($pager): ?>
+-      <?php print $pager; ?>
+-    <?php endif; ?>
+-
+-    <?php if ($attachment_after): ?>
+-      <div class="attachment attachment-after">
+-        <?php print $attachment_after; ?>
+-      </div>
+-    <?php endif; ?>
+-
+-    <?php if ($more): ?>
+-      <?php print $more; ?>
+-    <?php endif; ?>
+-
+-    <?php if ($footer): ?>
+-      <div class="view-footer">
+-        <?php print $footer; ?>
+-      </div>
+-    <?php endif; ?>
+-
+-    <?php if ($feed_icon): ?>
+-      <div class="feed-icon">
+-        <?php print $feed_icon; ?>
+-      </div>
+-    <?php endif; ?>
+-  </div><!-- /views-inner -->
+-</div> <?php /* class view */ ?>
+-- 
+1.7.3.4
+
