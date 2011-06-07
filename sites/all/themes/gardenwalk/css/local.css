@@ -391,8 +391,36 @@ h1, h2, h3, h4, h5, h6 {
 .pane-views-headquarters-block-2 h2.block-title {
   margin-top: 0; }
 
+.pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-header p {
+  margin-bottom: 0; }
+
 .pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content {
+  color: #059347; }
+
+/* Panel 1-Column Layout
+-------------------------------------------------------------- */
+.panel-display.panel-1col .panel-separator {
+  margin-top: 30px; }
+
+/* Special Features
+-------------------------------------------------------------- */
+.view-id-attractions.view-display-id-page_3 td {
+  vertical-align: top;
+  padding: 10px; }
+
+.view-id-attractions.view-display-id-page_3 td.col-first {
+  padding-left: 0; }
+
+.view-id-attractions.view-display-id-page_3 td.col-last {
+  padding-right: 0; }
+
+.view-id-attractions.view-display-id-page_3 .views-field-title {
+  font-family: "museo-1", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+  font-size: 130%;
   color: #615fc1; }
+
+.view-id-attractions.view-display-id-page_3 .views-field-street {
+  color: #059347; }
 
 /* Maps
 -------------------------------------------------------------- */
