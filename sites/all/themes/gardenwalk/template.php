@@ -43,6 +43,7 @@ function gardenwalk_preprocess_page(&$vars) {
         case 'story':
         case 'garden':
         case 'urban_farm':
+        case 'community_garden':
           $types = node_type_get_types();
           $vars['type_title_prefix'] = check_plain($types[$node->type]->name) . ": ";
           break;
