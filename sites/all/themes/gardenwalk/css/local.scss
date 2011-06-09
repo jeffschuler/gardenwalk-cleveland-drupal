@@ -469,22 +469,22 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Special Features
 -------------------------------------------------------------- */
-.view-id-attractions.view-display-id-page_3 td {
+.location-grid td {
   vertical-align: top;
-  padding: 10px;
+  padding: 20px 10px;
 }
-.view-id-attractions.view-display-id-page_3 td.col-first {
+.location-grid td.col-first {
   padding-left: 0;
 }
-.view-id-attractions.view-display-id-page_3 td.col-last {
+.location-grid td.col-last {
   padding-right: 0;
 }
-.view-id-attractions.view-display-id-page_3 .views-field-title {
+.location-grid .views-field-title {
   font-family: $museo;
   font-size: 130%;
   color: $purple;
 }
-.view-id-attractions.view-display-id-page_3 .views-field-street {
+.location-grid .views-field-street {
   color: $green;
 }
 
