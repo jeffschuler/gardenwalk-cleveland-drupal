@@ -10,10 +10,20 @@ function gardenwalk_menu_link__primary_links(array $variables) {
   if ($element['#below']) {
     $sub_menu = drupal_render($element['#below']);
   }
-  $desc = "<div class='description'>" . t($variables['element']['#localized_options']['attributes']['title']) . "</div>";
+  // Menu item depth
+  $depth = isset($variables['element']['#original_link']['depth']) ? $variables['element']['#original_link']['depth'] : -1;
+  // Add description for top-level menu items only
+  $description = ($depth==1) ? "<div class='description'>" . t($variables['element']['#localized_options']['attributes']['title']) . "</div>" : '';
   $title = "<div class='title'>" . $element['#title'] . "</div>";
-  $output = l($title . $desc, $element['#href'], array_merge($element['#localized_options'], array('html'=>TRUE)));
+  $output = l($title . $description, $element['#href'], array_merge($element['#localized_options'], array('html'=>TRUE)));
   return '<li' . drupal_attributes($element['#attributes']) . '>' . $output . $sub_menu . "</li>\n";
+}
+
+/**
+ * Secondary menu: Menu Block following active Primary with Superfish
+ */
+function gardenwalk_menu_tree__menu_block__4($variables) {
+  return '<ul class="menu sf-menu">' . $variables['tree'] . '</ul>';
 }
 
 function gardenwalk_form_alter(&$form, &$form_state, $form_id) {

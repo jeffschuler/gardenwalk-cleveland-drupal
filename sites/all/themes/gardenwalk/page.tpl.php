@@ -21,11 +21,11 @@
                 </div><!-- /header-site-info-inner -->
               </div><!-- /header-site-info -->
               <?php print render($page['header']); ?>
-              <?php print render($page['main_menu']); ?>
             </div><!-- /header-group-inner -->
           </div><!-- /header-group -->
         </div><!-- /header-group-wrapper -->
-        
+
+        <?php print render($page['main_menu']); ?>
         <?php print render($page['preface_top']); ?>
         
         <!-- main region: width = grid_width -->

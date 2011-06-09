@@ -164,7 +164,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 0;
   /* lower than [under] date banner #block-block-1 */ }
 
-/* Main Menu
+/* Main (Flowerpots) Menu
 --------------------- */
 #block-menu_block-2 {
   margin-bottom: 0;
@@ -216,9 +216,46 @@ h1, h2, h3, h4, h5, h6 {
 #block-menu_block-2 li a:active .description {
   color: #059347; }
 
-#block-menu_block-2 li a.active {
+#block-menu_block-2 li a.active,
+#block-menu_block-2 li a.active-trail {
   color: #615fc1;
   background-image: url("../images/menu-pot-active.png"); }
+
+/* Secondary Menu
+--------------------- */
+#main-menu {
+  background: white url("../images/dot-border-horiz-tan.png") no-repeat bottom center; }
+
+#main-menu-inner .block {
+  margin-bottom: 0; }
+
+#main-menu ul.menu {
+  margin: 0; }
+
+#main-menu ul.menu li {
+  padding: 0 10px 0; }
+
+#main-menu ul.menu li a {
+  padding: 10px 0 16px; }
+
+#main-menu ul.menu li a,
+#main-menu ul.menu li a:link,
+#main-menu ul.menu li a:visited {
+  color: #726965; }
+
+#main-menu ul.menu li a:active,
+#main-menu ul.menu li a:hover {
+  color: #f15b2a; }
+
+#main-menu ul.menu li a.active,
+#main-menu ul.menu li a.active-trail {
+  color: #615fc1; }
+
+#main-menu-wrapper ul ul {
+  display: inline; }
+
+#main-menu-wrapper ul ul li {
+  background-color: #f2ece9; }
 
 /* Main
 -------------------------------------------------------------- */
