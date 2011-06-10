@@ -38,6 +38,9 @@
 <head profile="<?php print $grddl_profile; ?>">
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
+  <meta name="keywords" content="cleveland,garden,walk,tour,ohio,community,urban,market,reimagining,flower,vegetable,map,neighborhood,harvard,lee,miles,hough,tremont,detroit,shoreway" />
+  <meta name="description" content="GardenWalk Cleveland is a free, self-guided tour of gardens, urban farms, vineyards and orchards -- on June 25th, 2011 -- in neighborhoods of Cleveland, Ohio. Neighborhoods selected for 2011 are: Hough, Tremont, Detroit Shoreway and Harvard/Lee/Miles. Tour at your own pace in each of the four designated Cleveland neighborhoods." />
+  <meta name="abstract" content="GardenWalk Cleveland is a free, self-guided tour of gardens, urban farms, vineyards and orchards -- on June 25th, 2011 -- in neighborhoods of Cleveland, Ohio." />
   <?php print $styles; ?>
   <?php print $scripts; ?>
   <link rel="apple-touch-icon" sizes="57x57" href="/sites/all/themes/gardenwalk/images/apple-touch-icon-57.png" />
