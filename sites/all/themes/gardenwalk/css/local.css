@@ -463,3 +463,47 @@ h1, h2, h3, h4, h5, h6 {
 -------------------------------------------------------------- */
 .openlayers-container {
   border: 1px solid #d3cccb; }
+
+.openlayers-popupbox {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: none repeat scroll 0 0 #1a1a1a;
+  opacity: 0.85;
+  border: 1px solid #666666;
+  color: white;
+  width: 300px;
+  z-index: 100000; }
+
+.openlayers-popupbox * {
+  opacity: 1.0; }
+
+.openlayers-popupbox h2.popup-title,
+.openlayers-popupbox .popup-content {
+  margin: 10px; }
+
+.openlayers-popupbox a.popup-close {
+  border: 1px solid #615fc1;
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  margin: 0;
+  padding: 0 2px 3px 3px;
+  text-transform: lowercase;
+  line-height: 13px;
+  font-size: 13px;
+  color: #aaa9dd !important; }
+
+.openlayers-popupbox h2.popup-title {
+  font-size: 11pt;
+  color: #cecdec !important;
+  color: #f15b2a !important; }
+
+.openlayers-popupbox h2.popup-title strong {
+  font-size: 13pt;
+  color: #059347 !important;
+  font-weight: normal; }
+
+.openlayers-popupbox .popup-pager,
+.openlayers-popupbox .popup-count {
+  display: none; }
