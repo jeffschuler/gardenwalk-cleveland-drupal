@@ -496,7 +496,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .openlayers-popupbox h2.popup-title {
   font-size: 11pt;
-  color: #cecdec !important;
   color: #f15b2a !important; }
 
 .openlayers-popupbox h2.popup-title strong {
@@ -507,3 +506,15 @@ h1, h2, h3, h4, h5, h6 {
 .openlayers-popupbox .popup-pager,
 .openlayers-popupbox .popup-count {
   display: none; }
+
+/* Small HQ Map on Front Page
+--------------------- */
+.pane-headquarters-small .openlayers-popupbox {
+  width: 150px; }
+
+.pane-headquarters-small .openlayers-popupbox h2.popup-title {
+  font-size: 11pt;
+  color: #059347 !important; }
+
+.pane-headquarters-small .openlayers-popupbox h2.popup-title strong {
+  color: #f15b2a !important; }

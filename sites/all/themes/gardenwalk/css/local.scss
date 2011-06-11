@@ -529,6 +529,7 @@ h1, h2, h3, h4, h5, h6 {
   color: $green;
 }
 
+
 /* Maps
 -------------------------------------------------------------- */
 .openlayers-container {
@@ -567,7 +568,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .openlayers-popupbox h2.popup-title {
   font-size: 11pt;
-  color: lighten($purple, 30%) !important;
   color: $orange !important;
 }
 .openlayers-popupbox h2.popup-title strong {
@@ -575,10 +575,20 @@ h1, h2, h3, h4, h5, h6 {
   color: $green !important;
   font-weight: normal;
 }
-.openlayers-popupbox .popup-content {
-  
-}
 .openlayers-popupbox .popup-pager,
 .openlayers-popupbox .popup-count {
   display: none;
+}
+
+/* Small HQ Map on Front Page
+--------------------- */
+.pane-headquarters-small .openlayers-popupbox {
+  width: 150px;
+}
+.pane-headquarters-small .openlayers-popupbox h2.popup-title {
+  font-size: 11pt;
+  color: $green !important;
+}
+.pane-headquarters-small .openlayers-popupbox h2.popup-title strong {
+  color: $orange !important;
 }
