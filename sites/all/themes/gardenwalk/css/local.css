@@ -510,7 +510,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Small HQ Map on Front Page
 --------------------- */
 .pane-headquarters-small .openlayers-popupbox {
-  width: 150px; }
+  left: 5px;
+  width: 225px; }
 
 .pane-headquarters-small .openlayers-popupbox h2.popup-title {
   font-size: 11pt;
