@@ -463,15 +463,17 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Sponsors Page
 -------------------------------------------------------------- */
-#view-id-sponsors-page_1 td {
+.view-sponsors.view-display-id-page_1 td {
   width: 25%;
-}
-#view-id-sponsors-page_1 h3 {
-  margin: 2em 0 1em;
-}
-#view-id-sponsors-page_1 .views-field-title {
-  font-size: .9em;
+  padding-bottom: 20px;
   vertical-align: bottom;
+}
+.view-sponsors.view-display-id-page_1 h3 {
+  margin: 50px 0 10px;
+}
+.view-sponsors.view-display-id-page_1 .views-field-title {
+  font-size: .85em;
+  margin-top: 10px;
 }
 
 
