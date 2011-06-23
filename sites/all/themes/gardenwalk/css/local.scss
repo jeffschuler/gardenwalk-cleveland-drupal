@@ -507,6 +507,21 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
+/* Printable Map Block (Front Page)
+-------------------------------------------------------------- */
+
+.view-id-printable_maps.view-display-id-block_1 ul {
+  margin-left: 0;
+}
+.view-id-printable_maps.view-display-id-block_1 li {
+  list-style-type: none;
+  }
+.view-id-printable_maps.view-display-id-block_1 .views-field-title a {
+  background: transparent url("../images/pdf-icon-16x16.png") no-repeat top left;
+  padding-left: 25px;
+}
+
+
 /* Printable Map Block (Neighborhood Page)
 -------------------------------------------------------------- */
 .pane-printable-maps-panel-pane-1 {
