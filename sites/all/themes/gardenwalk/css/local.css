@@ -361,6 +361,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Gardener Stories Pane (Neighborhood Page)
 -------------------------------------------------------------- */
+.pane-views-gardener-stories-block td {
+  vertical-align: top; }
+
 .pane-views-gardener-stories-block .views-row {
   clear: both;
   margin-bottom: 20px; }
