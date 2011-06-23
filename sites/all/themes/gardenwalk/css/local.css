@@ -436,6 +436,17 @@ h1, h2, h3, h4, h5, h6 {
 .pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content {
   color: #059347; }
 
+/* Printable Map Block (Neighborhood Page)
+-------------------------------------------------------------- */
+.pane-printable-maps-panel-pane-1 {
+  margin-top: 0;
+  background-color: #e5fef1;
+  font-weight: bold;
+  text-align: center;
+  font-size: 140%;
+  padding: 20px 0;
+  border: 1px dashed #9bfcc8; }
+
 /* Panel 1-Column Layout
 -------------------------------------------------------------- */
 .panel-display.panel-1col .panel-separator {
