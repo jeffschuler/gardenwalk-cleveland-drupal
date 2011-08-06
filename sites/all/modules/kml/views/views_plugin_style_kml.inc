@@ -13,8 +13,7 @@ class views_plugin_style_kml extends views_plugin_style {
    */
   function init(&$view, &$display, $options = NULL) {
     parent::init($view, $display, $options = NULL);
-    $this->feed_image = drupal_get_path('module', 'views_kml') .
-      '/images/kml.png';
+    $this->feed_image = drupal_get_path('module', 'kml') . '/images/kml.png';
   }
 
   /**
@@ -25,8 +24,15 @@ class views_plugin_style_kml extends views_plugin_style {
    */
   function attach_to($display_id, $path, $title) {
     $url_options = array('html' => TRUE);
+
+    // Include exposed filters
+    $query = $this->view->get_exposed_input();
+    if ($query) {
+      $url_options['query'] = $query;
+    }
+
     $image = theme('image', array('path' => $this->feed_image));
-    $this->view->feed_icon .= l($image, $path, $url_options);
+    $this->view->feed_icon .= l($image, $this->view->get_url(NULL, $path), $url_options);
   }
 
   function option_definition() {
@@ -50,7 +56,6 @@ class views_plugin_style_kml extends views_plugin_style {
       'default' => isset($this->filename) ? $this->filename : '',
       'translatable' => FALSE,
     );
-
 
     return $options;
   }
@@ -96,7 +101,8 @@ class views_plugin_style_kml extends views_plugin_style {
         '#title' => t('Filename'),
         '#default_value' => $this->options['filename'],
         '#description' => t('The filename that will be suggested to the browser
-        for downloading purposes.'),
+        for downloading purposes. Leave empty to use the view title. ".kml"
+        will be automatically appended.'),
       );
       $form['fields'] = array(
         '#type' => 'fieldset',
