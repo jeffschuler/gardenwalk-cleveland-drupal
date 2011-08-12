@@ -1,0 +1,59 @@
+diff --git a/kml.module b/kml.module
+index 13a0191..1233658 100644
+--- a/kml.module
++++ b/kml.module
+@@ -27,6 +27,11 @@ function kml_theme() {
+       'template' => 'kml-placemark',
+       'path' => $path . "/views",
+     ),
++    'kml_feed_image' => array(
++      'arguments' => array(),
++      'file' => 'kml_views.theme.inc',
++      'path' => $path . "/views",
++    ),
+     'kml_style' => array(
+       'arguments' => array('points' => array()),
+       'file' => 'kml_style.theme.inc',
+diff --git a/views/kml_views.theme.inc b/views/kml_views.theme.inc
+index 460e03f..7481ab8 100644
+--- a/views/kml_views.theme.inc
++++ b/views/kml_views.theme.inc
+@@ -52,3 +52,11 @@ function theme_kml_feed_icon($url, $title, $icon) {
+       .'" class="feed-icon">'. $image .'</a>';
+   }
+ }
++
++/**
++ * Theme function for kml feed image.
++ */
++function theme_kml_feed_image() {
++  $icon = drupal_get_path('module', 'kml').'/images/kml.png';
++  return theme('image', $icon, t('Download KML Feed'));
++}
+\ No newline at end of file
+diff --git a/views/views_plugin_style_kml.inc b/views/views_plugin_style_kml.inc
+index 3ca12db..7c41628 100644
+--- a/views/views_plugin_style_kml.inc
++++ b/views/views_plugin_style_kml.inc
+@@ -8,12 +8,9 @@ class views_plugin_style_kml extends views_plugin_style {
+ 
+   /**
+    * Initialize plugin.
+-   *
+-   * Set feed image for shared rendering later.
+    */
+   function init(&$view, &$display, $options = NULL) {
+     parent::init($view, $display, $options = NULL);
+-    $this->feed_image = drupal_get_path('module', 'kml') . '/images/kml.png';
+   }
+ 
+   /**
+@@ -24,7 +21,7 @@ class views_plugin_style_kml extends views_plugin_style {
+    */
+   function attach_to($display_id, $path, $title) {
+     $url_options = array('html' => TRUE);
+-    $image = theme('image', $this->feed_image);
++    $image = theme('kml_feed_image');
+     $this->view->feed_icon .= l($image, $path, $url_options);
+   }
+ 

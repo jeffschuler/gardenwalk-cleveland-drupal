@@ -8,12 +8,9 @@ class views_plugin_style_kml extends views_plugin_style {
 
   /**
    * Initialize plugin.
-   *
-   * Set feed image for shared rendering later.
    */
   function init(&$view, &$display, $options = NULL) {
     parent::init($view, $display, $options = NULL);
-    $this->feed_image = drupal_get_path('module', 'kml') . '/images/kml.png';
   }
 
   /**
@@ -31,7 +28,7 @@ class views_plugin_style_kml extends views_plugin_style {
       $url_options['query'] = $query;
     }
 
-    $image = theme('image', array('path' => $this->feed_image));
+    $image = theme('kml_feed_image');
     $this->view->feed_icon .= l($image, $this->view->get_url(NULL, $path), $url_options);
   }
 
