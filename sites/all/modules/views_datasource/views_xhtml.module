@@ -1,16 +1,18 @@
 <?php
-// $Id: views_xhtml.module,v 1.1.4.12 2010/07/15 07:34:48 allisterbeharry Exp $
-
 /**
  * @file
  * Module definition for views_xhtml
  *
  * @see views_xhtml.views.inc
  */
+
+/**
+ * Implements hook_views_api().
+ */
 function views_xhtml_views_api() {
   return array(
     'api' => '2.0',
-    'path' => drupal_get_path('module', 'views_xhtml')
+    'path' => drupal_get_path('module', 'views_xhtml') . '/views',
   );
 }
 
@@ -23,7 +25,7 @@ function views_xhtml_views_api() {
  */
 function _views_xhtml_render_multiple_field($field, $values) {
     $options = $field->options;
-	  // If this is not a grouped field, use content_handler_field::render().
+    // If this is not a grouped field, use content_handler_field::render().
     if (!$field->defer_query) {
       return $field->render($values);
     }
@@ -72,7 +74,7 @@ function _views_xhtml_render_multiple_field($field, $values) {
             $output = content_format($content_field, $item, $formatter_name, $node);
             if (!empty($output)) {
               $rendered[++$n] = $field->render_link($output, (object) array('nid' => $nid));
-              
+
             }
           }
         }
@@ -97,69 +99,69 @@ function _views_xhtml_render_multiple_field($field, $values) {
     return '';
 }
 /**
- * Takes each field from a row object and renders the field as determined by the field's theme 
- * 
+ * Takes each field from a row object and renders the field as determined by the field's theme
+ *
  * @param $view
- * 	 View the row belongs to 
+ *   View the row belongs to
  * @param $row
  *   Row object
  * @return array
- *   Object containing all the raw and rendered fields  
+ *   Object containing all the raw and rendered fields
  */
 
 function _views_xhtml_render_fields($view, $row) {
-	$field_ids = array_keys($view->field);
+  $field_ids = array_keys($view->field);
   $rendered_fields = array();
-  foreach ($field_ids as $id) {  
-  	$field = $view->field[$id];
+  foreach ($field_ids as $id) {
+    $field = $view->field[$id];
     $field_is_multiple = FALSE;
     $field_raw = array();
-    if ((isset($field->options['multiple']['group']))&& isset($field->field_values)) {    	
-    	$field_output = _views_xhtml_render_multiple_field($field, $row);
-    	$n = 0;
-    	if (is_array($field_output)) {
-    	  foreach ($field->field_values[$row->{$field->field_alias}] as $item) {    	  	
-          $field_raw[++$n] = $item["value"];            		
-    	  }
-    	  $field_is_multiple = TRUE;
-    	}
-    	else $field_raw = $view->field[$field->options['id']]->advanced_render($row);     	 
-    }    
+    if ((isset($field->options['multiple']['group']))&& isset($field->field_values)) {
+      $field_output = _views_xhtml_render_multiple_field($field, $row);
+      $n = 0;
+      if (is_array($field_output)) {
+        foreach ($field->field_values[$row->{$field->field_alias}] as $item) {
+          $field_raw[++$n] = $item["value"];
+        }
+        $field_is_multiple = TRUE;
+      }
+      else $field_raw = $view->field[$field->options['id']]->advanced_render($row);
+    }
     else {
       $field_output = $view->field[$field->options['id']]->advanced_render($row);
       $field_raw = (isset($view->field[$id]->field_alias) && isset($row->{$view->field[$id]->field_alias})) ? $row->{$view->field[$id]->field_alias} : NULL;
     }
-    
+
     $img_match = array();
     $src_match = array();
     if (is_array($field_output)) {
-      foreach ($field_output as $i=>$f) {
+      foreach ($field_output as $i => $f) {
         if (preg_match("/<img[^>]+>/i", $f, $img_match)) {
-    	    if (preg_match('/(src)="([^"]*)"/i', $img_match[0], $src_match))
-    	    $field_output[$i] = ($src_match[2]);
-        }      	
-      }        	
+          if (preg_match('/(src)="([^"]*)"/i', $img_match[0], $src_match))
+          $field_output[$i] = ($src_match[2]);
+        }
+      }
     }
     else {
       if (preg_match("/<img[^>]+>/i", $field_output, $img_match)) {
-    	  if (preg_match('/(src)="([^"]*)"/i', $img_match[0], $src_match))
-    	    $field_output = ($src_match[2]);
-      }      	    	
+        if (preg_match('/(src)="([^"]*)"/i', $img_match[0], $src_match))
+          $field_output = ($src_match[2]);
+      }
     }
-          
+
     if (empty($field->options['exclude']) && ($field_output != "") && !empty($field_output)) {
-    	$object = new stdClass();      
+      $object = new stdClass();
       $object->id = $id;
       $object->content = $field_output;
       $object->raw = $field_raw;
       $object->class = drupal_clean_css_identifier(strtolower($id));
       $object->label = check_plain($view->field[$id]->label());
-      $object->is_multiple = $field_is_multiple;       
-      $rendered_fields[$id] = $object;      
-    } 
+      $object->is_multiple = $field_is_multiple;
+      $rendered_fields[$id] = $object;
+    }
   }
 
-  return $rendered_fields;  	
+  return $rendered_fields;
 }
 
 /**
@@ -179,7 +181,7 @@ function _views_xhtml_strip_illegal_xml_attribute_value_chars($input) {
 
 
 /**
- * Strips characters not matching the xhtml Name production: 
+ * Strips characters not matching the xhtml Name production:
  *
  * @param $input
  *   String to process.
@@ -198,39 +200,41 @@ function _views_xhtml_strip_illegal_xml_name_chars($input) {
  * @return unknown_type
  */
 function _views_xhtml_format_author($username) {
-	$author = array();
-	if (!$username) {
-		$author["name"] = variable_get('anonymous', ('Anonymous'));
-		$author["email"] = variable_get('site_mail', 'none@none.info');
-		return $author;
-	}
-	if (is_numeric($username)) {
-		$user = user_load(array('uid'=>$username));
-	}
-	else $user = user_load(array('name'=>$username));
-	if (!$user) {
-		//$author["name"] = variable_get('anonymous', ('Anonymous'));
-		//$author["name"] = variable_get('anonymous', ('Anonymous'));
-		$author["name"] = $username;
-		$author["email"] = variable_get('site_mail', 'none@none.info');
-		return $author;
-	}
-	if (!module_exists("profile")) {
-		$author["name"] = $username;
-		$author["email"] = check_plain($user->mail);
-		return $author;
-	}
-	else {
-	  profile_load_profile($user);
-	  $author["name"] = check_plain(($user->profile_name ? $user->profile_name : $username));
-	  $author["email"] = check_plain($user->mail);
+  $author = array();
+  if (!$username) {
+    $author["name"] = variable_get('anonymous', ('Anonymous'));
+    $author["email"] = variable_get('site_mail', 'none@none.info');
+    return $author;
+  }
+  if (is_numeric($username)) {
+    $user = user_load(array('uid' => $username));
+  }
+  else {
+    $user = user_load(array('name' => $username));
+  }
+  if (!$user) {
+    //$author["name"] = variable_get('anonymous', ('Anonymous'));
+    //$author["name"] = variable_get('anonymous', ('Anonymous'));
+    $author["name"] = $username;
+    $author["email"] = variable_get('site_mail', 'none@none.info');
+    return $author;
+  }
+  if (!module_exists("profile")) {
+    $author["name"] = $username;
+    $author["email"] = check_plain($user->mail);
+    return $author;
+  }
+  else {
+    profile_load_profile($user);
+    $author["name"] = check_plain(($user->profile_name ? $user->profile_name : $username));
+    $author["email"] = check_plain($user->mail);
     if (user_access('access user profiles')) {
       $author['uri'] = url('user/' . $user->uid, array('absolute' => TRUE));
-    } 	
-	  return $author;
-	}
+    }
+    return $author;
+  }
 }
-   
+
 
 /**
  * If input is a serialized date array, return a date string
@@ -253,9 +257,9 @@ function views_xhtml_is_date($input) {
 **/
 
 function _views_xhtml_debug_stop($var) {
-	var_dump($var);
-	module_Invoke_all('exit');
-	exit;
+  var_dump($var);
+  module_Invoke_all('exit');
+  exit;
 }
 
 
