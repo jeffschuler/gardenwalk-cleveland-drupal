@@ -101,7 +101,7 @@ function views_get_table_join($table, $base_table) {
   }
 
   // DEBUG -- identify missing handlers
-  vpr("Missing join: $table $base_table");
+  vpr("Missing join: @table @base_table", array('@table' => $table, '@base_table' => $base_table));
 }
 
 /**
@@ -146,6 +146,16 @@ class views_handler extends views_object {
   var $query = NULL;
 
   /**
+   * The type of the handler, for example filter/footer/field.
+   */
+  var $handler_type = NULL;
+
+  /**
+   * The alias of the table of this handler which is used in the query.
+   */
+  public $table_alias;
+
+  /**
    * init the handler with necessary data.
    * @param $view
    *   The $view object this handler is attached to.
@@ -182,7 +192,7 @@ class views_handler extends views_object {
       $display_id,
       $this->handler_type,
       $options['table'],
-      $options['field']
+      $options['id']
     );
 
     $this->unpack_options($this->options, $options);
@@ -288,6 +298,43 @@ class views_handler extends views_object {
   }
 
   /**
+   * Transform a string by a certain method.
+   *
+   * @param $string
+   *    The input you want to transform.
+   * @param $option
+   *    How do you want to transform it, possible values:
+   *      - upper: Uppercase the string.
+   *      - lower: lowercase the string.
+   *      - ucfirst: Make the first char uppercase.
+   *      - ucwords: Make each word in the string uppercase.
+   *
+   * @return string
+   *    The transformed string.
+   */
+  function case_transform($string, $option) {
+    global $multibyte;
+
+    switch ($option) {
+      default:
+        return $string;
+      case 'upper':
+        return drupal_strtoupper($string);
+      case 'lower':
+        return drupal_strtolower($string);
+      case 'ucfirst':
+        return drupal_strtoupper(drupal_substr($string, 0, 1)) . drupal_substr($string, 1);
+      case 'ucwords':
+        if ($multibyte == UNICODE_MULTIBYTE) {
+          return mb_convert_case($string, MB_CASE_TITLE);
+        }
+        else {
+          return ucwords($string);
+        }
+    }
+  }
+
+  /**
    * Validate the options form.
    */
   function options_validate(&$form, &$form_state) { }
@@ -319,6 +366,8 @@ class views_handler extends views_object {
       '#collapsed' => TRUE,
       '#weight' => 150,
     );
+    // Allow to alter the default values brought into the form.
+    drupal_alter('views_handler_options', $this->options, $view);
   }
 
   /**
@@ -328,7 +377,13 @@ class views_handler extends views_object {
   function options_submit(&$form, &$form_state) { }
 
   /**
-   * Provide a form for groupby settings.
+   * Provides the handler some groupby.
+   */
+  function use_group_by() {
+    return TRUE;
+  }
+  /**
+   * Provide a form for aggregation settings.
    */
   function groupby_form(&$form, &$form_state) {
     $view = &$form_state['view'];
@@ -338,7 +393,7 @@ class views_handler extends views_object {
     $id = $form_state['id'];
 
     $form['#title'] = check_plain($view->display[$display_id]->display_title) . ': ';
-    $form['#title'] .= t('Configure group settings for @type %item', array('@type' => $types[$type]['lstitle'], '%item' => $this->ui_name()));
+    $form['#title'] .= t('Configure aggregation settings for @type %item', array('@type' => $types[$type]['lstitle'], '%item' => $this->ui_name()));
 
     $form['#section'] = $display_id . '-' . $type . '-' . $id;
 
@@ -350,9 +405,9 @@ class views_handler extends views_object {
 
     $form['group_type'] = array(
       '#type' => 'select',
-      '#title' => t('Group type'),
+      '#title' => t('Aggregation type'),
       '#default_value' => $this->options['group_type'],
-      '#description' => t('Select the grouping function to use on this field.'),
+      '#description' => t('Select the aggregation function to use on this field.'),
       '#options' => $group_types,
     );
   }
@@ -686,7 +741,7 @@ class views_many_to_one_helper {
    */
   function add_table($join = NULL, $alias = NULL) {
     // This is used for lookups in the many_to_one table.
-    $field = $this->handler->table . '.' . $this->handler->field;
+    $field = $this->handler->relationship . '_' . $this->handler->table . '.' . $this->handler->field;
 
     if (empty($join)) {
       $join = $this->get_join();
@@ -739,7 +794,7 @@ class views_many_to_one_helper {
    * it will cooperate with other arguments if possible.
    */
   function summary_join() {
-    $field = $this->handler->table . '.' . $this->handler->field;
+    $field = $this->handler->relationship . '_' . $this->handler->table . '.' . $this->handler->field;
     $join = $this->get_join();
 
     // shortcuts
@@ -779,13 +834,15 @@ class views_many_to_one_helper {
     if (!isset($this->handler->table_alias)) {
       // Case 1: Operator is an 'or' and we're not reducing duplicates.
       // We hence get the absolute simplest:
-      $field = $this->handler->table . '.' . $this->handler->field;
+      $field = $this->handler->relationship . '_' . $this->handler->table . '.' . $this->handler->field;
       if ($this->handler->operator == 'or' && empty($this->handler->options['reduce_duplicates'])) {
         if (empty($this->handler->options['add_table']) && empty($this->handler->view->many_to_one_tables[$field])) {
           // query optimization, INNER joins are slightly faster, so use them
           // when we know we can.
           $join = $this->get_join();
-          $join->type = 'INNER';
+          if (isset($join)) {
+            $join->type = 'INNER';
+          }
           $this->handler->table_alias = $this->handler->query->ensure_table($this->handler->table, $this->handler->relationship, $join);
           $this->handler->view->many_to_one_tables[$field] = $this->handler->value;
         }
@@ -978,7 +1035,7 @@ function views_break_phrase_string($str, &$handler = NULL) {
     $handler->operator = 'or';
     $handler->value = preg_split('/[+ ]/', $str);
   }
-  else if (preg_match('/^(\w+,)*\w+$/', $str)) {
+  else if (preg_match('/^((\w|\s)+,)*(\w|\s)+$/', $str)) {
     $handler->operator = 'and';
     $handler->value = explode(',', $str);
   }
@@ -1134,6 +1191,11 @@ function views_date_sql_field($field, $field_type = 'int', $set_offset = NULL) {
         $field = "($field + INTERVAL '$offset_seconds SECONDS')";
       }
       return $field;
+    case 'sqlite':
+      if (!empty($offset)) {
+        $field = "($field + '$offset_seconds')";
+      }
+      return $field;
   }
 }
 
@@ -1200,6 +1262,27 @@ function views_date_sql_format($format, $field, $field_type = 'int', $set_offset
         );
       $format = strtr($format, $replace);
       return "TO_CHAR($field, '$format')";
+    case 'sqlite':
+      $replace = array(
+        'Y' => '%Y', // 4 digit year number
+        'y' => '%Y', // no format for 2 digit year number
+        'M' => '%m', // no format for 3 letter month name
+        'm' => '%m', // month number with leading zeros
+        'n' => '%m', // no format for month number without leading zeros
+        'F' => '%m', // no format for full month name
+        'D' => '%d', // no format for 3 letter day name
+        'd' => '%d', // day of month number with leading zeros
+        'l' => '%d', // no format for full day name
+        'j' => '%d', // no format for day of month number without leading zeros
+        'W' => '%W', // ISO week number
+        'H' => '%H', // 24 hour hour with leading zeros
+        'h' => '%H', // no format for 12 hour hour with leading zeros
+        'i' => '%M', // minutes with leading zeros
+        's' => '%S', // seconds with leading zeros
+        'A' => '', // no format for  AM/PM
+      );
+      $format = strtr($format, $replace);
+      return "strftime('$format', $field, 'unixepoch')";
   }
 }
 
@@ -1290,11 +1373,10 @@ function views_date_sql_extract($extract_type, $field, $field_type = 'int', $set
  *     parent::construct($table, $left_table, $left_field, $field, $extra, $type);
  *   }
  *
- *   function join($table, &$query) {
- *     $output = parent::join($table, $query);
+ *   function build_join($select_query, $table, $view_query) {
+ *     $this->extra = 'foo.bar = baz.boing';
+ *     parent::build_join($select_query, $table, $view_query);
  *   }
- *   $output .= "AND foo.bar = baz.boing";
- *   return $output;
  * }
  * @endcode
  */
@@ -1322,7 +1404,7 @@ function views_date_sql_extract($extract_type, $field, $field_type = 'int', $set
  *   - - operator: defaults to =
  *   - - value: Must be set. If an array, operator will be defaulted to IN.
  *   - - numeric: If true, the value will not be surrounded in quotes.
- *   - extra type: How all the extras will be combined. Either AND or OR. Defaults to AND.
+ *   - - extra type: How all the extras will be combined. Either AND or OR. Defaults to AND.
  */
 class views_join {
   /**
@@ -1370,7 +1452,7 @@ class views_join {
    */
   function build_join($select_query, $table, $view_query) {
     if (empty($this->definition['table formula'])) {
-      $right_table = "{" . $this->table . "}";
+      $right_table = $this->table;
     }
     else {
       $right_table = $this->definition['table formula'];
@@ -1435,6 +1517,98 @@ class views_join {
           }
 
           $extras[] = "$join_table$info[field] $operator $placeholder";
+        }
+
+        if ($extras) {
+          if (count($extras) == 1) {
+            $condition .= ' AND ' . array_shift($extras);
+          }
+          else {
+            $condition .= ' AND (' . implode(' ' . $this->extra_type . ' ', $extras) . ')';
+          }
+        }
+      }
+      elseif ($this->extra && is_string($this->extra)) {
+        $condition .= " AND ($this->extra)";
+      }
+    }
+
+    $select_query->addJoin($this->type, $right_table, $table['alias'], $condition, $arguments);
+  }
+}
+
+/**
+ * Join handler for relationships that join with a subquery as the left field.
+ * eg:
+ *  LEFT JOIN node node_term_data ON ([YOUR SUBQUERY HERE]) = node_term_data.nid 
+ *
+ * join definition
+ *   same as views_join class above, except:
+ *   - left_query: The subquery to use in the left side of the join clause.
+ */
+class views_join_subquery extends views_join {
+  function construct($table = NULL, $left_table = NULL, $left_field = NULL, $field = NULL, $extra = array(), $type = 'LEFT') {
+    parent::construct($table, $left_table, $left_field, $field, $extra, $type);
+    $this->left_query = $this->definition['left_query'];
+  }
+  
+  /**
+   * Build the SQL for the join this object represents.
+   *
+   * @param $select_query
+   *   An implementation of SelectQueryInterface.
+   * @param $table
+   *   The base table to join.
+   * @param $view_query
+   *   The source query, implementation of views_plugin_query.
+   * @return
+   *
+   */
+  function build_join($select_query, $table, $view_query) {
+    if (empty($this->definition['table formula'])) {
+      $right_table = "{" . $this->table . "}";
+    }
+    else {
+      $right_table = $this->definition['table formula'];
+    }
+
+    // Add our join condition, using a subquery on the left instead of a field.
+    $condition = "($this->left_query) = $table[alias].$this->field";
+    $arguments = array();
+
+    // Tack on the extra.
+    // This is just copied verbatim from the parent class, which itself has a bug: http://drupal.org/node/1118100
+    if (isset($this->extra)) {
+      if (is_array($this->extra)) {
+        $extras = array();
+        foreach ($this->extra as $info) {
+          $extra = '';
+          // Figure out the table name. Remember, only use aliases provided
+          // if at all possible.
+          $join_table = '';
+          if (!array_key_exists('table', $info)) {
+            $join_table = $table['alias'] . '.';
+          }
+          elseif (isset($info['table'])) {
+            $join_table = $info['table'] . '.';
+          }
+
+          $placeholder = ':views_join_condition_' . $select_query->nextPlaceholder();
+
+          if (is_array($info['value'])) {
+            $operator = !empty($info['operator']) ? $info['operator'] : 'IN';
+            // Transform from IN() notation to = notation if just one value.
+            if (count($info['value']) == 1) {
+              $info['value'] = array_shift($info['value']);
+              $operator = $operator == 'NOT IN' ? '!=' : '=';
+            }
+          }
+          else {
+            $operator = !empty($info['operator']) ? $info['operator'] : '=';
+          }
+
+          $extras[] = "$join_table$info[field] $operator $placeholder";
+          $arguments[$placeholder] = $info['value'];
         }
 
         if ($extras) {

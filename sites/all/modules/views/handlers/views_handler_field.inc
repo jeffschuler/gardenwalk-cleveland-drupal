@@ -49,10 +49,6 @@ class views_handler_field extends views_handler {
 
   function init(&$view, &$options) {
     parent::init($view, $options);
-
-    $this->options += array(
-      'exclude' => FALSE,
-    );
   }
 
   /**
@@ -234,17 +230,17 @@ class views_handler_field extends views_handler {
       $elements = variable_get('views_field_rewrite_elements', array(
         '' => t('- Use default -'),
         '0' => t('- None -'),
-        'div' => t('DIV'),
-        'span' => t('SPAN'),
-        'h1' => t('H1'),
-        'h2' => t('H2'),
-        'h3' => t('H3'),
-        'h4' => t('H4'),
-        'h5' => t('H5'),
-        'h6' => t('H6'),
-        'p' => t('P'),
-        'strong' => t('STRONG'),
-        'em' => t('EM'),
+        'div' => 'DIV',
+        'span' => 'SPAN',
+        'h1' => 'H1',
+        'h2' => 'H2',
+        'h3' => 'H3',
+        'h4' => 'H4',
+        'h5' => 'H5',
+        'h6' => 'H6',
+        'p' => 'P',
+        'strong' => 'STRONG',
+        'em' => 'EM',
       ));
     }
 
@@ -354,6 +350,7 @@ class views_handler_field extends views_handler {
         'absolute' => array('default' => '', 'translatable' => FALSE),
         'external' => array('default' => '', 'translatable' => FALSE),
         'replace_spaces' => array('default' => '', 'translatable' => FALSE),
+        'path_case' => array('default' => 'none', 'translatable' => FALSE),
         'trim_whitespace' => array('default' => FALSE),
         'alt' => array('default' => '', 'translatable' => TRUE),
         'rel' => array('default' => ''),
@@ -386,6 +383,7 @@ class views_handler_field extends views_handler {
     $options['empty'] = array('default' => '', 'translatable' => TRUE);
     $options['hide_empty'] = array('default' => FALSE);
     $options['empty_zero'] = array('default' => FALSE);
+    $options['hide_alter_empty'] = array('default' => TRUE);
 
     return $options;
   }
@@ -547,7 +545,7 @@ class views_handler_field extends views_handler {
 
     $form['element_wrapper_type_enable'] = array(
       '#type' => 'checkbox',
-      '#title' => t('Customize field and label HTML'),
+      '#title' => t('Customize field and label wrapper HTML'),
       '#default_value' => !empty($this->options['element_wrapper_type']) || (string) $this->options['element_wrapper_type'] == '0' || !empty($this->options['element_wrapper_class']) || (string) $this->options['element_wrapper_class'] == '0',
       '#fieldset' => 'style_settings',
     );
@@ -556,7 +554,7 @@ class views_handler_field extends views_handler {
       '#options' => $this->get_elements(FALSE),
       '#type' => 'select',
       '#default_value' => $this->options['element_wrapper_type'],
-      '#description' => t('Choose the HTML element to wrap around this field and label, e.g. H1, H2, etc.'),
+      '#description' => t('Choose the HTML element to wrap around this field and label, e.g. H1, H2, etc. This may not be used if the field and label are not rendered together, such as with a table.'),
       '#dependency' => array(
         'edit-options-element-wrapper-type-enable' => array(1),
       ),
@@ -661,7 +659,22 @@ class views_handler_field extends views_handler {
           'edit-options-alter-make-link' => array(1),
         ),
       );
-
+      $form['alter']['path_case'] = array(
+        '#type' => 'select',
+        '#title' => t('Transform the case'),
+        '#description' => t('When printing url paths, how to transform the case of the filter value.'),
+        '#dependency' => array(
+          'edit-options-alter-make-link' => array(1),
+        ),
+       '#options' => array(
+          'none' => t('No transform'),
+          'upper' => t('Upper case'),
+          'lower' => t('Lower case'),
+          'ucfirst' => t('Capitalize first letter'),
+          'ucwords' => t('Capitalize each word'),
+        ),
+        '#default_value' => $this->options['alter']['path_case'],
+      );
       $form['alter']['link_class'] = array(
         '#title' => t('Link class'),
         '#type' => 'textfield',
@@ -857,10 +870,10 @@ If you would like to have the characters %5B and %5D please use the html entity 
     );
 
     $form['empty'] = array(
-      '#type' => 'textfield',
+      '#type' => 'textarea',
       '#title' => t('No results text'),
       '#default_value' => $this->options['empty'],
-      '#description' => t('Provide text to display if this field returns no results.'),
+      '#description' => t('Provide text to display if this field returns no results. You may include HTML. You may enter data from this view as per the "Replacement patterns" in the "Rewrite Results" section below.'),
       '#fieldset' => 'empty_field_behavior',
     );
 
@@ -876,7 +889,15 @@ If you would like to have the characters %5B and %5D please use the html entity 
       '#type' => 'checkbox',
       '#title' => t('Hide if empty'),
       '#default_value' => $this->options['hide_empty'],
-      '#description' => t('Enable to hide this field if it is empty. Note that the field label may still be displayed. Check style or row style settings to hide labels for empty fields.'),
+      '#description' => t('Enable to hide this field if it is empty. Note that the field label or rewritten output may still be displayed. To hide labels, check the style or row style settings for empty fields. To hide rewritten content, check the "Do not rewrite if empty" checkbox.'),
+      '#fieldset' => 'empty_field_behavior',
+    );
+
+    $form['hide_alter_empty'] = array(
+      '#type' => 'checkbox',
+      '#title' => t('Hide rewriting if empty'),
+      '#default_value' => $this->options['hide_alter_empty'],
+      '#description' => t('Do not display rewritten content if this field is empty.'),
       '#fieldset' => 'empty_field_behavior',
     );
   }
@@ -988,7 +1009,7 @@ If you would like to have the characters %5B and %5D please use the html entity 
       $value = $this->render_altered($alter, $tokens);
     }
 
-    if ($this->options['hide_empty'] && empty($value) && ($value !== 0 || $this->options['empty_zero'])) {
+    if ((($this->options['hide_empty'] && empty($value)) || ($this->options['hide_alter_empty'] && empty($this->original_value))) && ($value !== 0 || $this->options['empty_zero'])) {
       return '';
     }
 
@@ -1065,6 +1086,10 @@ If you would like to have the characters %5B and %5D please use the html entity 
       // were removed by check_plain().
       $path = strip_tags(html_entity_decode(strtr($path, $tokens)));
 
+      if (!empty($alter['path_case']) && $alter['path_case'] != 'none') {
+        $path = $this->case_transform($path, $this->options['alter']['path_case']);
+      }
+
       if (!empty($alter['replace_spaces'])) {
         $path = str_replace(' ', '-', $path);
       }
@@ -1081,7 +1106,7 @@ If you would like to have the characters %5B and %5D please use the html entity 
     // If the path is empty do not build a link around the given text and return
     // it as is.
     // http://www.example.com URLs will not have a $url['path'], so check host as well.
-    if (empty($url['path']) && empty($url['host'])) {
+    if (empty($url['path']) && empty($url['host']) && empty($url['fragment'])) {
       return $text;
     }
 

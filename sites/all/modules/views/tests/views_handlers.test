@@ -1,15 +1,15 @@
 <?php
 
 /**
-* @file
-* Test abstract handlers of views
-*/
+ * @file
+ * Test abstract handlers of views.
+ */
 
 class ViewsHandlersTest extends ViewsSqlTest {
   public static function getInfo() {
     return array(
-      'name' => t('Handlers test'),
-      'description' => t('test abstract handler definitions'),
+      'name' => 'Handlers test',
+      'description' => 'test abstract handler definitions',
       'group' => 'Views',
     );
   }
@@ -66,6 +66,10 @@ class ViewsHandlersTest extends ViewsSqlTest {
     $this->assertEqual('and', $handler->operator);
     $this->assertEqualValue(array('word1', 'word2', 'word'), views_break_phrase_string('word1,,word2,word', $handler));
     $this->assertEqual('and', $handler->operator);
+    $this->assertEqualValue(array('word1 word2', 'word'), views_break_phrase_string('word1 word2,word', $handler));
+    $this->assertEqual('and', $handler->operator);
+    $this->assertEqualValue(array('word1', 'word2 word'), views_break_phrase_string('word1,word2 word', $handler));
+    $this->assertEqual('and', $handler->operator);
   }
 
   /**
@@ -115,6 +119,7 @@ class ViewsHandlersTest extends ViewsSqlTest {
    *   The message to display along with the assertion.
    * @param $group
    *   The type of assertion - examples are "Browser", "PHP".
+   *
    * @return
    *   TRUE if the assertion succeeded, FALSE otherwise.
    */
