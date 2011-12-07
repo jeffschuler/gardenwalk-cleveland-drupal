@@ -1,6 +1,3 @@
 [submodule "sites/all/modules/openlayers_plus"]
 	path = sites/all/modules/openlayers_plus
 	url = https://github.com/developmentseed/openlayers_plus.git
-[submodule "sites/all/modules/views_geojson"]
-	path = sites/all/modules/views_geojson
-	url = jeffschuler@git.drupal.org:sandbox/jeffschuler/1187448.git
