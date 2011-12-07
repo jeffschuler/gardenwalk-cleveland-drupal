@@ -3,7 +3,7 @@
 /*
  * Custom Primary Links menu with link descriptions
  */
-function gardenwalk_menu_link__primary_links(array $variables) {
+function gardenwalk_menu_link__main_menu(array $variables) {
   $element = $variables['element'];
   $sub_menu = '';
 
