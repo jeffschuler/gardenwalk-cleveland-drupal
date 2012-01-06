@@ -33,9 +33,11 @@ class openlayers_views_style_data extends views_plugin_style {
       // If we are in preview mode, dump out some useful information about this data layer
       $output = "You can use the following parameters in your styles as dynamic values";
       $output .= "\n------------\n";
-      $keys = array_keys($data);
-      foreach ($data[$keys[0]]['attributes'] as $key => $value) {
-        $output .= '${'.$key."}\n";
+      if (!empty($data)) {
+        $keys = array_keys($data);
+        foreach ($data[$keys[0]]['attributes'] as $key => $value) {
+          $output .= '${'.$key."}\n";
+        }
       }
       $output .= "\n------------\n";
       
@@ -81,7 +83,7 @@ class openlayers_views_style_data extends views_plugin_style {
 
     $fields = array();
     foreach ($handlers as $field_id => $handler) {
-      $fields[$field_id] = $handler->definition['title'];
+      $fields[$field_id] = $handler->ui_name();
     }
 
     $form['data_source'] = array(
@@ -184,7 +186,7 @@ class openlayers_views_style_data extends views_plugin_style {
         '#description' => t('Choose the field which will appear as a '
         . 'description on tooltips.'),
         '#required' => FALSE,
-        '#options' => array_merge(array('' => ''), $fields),
+        '#options' => array_merge(array('' => '', '#row' => '<' . t('entire row') . '>'), $fields),
         '#default_value' => $this->options['data_source']['description_field'],
     );
 
@@ -246,13 +248,17 @@ class openlayers_views_style_data extends views_plugin_style {
         $this->view->row_index = $id;
         $attributes = array();
         foreach ($handlers as $hid => $handler) {
-          if (!empty($handler->options['exclude'])) {
+          if (!empty($handler->options['exclude']) && !in_array($hid, $this->options['data_source'])) {
             $excluded_fields[] = $hid;
           }
           else {
             $attributes[$hid . '_rendered'] = $handler->allow_advanced_render() ? $handler->advanced_render($record) : $handler->render($record);
             $attributes[$hid] = isset($handler->original_value) ? $handler->original_value : NULL;
           }
+        }
+        
+        if ($this->options['data_source']['description_field'] === '#row') {
+          $attributes['#row_rendered'] = $this->row_plugin->render($record);
         }
         
         $feature = array(
@@ -331,11 +337,16 @@ class openlayers_views_style_data extends views_plugin_style {
         $formatted_features[] = theme('openlayers_views_group_display_item',
           array(
             'name' => isset($handlers[$ds['name_field']]) ? $subfeature['attributes'][$ds['name_field'] . '_rendered'] : false,
-            'description' => isset($handlers[$ds['description_field']]) ? $subfeature['attributes'][$ds['description_field'] . '_rendered'] : false
+            'description' => ($ds['description_field'] === '#row' || isset($handlers[$ds['description_field']])) ? $subfeature['attributes'][$ds['description_field'] . '_rendered'] : false
           )
         );
+        
+        // Remove rendered row to keep data size down for JS.
+        if ($ds['description_field'] === '#row') {
+          unset($subfeature['attributes'][$ds['description_field'] . '_rendered']);
+        }
       }
-      
+
       $feature['attributes']['description'] = theme('item_list',
         array(
           'items' => $formatted_features
@@ -423,8 +434,13 @@ class openlayers_views_style_data extends views_plugin_style {
       if (isset($handlers[$ds['name_field']])) {
         $f['attributes']['name'] = $f['attributes'][$ds['name_field'] . '_rendered'];
       }
-      if (isset($handlers[$ds['description_field']])) {
+      if ($ds['description_field'] === '#row' || isset($handlers[$ds['description_field']])) {
         $f['attributes']['description'] = $f['attributes'][$ds['description_field'] . '_rendered'];
+        
+        // Remove rendered row to keep data size down for JS.
+        if ($ds['description_field'] === '#row') {
+          unset($f['attributes'][$ds['description_field'] . '_rendered']);
+        }
       }
     }
     return $features;
