@@ -1,6 +1,23 @@
 <?php
 
 /**
+ * Implements hook_skinr_group_PLUGIN_info().
+ */
+function fusion_core_skinr_group_core_info() {
+  $groups['menus'] = array(
+    'title' => t('Menus'),
+    'description' => t('Menu and navigation styles.'),
+  );
+  $groups['fusion_layout'] = array(
+    'title' => t('Fusion Grid Settings'),
+    'description' => t('Align an element to the grid.'),
+    'weight' => -15,
+  );  
+
+  return $groups;
+}
+
+/**
  * Implements hook_skinr_skin_PLUGIN_info().
  */
 function fusion_core_skinr_skin_core_info() {
@@ -11,7 +28,7 @@ function fusion_core_skinr_skin_core_info() {
     'title' => t('Block position'),
     'type' => 'select',
     'description' => t('Change the position of this block (default is to float to the left)'),
-    'group' => 'box',
+    'group' => 'layout',
     'theme hooks' => array('block'),
     'default status' => TRUE,
     'options' => array(
@@ -34,7 +51,7 @@ function fusion_core_skinr_skin_core_info() {
     'title' => t('Content alignment'),
     'description' => t('Default is left aligned content'),
     'type' => 'select',
-    'group' => 'box',
+    'group' => 'layout',
     'default status' => TRUE,
     'options' => array(
       'fusion-right' => array(
@@ -50,10 +67,10 @@ function fusion_core_skinr_skin_core_info() {
   
   $skins['fusion_skins_general_styles'] = array(
     'title' => t('General styles'),
-    'description' => t('These are some generally useful options for blocks'),
+    // 'description' => t('These are some generally useful options for blocks'),
     'theme hooks' => array('block'),
     'type' => 'checkboxes',
-    'group' => 'box',
+    'group' => 'general',
     'default status' => TRUE,
     'options' => array(
       'fusion-callout' => array(
@@ -80,7 +97,7 @@ function fusion_core_skinr_skin_core_info() {
     'description' => t('Make blocks in a region the same height'),
     'theme hooks' => array('block', 'panels_display', 'panels_pane', 'panels_panel'),
     'type' => 'checkboxes',
-    'group' => 'box',
+    'group' => 'layout',
     'default status' => TRUE,
     'attached' => array(
        'js' => array('js/jquery.equalheights.js'), 
@@ -98,7 +115,7 @@ function fusion_core_skinr_skin_core_info() {
     'type' => 'select',
     'description' => t('Put items in lists (menus, list views, etc.) in multiple columns'),    
     'theme hooks' => array('block', 'panels_display', 'panels_pane', 'panels_panel', 'views_view'),    
-    'group' => 'box',
+    'group' => 'general',
     'default status' => TRUE,
     'options' => array(
       'fusion-2-col-list' => array(
@@ -114,10 +131,10 @@ function fusion_core_skinr_skin_core_info() {
   
   $skins['fusion_menu'] = array(
     'title' => t('Menu Layout'),
-    'type' => 'radios',
+    'type' => 'select',
     'description' => t('Different layouts and alignment options for your menus'),    
     'theme hooks' => array('block', 'panels_display', 'panels_pane', 'panels_panel'),    
-    'group' => 'box',
+    'group' => 'menus',
     'default status' => TRUE,
     'options' => array(
       'fusion-inline-menu' => array(
@@ -135,7 +152,7 @@ function fusion_core_skinr_skin_core_info() {
     'title' => t('List/menu styles'),
     'type' => 'checkboxes',
     'theme hooks' => array('block', 'panels_display', 'panels_pane', 'panels_panel', 'views_view'),    
-    'group' => 'box',
+    'group' => 'menus',
     'default status' => TRUE,
     'options' => array(
       'fusion-list-bottom-border' => array(
@@ -148,28 +165,13 @@ function fusion_core_skinr_skin_core_info() {
       )
     ),
   );  
-  
-  $skins['fusion_superfish'] = array(
-    'title' => t('Superfish menu styles'),
-    'type' => 'radios',
-    'description' => t('Superfish dropdown menus (must also set menu items to Expanded)'),
-    'theme hooks' => array('block'),    
-    'group' => 'box',
-    'default status' => TRUE,
-    'options' => array(
-      'superfish' => array(
-        'title' => t('Vertical menu (for sidebar blocks)'),
-        'class' => array('superfish', 'superfish-vertical'),
-      ),
-    ),
-  );    
-  
+    
   $skins['fusion_float_imagefield'] = array(
     'title' => t('Image floating styles'),
     'type' => 'select',
     'description' => t('These options will float ImageField images in content to the left or right and add margins'),
     'theme hooks' => array('block', 'node', 'views_view'),    
-    'group' => 'box',
+    'group' => 'layout',
     'default status' => TRUE,
     'options' => array(
       'fusion_float_imagefield_left' => array(
@@ -185,7 +187,6 @@ function fusion_core_skinr_skin_core_info() {
   
   $skins['fusion_login'] = array(
     'title' => t('User login block styles'),
-    'type' => 'radios',
     'theme hooks' => array('block', 'panels_display', 'panels_pane', 'panels_panel'),
     'group' => 'box',
     'default status' => TRUE,
@@ -205,7 +206,7 @@ function fusion_core_skinr_skin_core_info() {
     'title' => t('Width (16 column grid)'),
     'description' => t("Change the width of this block. Fluid grid % widths are relative to the parent region's width. Default widths: sidebar blocks default to the sidebar width; in other regions width is divided equally among all blocks."),    
     'type' => 'select',
-    'group' => 'box',
+    'group' => 'fusion_layout',
     'theme hooks' => array('block'),
     'default status' => TRUE,
     'options' => _fusion_skins_grid_options(16, 960),   
@@ -215,7 +216,7 @@ function fusion_core_skinr_skin_core_info() {
     'title' => t('Width (12 column grid)'),
     'description' => t("Change the width of this block. Fluid grid % widths are relative to the parent region's width. Default widths: sidebar blocks default to the sidebar width; in other regions width is divided equally among all blocks."),
     'type' => 'select',
-    'group' => 'box',
+    'group' => 'fusion_layout',
     'theme hooks' => array('block'),
     'default status' => TRUE,
     'options' => _fusion_skins_grid_options(12, 960),   

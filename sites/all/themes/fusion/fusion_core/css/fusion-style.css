@@ -160,7 +160,7 @@ tr.drag-previous td {
 }
 
 /* clear floats after an element */
-/* (also in ie6-fixes.css, ie7-fixes.css) */
+/* (also in ie7-fixes.css) */
 .clearfix:after,
 .clearfix .inner:after {
   clear: both;
@@ -237,7 +237,7 @@ div.superfish {
   margin: 0 auto;
 }
 
-#grid-mask-overlay .block .inner {
+#grid-mask-overlay .block .gutter {
   background-color: #e3fffc;
   outline: none;
 }
@@ -253,7 +253,7 @@ div.superfish {
 }
 */
 
-.grid-mask .block .inner {
+.grid-mask .block .gutter {
   outline: #f00 dashed 1px;
 }
 

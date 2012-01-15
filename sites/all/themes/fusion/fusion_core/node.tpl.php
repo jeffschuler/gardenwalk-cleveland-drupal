@@ -86,10 +86,8 @@
 
   <?php if ($display_submitted || !empty($content['links']['terms'])): ?>
     <div class="meta">
-      <?php if ($display_submitted): ?>
-        <span class="submitted">
-          <?php print t('Submitted by !username on !datetime', array('!username' => $name, '!datetime' => $date)); ?>
-        </span>
+      <?php if ($display_submitted && isset($submitted) && $submitted): ?>
+        <span class="submitted"><?php print $submitted; ?></span>
       <?php endif; ?>
 
       <?php if (!empty($content['links']['terms'])): ?>
