@@ -56,11 +56,3 @@ function theme_kml_feed_icon($url, $title, $icon) {
       . '" class="feed-icon">' . $image . '</a>';
   }
 }
-
-/**
- * Theme function for kml feed image.
- */
-function theme_kml_feed_image() {
-  $icon = drupal_get_path('module', 'kml').'/images/kml.png';
-  return theme('image', $icon, t('Download KML Feed'));
-}
