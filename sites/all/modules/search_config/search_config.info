@@ -1,13 +1,14 @@
-name = Search config
-description = Configure display of the advanced search form
-dependencies[] = search
-files[] = search_config.module
-project = Search
+name = Search Configuration
+description = Modify search form, including enforcing search restrictions by content type.
+package = Search
 core = 7.x
+dependencies[] = search
+configure = admin/config/search/settings
 
-; Information added by drupal.org packaging script on 2011-02-25
+
+; Information added by drupal.org packaging script on 2012-01-04
 version = "7.x-1.x-dev"
 core = "7.x"
 project = "search_config"
-datestamp = "1298620133"
+datestamp = "1325680777"
 
