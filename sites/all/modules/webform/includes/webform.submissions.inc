@@ -402,16 +402,16 @@ function webform_submission_page($node, $submission, $format) {
 
   // Determine the mode in which we're displaying this submission.
   $mode = ($format != 'form') ? 'display' : 'form';
-  if (preg_match("!^q=print/!", $_SERVER['QUERY_STRING'])) {
+  if (strpos($_SERVER['REQUEST_URI'], 'print/') !== FALSE) {
     $mode = 'print';
   }
-  if (preg_match("!^q=printpdf/!", $_SERVER['QUERY_STRING'])) {
+  if (strpos($_SERVER['REQUEST_URI'], 'printpdf/') !== FALSE) {
     $mode = 'pdf';
   }
 
   // Add navigation for administrators.
   if (webform_results_access($node)) {
-    $navigation = in_array($mode, array('display', 'form')) ? theme('webform_submission_navigation', array('node' => $node, 'submission' => $submission, 'mode' => $mode)) : NULL;
+    $navigation = theme('webform_submission_navigation', array('node' => $node, 'submission' => $submission, 'mode' => $mode));
     $information = theme('webform_submission_information', array('node' => $node, 'submission' => $submission, 'mode' => $mode));
   }
   else {
@@ -430,6 +430,7 @@ function webform_submission_page($node, $submission, $format) {
   $page = array(
     '#theme' => 'webform_submission_page',
     '#node' => $node,
+    '#mode' => $mode,
     '#submission' => $submission,
     '#submission_content' => $output,
     '#submission_navigation' => $navigation,
@@ -579,10 +580,13 @@ function webform_submission_render($node, $submission, $email, $format) {
 
   _webform_components_tree_build($components, $component_tree, 0, $page_count);
 
-  // Recursively add components to the form.
-  foreach ($component_tree['children'] as $cid => $component) {
-    if (_webform_client_form_rule_check($node, $component, $component['page_num'], NULL, $submission)) {
-      _webform_client_form_add_component($node, $component, NULL, $renderable, $renderable, NULL, $submission, $format);
+  // Make sure at least one field is available
+  if (isset($component_tree['children'])) {
+    // Recursively add components to the form.
+    foreach ($component_tree['children'] as $cid => $component) {
+      if (_webform_client_form_rule_check($node, $component, $component['page_num'], NULL, $submission)) {
+        _webform_client_form_add_component($node, $component, NULL, $renderable, $renderable, NULL, $submission, $format);
+      }
     }
   }
 
@@ -627,6 +631,11 @@ function webform_get_submissions($filters = array(), $header = NULL, $pager_coun
       $pager_query->condition($column, $value);
     }
 
+    if (isset($filters['u.uid'])) {
+      // Join to the users table for sorting by user name.
+      $pager_query->leftJoin('users', 'u', 'u.uid = ws.uid');
+    }
+
     if (isset($filters['u.uid']) && $filters['u.uid'] === 0) {
       if (!empty($_SESSION['webform_submission'])) {
         $anonymous_sids = array_keys($_SESSION['webform_submission']);
@@ -638,9 +647,6 @@ function webform_get_submissions($filters = array(), $header = NULL, $pager_coun
     }
 
     if (is_array($header)) {
-      // Join to the users table for sorting by user name.
-      $pager_query->leftJoin('users', 'u', 'u.uid = ws.uid');
-
       // Extending the query instatiates a new query object.
       $pager_query = $pager_query->extend('TableSort');
       $pager_query->orderByHeader($header);
@@ -694,8 +700,12 @@ function webform_get_submissions($filters = array(), $header = NULL, $pager_coun
       $submissions[$row->sid]->uid = $row->uid;
       $submissions[$row->sid]->name = $row->name;
       $submissions[$row->sid]->is_draft = $row->is_draft;
+      $submissions[$row->sid]->data = array();
     }
-    $submissions[$row->sid]->data[$row->cid]['value'][$row->no] = $row->data;
+    // CID may be NULL if this submission does not actually contain any data.
+    if ($row->cid) {
+      $submissions[$row->sid]->data[$row->cid]['value'][$row->no] = $row->data;
+    }
     $previous = $row->sid;
   }
 
@@ -729,8 +739,15 @@ function webform_get_submission_count($nid, $uid = NULL, $reset = FALSE) {
       $query->condition('uid', $uid);
     }
     if ($uid === 0) {
-      $submissions = isset($_SESSION['webform_submission']) ? $_SESSION['webform_submission'] : array(0);
-      $query->condition('sid', $submissions, 'IN');
+      $submissions = isset($_SESSION['webform_submission']) ? $_SESSION['webform_submission'] : NULL;
+      if ($submissions) {
+        $query->condition('sid', $submissions, 'IN');
+      }
+      else {
+        // Intentionally never match anything if the anonymous user has no
+        // submissions.
+        $query->condition('sid', 0);
+      }
     }
 
     $counts[$nid][$uid] = $query->countQuery()->execute()->fetchField();
@@ -782,7 +799,7 @@ function _webform_submission_spam_check($to, $subject, $from, $headers = array()
  * @return
  *   Boolean TRUE if the user has exceeded their limit. FALSE otherwise.
  */
-function _webform_submission_limit_check($node) {
+function _webform_submission_user_limit_check($node) {
   global $user;
 
   // Check if submission limiting is enabled.
@@ -830,6 +847,42 @@ function _webform_submission_limit_check($node) {
   }
 
   if ($num_submissions_database >= $node->webform['submit_limit'] || $num_submissions_cookie >= $node->webform['submit_limit']) {
+    // Limit exceeded.
+    return TRUE;
+  }
+
+  // Limit not exceeded.
+  return FALSE;
+}
+
+/**
+ * Check if the total number of submissions has exceeded the limit on this form.
+ *
+ * @param $node
+ *   The webform node to be checked.
+ * @return
+ *   Boolean TRUE if the form has exceeded it's limit. FALSE otherwise.
+ */
+function _webform_submission_total_limit_check($node) {
+
+  // Check if submission limiting is enabled.
+  if ($node->webform['total_submit_limit'] == '-1') {
+    return FALSE; // No check enabled.
+  }
+
+  // Retrieve submission data from the database.
+  $query = db_select('webform_submissions')
+    ->condition('nid', $node->nid)
+    ->condition('is_draft', 0);
+
+  if ($node->webform['total_submit_interval'] != -1) {
+    $query->condition('submitted', REQUEST_TIME - $node->webform['total_submit_interval'], '>');
+  }
+
+  // Fetch all the entries from the database within the submit interval.
+  $num_submissions_database = $query->countQuery()->execute()->fetchField();
+
+  if ($num_submissions_database >= $node->webform['total_submit_limit']) {
     // Limit exceeded.
     return TRUE;
   }

@@ -23,6 +23,7 @@ function _webform_defaults_email() {
       'title_display' => 0,
       'description' => '',
       'attributes' => array(),
+      'private' => FALSE,
     ),
   );
 }
@@ -34,6 +35,7 @@ function _webform_theme_email() {
   return array(
     'webform_display_email' => array(
       'render element' => 'element',
+      'file' => 'components/email.inc',
     ),
   );
 }
@@ -158,7 +160,7 @@ function _webform_render_email($component, $value = NULL, $filter = TRUE) {
 function _webform_validate_email($form_element, &$form_state) {
   $component = $form_element['#webform_component'];
   $value = trim($form_element['#value']);
-  if (!empty($value) && !valid_email_address($value)) {
+  if ($value !== '' && !valid_email_address($value)) {
     form_error($form_element, t('%value is not a valid email address.', array('%value' => $value)));
   }
   else {

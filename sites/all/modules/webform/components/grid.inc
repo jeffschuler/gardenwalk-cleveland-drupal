@@ -27,6 +27,7 @@ function _webform_defaults_grid() {
       'custom_option_keys' => 0,
       'custom_question_keys' => 0,
       'description' => '',
+      'private' => FALSE,
     ),
   );
 }
@@ -39,9 +40,11 @@ function _webform_theme_grid() {
   return array(
     'webform_grid' => array(
       'render element' => 'element',
+      'file' => 'components/grid.inc',
     ),
     'webform_display_grid' => array(
       'render element' => 'element',
+      'file' => 'components/grid.inc',
     ),
   );
 }
@@ -273,7 +276,7 @@ function theme_webform_display_grid($variables) {
   else {
     $items = array();
     foreach (element_children($element) as $key) {
-      $items[] = ' - ' . $element[$key]['#title'] . ': ' . $element[$key]['#value'];
+      $items[] = ' - ' . $element[$key]['#title'] . ': ' . (isset($element['#grid_options'][$element[$key]['#value']]) ? $element['#grid_options'][$element[$key]['#value']] : '');
     }
     $output = implode("\n", $items);
   }
@@ -337,18 +340,16 @@ function _webform_analysis_grid($component, $sids = array()) {
  */
 function _webform_table_grid($component, $value) {
   $questions = _webform_select_options_from_text($component['extra']['questions'], TRUE);
+  $options = _webform_select_options_from_text($component['extra']['options'], TRUE);
+
   $output = '';
   // Set the value as a single string.
-  if (is_array($value)) {
-    foreach ($value as $item => $value) {
-      if ($value !== '') {
-        $output .= _webform_filter_xss($questions[$item]) . ': ' . _webform_filter_xss($value) . '<br />';
-      }
+  foreach ($questions as $key => $label) {
+    if (isset($value[$key]) && isset($options[$value[$key]])) {
+      $output .= _webform_filter_xss($label) . ': ' . _webform_filter_xss($options[$value[$key]]) . '<br />';
     }
   }
-  else {
-    $output = !isset($value[0]) ? '' : _webform_filter_xss($value[0]);
-  }
+
   return $output;
 }
 
@@ -416,7 +417,7 @@ function theme_webform_grid($variables) {
     // Render each radio button in the row.
     $radios = form_process_radios($question_element);
     foreach (element_children($radios) as $key) {
-      unset($radios[$key]['#title']);
+      $radios[$key]['#title_display'] = 'invisible';
       $row[] = array('data' => drupal_render($radios[$key]), 'class' => array('checkbox', 'webform-grid-option'));
     }
     $rows[] = $row;
