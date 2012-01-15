@@ -13,10 +13,6 @@ function logintoboggan_token_info() {
     'name' => t('Validate URL'),
     'description' => t('The URL of the account validation page, provided by logintoboggan.'),
   );
-  $info['tokens']['user']['password'] = array(
-    'name' => t('Password'),
-    'description' => t('The password by the user'),
-  );
   return $info;
 }
 
@@ -42,9 +38,6 @@ function logintoboggan_tokens($type, $tokens, array $data = array(), array $opti
             $replacements[$original] = logintoboggan_eml_validate_url($account, $url_options);
           }
           break;
-        case 'password':
-          $replacements[$original] = $account->password;
-          break;          
       }
     }
   }
