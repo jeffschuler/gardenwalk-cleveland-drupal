@@ -165,6 +165,7 @@ function location_feeds_set_target($source, $entity, $target, $value) {
   $cck = preg_match('/^field_.+/', $target);
 
   foreach ($value as $i => $val) {
+    $val = trim($val);
     if (isset($last_field)) {
       if ($cck) {
         if (!isset($entity->{$field_name}['und'][$i]['location_settings'])) {
@@ -219,6 +220,7 @@ function location_feeds_set_country($source, $entity, $target, $value) {
   $cck = preg_match('/^field_.+/', $target);
 
   foreach ($value as $i => $val) {
+    $val = trim($val);
     // if the country is in iso format or close to it, store
     // it, else try to figure out the iso format
     $isoval = $val;
@@ -284,6 +286,7 @@ function location_feeds_set_point($source, $entity, $target, $value) {
   $cck = preg_match('/^field_.+/', $target);
 
   foreach ($value as $i => $val) {
+    $val = trim($val);
     if (!is_numeric($val)) {
       $neg = FALSE;
       if (strpos($val,'-') === 0) {
@@ -344,6 +347,7 @@ function location_feeds_set_georss_point($source, $entity, $target, $value) {
   $cck = preg_match('/^field_.+/', $target);
 
   foreach ($value as $i => $val) {
+    $val = trim($val);
     list($lat, $long) = explode(' ', $val);
     if ($cck) {
       if (!isset($entity->{$field_name}['und'][$i]['location_settings'])) {

@@ -9,7 +9,7 @@
  */
 
 require_once(drupal_get_path('module', 'location') . '/tests/location_testcase.php');
-require_once(drupal_get_path('module', 'feeds') . '/tests/feeds_mapper_test.inc');
+require_once(drupal_get_path('module', 'feeds') . '/tests/feeds_mapper.test');
 
 /**
  * Class for testing Feeds <em>location</em> mapper.
