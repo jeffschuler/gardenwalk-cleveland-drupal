@@ -27,7 +27,7 @@
   *     - delete
   *     - index
   *     - actions
-  *     - targeted actions
+  *     - targeted_actions
   *     - relationships
   *
   *   The CRUD functions are pretty self-explanatory. Index is an extra CRUD-
@@ -48,7 +48,7 @@
   *   ability to get the files for a node at node/123/files.
   *
   *   The first five (the CRUD functions + index) define the indvidual service
-  *   callbacks for each function. However 'actions', 'targeted actions',
+  *   callbacks for each function. However 'actions', 'targeted_actions',
   *   and 'relationships' can contain multiple callbacks.
   *
   *   For those familiar with Services 2.x, these callbacks are created
@@ -58,9 +58,16 @@
   *   - help: Text describing what this callback does.
   *   - callback: The name of a function to call when this resource is
   *     requested.
+  *   - file: an array describing the file which contains the callback
+  *     function
   *   - access callback: The name of a function to call to check whether
   *     the requesting user has permission to access this resource. If not
   *     specified, this defaults to 'user_access'.
+  *   - access callback file: an array describing the file which contains the
+  *     access callback function.  This attribute only needs to be supplied if
+  *     the method callback and the access callback are defined in different
+  *     files, for example when a method callback is overridden using
+  *     hook_services_resources_alter but the access callback is not
   *   - access arguments: The arguments to pass to the access callback.
   *   - access arguments append: A boolean indicating whether the resource's
   *     arguments should be appended to the access arguments. This can be useful
@@ -86,7 +93,7 @@
   *   REST resources are managed can be found at http://drupal.org/node/783254.
   */
 function hook_services_resources() {
-  return array(
+  $node_resource = array(
     'node' => array(
       'retrieve' => array(
         'file' => array('type' => 'inc', 'module' => 'services', 'name' => 'resources/node_resource'),
@@ -101,6 +108,7 @@ function hook_services_resources() {
           ),
         ),
         'access callback' => '_node_resource_access',
+        'access callback file' => array('type' => 'inc', 'module' => 'services', 'name' => 'resources/node_resource'),
         'access arguments' => array('view'),
         'access arguments append' => TRUE,
       ),
@@ -112,7 +120,7 @@ function hook_services_resources() {
             'name' => 'node',
             'optional' => FALSE,
             'source' => 'data',
-            'description' => 'The node object to create',
+            'description' => 'The node data to create',
             'type' => 'array',
           ),
         ),
@@ -167,7 +175,7 @@ function hook_services_resources() {
             'optional' => TRUE,
             'type' => 'int',
             'description' => 'The zero-based index of the page to get, defaults to 0.',
-            'default value' => 1,
+            'default value' => 0,
             'source' => array('param' => 'page'),
           ),
           array(
@@ -182,8 +190,8 @@ function hook_services_resources() {
             'name' => 'parameters',
             'optional' => TRUE,
             'type' => 'array',
-            'description' => 'Parameters',
-            'default value' => NULL,
+            'description' => 'Parameters array',
+            'default value' => array(),
             'source' => array('param' => 'parameters'),
           ),
         ),
@@ -210,7 +218,7 @@ function hook_services_resources() {
               'type' => 'int',
               'description'  => t('To return file contents or not.'),
               'source' => array('path' => 2),
-              'optional' => FALSE,
+              'optional' => TRUE,
               'default value' => TRUE,
             ),
           ),
@@ -218,5 +226,39 @@ function hook_services_resources() {
       ),
     ),
   );
-
+  if (module_exists('comment')) {
+    $comments = array(
+      'file'                    => array('type' => 'inc', 'module' => 'services', 'name' => 'resources/node_resource'),
+      'help'                    => t('This method returns the number of new comments on a given node.'),
+      'access callback'         => 'user_access',
+      'access arguments'        => array('access comments'),
+      'access arguments append' => FALSE,
+      'callback'                => '_node_resource_load_node_comments',
+      'args'                    => array(
+        array(
+          'name'         => 'nid',
+          'type'         => 'int',
+          'description'  => t('The node id to load comments for.'),
+          'source'       => array('path' => 0),
+          'optional'     => FALSE,
+        ),
+        array(
+          'name'         => 'count',
+          'type'         => 'int',
+          'description'  => t('Number of comments to load.'),
+          'source'       => array('param' => 'count'),
+          'optional'     => TRUE,
+        ),
+        array(
+          'name'         => 'offset',
+          'type'         => 'int',
+          'description'  => t('If count is set to non-zero value, you can pass also non-zero value for start. For example to get comments from 5 to 15, pass count=10 and start=5.'),
+          'source'       => array('param' => 'offset'),
+          'optional'     => TRUE,
+        ),
+      ),
+    );
+    $node_resource['node']['relationships']['comments'] =  $comments;
+  }
+  return $node_resource;
 }

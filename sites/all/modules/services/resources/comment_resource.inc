@@ -110,8 +110,16 @@ function _comment_resource_definition() {
             'optional' => TRUE,
             'type' => 'array',
             'description' => 'Parameters',
-            'default value' => NULL,
+            'default value' => array(),
             'source' => array('param' => 'parameters'),
+          ),
+          array(
+            'name' => 'pagesize',
+            'optional' => TRUE,
+            'type' => 'init',
+            'description' => 'Number of records to get per page.',
+            'default value' => variable_get('services_comment_index_page_size', 20),
+            'source' => array('param' => 'pagesize'),
           ),
         ),
         'access callback' => '_comment_resource_access',
@@ -131,7 +139,7 @@ function _comment_resource_definition() {
               'name'         => 'nid',
               'type'         => 'int',
               'description'  => t('The node id to count all comments.'),
-              'source'       => 'data',
+              'source'       => array('data' => 'nid'),
               'optional'     => FALSE,
             ),
           ),
@@ -148,7 +156,7 @@ function _comment_resource_definition() {
               'name'          => 'nid',
               'type'          => 'int',
               'description'   => t('The node id to load comments for.'),
-              'source'        => 'data',
+              'source'        => array('data' => 'nid'),
               'optional'      => FALSE,
             ),
             array(
@@ -156,7 +164,7 @@ function _comment_resource_definition() {
               'type'          => 'int',
               'optional'      => TRUE,
               'description'   => t('Timestamp to count from (defaults to time of last user acces to node).'),
-              'source'        => 'data',
+              'source'        => array('data' => 'since'),
               'optional'      => TRUE,
               'default value' => 0,
             ),
@@ -177,19 +185,33 @@ function _comment_resource_definition() {
  */
 
 function _comment_resource_create($comment) {
-  $form_state['values'] = $comment;
-  $form_state['values']['op'] = t('Save');
+  // Adds backwards compatability with regression fixed in #1083242
+  $comment = _services_arg_value($comment, 'comment');
 
-  $comment_empty = (object) array(
+  if (empty($comment['nid'])) {
+    return services_error(t('A nid must be provided'));
+  }
+
+  $form_state['values'] = $comment;
+  $form_state['values']['op'] = variable_get('services_comment_save_button_resource_create', t('Save'));
+
+  $comment_empty = array(
     'nid' => $comment['nid'],
     'cid' => NULL,
   );
+
+  // If a pid is provide use it
+  if (!empty($comment['pid'])) {
+    $comment_empty['pid'] = $comment['pid'];
+  }
+
+  $comment_empty = (object) $comment_empty;
 
   $ret = drupal_form_submit('comment_form', $form_state, $comment_empty);
 
   // Error if needed.
   if ($errors = form_get_errors()) {
-    return services_error(implode(" ", $errors), 406);
+    return services_error(implode(" ", $errors), 406, array('form_errors' => $errors));
   }
 
   $comment = $form_state['comment'];
@@ -223,6 +245,8 @@ function _comment_resource_retrieve($cid) {
  *   Unique identifier for the comment (cid) or FALSE if there was a problem.
  */
 function _comment_resource_update($cid, $comment) {
+  // Adds backwards compatability with regression fixed in #1083242
+  $comment = _services_arg_value($comment, 'data');
   $comment['cid'] = $cid;
 
   $old_comment = comment_load($cid);
@@ -232,13 +256,13 @@ function _comment_resource_update($cid, $comment) {
   // Setup form_state.
   $form_state = array();
   $form_state['values'] = $comment;
-  $form_state['values']['op'] = t('Save');
+  $form_state['values']['op'] = variable_get('services_comment_save_button_resource_update', t('Save'));
   $form_state['comment'] = $old_comment;
 
   drupal_form_submit('comment_form', $form_state, $old_comment);
 
   if ($errors = form_get_errors()) {
-    return services_error(implode(" ", $errors), 406);
+    return services_error(implode(" ", $errors), 406, array('form_errors' => $errors));
   }
 
   return $cid;
@@ -284,24 +308,26 @@ function _comment_resource_delete($cid) {
  * @param $fields
  *   The fields you want returned.
  * @param $parameters
- *   An array of fields and values used to build a sql WHERE clause indicating
- *   what items should be deleted.
+ *   An array containing fields and values used to build a sql WHERE clause
+ *   indicating items to retrieve.
+ * @param $page_size
+ *   Integer number of items to be returned.
  * @return
  *   An array of comment objects.
  *
  * @see _node_resource_index() for more notes
  **/
-function _comment_resource_index($page, $fields, $parameters) {
+function _comment_resource_index($page, $fields, $parameters, $page_size) {
   $comment_select = db_select('comment', 't')
     ->orderBy('created', 'DESC');
 
-  services_resource_build_index_query($comment_select, $page, $fields, $parameters);
+  services_resource_build_index_query($comment_select, $page, $fields, $parameters, $page_size, 'comment');
 
   if (!user_access('administer comments')) {
     $comment_select->condition('status', COMMENT_PUBLISHED);
   }
 
-  $results = $comment_select->execute();
+  $results = services_resource_execute_index_query($comment_select);
 
   return services_resource_build_index_list($results, 'comment', 'cid');
 }
@@ -337,8 +363,9 @@ function _comment_resource_count_new($nid, $since) {
  * Access check callback for comment controllers.
  */
 function _comment_resource_access($op = 'view', $args = array()) {
-  if (user_access('administer comments')) {
-    return TRUE;
+  // Adds backwards compatability with regression fixed in #1083242
+  if (isset($args[0])) {
+    $args[0] = _services_access_value($args[0], array('comment', 'data'));
   }
 
   if ($op == 'create') {
@@ -349,8 +376,13 @@ function _comment_resource_access($op = 'view', $args = array()) {
   }
   if(isset($comment->nid)) {
     $node = node_load($comment->nid);
+    if($op == 'create' && !$node->nid) {
+      return services_error(t('Node nid: @nid does not exist.', array('@nid' => $comment->nid)), 406);
+    }
   }
-
+  if (user_access('administer comments')) {
+    return TRUE;
+  }
   switch ($op) {
     case 'view':
       // Check if the user has access to comments
