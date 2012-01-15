@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * @file Quick and dirty implementation of meta tags for drupal 7
  * Module defines new field type 'meta'.
  * Fields of this type are not displayed in HTML.
@@ -13,13 +13,14 @@
  * @see http://api.drupal.org/api/drupal/modules--system--system.api.php/function/hook_menu/7
  */
 function metatags_quick_menu() {
-  $items['admin/structure/metatags_quick'] = array(
+  $items['admin/config/search/metatags_quick'] = array(
     'page callback' => 'drupal_get_form',
     'page arguments' => array('metatags_quick_admin_settings'),
     'title' => 'Meta tags (quick) settings',
     'access arguments' => array('administer content types'),
     'file' => 'metatags_quick.admin.inc',
   );
+  
   return $items;
 }
 
@@ -80,7 +81,9 @@ function metatags_quick_entity_load($entities, $type) {
   if (empty($type_info['fieldable'])) {
     return;
   }
-
+  
+  _metatags_quick_fieldable($type);
+  
   // Find the meta tag fields to iterate over.
   if (!isset($fields[$type])) {
     $fields[$type] = array();
@@ -98,6 +101,7 @@ function metatags_quick_entity_load($entities, $type) {
     }
   }
 
+  
   foreach ($entities as $entity) {
     foreach ($fields[$type] as $key) {
       if ($items = field_get_items($type, $entity, $key)) {
@@ -117,13 +121,24 @@ function metatags_quick_entity_load($entities, $type) {
 /**
  * Implements hook_page_build
  */
-function metatags_quick_page_build($page) {
+function metatags_quick_page_build(&$page) {
+  global $language;
+  // Get populated meta tags
   $meta_list = _metatags_quick_add_head();
+    
+  $fieldable_entity = FALSE;
   foreach ($meta_list as $meta_item) {
     // Skip meta tags that do not belong to the currently displayed page.
-    if (isset($meta_item['type']) && menu_get_object($meta_item['type']) != $meta_item['entity']) {
-      continue;
+    if (isset($meta_item['type'])) {
+      $router_item = menu_get_item();
+      if (is_array($router_item['load_functions'])) {
+        $keys = array_keys($router_item['load_functions']);
+        if (menu_get_object($meta_item['type'], $keys[0]) != $meta_item['entity']) {
+          continue;
+        } 
+      }
     }
+    $fieldable_entity = TRUE;
     $element = array(
       '#tag' => 'meta',
       '#attributes' => array(
@@ -292,6 +307,7 @@ function _metatags_quick_add_head($item = FALSE) {
 function _metatags_quick_settings_default() {
   return array(
     'use_front' => FALSE,
+    'use_path_based' => FALSE,
   );
 }
 
@@ -350,6 +366,18 @@ function _metatags_quick_init_basic_fields() {
     );
     field_create_instance($instance);
   } 
+}
+
+/**
+ * Determine if object is fieldable
+ * @param bool $flag
+ */
+function _metatags_quick_fieldable($type = FALSE) {
+  static $fieldable = array();
+  if ($type && !in_array($type, $fieldable)) {
+    $fieldable[] = $type;
+  }
+  return $fieldable;
 }
 
 function _metatags_strlen($str) {

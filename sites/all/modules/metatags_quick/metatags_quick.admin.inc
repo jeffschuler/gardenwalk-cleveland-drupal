@@ -63,3 +63,4 @@ function metatags_quick_admin_settings_submit($form, &$form_state) {
   variable_set('metatags_quick_settings', $new_settings);
   drupal_set_message(t('Meta tags (quick) settings saved'), 'status');
 }
+
