@@ -15,8 +15,16 @@ function views_page_title_pattern_alter(&$pattern, &$types) {
   if ($menu['page_callback'] == 'views_page') {
     // Get the args, name and display_id
     $args = $menu['page_arguments'];
-    $name = array_shift($args);
-    $display_id = array_shift($args);
+
+    if (is_array($args)) {
+      // In some cases, this isn't an array, it's a BLOB or something.
+      // As a result, array_shift throws a warning.
+      // AFAIK, the assigned variables are never used,
+      // They're just stripped out of the way so that what's left can be tested against later
+      // See this bug: http://drupal.org/node/1228006
+      $name = array_shift($args);
+      $display_id = array_shift($args);
+    }
 
     // Get the active page view
     $view = views_get_page_view();
