@@ -627,3 +627,13 @@ h1, h2, h3, h4, h5, h6 {
 .pane-headquarters-small .openlayers-popupbox h2.popup-title strong {
   color: $orange !important;
 }
+
+
+/* Search Results
+--------------------- */
+.search-snippet {
+  margin-bottom: .5em;
+}
+.search-info .search-info-type {
+  color: $green;
+}
