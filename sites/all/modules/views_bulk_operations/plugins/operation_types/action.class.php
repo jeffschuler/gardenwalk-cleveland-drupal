@@ -76,9 +76,15 @@ class ViewsBulkOperationsAction extends ViewsBulkOperationsBaseOperation {
    *   An array of related data provided by the caller.
    */
   public function form($form, &$form_state, array $context) {
+    // Some modules (including this one) place their action callbacks
+    // into separate files. At this point those files might no longer be
+    // included due to an #ajax rebuild, so we call actions_list() to trigger
+    // inclusion. The same thing is done by actions_do() on execute.
+    actions_list();
+
     $context['settings'] = $this->getAdminOption('settings', array());
     $form_callback = $this->operationInfo['callback'] . '_form';
-    return $form_callback($context);
+    return $form_callback($context, $form_state);
   }
 
   /**
@@ -150,7 +156,7 @@ class ViewsBulkOperationsAction extends ViewsBulkOperationsBaseOperation {
           $dom_id . '-selected' => array(1),
         ),
       );
-      $form['settings'] += $settings_form_callback($settings);
+      $form['settings'] += $settings_form_callback($settings, $this->entityType);
     }
 
     return $form;
@@ -232,6 +238,11 @@ class ViewsBulkOperationsAction extends ViewsBulkOperationsBaseOperation {
     $context['settings'] = $this->getAdminOption('settings', array());
     $context += $this->formOptions;
     $context += $this->operationInfo['parameters'];
+    // Actions provided by the Drupal system module require the entity to be
+    // present in $context, keyed by entity type.
+    if (is_object($data)) {
+      $context[$this->entityType] = $data;
+    }
 
     actions_do($this->operationInfo['callback'], $data, $context);
 
