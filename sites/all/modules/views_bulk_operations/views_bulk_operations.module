@@ -48,6 +48,8 @@ function views_bulk_operations_load_action_includes() {
     'delete.action.inc',
     'script.action.inc',
     'user_roles.action.inc',
+    'terms_fields.action.inc',
+    'terms_fields_bundles.action.inc'
   );
 
   if (!$loaded) {
