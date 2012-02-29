@@ -1,3 +1,3 @@
-[submodule "sites/all/modules/openlayers_plus"]
-	path = sites/all/modules/openlayers_plus
+[submodule "sites/all/modules/contrib/openlayers_plus"]
+	path = sites/all/modules/contrib/openlayers_plus
 	url = https://github.com/developmentseed/openlayers_plus.git
