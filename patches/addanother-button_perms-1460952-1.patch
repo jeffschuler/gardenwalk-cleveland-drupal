@@ -1,0 +1,13 @@
+diff --git a/addanother.module b/addanother.module
+index e63ef30..2c28534 100644
+--- a/addanother.module
++++ b/addanother.module
+@@ -134,7 +134,7 @@ function addanother_module_implements_alter(&$implementations, $hook){
+  */
+ function addanother_form_alter(&$form, $form_state, $form_id) {
+   if (!empty($form['#node_edit_form'])) {
+-    if (variable_get('addanother_button_' . $form['type']['#value'], FALSE)) {
++    if (variable_get('addanother_button_' . $form['type']['#value'], FALSE) && user_access('use add another')) {
+ 
+       $form['actions']['addanother'] = array(
+         '#type' => 'submit',
