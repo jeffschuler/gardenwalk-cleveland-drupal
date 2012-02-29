@@ -48,3 +48,85 @@ function gardenwalk_gardens_node_info() {
   );
   return $items;
 }
+
+/**
+ * Implements hook_workflow_features_default_workflow().
+ */
+function gardenwalk_gardens_workflow_features_default_workflow() {
+  return array(
+    'Garden Approval' => array(
+      'name' => 'Garden Approval',
+      'tab_roles' => '2',
+      'options' => 'a:3:{s:16:"comment_log_node";i:0;s:15:"comment_log_tab";i:0;s:13:"name_as_title";i:0;}',
+      'states' => array(
+        0 => array(
+          'state' => '(creation)',
+          'weight' => '-50',
+          'sysid' => '1',
+          'status' => '1',
+        ),
+        1 => array(
+          'state' => 'Application',
+          'weight' => '0',
+          'sysid' => '0',
+          'status' => '1',
+        ),
+        2 => array(
+          'state' => 'Approved',
+          'weight' => '0',
+          'sysid' => '0',
+          'status' => '1',
+        ),
+        3 => array(
+          'state' => 'Declined',
+          'weight' => '0',
+          'sysid' => '0',
+          'status' => '1',
+        ),
+      ),
+      'transitions' => array(
+        0 => array(
+          'sid' => '(creation)',
+          'target_sid' => 'Application',
+          'roles' => 'author,1,2,3,4,5,6,7,8',
+        ),
+        1 => array(
+          'sid' => 'Application',
+          'target_sid' => 'Approved',
+          'roles' => ',3,4,8',
+        ),
+        2 => array(
+          'sid' => 'Application',
+          'target_sid' => 'Declined',
+          'roles' => ',3,4,8',
+        ),
+        3 => array(
+          'sid' => 'Approved',
+          'target_sid' => 'Declined',
+          'roles' => '2,3,8',
+        ),
+        4 => array(
+          'sid' => 'Approved',
+          'target_sid' => 'Application',
+          'roles' => '2,3,8',
+        ),
+        5 => array(
+          'sid' => 'Declined',
+          'target_sid' => 'Approved',
+          'roles' => '2,3,8',
+        ),
+        6 => array(
+          'sid' => 'Declined',
+          'target_sid' => 'Application',
+          'roles' => '2,3,8',
+        ),
+      ),
+      'node_types' => array(
+        0 => array(
+          'type' => 'garden',
+          'wid' => '1',
+        ),
+      ),
+    ),
+  );
+}
