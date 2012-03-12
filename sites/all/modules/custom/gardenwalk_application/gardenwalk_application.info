@@ -1,0 +1,10 @@
+name = GardenWalk Garden Application
+description = "Customizations for garden application."
+
+core = 7.x
+
+package = GardenWalk Custom
+
+files[] = gardenwalk_application.module
+
+; dependencies[] = 
