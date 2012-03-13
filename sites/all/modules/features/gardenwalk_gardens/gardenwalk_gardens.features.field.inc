@@ -20,6 +20,9 @@ function gardenwalk_gardens_field_default_fields() {
         0 => 'node',
       ),
       'field_name' => 'body',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'indexes' => array(
         'format' => array(
           0 => 'format',
@@ -36,26 +39,29 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => 'About this garden: attractions, year established, in memory of, community member names, etc...',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'hidden',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
           'weight' => '2',
         ),
+        'default' => array(
+          'label' => 'hidden',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '5',
+        ),
         'teaser' => array(
           'label' => 'hidden',
-          'module' => 'text',
-          'settings' => array(
-            'trim_length' => 600,
-          ),
-          'type' => 'text_summary_or_trimmed',
-          'weight' => 0,
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '1',
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'body',
-      'label' => 'Remarks',
+      'label' => 'Remarks (Old)',
       'required' => 0,
       'settings' => array(
         'display_summary' => 1,
@@ -66,11 +72,11 @@ function gardenwalk_gardens_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
-          'rows' => '7',
+          'rows' => '3',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '9',
+        'weight' => '10',
       ),
       'widget_type' => 'text_textarea_with_summary',
     ),
@@ -110,17 +116,23 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => '',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '8',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '10',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '7',
         ),
       ),
       'entity_type' => 'node',
@@ -138,7 +150,7 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '34',
       ),
     ),
   );
@@ -232,6 +244,13 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => '',
       'display' => array(
+        'create_garden_for_anon' => array(
+          'label' => 'hidden',
+          'module' => 'location_cck',
+          'settings' => array(),
+          'type' => 'location_default',
+          'weight' => '0',
+        ),
         'default' => array(
           'label' => 'hidden',
           'module' => 'location_cck',
@@ -243,7 +262,7 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '15',
         ),
       ),
       'entity_type' => 'node',
@@ -271,6 +290,9 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_attractions',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'tid' => array(
           'columns' => array(
@@ -302,6 +324,13 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => '',
       'display' => array(
+        'create_garden_for_anon' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '3',
+        ),
         'default' => array(
           'label' => 'above',
           'module' => 'taxonomy',
@@ -313,12 +342,12 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '13',
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_attractions',
-      'label' => 'Attractions',
+      'label' => 'Special Attractions',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -329,6 +358,76 @@ function gardenwalk_gardens_field_default_fields() {
         'settings' => array(),
         'type' => 'options_buttons',
         'weight' => '8',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-garden-field_description'
+  $fields['node-garden-field_description'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_description',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'text_long',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Please limit to 25 words. GardenWalk Cleveland reserves the right to edit content.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '2',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => '0',
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_description',
+      'label' => 'Garden Description',
+      'required' => 1,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'rows' => '3',
+        ),
+        'type' => 'text_textarea',
+        'weight' => '9',
       ),
     ),
   );
@@ -354,17 +453,23 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => '',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '12',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '14',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '9',
         ),
       ),
       'entity_type' => 'node',
@@ -394,6 +499,9 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_gardener_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -420,23 +528,29 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => '',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '9',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '11',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '10',
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_gardener_name',
-      'label' => 'Name',
-      'required' => 0,
+      'label' => 'Gardener Name',
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -487,17 +601,23 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => '',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '13',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '15',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '12',
         ),
       ),
       'entity_type' => 'node',
@@ -528,6 +648,9 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_gardener_phone_home',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -554,23 +677,29 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => '',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '11',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '13',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '11',
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_gardener_phone_home',
       'label' => 'Home Phone',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'text_processing' => '0',
         'user_register_form' => FALSE,
@@ -587,14 +716,89 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-garden-field_gardenwalk_past_year'
+  $fields['node-garden-field_gardenwalk_past_year'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_gardenwalk_past_year',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'No',
+          1 => 'Yes',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'default_value' => array(
+        0 => array(
+          'value' => '0',
+        ),
+      ),
+      'default_value_function' => '',
+      'default_value_php' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 16,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_gardenwalk_past_year',
+      'label' => 'Part of GardenWalk 2011?',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'node-garden-field_gardenwalk_year'
   $fields['node-garden-field_gardenwalk_year'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '-1',
+      'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_gardenwalk_year',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'tid' => array(
           'columns' => array(
@@ -630,24 +834,31 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => '',
       'display' => array(
+        'create_garden_for_anon' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '14',
+        ),
         'default' => array(
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => 14,
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '6',
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_gardenwalk_year',
       'label' => 'Year',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -655,7 +866,7 @@ function gardenwalk_gardens_field_default_fields() {
         'active' => 1,
         'module' => 'options',
         'settings' => array(),
-        'type' => 'options_buttons',
+        'type' => 'options_select',
         'weight' => '6',
       ),
     ),
@@ -699,17 +910,23 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => '',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '7',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '9',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '8',
         ),
       ),
       'entity_type' => 'node',
@@ -726,7 +943,7 @@ function gardenwalk_gardens_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '6',
+        'weight' => '33',
       ),
     ),
   );
@@ -739,6 +956,9 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_map_label',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -765,17 +985,23 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'description' => 'For the printed map. Please don\'t touch this field.',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '6',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '8',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '5',
         ),
       ),
       'entity_type' => 'node',
@@ -793,7 +1019,7 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '10',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '36',
       ),
     ),
   );
@@ -806,6 +1032,9 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_map_label_prefix',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -873,17 +1102,23 @@ $entity_field[0][\'value\'] = $prefix;',
       'deleted' => '0',
       'description' => '',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '4',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '6',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '4',
         ),
       ),
       'entity_type' => 'node',
@@ -898,7 +1133,7 @@ $entity_field[0][\'value\'] = $prefix;',
         'module' => 'computed_field',
         'settings' => array(),
         'type' => 'computed',
-        'weight' => '8',
+        'weight' => '35',
       ),
     ),
   );
@@ -942,6 +1177,13 @@ $entity_field[0][\'value\'] = $prefix;',
       'deleted' => '0',
       'description' => '',
       'display' => array(
+        'create_garden_for_anon' => array(
+          'label' => 'above',
+          'module' => 'taxonomy',
+          'settings' => array(),
+          'type' => 'taxonomy_term_reference_link',
+          'weight' => '1',
+        ),
         'default' => array(
           'label' => 'above',
           'module' => 'taxonomy',
@@ -953,7 +1195,7 @@ $entity_field[0][\'value\'] = $prefix;',
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '2',
         ),
       ),
       'entity_type' => 'node',
@@ -981,6 +1223,9 @@ $entity_field[0][\'value\'] = $prefix;',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_ok',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -1003,7 +1248,7 @@ $entity_field[0][\'value\'] = $prefix;',
       'bundle' => 'garden',
       'default_value' => array(
         0 => array(
-          'value' => 0,
+          'value' => '1',
         ),
       ),
       'default_value_function' => '',
@@ -1011,34 +1256,38 @@ $entity_field[0][\'value\'] = $prefix;',
       'deleted' => '0',
       'description' => '',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '10',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '12',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '3',
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_ok',
       'label' => 'OK to photograph?',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '5',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '32',
       ),
     ),
   );
@@ -1051,6 +1300,9 @@ $entity_field[0][\'value\'] = $prefix;',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_yard_areas',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -1078,17 +1330,23 @@ $entity_field[0][\'value\'] = $prefix;',
       'deleted' => '0',
       'description' => '',
       'display' => array(
-        'default' => array(
+        'create_garden_for_anon' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
           'weight' => '5',
         ),
+        'default' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '7',
+        ),
         'teaser' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => 0,
+          'weight' => '14',
         ),
       ),
       'entity_type' => 'node',
@@ -1112,19 +1370,22 @@ $entity_field[0][\'value\'] = $prefix;',
   // Included for use with string extractors like potx.
   t('About this garden: attractions, year established, in memory of, community member names, etc...');
   t('Accessibility notes');
-  t('Attractions');
   t('Cell Phone');
   t('Email');
   t('For the printed map. Please don\'t touch this field.');
   t('Garden Address');
+  t('Garden Description');
+  t('Gardener Name');
   t('Handicap accessible');
   t('Home Phone');
   t('Map Label');
   t('Map Label Prefix');
-  t('Name');
   t('Neighborhood');
   t('OK to photograph?');
-  t('Remarks');
+  t('Part of GardenWalk 2011?');
+  t('Please limit to 25 words. GardenWalk Cleveland reserves the right to edit content.');
+  t('Remarks (Old)');
+  t('Special Attractions');
   t('Yard Areas');
   t('Year');
 

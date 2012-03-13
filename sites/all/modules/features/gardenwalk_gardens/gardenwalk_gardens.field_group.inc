@@ -21,18 +21,20 @@ function gardenwalk_gardens_field_group_info() {
   $field_group->parent_name = 'group_main';
   $field_group->data = array(
     'label' => 'Additional',
-    'weight' => '13',
+    'weight' => '15',
     'children' => array(
       0 => 'field_handicap_accessible',
       1 => 'field_accessibility_notes',
       2 => 'field_ok',
       3 => 'field_map_label_prefix',
       4 => 'field_map_label',
+      5 => 'field_gardenwalk_past_year',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',
       'instance_settings' => array(
+        'description' => '',
         'classes' => '',
         'required_fields' => 1,
       ),
@@ -51,15 +53,17 @@ function gardenwalk_gardens_field_group_info() {
   $field_group->parent_name = 'group_main';
   $field_group->data = array(
     'label' => 'Garden info',
-    'weight' => '12',
+    'weight' => '13',
     'children' => array(
       0 => 'body',
       1 => 'field_attractions',
+      2 => 'field_description',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'tab',
     'format_settings' => array(
       'formatter' => 'closed',
       'instance_settings' => array(
+        'description' => '',
         'classes' => '',
         'required_fields' => 1,
       ),
@@ -77,7 +81,7 @@ function gardenwalk_gardens_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_main';
   $field_group->data = array(
-    'label' => 'Gardener',
+    'label' => 'Gardener info',
     'weight' => '11',
     'children' => array(
       0 => 'field_gardener_name',
@@ -85,13 +89,15 @@ function gardenwalk_gardens_field_group_info() {
       2 => 'field_gardener_phone_home',
       3 => 'field_gardener_phone_cell',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'tab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'Gardener info',
       'instance_settings' => array(
-        'classes' => '',
         'required_fields' => 1,
+        'classes' => '',
+        'description' => '',
       ),
+      'formatter' => 'closed',
     ),
   );
   $export['group_gardener|node|garden|form'] = $field_group;
@@ -106,8 +112,8 @@ function gardenwalk_gardens_field_group_info() {
   $field_group->mode = 'form';
   $field_group->parent_name = 'group_main';
   $field_group->data = array(
-    'label' => 'Garden Location',
-    'weight' => '10',
+    'label' => 'Garden location',
+    'weight' => '12',
     'children' => array(
       0 => 'field_address',
       1 => 'field_yard_areas',
@@ -115,13 +121,15 @@ function gardenwalk_gardens_field_group_info() {
       3 => 'field_gardenwalk_year',
       4 => 'title',
     ),
-    'format_type' => 'htab',
+    'format_type' => 'tab',
     'format_settings' => array(
-      'formatter' => 'closed',
+      'label' => 'Garden location',
       'instance_settings' => array(
-        'classes' => '',
         'required_fields' => 1,
+        'classes' => '',
+        'description' => '',
       ),
+      'formatter' => 'closed',
     ),
   );
   $export['group_location|node|garden|form'] = $field_group;
@@ -144,7 +152,7 @@ function gardenwalk_gardens_field_group_info() {
       2 => 'group_location',
       3 => 'group_garden_info',
     ),
-    'format_type' => 'htabs',
+    'format_type' => 'tabs',
     'format_settings' => array(
       'formatter' => '',
       'instance_settings' => array(
