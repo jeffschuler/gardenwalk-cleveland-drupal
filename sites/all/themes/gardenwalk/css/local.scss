@@ -637,3 +637,33 @@ h1, h2, h3, h4, h5, h6 {
 .search-info .search-info-type {
   color: $green;
 }
+
+
+/* Forms
+--------------------- */
+div.vertical-tabs-processed {
+  border: none;
+}
+.vertical-tabs ul.vertical-tabs-list li {
+  background-color: $khaki;
+}
+.vertical-tabs ul.vertical-tabs-list,
+.vertical-tabs ul.vertical-tabs-list li,
+div.vertical-tabs {
+  border-color: $tan;
+}
+.vertical-tabs-list {
+  left: 0; /* reset Fusion */
+}
+.vertical-tabs ul li.last {
+  border-bottom: 1px solid $tan; /* reset Fusion */
+}
+div.vertical-tabs ul li.selected {
+  outline: none;
+}
+fieldset {
+  border: 1px solid $tan;
+}
+fieldset#edit-agreement {
+  background-color: $khaki;
+}

@@ -555,3 +555,33 @@ h1, h2, h3, h4, h5, h6 {
 
 .search-info .search-info-type {
   color: #059347; }
+
+/* Forms
+--------------------- */
+div.vertical-tabs-processed {
+  border: none; }
+
+.vertical-tabs ul.vertical-tabs-list li {
+  background-color: #f2ece9; }
+
+.vertical-tabs ul.vertical-tabs-list,
+.vertical-tabs ul.vertical-tabs-list li,
+div.vertical-tabs {
+  border-color: #d3cccb; }
+
+.vertical-tabs-list {
+  left: 0;
+  /* reset Fusion */ }
+
+.vertical-tabs ul li.last {
+  border-bottom: 1px solid #d3cccb;
+  /* reset Fusion */ }
+
+div.vertical-tabs ul li.selected {
+  outline: none; }
+
+fieldset {
+  border: 1px solid #d3cccb; }
+
+fieldset#edit-agreement {
+  background-color: #f2ece9; }
