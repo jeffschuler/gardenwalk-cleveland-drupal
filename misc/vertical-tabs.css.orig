@@ -42,14 +42,6 @@ div.vertical-tabs {
 .vertical-tabs ul.vertical-tabs-list li a:hover strong {
   text-decoration: underline;
 }
-div.vertical-tabs ul li.selected {
-  outline-style:solid;
-  outline-width:1px;
-  outline-color: #ccc;
-}
-div.vertical-tabs-processed {
-  border: 1px solid #ccc;
-}
 .vertical-tabs ul.vertical-tabs-list li a:hover {
   outline: 1px dotted;
 }

@@ -1,0 +1,43 @@
+diff --git a/misc/vertical-tabs.css b/misc/vertical-tabs.css
+old mode 100644
+new mode 100755
+index d350c8e..beebe6f
+--- a/misc/vertical-tabs.css
++++ b/misc/vertical-tabs.css
+@@ -43,6 +43,14 @@ div.vertical-tabs {
+ .vertical-tabs ul.vertical-tabs-list li a:hover strong {
+   text-decoration: underline;
+ }
++div.vertical-tabs ul li.selected {
++  outline-style:solid;
++  outline-width:1px;
++  outline-color: #ccc;
++}
++div.vertical-tabs-processed {
++  border: 1px solid #ccc;
++}
+ .vertical-tabs ul.vertical-tabs-list li a:hover {
+   outline: 1px dotted;
+ }
+diff --git a/themes/seven/vertical-tabs.css b/themes/seven/vertical-tabs.css
+old mode 100644
+new mode 100755
+index 0de228b..b38f40d
+--- a/themes/seven/vertical-tabs.css
++++ b/themes/seven/vertical-tabs.css
+@@ -45,8 +45,14 @@ div.vertical-tabs ul li.vertical-tab-button .summary {
+   font-size: 0.846em;
+   padding-top: 0.4em;
+ }
++div.vertical-tabs ul li.selected {
++  outline-style:solid;
++  outline-width:1px;
++  outline-color: #ccc;
++}
++
+ div.vertical-tabs ul li.vertical-tab-button a:hover,
+-div.vertical-tabs ul li.vertical-tab-button a:focus {
++div.vertical-tabs ul li.vertical-tab-button a:active {
+   background: #d5d5d5;
+   text-decoration: none;
+   outline: 0;
