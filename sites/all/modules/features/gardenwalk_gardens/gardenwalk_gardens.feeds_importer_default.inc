@@ -141,72 +141,82 @@ function gardenwalk_gardens_feeds_importer_default() {
             'unique' => FALSE,
           ),
           3 => array(
-            'source' => 'Street ',
-            'target' => 'field_address:street',
-            'unique' => FALSE,
-          ),
-          4 => array(
-            'source' => 'Zip code ',
-            'target' => 'field_address:postal_code',
-            'unique' => FALSE,
-          ),
-          5 => array(
             'source' => 'Home',
             'target' => 'field_gardener_phone_home',
             'unique' => FALSE,
           ),
-          6 => array(
+          4 => array(
             'source' => 'Cell',
             'target' => 'field_gardener_phone_cell',
             'unique' => FALSE,
           ),
-          7 => array(
+          5 => array(
             'source' => 'Email',
             'target' => 'field_gardener_email',
             'unique' => FALSE,
           ),
-          8 => array(
+          6 => array(
             'source' => 'Yard access',
             'target' => 'field_yard_areas',
             'unique' => FALSE,
           ),
-          9 => array(
+          7 => array(
             'source' => 'Is it okay to take photos of your garden for publicity purposes?',
             'target' => 'field_ok',
             'unique' => FALSE,
           ),
-          10 => array(
+          8 => array(
             'source' => 'Special attractions',
             'target' => 'field_attractions',
             'unique' => FALSE,
           ),
-          11 => array(
+          9 => array(
             'source' => 'Was your garden included in GardenWalk 2011?',
             'target' => 'field_gardenwalk_past_year',
             'unique' => FALSE,
           ),
-          12 => array(
+          10 => array(
             'source' => 'Garden Description',
             'target' => 'field_description',
             'unique' => FALSE,
           ),
-          13 => array(
+          11 => array(
             'source' => 'First name',
             'target' => 'Temporary target 1',
             'unique' => FALSE,
           ),
-          14 => array(
+          12 => array(
             'source' => 'Last name',
             'target' => 'field_gardener_name',
             'unique' => FALSE,
           ),
+          13 => array(
+            'source' => 'Gardener Street',
+            'target' => 'field_gardener_address:street',
+            'unique' => FALSE,
+          ),
+          14 => array(
+            'source' => 'Gardener City',
+            'target' => 'field_gardener_address:city',
+            'unique' => FALSE,
+          ),
           15 => array(
-            'source' => 'City',
-            'target' => 'field_address:city',
+            'source' => 'Gardener Zip',
+            'target' => 'field_gardener_address:postal_code',
+            'unique' => FALSE,
+          ),
+          16 => array(
+            'source' => 'Street',
+            'target' => 'field_address:street',
+            'unique' => FALSE,
+          ),
+          17 => array(
+            'source' => 'Zip code',
+            'target' => 'field_address:postal_code',
             'unique' => FALSE,
           ),
         ),
-        'update_existing' => '2',
+        'update_existing' => '1',
         'input_format' => '1',
       ),
     ),

@@ -18,10 +18,10 @@ function gardenwalk_gardens_feeds_tamper_default() {
   $feeds_tamper->source = 'Last name';
   $feeds_tamper->plugin_id = 'rewrite';
   $feeds_tamper->settings = array(
-    'text' => '[First name] [Last name]',
+    'text' => '[first name] [last name]',
   );
   $feeds_tamper->weight = 0;
-  $feeds_tamper->description = 'Rewrite';
+  $feeds_tamper->description = 'Rewrite as First Last';
   $export['gardens_webform-last_name-rewrite'] = $feeds_tamper;
 
   $feeds_tamper = new stdClass;

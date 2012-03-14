@@ -440,6 +440,9 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_gardener_address',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'lid' => array(
@@ -476,7 +479,7 @@ function gardenwalk_gardens_field_default_fields() {
               ),
               'city' => array(
                 'collect' => '1',
-                'default' => '',
+                'default' => 'Cleveland',
                 'weight' => '8',
               ),
               'country' => array(
@@ -500,7 +503,7 @@ function gardenwalk_gardens_field_default_fields() {
               ),
               'province' => array(
                 'collect' => '1',
-                'default' => '',
+                'default' => 'Ohio',
                 'weight' => '10',
                 'widget' => 'autocomplete',
               ),
@@ -539,11 +542,12 @@ function gardenwalk_gardens_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_gardener_address',
       'label' => 'Gardener Address',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
+        'active' => 0,
         'module' => 'location_cck',
         'settings' => array(),
         'type' => 'location',
