@@ -287,14 +287,24 @@ function location_feeds_set_point($source, $entity, $target, $value) {
 
   foreach ($value as $i => $val) {
     $val = trim($val);
+    // Attempt to set a value for DMS notation.
     if (!is_numeric($val)) {
       $neg = FALSE;
       if (strpos($val,'-') === 0) {
         $neg = TRUE;
       }
-      $val = preg_replace ('/[^\d\s]/', '', $val);
+      $val = trim(preg_replace('/[^\d\s\.WSws]/', '', $val));
       $dms = explode(' ', $val);
-      $val = (abs($dms[0]) + ($dms[1]/60) + ($dms[2]/3600)) * ($neg ? -1 : 1);
+      // Account for '77° 02' 15.691" W' format.
+      if (count($dms) == 4) {
+        if ($dms[3] == 'W' || $dms[3] == 'w' || $dms[3] == 'S' || $dms[3] == 's') {
+          $neg = TRUE;
+          unset($dms[3]);
+        }
+      }
+      if (count($dms) == 3) {
+        $val = (abs($dms[0]) + ($dms[1]/60) + ($dms[2]/3600)) * ($neg ? -1 : 1);
+      }
     }
 
     if (isset($last_field)) {
