@@ -17,6 +17,13 @@ function email_field_info() {
 }
 
 /**
+ * Implements hook_migrate_api().
+ */
+function email_migrate_api() {
+  return array('api' => 2);
+}
+
+/**
  * Implements hook_field_validate().
  *
  * Possible error codes:
@@ -115,7 +122,7 @@ function email_field_formatter_view($object_type, $object, $field, $instance, $l
     case 'email_spamspan':
       foreach ($items as $delta => $item) {
         if (module_exists('spamspan')) {
-          $element[$delta] = spamspan($item['email']);
+          $element[$delta] = array('#markup' => spamspan($item['email']));
         }
         else {
           $output = l($item['email'], 'mailto:' . $item['email']);
