@@ -82,7 +82,7 @@ function gardenwalk_gardens_workflow_features_default_workflow() {
           'status' => '1',
         ),
         3 => array(
-          'state' => 'Declined',
+          'state' => 'Denied',
           'weight' => '0',
           'sysid' => '0',
           'status' => '1',
@@ -101,12 +101,12 @@ function gardenwalk_gardens_workflow_features_default_workflow() {
         ),
         2 => array(
           'sid' => 'Application',
-          'target_sid' => 'Declined',
+          'target_sid' => 'Denied',
           'roles' => ',3,4,8',
         ),
         3 => array(
           'sid' => 'Approved',
-          'target_sid' => 'Declined',
+          'target_sid' => 'Denied',
           'roles' => '2,3,8',
         ),
         4 => array(
@@ -115,12 +115,12 @@ function gardenwalk_gardens_workflow_features_default_workflow() {
           'roles' => '2,3,8',
         ),
         5 => array(
-          'sid' => 'Declined',
+          'sid' => 'Denied',
           'target_sid' => 'Approved',
           'roles' => '2,3,8',
         ),
         6 => array(
-          'sid' => 'Declined',
+          'sid' => 'Denied',
           'target_sid' => 'Application',
           'roles' => '2,3,8',
         ),

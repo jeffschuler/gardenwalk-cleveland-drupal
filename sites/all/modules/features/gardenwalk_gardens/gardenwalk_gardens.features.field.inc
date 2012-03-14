@@ -488,7 +488,7 @@ function gardenwalk_gardens_field_default_fields() {
                 'weight' => '14',
               ),
               'locpick' => array(
-                'collect' => '1',
+                'collect' => '0',
                 'weight' => '20',
               ),
               'name' => array(
@@ -551,7 +551,7 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'location_cck',
         'settings' => array(),
         'type' => 'location',
-        'weight' => '6',
+        'weight' => '9',
       ),
     ),
   );
@@ -610,7 +610,7 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'email_textfield',
-        'weight' => '7',
+        'weight' => '6',
       ),
     ),
   );
@@ -759,7 +759,7 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '9',
+        'weight' => '8',
       ),
     ),
   );
@@ -835,7 +835,7 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '7',
       ),
     ),
   );

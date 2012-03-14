@@ -147,9 +147,9 @@ function gardenwalk_gardens_field_group_info() {
     'weight' => '0',
     'children' => array(
       0 => 'group_additional',
-      1 => 'group_gardener',
-      2 => 'group_location',
-      3 => 'group_garden_info',
+      1 => 'group_garden_info',
+      2 => 'group_gardener',
+      3 => 'group_location',
     ),
     'format_type' => 'tabs',
     'format_settings' => array(
