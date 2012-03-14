@@ -586,6 +586,9 @@ fieldset {
 fieldset#edit-agreement {
   background-color: #f2ece9; }
 
+.marker, .form-required {
+  color: #d31245; }
+
 /* Manage Gardens Table
 --------------------- */
 .view-display-id-page_2 .workflow-Application td {

@@ -668,6 +668,9 @@ fieldset {
 fieldset#edit-agreement {
   background-color: $khaki;
 }
+.marker, .form-required {
+  color: $red;
+}
 
 
 /* Manage Gardens Table
