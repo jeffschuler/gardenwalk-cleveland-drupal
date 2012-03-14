@@ -6,6 +6,7 @@ $purple: #615FC1;
 $orange: #F15B2A;
 $green: #059347;
 $ltgreen: #A3C6B1;
+$red: #D31245;
 $white: #FFFFFF;
 $black: #000000;
 
@@ -666,4 +667,19 @@ fieldset {
 }
 fieldset#edit-agreement {
   background-color: $khaki;
+}
+
+
+/* Manage Gardens Table
+--------------------- */
+.view-display-id-page_2 .workflow-Application td {
+}
+.view-display-id-page_2 .workflow-Application td {
+  background-color: #F9F9C5;
+}
+.view-display-id-page_2 .workflow-Approved td {
+  background-color: lighten($green, 65%);
+}
+.view-display-id-page_2 .workflow-Denied td {
+  background-color: lighten($red, 50%);
 }
