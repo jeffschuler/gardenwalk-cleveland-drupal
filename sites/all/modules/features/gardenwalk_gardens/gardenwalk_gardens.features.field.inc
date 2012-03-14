@@ -37,7 +37,7 @@ function gardenwalk_gardens_field_default_fields() {
       'bundle' => 'garden',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'About this garden: attractions, year established, in memory of, community member names, etc...',
+      'description' => '2011 "Remarks" field. Please use Garden Description instead!',
       'display' => array(
         'create_garden_for_anon' => array(
           'label' => 'hidden',
@@ -432,6 +432,126 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-garden-field_gardener_address'
+  $fields['node-garden-field_gardener_address'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_gardener_address',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'lid' => array(
+          0 => 'lid',
+        ),
+      ),
+      'module' => 'location_cck',
+      'settings' => array(
+        'gmap_macro' => '[gmap ]',
+        'gmap_marker' => 'gray',
+        'location_settings' => array(
+          'display' => array(
+            'hide' => array(
+              'additional' => 'additional',
+              'city' => 0,
+              'coords' => 'coords',
+              'country' => 'country',
+              'country_name' => 'country_name',
+              'locpick' => 'locpick',
+              'map_link' => 0,
+              'name' => 'name',
+              'postal_code' => 0,
+              'province' => 0,
+              'province_name' => 'province_name',
+              'street' => 0,
+            ),
+          ),
+          'form' => array(
+            'fields' => array(
+              'additional' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '6',
+              ),
+              'city' => array(
+                'collect' => '1',
+                'default' => '',
+                'weight' => '8',
+              ),
+              'country' => array(
+                'collect' => '4',
+                'default' => 'us',
+                'weight' => '14',
+              ),
+              'locpick' => array(
+                'collect' => '1',
+                'weight' => '20',
+              ),
+              'name' => array(
+                'collect' => '0',
+                'default' => '',
+                'weight' => '2',
+              ),
+              'postal_code' => array(
+                'collect' => '1',
+                'default' => '',
+                'weight' => '12',
+              ),
+              'province' => array(
+                'collect' => '1',
+                'default' => '',
+                'weight' => '10',
+                'widget' => 'autocomplete',
+              ),
+              'street' => array(
+                'collect' => '1',
+                'default' => '',
+                'weight' => '4',
+              ),
+            ),
+          ),
+        ),
+      ),
+      'translatable' => '0',
+      'type' => 'location',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'location_cck',
+          'settings' => array(),
+          'type' => 'location_default',
+          'weight' => 17,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_gardener_address',
+      'label' => 'Gardener Address',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'location_cck',
+        'settings' => array(),
+        'type' => 'location',
+        'weight' => '6',
+      ),
+    ),
+  );
+
   // Exported field: 'node-garden-field_gardener_email'
   $fields['node-garden-field_gardener_email'] = array(
     'field_config' => array(
@@ -486,7 +606,7 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'email_textfield',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
@@ -635,7 +755,7 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );
@@ -711,7 +831,7 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '8',
       ),
     ),
   );
@@ -1368,13 +1488,14 @@ $entity_field[0][\'value\'] = $prefix;',
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('About this garden: attractions, year established, in memory of, community member names, etc...');
+  t('2011 "Remarks" field. Please use Garden Description instead!');
   t('Accessibility notes');
   t('Cell Phone');
   t('Email');
   t('For the printed map. Please don\'t touch this field.');
   t('Garden Address');
   t('Garden Description');
+  t('Gardener Address');
   t('Gardener Name');
   t('Handicap accessible');
   t('Home Phone');

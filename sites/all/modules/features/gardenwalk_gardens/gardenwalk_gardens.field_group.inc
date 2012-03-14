@@ -88,6 +88,7 @@ function gardenwalk_gardens_field_group_info() {
       1 => 'field_gardener_email',
       2 => 'field_gardener_phone_home',
       3 => 'field_gardener_phone_cell',
+      4 => 'field_gardener_address',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
