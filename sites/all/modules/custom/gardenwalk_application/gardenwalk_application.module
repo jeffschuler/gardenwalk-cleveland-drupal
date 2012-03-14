@@ -102,35 +102,22 @@ function gardenwalk_application_theme($existing, $type, $theme, $path) {
 /**
  * Implements hook_field_group_pre_render().
  *
- * Change field_groups to multi-page form for anonymous.
+ * Change vertical tabs field_group to multi-page form for anonymous users
  */
-function gardenwalk_application_field_group_pre_render_alter(&$element, $group, &$form) {
-  if ($form['uid']['#value'] == 0) {
-    if ($element['#type'] == 'vertical_tabs') {
-      $element['#type'] = 'multipage';
-      $form['#groups'][$group->group_name]->format_type = 'multipage-group';
-
-      $form['#groups'][$group->group_name]->format_settings['formatter'] = 'no-start';
-      $form['#groups'][$group->group_name]->format_settings['instance_settings']['classes'] = '';
-      $form['#groups'][$group->group_name]->format_settings['instance_settings']['page_header'] = 3;
-      $form['#groups'][$group->group_name]->format_settings['instance_settings']['move_additional'] = 1;
-      $form['#groups'][$group->group_name]->format_settings['instance_settings']['page_counter'] = 1;
-      $form['#groups'][$group->group_name]->format_settings['instance_settings']['move_button'] = 0;
-
-      field_group_pre_render_multipage_group($element, $group, $form);
-    }
-    if ($element['#type'] == 'fieldset') {
-      $element['#type'] = 'multipage_pane';
-      $form['#groups'][$group->group_name]->format_type = 'multipage';
-
-      $form['#groups'][$group->group_name]->format_settings['formatter'] = 'no-start';
-      $form['#groups'][$group->group_name]->format_settings['instance_settings']['description'] = '';
-      $form['#groups'][$group->group_name]->format_settings['instance_settings']['classes'] = '';
-
-      field_group_pre_render_multipage($element, $group, $form);
-    }
-  }
-}
+//function gardenwalk_application_field_group_pre_render_alter(&$element, $group, &$form) {
+//  if ($form['uid']['#value'] == 0) {
+//    if ($element['#type'] == 'vertical_tabs') {
+//      $element['#type'] = 'multipage';
+//      $form['#groups'][$group->group_name]->format_type = 'multipage-group';
+//      field_group_pre_render_multipage_group($element, $group, $form);
+//    }
+//    if ($element['#type'] == 'fieldset') {
+//      $element['#type'] = 'multipage_pane';
+//      $form['#groups'][$group->group_name]->format_type = 'multipage';
+//      field_group_pre_render_multipage($element, $group, $form);
+//    }
+//  }
+//}
 
 /**
  * Preprocessor for theme('garden_node_form').
@@ -140,7 +127,7 @@ function gardenwalk_application_preprocess_garden_node_form(&$variables) {
   if ($user->uid == 0) {
     $variables['instructions'] = '<p>Want to show your garden in GardenWalk 2012?</p>
       <p>If you live in one of the GardenWalk 2012 neighborhoods, please fill out 
-      the form below to apply. A garden finder from your neighborhood will get back 
+      the four-part form, below, to apply. A garden finder from your neighborhood will get back 
       to you. If you\'re interested in volunteering or supporting GardenWalk Cleveland 
       in some other way, check out our <a href="/get-involved">Get Involved</a> page.</p>';
   } else {
