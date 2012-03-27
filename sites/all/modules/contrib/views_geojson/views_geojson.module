@@ -109,7 +109,7 @@ function _views_geojson_render_multiple_field($field, $values) {
  */
 function _views_geojson_render_fields($view, $row, $index) {
   $excluded_fields = array();
-  $feature         = array();
+  $feature         = array('type' => 'Geometry');
   $data_source     = $view->style_plugin->options['data_source'];
   $field_ids       = array_keys($view->field);
 
@@ -132,7 +132,7 @@ function _views_geojson_render_fields($view, $row, $index) {
         $feature['geometry'] =
             array(
               'type'        => 'Point',
-              'coordinates' => array($longitude, $latitude));
+              'coordinates' => array(floatval($longitude), floatval($latitude)));
       }
       break;
     case 'boundingbox':
@@ -164,6 +164,7 @@ function _views_geojson_render_fields($view, $row, $index) {
           if ($data_source[$option] == $field_idx) {
             $$option = $view->style_plugin->get_field_value($view->row_index, $field_idx);
             $$option = ${$option}[0]['wkt'];
+            $view->row_index = $index;
             $excluded_fields[] = $field_idx;
           }
         }
@@ -357,7 +358,7 @@ function _views_geojson_load_geophp() {
 function views_geojson_requirements($phase) {
   $requirements = array();
 
-  $geophp = views_geojson_load_geophp();
+  $geophp = _views_geojson_load_geophp();
 
   $geophp_download_link = l('https://github.com/downloads/phayes/geoPHP/geoPHP.tar.gz', 'https://github.com/downloads/phayes/geoPHP/geoPHP.tar.gz');
 

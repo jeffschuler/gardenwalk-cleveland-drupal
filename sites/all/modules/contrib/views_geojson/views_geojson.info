@@ -5,12 +5,14 @@ package = Views
 core = "7.x"
 
 files[] = views/views_plugin_style_geojson.inc
+files[] = views/views_geojson_bbox_argument.inc
+files[] = views/views_plugin_argument_default_bboxquery.inc
 
 dependencies[] = views (>=3.0)
 dependencies[] = libraries
-; Information added by drupal.org packaging script on 2011-12-25
-version = "7.x-1.x-dev"
+; Information added by drupal.org packaging script on 2012-03-26
+version = "7.x-1.0-alpha0+10-dev"
 core = "7.x"
 project = "views_geojson"
-datestamp = "1324774644"
+datestamp = "1332722873"
 
