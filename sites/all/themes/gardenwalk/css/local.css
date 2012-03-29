@@ -599,3 +599,8 @@ fieldset#edit-agreement {
 
 .view-display-id-page_2 .workflow-Denied td {
   background-color: #fde7ed; }
+
+/* Page content
+--------------------- */
+.node-page .field-name-field-attached-images {
+  float: right; }
