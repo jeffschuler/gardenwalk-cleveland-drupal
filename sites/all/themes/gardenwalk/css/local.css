@@ -589,6 +589,9 @@ fieldset#edit-agreement {
 .marker, .form-required {
   color: #d31245; }
 
+.form-submit {
+  font-size: inherit; }
+
 /* Manage Gardens Table
 --------------------- */
 .view-display-id-page_2 .workflow-Application td {
