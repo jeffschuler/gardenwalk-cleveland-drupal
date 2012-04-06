@@ -1,0 +1,39 @@
+diff --git a/workflow_named_transitions.module b/workflow_named_transitions.module
+index f2ed280..2199fab 100644
+--- a/workflow_named_transitions.module
++++ b/workflow_named_transitions.module
+@@ -120,7 +120,7 @@ function theme_workflow_named_transitions_edit_labels_form($variables) {
+   // doing something with element_children() might be a better way
+   // than this foreach looping methods
+   foreach ($form as $starting_state => $transitions) {
+-    if (isset($form[$starting_state]['#type']) && $form[$starting_state]['#type'] == 'fieldset') {
++    if (is_array(isset($form[$starting_state])) && isset($form[$starting_state]['#type']) && $form[$starting_state]['#type'] == 'fieldset') {
+       $rows = array();
+       foreach ($transitions as $tid => $item) {
+         if (is_numeric($tid)) {
+@@ -163,7 +163,7 @@ function workflow_named_transitions_edit_labels_form_submit($form, &$form_state)
+     else {
+       db_delete('workflow_named_transitions')
+         ->condition('tid', $tid)
+-        ->execute;
++        ->execute();
+     }
+   }
+ }
+@@ -201,7 +201,6 @@ function workflow_named_transitions_get_transitions($workflow) {
+  * Modifies the generic state labels that the workflow module added to the form.
+  */
+ function workflow_named_transitions_form_alter(&$form, &$form_state, $form_id) {
+-
+   if (($form_id == 'workflow_tab_form' || $form['#id'] == 'node-form') && (isset($form['workflow']) && is_array($form['workflow']))) {
+     // if no nid, use sysid == 1 from workflow_states for each wid
+     // as the starting sid to lookup in workflow_transitions
+@@ -230,7 +229,7 @@ function workflow_named_transitions_form_alter(&$form, &$form_state, $form_id) {
+           SELECT sub_wt.tid FROM {workflow_transitions} AS sub_wt WHERE sub_wt.sid = :sid AND sub_wt.target_sid IN(:targets))",
+           array(
+             ':sid' => $workflow->starting_sid,
+-            ':targets' => array(array_keys($form['workflow'][$workflow->name]['#options']))
++            ':targets' => array_keys($form['workflow'][$workflow->name]['#options']),
+           )
+         );
+         foreach ($tids_result as $options_to_update) {
