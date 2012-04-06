@@ -1,0 +1,57 @@
+<?php
+
+/**
+ * @file
+ * Tests for the Workflow Named Transitions module.
+ */
+
+class WorkflowNamedTransitionsTest extends DrupalWebTestCase {
+  function getInfo() {
+    return array(
+      'name' => 'Workflow Named Transitions Test',
+      'description' => "This tests whether the Edit Labels tab exists in the workflow area.",
+      'group' => 'Workflow'
+    );
+  }
+
+  function setUp() {
+    parent::setUp('workflow', 'workflow_admin_ui', 'workflow_named_transitions');
+  }
+
+  function testWorkflowNamedTransitionsFunctionExistance() {
+    $this->assertTrue(function_exists('workflow_named_transitions_get_transitions'), t('workflow_named_transitions_get_transitions() exists.'));
+  }
+  
+  function testEditLabelsExistsAdmin() {
+    $user = $this->drupalCreateUser(array('administer workflow'));
+    $this->drupalLogin($user);
+    $this->drupalGet('admin/config/workflow/workflow/');
+    // HTML of the Edit labels tab
+    $this->assertRaw(sprintf('admin/config/workflow/workflow/labels">%s</a>', t('Edit labels')), t('Edit labels tab found'));
+    $this->drupalGet('admin/config/workflow/workflow/labels');
+    $this->assertResponse('200');
+  }
+
+  function testEditLabelsMissing() {
+    $user = $this->drupalCreateUser(array('access content'));
+    $this->drupalLogin($user);
+    $this->drupalGet('admin/config/workflow/workflow');
+    // HTML of the Edit labels tab
+    $this->assertNoRaw(sprintf('admin/config/workflow/workflow/labels">%s</a>', t('Edit labels')), t('Edit labels tab not found'));
+    $this->drupalGet('admin/config/workflow/workflow/labels');
+    $this->assertResponse('403');
+  }
+
+    function testWorkflowNamedTransitionsThemeRegistry() {
+    $this->assertTrue(function_exists('workflow_named_transitions_theme'), t('workflow_named_transitions_theme() exists.'));
+    $this->assertTrue(function_exists('theme_workflow_named_transitions_edit_labels_form'), t('theme_workflow_named_transitions_edit_labels_form() exists.'));
+
+    $result = workflow_named_transitions_theme();
+    $this->assertTrue(is_array($result));
+    $this->assertEqual($result['workflow_named_transitions_edit_labels_form']['render element'], 'form', 'Theme registry returns correct value.');
+  }
+
+  function tearDown() {
+    parent::tearDown();
+  }
+}

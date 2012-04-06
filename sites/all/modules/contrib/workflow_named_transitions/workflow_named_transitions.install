@@ -1,0 +1,55 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the Workflow Named Transitions module.
+ */
+
+/**
+ * Implementation of hook_schema().
+ */
+function workflow_named_transitions_schema() {
+  $schema['workflow_named_transitions'] = array(
+    'fields' => array(
+      'tid' => array(
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'disp-width' => '10'
+      ),
+      'label' => array(
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE
+      )
+    ),
+    'primary key' => array('tid')
+  );
+  return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ *
+ * Add the workflow_named_transitions table for storing labels for each
+ * workflow transition ID (tid) and set the weight to be one more than
+ * the workflow module to make sure this module's form alter hook executes
+ * after the one in the workflow module.
+ */
+function workflow_named_transitions_install() {
+  $workflow_weight = db_select('system', 's')
+    ->fields('s', array('weight'))
+    ->condition('name', 'workflow')
+    ->range(0, 1)
+    ->execute()
+    ->fetchField();
+  db_query("UPDATE {system} SET weight = :weight + 1 WHERE name = 'workflow_named_transitions'", array(':weight' => $workflow_weight));
+}
+
+/**
+ * Implementation of hook_uninstall().
+ *
+ * Drop the workflow_named_transitions table.
+ */
+function workflow_named_transitions_uninstall() {
+}
