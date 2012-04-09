@@ -13,69 +13,71 @@
 function coder_review_security_reviews() {
   $argex = '(((\$?)[a-zA-Z_]+((\([^)]*\))|\[[^\]]*\])?)|[0-9]+(\.[0-9]*)?|\'\'|"")';
   $allphp_argex = '(((\$?)[a-zA-Z_]+((\([^)]*\))|\[[^\]]*\])?)|[0-9]+(\.[0-9]*)?|\'[^\']+\'|"[^"]+")';
-  $sanitize_argex = '((t|st|\$t|check_plain|format_plural|check_markup|filter_xss|filter_xss_admin)\s*\([^\)]+?\))';
+  $sanitize_argex = '((t|st|\$t|check_plain|format_plural|check_markup|field_filter_xss|filter_xss|filter_xss_admin)\s*\([^\)]+?\))';
   $table = '\{[A-Za-z_]+\}'; // table-regex
   $rules = array(
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]trigger_error\s*\(\s*[^\$]+.+\$',
-      '#never' => '(^function\s|trigger_error\s*\(\s*(((st|t|\$t)\s*\()|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|trigger_error\s*\(\s*(((st|t|\$t)\s*\()|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_trigger_error_filter_warning',
     ),
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]trigger_error\s*\(\s*(st|t|\$t)\s*\(\s*((.*?\$)|([\'"].*?!\w+.*?[\'"]\s*,)|(.*?array\(.*?!\w+.*?\)))',
-      '#never' => '(^function\s|trigger_error\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|trigger_error\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_trigger_error_filter_t_warning',
     ),
+    /*
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]drupal_set_title\s*\(\s*[^\$)]+.+\$',
-      '#never' => '(^function\s|drupal_set_title\s*\(\s*(((st|t|\$t)\s*\()|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|drupal_set_title\s*\(\s*(((st|t|\$t)\s*\()|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_drupal_set_title_filter_warning',
     ),
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]drupal_set_title\s*\(\s*(st|t|\$t)\s*\(\s*((.*?\$)|([\'"].*?!\w+.*?[\'"]\s*,)|(.*?array\(.*?!\w+.*?\)))',
-      '#never' => '(^function\s|drupal_set_title\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|drupal_set_title\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_drupal_set_title_filter_t_warning',
     ),
+    */
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]drupal_set_message\s*\(\s*[^\$)]+.+\$',
-      '#never' => '(^function\s|drupal_set_message\s*\(\s*(((st|t|\$t)\s*\()|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|drupal_set_message\s*\(\s*(((st|t|\$t)\s*\()|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_drupal_set_message_filter_warning',
     ),
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]drupal_set_message\s*\(\s*(st|t|\$t)\s*\(\s*((.*?\$)|([\'"].*?!\w+.*?[\'"]\s*,)|(.*?array\(.*?!\w+.*?\)))',
-      '#never' => '(^function\s|drupal_set_message\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|drupal_set_message\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_drupal_set_message_filter_t_warning',
     ),
     array(
       '#type' => 'regex',
       '#value' => '[\s\(](form_set_error|form_error)\s*\(\s*' . $argex . '\s*,\s*[^\$)]+.+\$',
-      '#never' => '(^function\s|(form_set_error|form_error)\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\()|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|(form_set_error|form_error)\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\()|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_form_set_error_filter_warning',
     ),
     array(
       '#type' => 'regex',
       '#value' => '[\s\(](form_set_error|form_error)\s*\(\s*' . $argex . '\s*,\s*(st|t|\$t)\s*\(\s*((.*?\$)|([\'"].*?!\w+.*?[\'"]\s*,)|(.*?array\(.*?!\w+.*?\)))',
-      '#never' => '(^function\s|(form_set_error|form_error)\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|(form_set_error|form_error)\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_form_set_error_filter_t_warning',
     ),
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]confirm_form\s*\(\s*' . $argex . '\s*,\s*[^\$\s]+.+\$[^,]+,\s*' . $argex . '\s*\)',
-      '#never' => '(^function\s|confirm_form\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\()|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|confirm_form\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\()|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_confirm_form_filter_warning',
     ),
@@ -83,7 +85,7 @@ function coder_review_security_reviews() {
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]confirm_form\s*\(\s*' . $argex . '\s*,\s*(st|t|\$t)\s*\(\s*((\$\w+[,\)])|("[^"]+?\$\w+.*?"\s*[,\)])|([\'"].*?[\'"]\s*\.\s*\$\w)|([\'"].*?!\w+.*?[\'"]\s*,)|(.*?array\(.*?!\w+.*?\)))',
-      '#never' => '(^function\s|confirm_form\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
+      '#never' => '(^function\s|confirm_form\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_confirm_form_filter_t_warning',
     ),
@@ -91,7 +93,7 @@ function coder_review_security_reviews() {
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]confirm_form\s*\(\s*((' . $allphp_argex . '|' . $sanitize_argex . ')\s*,\s*){3,5}([^\$\s]+.+\$[^,\)]+)(' . $allphp_argex . ')??\)\s*;',
-      '#never' => '(^function\s|confirm_form\s*\(\s*((' . $allphp_argex . '|' . $sanitize_argex . ')\s*,\s*){3,5}((st|t|\$t|format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\([^\)\$]+\)).*?(' . $allphp_argex . ')??\)\s*;)',
+      '#never' => '(^function\s|confirm_form\s*\(\s*((' . $allphp_argex . '|' . $sanitize_argex . ')\s*,\s*){3,5}((st|t|\$t|format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\([^\)\$]+\)).*?(' . $allphp_argex . ')??\)\s*;)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_confirm_form_filter_warning',
     ),
@@ -99,7 +101,7 @@ function coder_review_security_reviews() {
     array(
       '#type' => 'regex',
       '#value' => '[\s\(]confirm_form\s*\(\s*((' . $allphp_argex . '|' . $sanitize_argex . ')\s*,\s*){3,5}(st|t|\$t)\s*\(\s*((\$\w+[,\)])|("[^"]+?\$\w+.*?"\s*[,\)])|([\'"].*?[\'"]\s*\.\s*\$\w)|([\'"].*?!\w+.*?[\'"]\s*,)|(.*?array\(.*?!\w+.*?\))).*?(' . $allphp_argex . ')??\)\s*;',
-      '#never' => '(^function\s|confirm_form\s*\(\s*((' . $allphp_argex . '|' . $sanitize_argex . ')\s*,\s*){3,5}(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\([^\)\$]+\)).*?(' . $allphp_argex . ')??\)\s*;)',
+      '#never' => '(^function\s|confirm_form\s*\(\s*((' . $allphp_argex . '|' . $sanitize_argex . ')\s*,\s*){3,5}(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\([^\)\$]+\)).*?(' . $allphp_argex . ')??\)\s*;)',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_confirm_form_filter_t_warning',
     ),
@@ -128,7 +130,6 @@ function coder_review_security_reviews() {
       '#type' => 'regex',
       '#value' => '^(select\s+.*\s+from\s+' . $table . '|insert\s+into\s+' . $table . '|update\s+' . $table . '\s+set|delete\s+from\s+' . $table . ')\s+.*\$[a-z0-9_]+',
       '#not' => '\$placeholder',
-      '#never' => '[\s\(]update_sql\(',
       '#source' => 'quote',
       '#warning_callback' => '_coder_review_security_sql_var_warning',
     ),
@@ -145,6 +146,7 @@ function coder_review_security_reviews() {
       '#warning' => "Use preg_replace_callback() instead of the 'e' modifier to preg_replace()",
       '#severity' => 'critical',
     ),
+    /*
     array(
       '#type' => 'regex',
       '#value' => '.*[\'"]SELECT\s+.*\s+(FROM|JOIN)\s+\{node\}',
@@ -161,6 +163,7 @@ function coder_review_security_reviews() {
       '#warning_callback' => '_coder_review_security_db_rewrite_sql_warning',
       '#function-not' => '_cron$',
     ),
+    */
     array(
       '#type' => 'regex',
       '#value' => '[\'"]access callback.*=.*\(',
@@ -172,7 +175,7 @@ function coder_review_security_reviews() {
       '#type' => 'regex',
       '#severity' => 'minor',
       '#value' => '\$_(POST)\[.+?\]',
-      '#never' => '((((==|!=|>=|<=|>|<)\s*|[!\s\(](form_get_cache|form_set_cache|format_plural|filter_xss|filter_xss_admin|check_plain|check_markup|isset|empty|foreach|while|if|elseif)\s*\(\s*)\$_(POST)\[.+?\])|\$_(POST)\[.+?\]\s*(\.=|=|!=))',
+      '#never' => '((((==|!=|>=|<=|>|<)\s*|[!\s\(](form_get_cache|form_set_cache|format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup|isset|empty|foreach|while|if|elseif)\s*\(\s*)\$_(POST)\[.+?\])|\$_(POST)\[.+?\]\s*(\.=|=|!=))',
       '#source' => 'allphp',
       '#warning_callback' => '_coder_review_security_post_get_request_filter_warning',
     ),
@@ -206,7 +209,7 @@ function coder_review_security_reviews() {
     '#link' => 'http://drupal.org/node/28984',
     '#rules' => $rules,
     '#severity' => 'critical',
-    '#description' => t('very basic, needs work, errs on the side of caution so may give false positives'),
+    '#description' => t('very basic, errs on the side of caution so may give false positives.'),
   );
   return array('security' => $review);
 }
@@ -219,11 +222,11 @@ function coder_review_security_reviews() {
 function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &$results) {
   $argex = '(((\$?)[a-zA-Z_]+((\([^)]*\))|\[[^\]]*\])?)|[0-9]+(\.[0-9]*)?|\'\'|"")';
   $allphp_argex = '(((\$?)[a-zA-Z_]+((\([^)]*\))|\[[^\]]*\])?)|[0-9]+(\.[0-9]*)?|\'[^\']+\'|"[^"]+")';
-  $sanitize_argex = '((t|st|\$t|check_plain|format_plural|check_markup|filter_xss|filter_xss_admin)\s*\([^\)]+?\))';
+  $sanitize_argex = '((t|st|\$t|check_plain|format_plural|check_markup|field_filter_xss|filter_xss|filter_xss_admin)\s*\([^\)]+?\))';
 
   $severity_name = _coder_review_severity_name($coder_args, $review, $rule);
   $ignores = $coder_args['#ignore_lines'];
-  $ignores = (empty($ignores) ? array() : $ignores[$review['#review_name']]);
+  $ignores = (empty($ignores) || !isset($ignores[$review['#review_name']])) ? array() : $ignores[$review['#review_name']];
   /*
   if (!isset($coder_args['#tokens'])) {
     $source = implode('', $lines);
@@ -256,6 +259,7 @@ function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &
       // If we've just exited a function, run forward match checks.
       if ($function_paren <= 0) {
         // db_rewrite_sql()
+        /*
         if (isset($forward_matches['db_rewrite_sql'])) {
           $after_never_regex = '/[\s\(]db_rewrite_sql\s*\(\s*\$' . $forward_matches['db_rewrite_sql'] . '[\s,\)]/';
           if (!preg_match($after_never_regex, $this_function, $sanitized_matches)) {
@@ -263,6 +267,7 @@ function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &
             _coder_review_error($results, $rule, $severity_name, $lineno, $line, $ignores);
           }
         }
+        */
         // FAPI #value
         if (isset($forward_matches['fapi_markup_value'])) {
           $find_match = '/[\s=]array\s*\(\s*([^\)]*?([\'"]#value[\'"]\s*=>\s*.*?\$' . $forward_matches['fapi_markup_value'] . '.*?))\);/';
@@ -285,10 +290,10 @@ function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &
     // Run our multi-line reviews.
     // trigger_error()
     $regex = '/[\s\(]trigger_error\s*\(\s*\$(\w+)\s*[,\)]/';
-    $never_regex = '/(^function\s|trigger_error\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
+    $never_regex = '/(^function\s|trigger_error\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
     if (preg_match($regex, $line, $matches)) {
       if (!preg_match($never_regex, $coder_args['#all_lines'][$lineno])) {
-        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
+        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
         if (!preg_match($before_never_regex, $this_function, $sanitized_matches)) {
           $rule = _coder_review_security_trigger_error_filter_warning();
           _coder_review_error($results, $rule, $severity_name, $lineno, $line, $ignores);
@@ -296,23 +301,25 @@ function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &
       }
     }
     // drupal_set_title()
+    /*
     $regex = '/[\s\(]drupal_set_title\s*\(\s*\$(\w+)\s*[,\)]/';
-    $never_regex = '/(^function\s|drupal_set_title\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
+    $never_regex = '/(^function\s|drupal_set_title\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
     if (preg_match($regex, $line, $matches)) {
       if (!preg_match($never_regex, $coder_args['#all_lines'][$lineno])) {
-        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
+        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
         if (!preg_match($before_never_regex, $this_function, $sanitized_matches)) {
           $rule = _coder_review_security_drupal_set_title_filter_warning();
           _coder_review_error($results, $rule, $severity_name, $lineno, $line, $ignores);
         }
       }
     }
+    */
     // drupal_set_message()
     $regex = '/[\s\(]drupal_set_message\s*\(\s*\$(\w+)\s*[,\)]/';
-    $never_regex = '/(^function\s|drupal_set_message\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
+    $never_regex = '/(^function\s|drupal_set_message\s*\(\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
     if (preg_match($regex, $line, $matches)) {
       if (!preg_match($never_regex, $coder_args['#all_lines'][$lineno])) {
-        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
+        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
         if (!preg_match($before_never_regex, $this_function, $sanitized_matches)) {
           $rule = _coder_review_security_drupal_set_message_filter_warning();
           _coder_review_error($results, $rule, $severity_name, $lineno, $line, $ignores);
@@ -321,10 +328,10 @@ function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &
     }
     // form_set_error() and form_error()
     $regex = '/[\s\(](form_set_error|form_error)\s*\(\s*' . $argex . '\s*,\s*\$(\w+)\s*[,\)]/';
-    $never_regex = '/(^function\s|(form_set_error|form_error)\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
+    $never_regex = '/(^function\s|(form_set_error|form_error)\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
     if (preg_match($regex, $line, $matches)) {
       if (!preg_match($never_regex, $coder_args['#all_lines'][$lineno])) {
-        $before_never_regex = '/[\s]\$' . $matches[8] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
+        $before_never_regex = '/[\s]\$' . $matches[8] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
         if (!preg_match($before_never_regex, $this_function, $sanitized_matches)) {
           $rule = _coder_review_security_form_set_error_filter_warning();
           _coder_review_error($results, $rule, $severity_name, $lineno, $line, $ignores);
@@ -333,10 +340,10 @@ function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &
     }
     // confirm_form()
     $regex = '/[\s\(]confirm_form\s*\(\s*' . $argex . '\s*,\s*\$(\w+)\s*[,\)]/';
-    $never_regex = '/(^function\s|confirm_form\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
+    $never_regex = '/(^function\s|confirm_form\s*\(\s*' . $argex . '\s*,\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
     if (preg_match($regex, $line, $matches)) {
       if (!preg_match($never_regex, $coder_args['#all_lines'][$lineno])) {
-        $before_never_regex = '/[\s]\$' . $matches[7] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
+        $before_never_regex = '/[\s]\$' . $matches[7] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
         if (!preg_match($before_never_regex, $this_function, $sanitized_matches)) {
           $rule = _coder_review_security_confirm_form_filter_warning();
           _coder_review_error($results, $rule, $severity_name, $lineno, $line, $ignores);
@@ -345,10 +352,10 @@ function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &
     }
     // confirm_form() - 4th, 5th and 6th args
     $regex = '/[\s\(]confirm_form\s*\(\s*((' . $allphp_argex . '|' . $sanitize_argex . ')\s*,\s*){3,5}\$(\w+)\s*[,\)]/';
-    $never_regex = '/(^function\s|confirm_form\s*\(\s*((' . $allphp_argex . '|' . $sanitize_argex . ')\s*,\s*){3,5}(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
+    $never_regex = '/(^function\s|confirm_form\s*\(\s*((' . $allphp_argex . '|' . $sanitize_argex . ')\s*,\s*){3,5}(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*$)/';
     if (preg_match($regex, $line, $matches)) {
       if (!preg_match($never_regex, $coder_args['#all_lines'][$lineno])) {
-        $before_never_regex = '/[\s]\$' . $matches[11] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
+        $before_never_regex = '/[\s]\$' . $matches[11] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
         if (!preg_match($before_never_regex, $this_function, $sanitized_matches)) {
           $rule = _coder_review_security_confirm_form_filter_warning();
           _coder_review_error($results, $rule, $severity_name, $lineno, $line, $ignores);
@@ -362,10 +369,10 @@ function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &
     }
     // FAPI #title and #description
     $regex = '/[\'"]#(title|description)[\'"]\s*=>\s*.*?\$(\w+)\s*.*?[,\)]/';
-    $never_regex = '/([\'"]#(title|description)[\'"]\s*=>\s*((((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*))/';
+    $never_regex = '/([\'"]#(title|description)[\'"]\s*=>\s*((((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*))/';
     if (preg_match($regex, $line, $matches) && preg_match('/_form(_alter)*$/', $function_name, $function_matches)) {
       if (!preg_match($never_regex, $coder_args['#all_lines'][$lineno])) {
-        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
+        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
         if (!preg_match($before_never_regex, $this_function, $sanitized_matches)) {
           $rule = _coder_review_security_fapi_title_description_warning();
           _coder_review_error($results, $rule, $severity_name, $lineno, $line, $ignores);
@@ -374,10 +381,10 @@ function _coder_review_security_callback(&$coder_args, $review, $rule, $lines, &
     }
     // FAPI #value
     $regex = '/[\'"]#value[\'"]\s*=>\s*.*?\$(\w+)\s*.*?[,\)]/';
-    $never_regex = '/([\'"]#value[\'"]\s*=>\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*)/';
+    $never_regex = '/([\'"]#value[\'"]\s*=>\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\().*)/';
     if (preg_match($regex, $line, $matches) && preg_match('/_form(_alter)*$/', $function_name, $function_matches)) {
       if (!preg_match($never_regex, $coder_args['#all_lines'][$lineno])) {
-        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
+        $before_never_regex = '/[\s]\$' . $matches[1] . '\s*=\s*(((st|t|\$t)\s*\(((\s*[\'"][^!]+?[\'"]\s*,)|(.*?array\([^!]+\))))|(format_plural|field_filter_xss|filter_xss|filter_xss_admin|check_plain|check_markup)\s*\()/';
         if (!preg_match($before_never_regex, $this_function, $sanitized_matches)) {
           $forward_matches['fapi_markup_value'] = $matches[1];
         }
@@ -417,6 +424,7 @@ function _coder_review_security_trigger_error_filter_t_warning() {
   );
 }
 
+/*
 function _coder_review_security_drupal_set_title_filter_warning() {
   return array(
     '#warning' => t('Potential problem: !drupal_set_title() only accepts filtered text, be sure to use !check_plain(), !filter_xss() or similar to ensure your $variable is fully sanitized.',
@@ -443,6 +451,7 @@ function _coder_review_security_drupal_set_title_filter_t_warning() {
     '#link' => 'http://drupal.org/node/28984',
   );
 }
+*/
 
 function _coder_review_security_drupal_set_message_filter_warning() {
   return array(
@@ -560,6 +569,7 @@ function _coder_review_security_sql_var_warning() {
   );
 }
 
+/*
 function _coder_review_security_db_rewrite_sql_warning() {
   return array(
     '#warning' => t('Potential problem: "SELECT FROM {node}" statements should probably be wrapped in !db_rewrite_sql and with the alias for {node} table defined (e.g. {node} n)',
@@ -569,6 +579,7 @@ function _coder_review_security_db_rewrite_sql_warning() {
     ),
   );
 }
+*/
 
 function _coder_review_security_menu_access_callback_warning() {
   return array(

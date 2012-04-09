@@ -204,7 +204,7 @@ function coder_review_form_alter(&$form, &$form_state, $form_id) {
           foreach ($modules as $name => $data) {
             if (!preg_match('/^#/', $name)) {
               $description = $data['description']['#markup'];
-              $form['modules'][$package][$name]['description']['#markup'] = $description . ' (' . l(t('Code Review'), "admin/config/development/coder/review/$name") . ')';
+              $form['modules'][$package][$name]['description']['#markup'] = $description . ' (' . l(t('Code review'), "admin/config/development/coder/review/$name") . ')';
             }
           }
         }
@@ -861,7 +861,7 @@ function coder_review_page_form($form, &$form_state, $arg = '') {
           // Process this one file.
           $filename = isset($files[$name]) ? $files[$name] : FALSE;
           if (!$filename) {
-            drupal_set_message(t('Code Review file for %module not found', array('%module' => $name)), 'error');
+            drupal_set_message(t('Code review file for %module not found', array('%module' => $name)), 'error');
             continue;
           }
           if (!empty($settings['coder_patches'])) {
@@ -971,7 +971,7 @@ function coder_review_page_form($form, &$form_state, $arg = '') {
       '#weight' => -1,
     );
     if ($form['settings']['#collapsed']) {
-      $form['settings']['#prefix'] = t('<div class="coder-settings">Use the Selection form to select options for this code review, or change the <a href="@settings">Default Settings</a> and use the <a href="@default">Default</a> tab above.</div>', array('@settings' => url('admin/config/development/coder/configure/review'), '@default' => url('admin/config/development/coder/review/default')));
+      $form['settings']['#prefix'] = t('<div class="coder-settings">Use the Selection form to select options for this code review, or change the <a href="@settings">Default Settings</a> and use the <a href="@default">Default</a> tab above.</div>', array('@settings' => url('admin/config/development/coder/review/settings'), '@default' => url('admin/config/development/coder/review/default')));
     }
     $form['settings'][] = $coder_form;
     $form['settings']['submit'] = array(
@@ -1109,6 +1109,14 @@ function do_coder_reviews($coder_args) {
   // Load the cached results if they exist, but not for patches.
   if (empty($coder_args['#patch']) && empty($coder_args['#test']) && $coder_args['#cache']) {
     $cache_key = 'coder:' . md5(implode(':', array_keys($coder_args['#reviews']))) . $coder_args['#severity'] . ':' . $coder_args['#filename'];
+    if (function_exists('_coder_review_drush_is_option') && _coder_review_drush_is_option('drush')) {
+      if (_coder_review_drush_is_option('checkstyle')) {
+        $cache_key .= ':drushcheckstyle';
+      }
+      elseif (_coder_review_drush_is_option('xml')) {
+        $cache_key .= ':drushxml';
+      }
+    }
     if (file_exists($filepath = realpath($coder_args['#filename']))) {
       $cache_mtime = filemtime($filepath);
       if ($cache_results = cache_get($cache_key, 'cache_coder')) {
