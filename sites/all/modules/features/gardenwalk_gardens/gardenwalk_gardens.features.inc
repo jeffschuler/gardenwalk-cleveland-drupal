@@ -42,7 +42,7 @@ function gardenwalk_gardens_workflow_features_default_workflow() {
   return array(
     'Garden Approval' => array(
       'name' => 'Garden Approval',
-      'tab_roles' => '2',
+      'tab_roles' => '2,3,4,8',
       'options' => 'a:3:{s:16:"comment_log_node";i:0;s:15:"comment_log_tab";i:0;s:13:"name_as_title";i:0;}',
       'states' => array(
         0 => array(
@@ -89,22 +89,22 @@ function gardenwalk_gardens_workflow_features_default_workflow() {
         3 => array(
           'sid' => 'Approved',
           'target_sid' => 'Application',
-          'roles' => '2,3,8',
+          'roles' => '3,8,4',
         ),
         4 => array(
           'sid' => 'Approved',
           'target_sid' => 'Denied',
-          'roles' => '2,3,8',
+          'roles' => '3,8,4',
         ),
         5 => array(
           'sid' => 'Denied',
           'target_sid' => 'Approved',
-          'roles' => '2,3,8',
+          'roles' => '3,8,4',
         ),
         6 => array(
           'sid' => 'Denied',
           'target_sid' => 'Application',
-          'roles' => '2,3,8',
+          'roles' => '3,8,4',
         ),
       ),
       'node_types' => array(
