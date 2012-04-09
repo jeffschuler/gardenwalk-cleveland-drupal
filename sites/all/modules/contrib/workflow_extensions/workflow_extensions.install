@@ -1,0 +1,50 @@
+<?php
+
+/**
+ * @file
+ * Install and uninstall hooks for Workflow Extensions module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function workflow_extensions_install() {
+  // Patch by galaxor: [#1346078]
+  // Weight should be a higher weight than Noderelationships module. That way,
+  // it can grab the submit handlers when dealing with a form in a modalframe.
+  // If we don't get that handler, the modalframe won't close.
+  // TODO Please review the conversion of this statement to the D7 database API syntax.
+  /* db_query("UPDATE {system} SET weight=2 WHERE name='workflow_extensions'") */
+  db_update('system')
+  ->fields(array(
+    'weight' => 2,
+  ))
+  ->condition('name', 'workflow_extensions')
+  ->execute();
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function workflow_extensions_uninstall() {
+  // Delete all workflow_extensions_* variables at once
+  // TODO Please review the conversion of this statement to the D7 database API syntax.
+  /* db_query("DELETE FROM {variable} WHERE name LIKE 'workflow_extensions_%%'") */
+  db_delete('variable')
+  ->condition('name', 'workflow_extensions_%%', 'LIKE')
+  ->execute();
+}
+
+/**
+ * Implements hook_update_N().
+ * See comment at workflow_extensions_install().
+ */
+function workflow_extensions_update_6108() {
+  $ret = array();
+  // TODO update_sql has been removed. Use the database API for any schema or data changes.
+  $ret[] = array() /* update_sql("UPDATE {system} SET weight=2 WHERE name='workflow_extensions'") */;
+  // hook_update_N() no longer returns a $ret array. Instead, return
+  // nothing or a translated string indicating the update ran successfully.
+  // See http://drupal.org/node/224333#update_sql.
+  return t('TODO Add a descriptive string here to show in the UI.') /* $ret */;
+}

@@ -1,0 +1,49 @@
+diff --git a/workflow_extensions.module b/workflow_extensions.module
+index 5d49168..92cd81d 100755
+--- a/workflow_extensions.module
++++ b/workflow_extensions.module
+@@ -328,13 +328,8 @@ function workflow_extensions_form_redirect($form, &$form_state) {
+ 
+ function _workflow_extensions_replace_with_buttons(&$form, $workflow_name) {
+   $current_sid = $form['workflow'][$workflow_name]['#default_value'];
+-  if (function_exists('workflow_get_state_name')) {
+-    $current_state_name = workflow_get_state_name($current_sid);
+-  }
+-  else {
+-    $current_state = workflow_get_state($current_sid);
+-    $current_state_name = $current_state['state'];
+-  }
++  $current_state_name = workflow_get_workflow_states_by_sid($current_sid)->state;
++
+   // We need a node-context for token replacement. When on the Workflow tab
+   // form, the node object will already have been loaded on the form.
+   // When creating content (node/add/<type>) we only have limited data. In
+@@ -356,7 +351,7 @@ function _workflow_extensions_replace_with_buttons(&$form, $workflow_name) {
+     if ($sid != $current_sid) {
+       // Create button for transition from current_sid to destination state.
+       $button = array();
+-      $button['#value'] = workflow_extensions_get_transition_label($form['#wf']->wid, $current_state_name, workflow_get_state_name($sid), $node);
++      $button['#value'] = workflow_extensions_get_transition_label($form['#wf']->wid, $current_state_name, workflow_get_workflow_states_by_sid($sid)->state, $node);
+       $button['#type'] = 'submit';
+       $button['#to_state'] = $sid;
+       if (isset($form['buttons']['submit']['#weight'])) { // node form
+@@ -568,8 +563,8 @@ function workflow_extensions_get_transition_label($wid, $from_state_name, $to_st
+   if (module_exists('workflow_named_transitions')) {
+     $transitions = workflow_named_transitions_get_transitions($wid);
+     foreach ($transitions as $transition) {
+-      if ($transition['from_state'] == $from_state_name && $transition['to_state'] == $to_state_name) {
+-        return workflow_extensions_replace_state_name_tokens($transition['label'], $to_state_name, $node);
++      if ($transition->from_state == $from_state_name && $transition->to_state == $to_state_name) {
++        return workflow_extensions_replace_state_name_tokens($transition->label, $to_state_name, $node);
+       }
+     }
+     // No label defined, fall through as if module 'workflow_named_transitions'
+@@ -612,7 +607,7 @@ function workflow_extensions_replace_tokens_raw($tokenized_label, $node = NULL)
+       $node = node_load(arg(1)); // node/%
+     }
+     $objects['node'] = $objects['workflow'] = $node;
+-    return token_replace_multiple($tokenized_label, $objects);
++    return token_replace($tokenized_label, $objects);
+   }
+   return $tokenized_label;
+ }
