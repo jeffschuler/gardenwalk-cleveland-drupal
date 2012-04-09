@@ -10,7 +10,7 @@
 function gardenwalk_gardens_field_group_info() {
   $export = array();
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_additional|node|garden|form';
@@ -42,7 +42,7 @@ function gardenwalk_gardens_field_group_info() {
   );
   $export['group_additional|node|garden|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_garden_info|node|garden|form';
@@ -71,7 +71,7 @@ function gardenwalk_gardens_field_group_info() {
   );
   $export['group_garden_info|node|garden|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_gardener|node|garden|form';
@@ -102,7 +102,7 @@ function gardenwalk_gardens_field_group_info() {
   );
   $export['group_gardener|node|garden|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_location|node|garden|form';
@@ -133,7 +133,7 @@ function gardenwalk_gardens_field_group_info() {
   );
   $export['group_location|node|garden|form'] = $field_group;
 
-  $field_group = new stdClass;
+  $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
   $field_group->api_version = 1;
   $field_group->identifier = 'group_main|node|garden|form';

@@ -190,7 +190,6 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['access']['perm'] = 'edit any garden content';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['group_rendered'] = 1;
   $handler->display->display_options['style_options']['row_class'] = 'workflow-[state]';
   $handler->display->display_options['style_options']['columns'] = array(
     'views_bulk_operations' => 'views_bulk_operations',

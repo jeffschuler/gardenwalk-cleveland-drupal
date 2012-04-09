@@ -8,32 +8,14 @@
  * Implements hook_ctools_plugin_api().
  */
 function gardenwalk_gardens_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "feeds" && $api == "feeds_importer_default") {
-    return array("version" => "1");
-  }
-  list($module, $api) = func_get_args();
-  if ($module == "feeds_tamper" && $api == "feeds_tamper_default") {
-    return array("version" => "2");
-  }
-  list($module, $api) = func_get_args();
-  if ($module == "field_group" && $api == "field_group") {
-    return array("version" => "1");
-  }
-  list($module, $api) = func_get_args();
-  if ($module == "openlayers" && $api == "openlayers_maps") {
-    return array("version" => "1");
-  }
+  return array("version" => "1");
 }
 
 /**
  * Implements hook_views_api().
  */
 function gardenwalk_gardens_views_api() {
-  list($module, $api) = func_get_args();
-  if ($module == "views" && $api == "views_default") {
-    return array("version" => "3.0");
-  }
+  return array("version" => "3.0");
 }
 
 /**
@@ -106,12 +88,12 @@ function gardenwalk_gardens_workflow_features_default_workflow() {
         ),
         3 => array(
           'sid' => 'Approved',
-          'target_sid' => 'Denied',
+          'target_sid' => 'Application',
           'roles' => '2,3,8',
         ),
         4 => array(
           'sid' => 'Approved',
-          'target_sid' => 'Application',
+          'target_sid' => 'Denied',
           'roles' => '2,3,8',
         ),
         5 => array(
