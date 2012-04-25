@@ -441,7 +441,7 @@ function gardenwalk_gardens_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_gardener_address',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '1',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -552,6 +552,86 @@ function gardenwalk_gardens_field_default_fields() {
         'settings' => array(),
         'type' => 'location',
         'weight' => '9',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-garden-field_gardener_addressfield'
+  $fields['node-garden-field_gardener_addressfield'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_gardener_addressfield',
+      'field_permissions' => array(
+        'type' => '1',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'module' => 'addressfield',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'addressfield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'default_value' => array(
+        0 => array(
+          'element_key' => 'node|garden|field_gardener_addressfield|und|0',
+          'thoroughfare' => '',
+          'premise' => '',
+          'locality' => 'Cleveland',
+          'administrative_area' => 'OH',
+          'postal_code' => '',
+          'country' => 'US',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'addressfield',
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
+          'type' => 'addressfield_default',
+          'weight' => 18,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_gardener_addressfield',
+      'label' => 'Gardener Address',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'addressfield',
+        'settings' => array(
+          'available_countries' => array(
+            'US' => 'US',
+          ),
+          'format_handlers' => array(
+            'address' => 'address',
+            'name-full' => 0,
+            'name-oneline' => 0,
+            'organisation' => 0,
+          ),
+        ),
+        'type' => 'addressfield_standard',
+        'weight' => '10',
       ),
     ),
   );
@@ -1485,7 +1565,7 @@ $entity_field[0][\'value\'] = $prefix;',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '8',
+        'weight' => '9',
       ),
     ),
   );

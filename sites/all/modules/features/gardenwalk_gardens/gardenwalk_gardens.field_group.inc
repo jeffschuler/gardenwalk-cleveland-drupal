@@ -89,6 +89,7 @@ function gardenwalk_gardens_field_group_info() {
       2 => 'field_gardener_phone_home',
       3 => 'field_gardener_phone_cell',
       4 => 'field_gardener_address',
+      5 => 'field_gardener_addressfield',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -146,10 +147,10 @@ function gardenwalk_gardens_field_group_info() {
     'label' => 'Main',
     'weight' => '0',
     'children' => array(
-      0 => 'group_additional',
-      1 => 'group_garden_info',
-      2 => 'group_gardener',
-      3 => 'group_location',
+      0 => 'group_gardener',
+      1 => 'group_location',
+      2 => 'group_additional',
+      3 => 'group_garden_info',
     ),
     'format_type' => 'tabs',
     'format_settings' => array(
