@@ -485,10 +485,11 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_gardener_addressfield',
       'label' => 'Gardener Address',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -501,6 +502,7 @@ function gardenwalk_gardens_field_default_fields() {
           ),
           'format_handlers' => array(
             'address' => 'address',
+            'address-hide-country' => 0,
             'name-full' => 0,
             'name-oneline' => 0,
             'organisation' => 0,

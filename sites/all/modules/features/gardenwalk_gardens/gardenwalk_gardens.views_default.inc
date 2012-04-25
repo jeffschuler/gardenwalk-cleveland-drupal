@@ -1404,6 +1404,10 @@ function gardenwalk_gardens_views_default_views() {
   );
   $handler->display->display_options['fields']['field_gardener_addressfield_1']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Neighborhood (field_neighborhood) */
+  $handler->display->display_options['sorts']['field_neighborhood_tid']['id'] = 'field_neighborhood_tid';
+  $handler->display->display_options['sorts']['field_neighborhood_tid']['table'] = 'field_data_field_neighborhood';
+  $handler->display->display_options['sorts']['field_neighborhood_tid']['field'] = 'field_neighborhood_tid';
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
@@ -1432,7 +1436,7 @@ function gardenwalk_gardens_views_default_views() {
     3 => '3',
     4 => '4',
   );
-  $handler->display->display_options['path'] = 'gardeners-approved.xls';
+  $handler->display->display_options['path'] = 'gardeners-export.xls';
   $export['gardens'] = $view;
 
   return $export;

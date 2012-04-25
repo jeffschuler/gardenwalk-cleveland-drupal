@@ -88,12 +88,12 @@ function gardenwalk_gardens_workflow_features_default_workflow() {
         ),
         3 => array(
           'sid' => 'Approved',
-          'target_sid' => 'Denied',
+          'target_sid' => 'Application',
           'roles' => '3,8,4',
         ),
         4 => array(
           'sid' => 'Approved',
-          'target_sid' => 'Application',
+          'target_sid' => 'Denied',
           'roles' => '3,8,4',
         ),
         5 => array(
