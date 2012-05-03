@@ -441,7 +441,7 @@ function gardenwalk_gardens_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_gardener_addressfield',
       'field_permissions' => array(
-        'type' => '1',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(),
