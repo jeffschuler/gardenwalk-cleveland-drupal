@@ -512,10 +512,11 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['street']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['street']['hide_empty'] = 0;
   $handler->display->display_options['fields']['street']['empty_zero'] = 0;
-  /* Field: Content: Description */
+  /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = 'Description';
   $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
@@ -1594,10 +1595,11 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['street']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['street']['hide_empty'] = 0;
   $handler->display->display_options['fields']['street']['empty_zero'] = 0;
-  /* Field: Content: Description */
+  /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = 'Description';
   $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
@@ -1949,10 +1951,11 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['street']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['street']['hide_empty'] = 0;
   $handler->display->display_options['fields']['street']['empty_zero'] = 0;
-  /* Field: Content: Description */
+  /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
+  $handler->display->display_options['fields']['body']['label'] = 'Description';
   $handler->display->display_options['fields']['body']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['body']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['body']['alter']['absolute'] = 0;
