@@ -6,6 +6,7 @@ $purple: #615FC1;
 $orange: #F15B2A;
 $orange_darker: darken($orange, 20%);
 $green: #059347;
+$green_darker: darken($green, 10);
 $ltgreen: #A3C6B1;
 $red: #D31245;
 $white: #FFFFFF;
@@ -715,6 +716,14 @@ fieldset#edit-agreement {
   float: right;
 }
 
+
+/* Post info
+--------------------- */
+.submitted .author,
+.submitted .date {
+  color: $green_darker;
+}
+
 /* News content
 --------------------- */
 .node-news img,
@@ -725,13 +734,23 @@ fieldset#edit-agreement {
   clear: both;
   margin-bottom: 20px;
 }
-.page-home .view-id-news.view-display-id-block_1 .views-field-field-attached-images {
-}
 .view-news.view-display-id-page_2 .views-field-title {
   font-size: 180%;
+  margin-top: 1em;
+  margin-bottom: .5em;
 }
 .view-news.view-display-id-block_1 .views-field-title {
-  font-size: 115%;
+  font-size: 120%;
+  margin-top: 1em;
+  margin-bottom: .5em;
+}
+.view-news .views-field-name,
+.view-news .views-field-created {
+  font-size: 95%;
+  color: $green_darker;
+}
+.view-news .views-label {
+  color: $black;
 }
 .view-news.view-display-id-block_1 .views-field-field-attached-images {
   float: right;

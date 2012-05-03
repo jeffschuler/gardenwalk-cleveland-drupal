@@ -88,7 +88,7 @@
     <div class="meta">
       <?php if ($display_submitted): ?>
         <span class="submitted">
-          <?php print t('Submitted by !username on !datetime', array('!username' => $name, '!datetime' => $date)); ?>
+          <?php print t('Posted by <span class="author">!username</span><br /><span class="date">!datetime</span>', array('!username' => $name, '!datetime' => $date)); ?>
         </span>
       <?php endif; ?>
 

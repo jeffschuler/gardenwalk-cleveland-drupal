@@ -622,6 +622,12 @@ fieldset#edit-agreement {
 .node-page .field-name-field-attached-images {
   float: right; }
 
+/* Post info
+--------------------- */
+.submitted .author,
+.submitted .date {
+  color: #03622f; }
+
 /* News content
 --------------------- */
 .node-news img,
@@ -633,10 +639,22 @@ fieldset#edit-agreement {
   margin-bottom: 20px; }
 
 .view-news.view-display-id-page_2 .views-field-title {
-  font-size: 180%; }
+  font-size: 180%;
+  margin-top: 1em;
+  margin-bottom: .5em; }
 
 .view-news.view-display-id-block_1 .views-field-title {
-  font-size: 115%; }
+  font-size: 120%;
+  margin-top: 1em;
+  margin-bottom: .5em; }
+
+.view-news .views-field-name,
+.view-news .views-field-created {
+  font-size: 95%;
+  color: #03622f; }
+
+.view-news .views-label {
+  color: black; }
 
 .view-news.view-display-id-block_1 .views-field-field-attached-images {
   float: right; }
