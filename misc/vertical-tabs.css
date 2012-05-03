@@ -19,8 +19,11 @@ div.vertical-tabs {
   padding: 0 1em;
   border: 0;
 }
-.vertical-tabs legend {
+fieldset.vertical-tabs-pane legend {
   display: none;
+}
+fieldset.vertical-tabs-pane fieldset legend {
+  display: block;
 }
 
 /* Layout of each tab */
@@ -41,14 +44,6 @@ div.vertical-tabs {
 .vertical-tabs ul.vertical-tabs-list li a:active strong,
 .vertical-tabs ul.vertical-tabs-list li a:hover strong {
   text-decoration: underline;
-}
-div.vertical-tabs ul li.selected {
-  outline-style:solid;
-  outline-width:1px;
-  outline-color: #ccc;
-}
-div.vertical-tabs-processed {
-  border: 1px solid #ccc;
 }
 .vertical-tabs ul.vertical-tabs-list li a:hover {
   outline: 1px dotted;
