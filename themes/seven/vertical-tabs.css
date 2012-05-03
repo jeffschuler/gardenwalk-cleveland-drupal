@@ -44,8 +44,14 @@ div.vertical-tabs ul li.vertical-tab-button .summary {
   font-size: 0.846em;
   padding-top: 0.4em;
 }
+div.vertical-tabs ul li.selected {
+  outline-style:solid;
+  outline-width:1px;
+  outline-color: #ccc;
+}
+
 div.vertical-tabs ul li.vertical-tab-button a:hover,
-div.vertical-tabs ul li.vertical-tab-button a:focus {
+div.vertical-tabs ul li.vertical-tab-button a:active {
   background: #d5d5d5;
   text-decoration: none;
   outline: 0;
