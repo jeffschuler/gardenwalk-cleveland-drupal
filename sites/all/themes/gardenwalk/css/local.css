@@ -269,7 +269,8 @@ h3 {
 /* Main
 -------------------------------------------------------------- */
 #main {
-  background-color: white; }
+  background-color: white;
+  margin-bottom: 40px; }
 
 #main a,
 #main a:link,
@@ -324,6 +325,9 @@ h3 {
 #footer a:visited,
 #footer h2 {
   color: white; }
+
+#footer h2 {
+  font-size: 160%; }
 
 #footer ul li,
 #footer ol li {

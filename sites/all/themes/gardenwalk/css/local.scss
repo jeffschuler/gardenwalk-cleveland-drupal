@@ -311,6 +311,7 @@ h3 {
 -------------------------------------------------------------- */
 #main {
   background-color: $white;
+  margin-bottom: 40px;
 }
 #main a,
 #main a:link,
@@ -341,7 +342,6 @@ h3 {
 #footer-wrapper-wrapper {
   height: $footer_height;
 }
-
 #footer-wrapper-top-wrapper {
   height: 65px;
   background: transparent url('../images/footer-grass.png') repeat-x bottom left;
@@ -357,18 +357,12 @@ h3 {
   top: -4px;
   height: 68px;
 }
-
 #footer-wrapper {
   background-color: $brown;
 }
-
-#footer {
-}
-
 #footer-inner {
   padding: 20px 0;
 }
-
 #footer,
 #footer a,
 #footer a:link,
@@ -376,13 +370,14 @@ h3 {
 #footer h2 {
   color: $white;
 }
-
+#footer h2 {
+  font-size: 160%;
+}
 #footer ul li,
 #footer ol li {
   list-style-type: none;
   list-style-image: none;
 }
-
 #footer ul,
 #footer ol {
   margin: 0;
