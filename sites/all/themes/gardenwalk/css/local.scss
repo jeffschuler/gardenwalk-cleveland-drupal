@@ -4,11 +4,14 @@ $khaki: #F2ECE9;
 $tan: #D3CCCB;
 $purple: #615FC1;
 $orange: #F15B2A;
+$orange_darker: darken($orange, 20%);
 $green: #059347;
 $ltgreen: #A3C6B1;
 $red: #D31245;
 $white: #FFFFFF;
 $black: #000000;
+
+$imgborder: 1px solid $brown;
 
 $footer_height: 229px;
 
@@ -307,10 +310,19 @@ h1, h2, h3, h4, h5, h6 {
 #main a:hover,
 #main a:focus,
 #main a:active {
-  color: darken($orange, 20%);
+  color: $orange_darker;
 }
-#main h1, #main h2, #main h3, #main h4, #main h5, #main h6 {
+#main h1, #main h2, #main h3, #main h4, #main h5, #main h6
+{
   color: $purple;
+}
+.page-home #main h2 a,
+.page-home #main h2 a:link,
+.page-home #main h2 a:visited {
+  color: $purple;
+}
+.page-home #main h2 a:hover {
+  color: $orange_darker;
 }
 
 
@@ -409,7 +421,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-left: 10px;
 }
 .view-id-gardener_stories.view-display-id-block_1 td .views-field-field-thumbnail img {
-  border: 1px solid $brown;
+  border: $imgborder;
 }
 
 
@@ -427,7 +439,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-right: 10px;
 }
 .pane-views-gardener-stories-block .view-id-gardener_stories.view-display-id-block .views-field-field-images img {
-  border: 1px solid $brown;
+  border: $imgborder;
 }
 
 
@@ -436,7 +448,7 @@ h1, h2, h3, h4, h5, h6 {
 .node-story.full-node .field-name-field-images {
   float: right;
   margin-left: 20px;
-  border: 1px solid $tan;
+  border: $imgborder;
 }
 .node-story.full-node .field-name-field-images img {
   padding: 0;
@@ -568,7 +580,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Maps
 -------------------------------------------------------------- */
 .openlayers-container {
-  border: 1px solid $tan;
+  border: 1px solid $brown;
 }
 .openlayers-popupbox {
   position: absolute;
@@ -696,6 +708,38 @@ fieldset#edit-agreement {
 
 /* Page content
 --------------------- */
+.node-page img {
+  border: $imgborder;
+}
 .node-page .field-name-field-attached-images {
   float: right;
+}
+
+/* News content
+--------------------- */
+.node-news img,
+.view-news img {
+  border: $imgborder;
+}
+.view-news.view-display-id-block_1 .views-row {
+  clear: both;
+  margin-bottom: 20px;
+}
+.page-home .view-id-news.view-display-id-block_1 .views-field-field-attached-images {
+}
+.view-news.view-display-id-page_2 .views-field-title {
+  font-size: 180%;
+}
+.view-news.view-display-id-block_1 .views-field-title {
+  font-size: 115%;
+}
+.view-news.view-display-id-block_1 .views-field-field-attached-images {
+  float: right;
+}
+.node-news .field-name-field-attached-images,
+.view-news.view-display-id-page_2 .views-field-field-attached-images,
+.view-news.view-display-id-block_1 .views-field-field-attached-images {
+  float: right;
+  margin-left: 5px;
+  margin-bottom: 5px;
 }
