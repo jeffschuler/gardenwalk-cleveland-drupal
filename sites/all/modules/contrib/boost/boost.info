@@ -6,9 +6,9 @@ files[] = boost.module
 files[] = boost.admin.inc
 configure = admin/config/system/boost
 
-; Information added by drupal.org packaging script on 2011-12-23
-version = "7.x-1.x-dev"
+; Information added by drupal.org packaging script on 2012-04-26
+version = "7.x-1.0-beta1+0-dev"
 core = "7.x"
 project = "boost"
-datestamp = "1324598908"
+datestamp = "1335398801"
 
