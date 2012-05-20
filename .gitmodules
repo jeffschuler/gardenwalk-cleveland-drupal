@@ -4,3 +4,6 @@
 [submodule "sites/all/libraries/wax"]
 	path = sites/all/libraries/wax
 	url = https://github.com/mapbox/wax.git
+[submodule "sites/all/modules/contrib/mapbox"]
+	path = sites/all/modules/contrib/mapbox
+	url = http://git.drupal.org/project/mapbox.git
