@@ -1,3 +1,6 @@
 [submodule "sites/all/modules/contrib/openlayers_plus"]
 	path = sites/all/modules/contrib/openlayers_plus
 	url = https://github.com/developmentseed/openlayers_plus.git
+[submodule "sites/all/libraries/wax"]
+	path = sites/all/libraries/wax
+	url = https://github.com/mapbox/wax.git
