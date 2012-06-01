@@ -94,7 +94,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_neighborhood']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_neighborhood']['field_api_classes'] = 0;
-  /* Field: Content: Description */
+  /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -596,7 +596,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_gardener_name']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_gardener_name']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_gardener_name']['field_api_classes'] = 0;
-  /* Field: Content: Description */
+  /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -834,7 +834,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_attractions']['delta_reversed'] = 0;
   $handler->display->display_options['fields']['field_attractions']['delta_first_last'] = 0;
   $handler->display->display_options['fields']['field_attractions']['field_api_classes'] = 0;
-  /* Field: Content: Description */
+  /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -909,7 +909,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 0;
-  /* Field: Content: Description */
+  /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
@@ -1114,7 +1114,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 0;
-  /* Field: Content: Description */
+  /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';

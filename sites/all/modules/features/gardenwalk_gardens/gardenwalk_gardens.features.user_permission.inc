@@ -10,7 +10,7 @@
 function gardenwalk_gardens_user_default_permissions() {
   $permissions = array();
 
-  // Exported permission: create field_gardener_addressfield
+  // Exported permission: create field_gardener_addressfield.
   $permissions['create field_gardener_addressfield'] = array(
     'name' => 'create field_gardener_addressfield',
     'roles' => array(
@@ -23,7 +23,7 @@ function gardenwalk_gardens_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: edit field_gardener_addressfield
+  // Exported permission: edit field_gardener_addressfield.
   $permissions['edit field_gardener_addressfield'] = array(
     'name' => 'edit field_gardener_addressfield',
     'roles' => array(
@@ -35,7 +35,7 @@ function gardenwalk_gardens_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: edit own field_gardener_addressfield
+  // Exported permission: edit own field_gardener_addressfield.
   $permissions['edit own field_gardener_addressfield'] = array(
     'name' => 'edit own field_gardener_addressfield',
     'roles' => array(
@@ -47,7 +47,7 @@ function gardenwalk_gardens_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: view field_gardener_addressfield
+  // Exported permission: view field_gardener_addressfield.
   $permissions['view field_gardener_addressfield'] = array(
     'name' => 'view field_gardener_addressfield',
     'roles' => array(
@@ -59,7 +59,7 @@ function gardenwalk_gardens_user_default_permissions() {
     'module' => 'field_permissions',
   );
 
-  // Exported permission: view own field_gardener_addressfield
+  // Exported permission: view own field_gardener_addressfield.
   $permissions['view own field_gardener_addressfield'] = array(
     'name' => 'view own field_gardener_addressfield',
     'roles' => array(
