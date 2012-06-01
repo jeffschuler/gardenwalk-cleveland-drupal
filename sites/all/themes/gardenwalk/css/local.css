@@ -248,6 +248,12 @@ h3 {
 #main-menu ul.menu li a {
   padding: 10px 0 16px; }
 
+#main-menu ul.menu li ul {
+  padding: 10px 0; }
+
+#main-menu ul.menu li li a {
+  padding: 5px 0; }
+
 #main-menu ul.menu li a,
 #main-menu ul.menu li a:link,
 #main-menu ul.menu li a:visited {
