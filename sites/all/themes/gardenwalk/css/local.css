@@ -651,6 +651,10 @@ fieldset#edit-agreement {
 .submitted .date {
   color: #03622f; }
 
+.label-inline {
+  display: inline;
+  font-weight: bold; }
+
 /* News content
 --------------------- */
 .node-news img,
