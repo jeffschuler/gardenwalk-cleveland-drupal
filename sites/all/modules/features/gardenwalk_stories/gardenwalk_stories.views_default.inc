@@ -113,6 +113,11 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['sorts']['random']['id'] = 'random';
   $handler->display->display_options['sorts']['random']['table'] = 'views';
   $handler->display->display_options['sorts']['random']['field'] = 'random';
+  /* Sort criterion: Content: Year (field_gardenwalk_year) */
+  $handler->display->display_options['sorts']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['sorts']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
+  $handler->display->display_options['sorts']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['sorts']['field_gardenwalk_year_tid']['order'] = 'DESC';
   /* Contextual filter: Content: Neighborhood (field_neighborhood) */
   $handler->display->display_options['arguments']['field_neighborhood_tid']['id'] = 'field_neighborhood_tid';
   $handler->display->display_options['arguments']['field_neighborhood_tid']['table'] = 'field_data_field_neighborhood';
@@ -750,6 +755,11 @@ function gardenwalk_stories_views_default_views() {
   );
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Year (field_gardenwalk_year) */
+  $handler->display->display_options['sorts']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['sorts']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
+  $handler->display->display_options['sorts']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['sorts']['field_gardenwalk_year_tid']['order'] = 'DESC';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   /* Contextual filter: Content: Neighborhood (field_neighborhood) */
   $handler->display->display_options['arguments']['field_neighborhood_tid']['id'] = 'field_neighborhood_tid';

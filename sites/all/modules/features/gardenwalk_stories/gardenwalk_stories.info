@@ -2,6 +2,7 @@ name = GardenWalk Stories
 description = Gardener Stories
 core = 7.x
 package = Features
+php = 5.2.4
 dependencies[] = colorbox
 dependencies[] = ctools
 dependencies[] = ds
