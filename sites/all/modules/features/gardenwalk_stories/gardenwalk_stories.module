@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the GardenWalk Stories feature.
+ */
+
+include_once 'gardenwalk_stories.features.inc';
