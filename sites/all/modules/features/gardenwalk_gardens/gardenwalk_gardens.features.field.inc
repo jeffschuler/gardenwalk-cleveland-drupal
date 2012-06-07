@@ -1106,120 +1106,6 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_map_label_prefix'
-  $fields['node-garden-field_map_label_prefix'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_map_label_prefix',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'computed_field',
-      'settings' => array(
-        'code' => '//dsm($entity)
-$prefix = \'\';
-switch ($entity->type) {
-  case \'garden\':
-    $neighborhood = $entity->field_neighborhood[\'und\'][0][\'tid\'];
-    switch ($neighborhood) {
-      case 1: // \'Detroit Shoreway\'
-        $prefix = \'A\';
-        break;
-      case 3: // \'Harvard/Lee/Miles\':
-        $prefix = \'B\';
-        break;
-      case 2: // \'Hough\':
-        $prefix = \'C\';
-        break;
-      case 4: // \'Tremont\':
-        $prefix = \'D\';
-        break;
-    }
-    break;
-  case \'headquarters\':
-    $prefix = \'H\';
-    break;
-  case \'reimagining_project\':
-    $prefix = \'R\';
-    break;
-  case \'community_garden\':
-    $prefix = \'G\';
-    break;
-  case \'special_feature\':
-    $prefix = \'S\';
-    break;
-  case \'urban_farm\':
-    $prefix = \'U\';
-    break;
-}
-
-$entity_field[0][\'value\'] = $prefix;',
-        'database' => array(
-          'data_default' => '',
-          'data_index' => 1,
-          'data_length' => '2',
-          'data_not_NULL' => 0,
-          'data_precision' => '10',
-          'data_scale' => '2',
-          'data_size' => 'normal',
-          'data_type' => 'varchar',
-        ),
-        'display_format' => '$display_output = $entity_field_item[\'value\'];',
-        'store' => 1,
-      ),
-      'translatable' => '1',
-      'type' => 'computed',
-    ),
-    'field_instance' => array(
-      'bundle' => 'garden',
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'create_garden_for_anon' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '4',
-        ),
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '6',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '4',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_map_label_prefix',
-      'label' => 'Map Label Prefix',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 0,
-        'module' => 'computed_field',
-        'settings' => array(),
-        'type' => 'computed',
-        'weight' => '35',
-      ),
-    ),
-  );
-
   // Exported field: 'node-garden-field_neighborhood'
   $fields['node-garden-field_neighborhood'] = array(
     'field_config' => array(
@@ -1523,6 +1409,72 @@ $entity_field[0][\'value\'] = $prefix;',
         'settings' => array(),
         'type' => 'options_select',
         'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-neighborhood-field_map_label_prefix'
+  $fields['taxonomy_term-neighborhood-field_map_label_prefix'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_map_label_prefix',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '2',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'neighborhood',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 1,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_map_label_prefix',
+      'label' => 'Map Label Prefix',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '2',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '5',
       ),
     ),
   );
