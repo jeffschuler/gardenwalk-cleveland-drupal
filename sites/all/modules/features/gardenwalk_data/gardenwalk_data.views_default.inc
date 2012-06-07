@@ -92,7 +92,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['position']['alter']['html'] = 0;
   $handler->display->display_options['fields']['position']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['position']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['position']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['position']['hide_empty'] = 1;
   $handler->display->display_options['fields']['position']['empty_zero'] = 0;
   $handler->display->display_options['fields']['position']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['position']['format_plural'] = 0;
@@ -205,10 +205,11 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['type']['empty_zero'] = 0;
   $handler->display->display_options['fields']['type']['link_to_node'] = 0;
   $handler->display->display_options['fields']['type']['machine_name'] = 0;
-  /* Sort criterion: Content: Map Label (field_map_label) */
-  $handler->display->display_options['sorts']['field_map_label_value']['id'] = 'field_map_label_value';
-  $handler->display->display_options['sorts']['field_map_label_value']['table'] = 'field_data_field_map_label';
-  $handler->display->display_options['sorts']['field_map_label_value']['field'] = 'field_map_label_value';
+  /* Sort criterion: Nodequeue: Position */
+  $handler->display->display_options['sorts']['position']['id'] = 'position';
+  $handler->display->display_options['sorts']['position']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['sorts']['position']['field'] = 'position';
+  $handler->display->display_options['sorts']['position']['relationship'] = 'nodequeue_rel';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -289,6 +290,16 @@ function gardenwalk_data_views_default_views() {
     'special_feature' => 'special_feature',
     'urban_farm' => 'urban_farm',
   );
+  /* Filter criterion: Content: Year (field_gardenwalk_year) */
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
+    21 => '21',
+  );
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
   $handler->display->display_options['path'] = 'neighborhood-geojson/%/neighborhood.geojson';
   $export['guide_geojson'] = $view;
 
@@ -355,7 +366,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label_prefix']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_map_label_prefix']['type'] = 'computed_field_default';
   $handler->display->display_options['fields']['field_map_label_prefix']['field_api_classes'] = 0;
-  /* Field: Content: Map Label */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
   $handler->display->display_options['fields']['field_map_label']['table'] = 'field_data_field_map_label';
   $handler->display->display_options['fields']['field_map_label']['field'] = 'field_map_label';
@@ -376,7 +387,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_map_label']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_map_label']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_map_label']['field_api_classes'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -461,7 +471,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['sorts']['field_map_label_prefix_value']['id'] = 'field_map_label_prefix_value';
   $handler->display->display_options['sorts']['field_map_label_prefix_value']['table'] = 'field_data_field_map_label_prefix';
   $handler->display->display_options['sorts']['field_map_label_prefix_value']['field'] = 'field_map_label_prefix_value';
-  /* Sort criterion: Content: Map Label (field_map_label) */
+  /* Sort criterion: Broken/missing handler */
   $handler->display->display_options['sorts']['field_map_label_value']['id'] = 'field_map_label_value';
   $handler->display->display_options['sorts']['field_map_label_value']['table'] = 'field_data_field_map_label';
   $handler->display->display_options['sorts']['field_map_label_value']['field'] = 'field_map_label_value';
@@ -539,7 +549,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label_prefix']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_map_label_prefix']['type'] = 'computed_field_default';
   $handler->display->display_options['fields']['field_map_label_prefix']['field_api_classes'] = 0;
-  /* Field: Content: Map Label */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
   $handler->display->display_options['fields']['field_map_label']['table'] = 'field_data_field_map_label';
   $handler->display->display_options['fields']['field_map_label']['field'] = 'field_map_label';
@@ -560,7 +570,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_map_label']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_map_label']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_map_label']['field_api_classes'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -702,7 +711,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label_prefix']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_map_label_prefix']['type'] = 'computed_field_default';
   $handler->display->display_options['fields']['field_map_label_prefix']['field_api_classes'] = 0;
-  /* Field: Content: Map Label */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
   $handler->display->display_options['fields']['field_map_label']['table'] = 'field_data_field_map_label';
   $handler->display->display_options['fields']['field_map_label']['field'] = 'field_map_label';
@@ -723,7 +732,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_map_label']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_map_label']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_map_label']['field_api_classes'] = 0;
   /* Field: Global: Custom text */
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
@@ -842,7 +850,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Community Gardens';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Map Label */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
   $handler->display->display_options['fields']['field_map_label']['table'] = 'field_data_field_map_label';
   $handler->display->display_options['fields']['field_map_label']['field'] = 'field_map_label';
@@ -863,7 +871,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_map_label']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_map_label']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_map_label']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Map Label Prefix */
   $handler->display->display_options['fields']['field_map_label_prefix']['id'] = 'field_map_label_prefix';
   $handler->display->display_options['fields']['field_map_label_prefix']['table'] = 'field_data_field_map_label_prefix';
@@ -973,7 +980,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Reimagining';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Map Label */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
   $handler->display->display_options['fields']['field_map_label']['table'] = 'field_data_field_map_label';
   $handler->display->display_options['fields']['field_map_label']['field'] = 'field_map_label';
@@ -994,7 +1001,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_map_label']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_map_label']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_map_label']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Map Label Prefix */
   $handler->display->display_options['fields']['field_map_label_prefix']['id'] = 'field_map_label_prefix';
   $handler->display->display_options['fields']['field_map_label_prefix']['table'] = 'field_data_field_map_label_prefix';
@@ -1104,7 +1110,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Urban Farms';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Map Label */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
   $handler->display->display_options['fields']['field_map_label']['table'] = 'field_data_field_map_label';
   $handler->display->display_options['fields']['field_map_label']['field'] = 'field_map_label';
@@ -1125,7 +1131,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_map_label']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_map_label']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_map_label']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Map Label Prefix */
   $handler->display->display_options['fields']['field_map_label_prefix']['id'] = 'field_map_label_prefix';
   $handler->display->display_options['fields']['field_map_label_prefix']['table'] = 'field_data_field_map_label_prefix';
@@ -1298,7 +1303,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
   $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
   $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
-  /* Field: Content: Map Label */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
   $handler->display->display_options['fields']['field_map_label']['table'] = 'field_data_field_map_label';
   $handler->display->display_options['fields']['field_map_label']['field'] = 'field_map_label';
@@ -1319,7 +1324,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_map_label']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_map_label']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_map_label']['field_api_classes'] = 0;
   /* Field: Taxonomy term: Map Label Prefix */
   $handler->display->display_options['fields']['field_map_label_prefix']['id'] = 'field_map_label_prefix';
   $handler->display->display_options['fields']['field_map_label_prefix']['table'] = 'field_data_field_map_label_prefix';
@@ -1453,7 +1457,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['sorts']['field_map_label_prefix_value']['id'] = 'field_map_label_prefix_value';
   $handler->display->display_options['sorts']['field_map_label_prefix_value']['table'] = 'field_data_field_map_label_prefix';
   $handler->display->display_options['sorts']['field_map_label_prefix_value']['field'] = 'field_map_label_prefix_value';
-  /* Sort criterion: Content: Map Label (field_map_label) */
+  /* Sort criterion: Broken/missing handler */
   $handler->display->display_options['sorts']['field_map_label_value']['id'] = 'field_map_label_value';
   $handler->display->display_options['sorts']['field_map_label_value']['table'] = 'field_data_field_map_label';
   $handler->display->display_options['sorts']['field_map_label_value']['field'] = 'field_map_label_value';
@@ -1715,6 +1719,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_label_prefix']['field'] = 'field_map_label_prefix';
   $handler->display->display_options['fields']['field_map_label_prefix']['relationship'] = 'field_neighborhood_tid';
   $handler->display->display_options['fields']['field_map_label_prefix']['label'] = '';
+  $handler->display->display_options['fields']['field_map_label_prefix']['exclude'] = TRUE;
   $handler->display->display_options['fields']['field_map_label_prefix']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_map_label_prefix']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_map_label_prefix']['alter']['absolute'] = 0;
@@ -1740,6 +1745,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['position']['field'] = 'position';
   $handler->display->display_options['fields']['position']['relationship'] = 'nodequeue_rel';
   $handler->display->display_options['fields']['position']['label'] = '';
+  $handler->display->display_options['fields']['position']['exclude'] = TRUE;
   $handler->display->display_options['fields']['position']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['position']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['position']['alter']['absolute'] = 0;
@@ -1755,7 +1761,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['position']['alter']['html'] = 0;
   $handler->display->display_options['fields']['position']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['position']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['position']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['position']['hide_empty'] = 1;
   $handler->display->display_options['fields']['position']['empty_zero'] = 0;
   $handler->display->display_options['fields']['position']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['position']['format_plural'] = 0;
@@ -1842,6 +1848,11 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['body']['hide_empty'] = 0;
   $handler->display->display_options['fields']['body']['empty_zero'] = 0;
   $handler->display->display_options['fields']['body']['field_api_classes'] = 0;
+  /* Sort criterion: Nodequeue: Position */
+  $handler->display->display_options['sorts']['position']['id'] = 'position';
+  $handler->display->display_options['sorts']['position']['table'] = 'nodequeue_nodes';
+  $handler->display->display_options['sorts']['position']['field'] = 'position';
+  $handler->display->display_options['sorts']['position']['relationship'] = 'nodequeue_rel';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
