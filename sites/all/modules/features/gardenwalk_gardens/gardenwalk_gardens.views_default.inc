@@ -767,12 +767,13 @@ function gardenwalk_gardens_views_default_views() {
   $handler = $view->new_display('page', 'Manage Garden Locations', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Manage Garden Locations';
+  $handler->display->display_options['defaults']['use_ajax'] = FALSE;
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'edit any garden content';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['pager']['options']['id'] = '0';
   $handler->display->display_options['pager']['options']['expose']['items_per_page_options_all'] = 0;
@@ -1235,9 +1236,10 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['filters']['sid']['expose']['reduce'] = 0;
   $handler->display->display_options['path'] = 'manage-garden-locations';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Manage Gardens';
+  $handler->display->display_options['menu']['title'] = 'Manage Garden Locations';
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'menu-administer';
+  $handler->display->display_options['menu']['context'] = 0;
 
   /* Display: OpenLayers Data Overlay - Neighborhood */
   $handler = $view->new_display('openlayers', 'OpenLayers Data Overlay - Neighborhood', 'openlayers_1');
