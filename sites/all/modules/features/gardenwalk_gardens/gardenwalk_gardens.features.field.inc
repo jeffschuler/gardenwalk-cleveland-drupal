@@ -1030,82 +1030,6 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_map_label'
-  $fields['node-garden-field_map_label'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_map_label',
-      'field_permissions' => array(
-        'type' => '2',
-      ),
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'garden',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => 'For the printed map. Please don\'t touch this field.',
-      'display' => array(
-        'create_garden_for_anon' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '6',
-        ),
-        'default' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '8',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '5',
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_map_label',
-      'label' => 'Map Label',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '10',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '36',
-      ),
-    ),
-  );
-
   // Exported field: 'node-garden-field_neighborhood'
   $fields['node-garden-field_neighborhood'] = array(
     'field_config' => array(
@@ -1485,7 +1409,6 @@ function gardenwalk_gardens_field_default_fields() {
   t('Accessibility notes');
   t('Cell Phone');
   t('Email');
-  t('For the printed map. Please don\'t touch this field.');
   t('Garden Address');
   t('Garden Description');
   t('Garden Finders');
@@ -1493,7 +1416,6 @@ function gardenwalk_gardens_field_default_fields() {
   t('Gardener Name');
   t('Handicap accessible');
   t('Home Phone');
-  t('Map Label');
   t('Map Label Prefix');
   t('Neighborhood');
   t('OK to photograph?');
