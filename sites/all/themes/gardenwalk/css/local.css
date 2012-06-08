@@ -437,7 +437,7 @@ h3 {
 
 /* Sponsors Page
 -------------------------------------------------------------- */
-.page-sponsors .views-grid td {
+.page-sponsors .views-view-grid td {
   width: 25%;
   padding-bottom: 20px;
   vertical-align: bottom; }
@@ -445,7 +445,7 @@ h3 {
 .page-sponsors h2 {
   margin: 40px 0; }
 
-.page-sponsors .views-grid .views-field-title {
+.page-sponsors .views-view-grid .views-field-title {
   font-size: .85em;
   margin-top: 25px; }
 
