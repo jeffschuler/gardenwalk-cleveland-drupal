@@ -46,7 +46,7 @@ function gardenwalk_form_alter(&$form, &$form_state, $form_id) {
  */
 function gardenwalk_preprocess_page(&$vars) {
   // Prefix node page titles of certain content types with the type name
-  if (arg(0)=='node') {
+  if (arg(0)=='node' && arg(2)!='edit') {
     $node = node_load(arg(1));
     if (isset($node->type)) {
       switch ($node->type) {
