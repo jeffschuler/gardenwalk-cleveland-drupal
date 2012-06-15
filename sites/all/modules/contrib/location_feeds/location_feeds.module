@@ -166,6 +166,12 @@ function location_feeds_set_target($source, $entity, $target, $value) {
 
   foreach ($value as $i => $val) {
     $val = trim($val);
+
+    // location_cck has issues with empty fields, so bail if we find one.
+    if ($val !== FALSE && $val !== 0 && empty($val)) {
+      continue;
+    }
+
     if (isset($last_field)) {
       if ($cck) {
         if (!isset($entity->{$field_name}['und'][$i]['location_settings'])) {

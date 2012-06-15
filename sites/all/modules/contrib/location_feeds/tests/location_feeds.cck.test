@@ -36,21 +36,51 @@ class CCKFeedsMapperLocationTestCase extends FeedsMapperLocationTestCase {
           'administer site configuration',
         )
     ));
-  }
 
-  /**
-   * Basic test loading an RSS feed for nodes with CCK locations.
-   */
-  public function test() {
-    $nsettings = array();
     $settings = LocationTestCase::getLocationFieldDefaults();
     // unset stuff CCK doesn't need
     unset($settings['location_settings']['multiple']);
     unset($settings['location_settings']['rss']);
 
     // Create content type.
-    $type = $this->drupalCreateContentType($nsettings);
-    $this->_location_cck_fields($type, 'field_location', $settings);
+    $type = $this->drupalCreateContentType($settings);
+    $this->type = $type->type;
+
+    $fields = array(
+      'field_location' => array(
+        'field_name' => 'field_location',
+        'type' => 'location',
+        'label' => 'field_location_location_label',
+        'widget' => 'location',
+        'settings' => array(
+          'location_settings' => array(
+            'form' => array('fields' => $settings),
+          )
+        ),
+      ),
+    );
+    foreach ($fields as $field) {
+      $f = array('field_name' => $field['field_name'], 'type' => $field['type']);
+      field_create_field($f);
+
+      $i = array(
+        'field_name' => $field['field_name'],
+        'entity_type' => 'node',
+        'label' => $field['label'],
+        'bundle' => $this->type,
+        'settings' => isset($field['settings']) ? $field['settings'] : array(),
+        'widget' => array('type' => $field['widget'])
+      );
+      field_create_instance($i);
+    }
+
+}
+
+  /**
+   * Basic test loading an RSS feed for nodes with CCK locations.
+   */
+  public function test() {
+    $type = $this->type;
 
     // Test constants
     $loc = array(
@@ -92,7 +122,7 @@ class CCKFeedsMapperLocationTestCase extends FeedsMapperLocationTestCase {
     $this->setSettings('location_import', NULL, array('content_type' => '','import_period' => FEEDS_SCHEDULE_NEVER,));
     $this->setPlugin('location_import', 'FeedsFileFetcher');
     $this->setPlugin('location_import', 'FeedsCSVParser');
-    $this->setSettings('location_import', 'FeedsNodeProcessor', array('content_type' => $type->type));
+    $this->setSettings('location_import', 'FeedsNodeProcessor', array('content_type' => $type));
 
     // Go to mapping page and create a couple of mappings.
     $mappings = array(
@@ -141,11 +171,11 @@ class CCKFeedsMapperLocationTestCase extends FeedsMapperLocationTestCase {
 
     // Import CSV file.
     $this->importFile('location_import', drupal_get_path('module', 'location_feeds') .'/tests/feeds/location_nodes.csv');
-    $this->assertText('Created 4 nodes');
+    $this->assertText('Created 5 nodes');
 
     // Check the imported locations
     $x = 0;
-    $nodes = db_query("SELECT nid FROM {node} WHERE type=:type", array(':type' => $type->type));
+    $nodes = db_query("SELECT nid FROM {node} WHERE type=:type", array(':type' => $type));
     foreach ($nodes as $node) {
       $node = node_load($node->nid);
 
@@ -212,48 +242,6 @@ class CCKFeedsMapperLocationTestCase extends FeedsMapperLocationTestCase {
 
       $x++;
     }
-  }
-
-  /**
-   * Helper function to add the location CCK fields
-   *
-   * @param: $type - the node type object
-   * @param: $field_name - the field name to add
-   * @param: $settings - the field settings array
-   */
-  private function _location_cck_fields($type, $field_name, $settings) {
-      $field_type = 'location';
-      $field_widget = 'location';
-      $label = $field_name . '_' . $field_type . '_label';
-      $edit = array(
-        'fields[_add_new_field][label]' => $label,
-        'fields[_add_new_field][field_name]' => $field_name,
-        'fields[_add_new_field][type]' => $field_type,
-        'fields[_add_new_field][widget_type]' => $field_widget,
-      );
-      $this->drupalPost('admin/structure/types/manage/' . $type->type . '/fields', $edit, 'Save');
-
-      // (Default) Configure the field.
-      $this->drupalPost(NULL, $this->flattenPostData($settings), 'Save field settings');
-      //$this->assertText('Added field ' . $field_name);
-  }
-
-  /**
-   * Helper function to flatten post data
-   */
-  private function flattenPostData(&$edit) {
-    do {
-      $edit_flattened = TRUE;
-      foreach ($edit as $k => $v) {
-        if (is_array($v)) {
-          $edit_flattened = FALSE;
-          foreach ($v as $kk => $vv) {
-            $edit["{$k}[{$kk}]"] = $vv;
-          }
-          unset($edit[$k]);
-        }
-      }
-    } while (!$edit_flattened);
   }
 }
 

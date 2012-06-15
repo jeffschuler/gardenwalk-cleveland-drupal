@@ -124,7 +124,7 @@ class NodeFeedsMapperLocationTestCase extends FeedsMapperLocationTestCase {
 
     // Import CSV file.
     $this->importFile('location_import', drupal_get_path('module', 'location_feeds') .'/tests/feeds/location_nodes.csv');
-    $this->assertText('Created 4 nodes');
+    $this->assertText('Created 5 nodes');
 
     // Check the imported locations
     $x = 0;
