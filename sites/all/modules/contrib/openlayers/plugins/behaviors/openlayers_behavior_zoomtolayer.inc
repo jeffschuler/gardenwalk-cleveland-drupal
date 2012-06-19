@@ -38,7 +38,7 @@ class openlayers_behavior_zoomtolayer extends openlayers_behavior {
         '#type' => 'checkboxes',
         '#options' => $this->map['layers'],
         '#description' => t('Select layer(s) to which to zoom when the map is loaded.'),
-        '#default_value' => isset($defaults['zoomtolayer']) ? $defaults['zoomtolayer'] : NULL
+        '#default_value' => isset($defaults['zoomtolayer']) ? $defaults['zoomtolayer'] : array(),
       ),
       'point_zoom_level' => array(
         '#title' => t('Point Zoom Level'),
