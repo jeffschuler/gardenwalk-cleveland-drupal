@@ -16,9 +16,11 @@ function gardenwalk_gardens_user_default_permissions() {
     'roles' => array(
       0 => 'administrator',
       1 => 'anonymous user',
-      2 => 'developer',
-      3 => 'editor',
-      4 => 'garden finder',
+      2 => 'authenticated user',
+      3 => 'developer',
+      4 => 'editor',
+      5 => 'garden finder',
+      6 => 'guide editor',
     ),
     'module' => 'field_permissions',
   );
@@ -31,6 +33,7 @@ function gardenwalk_gardens_user_default_permissions() {
       1 => 'developer',
       2 => 'editor',
       3 => 'garden finder',
+      4 => 'guide editor',
     ),
     'module' => 'field_permissions',
   );
@@ -43,6 +46,7 @@ function gardenwalk_gardens_user_default_permissions() {
       1 => 'developer',
       2 => 'editor',
       3 => 'garden finder',
+      4 => 'guide editor',
     ),
     'module' => 'field_permissions',
   );
@@ -52,9 +56,10 @@ function gardenwalk_gardens_user_default_permissions() {
     'name' => 'view field_gardener_addressfield',
     'roles' => array(
       0 => 'administrator',
-      1 => 'developer',
-      2 => 'editor',
-      3 => 'garden finder',
+      1 => 'authenticated user',
+      2 => 'developer',
+      3 => 'editor',
+      4 => 'garden finder',
     ),
     'module' => 'field_permissions',
   );
@@ -67,6 +72,7 @@ function gardenwalk_gardens_user_default_permissions() {
       1 => 'developer',
       2 => 'editor',
       3 => 'garden finder',
+      4 => 'guide editor',
     ),
     'module' => 'field_permissions',
   );

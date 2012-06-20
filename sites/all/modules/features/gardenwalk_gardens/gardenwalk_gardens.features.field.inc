@@ -10,7 +10,7 @@
 function gardenwalk_gardens_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-garden-body'
+  // Exported field: 'node-garden-body'.
   $fields['node-garden-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -28,6 +28,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -50,7 +51,7 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '5',
+          'weight' => '19',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -82,7 +83,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_accessibility_notes'
+  // Exported field: 'node-garden-field_accessibility_notes'.
   $fields['node-garden-field_accessibility_notes'] = array(
     'field_config' => array(
       'active' => '1',
@@ -103,6 +104,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -126,7 +128,7 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '10',
+          'weight' => '20',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -155,7 +157,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_address'
+  // Exported field: 'node-garden-field_address'.
   $fields['node-garden-field_address'] = array(
     'field_config' => array(
       'active' => '1',
@@ -169,6 +171,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'lid',
         ),
       ),
+      'locked' => '0',
       'module' => 'location_cck',
       'settings' => array(
         'gmap_macro' => '[gmap ]',
@@ -252,11 +255,11 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '0',
         ),
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'above',
           'module' => 'location_cck',
           'settings' => array(),
-          'type' => 'location_default',
-          'weight' => '0',
+          'type' => 'location_all',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -282,7 +285,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_attractions'
+  // Exported field: 'node-garden-field_attractions'.
   $fields['node-garden-field_attractions'] = array(
     'field_config' => array(
       'active' => '1',
@@ -306,6 +309,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -335,8 +339,8 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '3',
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -362,7 +366,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_description'
+  // Exported field: 'node-garden-field_description'.
   $fields['node-garden-field_description'] = array(
     'field_config' => array(
       'active' => '1',
@@ -386,6 +390,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '0',
@@ -402,7 +407,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -432,7 +437,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_gardener_addressfield'
+  // Exported field: 'node-garden-field_gardener_addressfield'.
   $fields['node-garden-field_gardener_addressfield'] = array(
     'field_config' => array(
       'active' => '1',
@@ -445,6 +450,7 @@ function gardenwalk_gardens_field_default_fields() {
       ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'addressfield',
       'settings' => array(),
       'translatable' => '0',
@@ -476,7 +482,7 @@ function gardenwalk_gardens_field_default_fields() {
             'use_widget_handlers' => 1,
           ),
           'type' => 'addressfield_default',
-          'weight' => 18,
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -503,9 +509,9 @@ function gardenwalk_gardens_field_default_fields() {
           'format_handlers' => array(
             'address' => 'address',
             'address-hide-country' => 0,
+            'organisation' => 0,
             'name-full' => 0,
             'name-oneline' => 0,
-            'organisation' => 0,
           ),
         ),
         'type' => 'addressfield_standard',
@@ -514,7 +520,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_gardener_email'
+  // Exported field: 'node-garden-field_gardener_email'.
   $fields['node-garden-field_gardener_email'] = array(
     'field_config' => array(
       'active' => '1',
@@ -522,8 +528,12 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_gardener_email',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'email',
       'settings' => array(),
       'translatable' => '1',
@@ -543,9 +553,10 @@ function gardenwalk_gardens_field_default_fields() {
         ),
         'default' => array(
           'label' => 'above',
+          'module' => 'email',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '14',
+          'type' => 'email_default',
+          'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -554,6 +565,7 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '9',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_gardener_email',
       'label' => 'Email',
@@ -573,7 +585,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_gardener_name'
+  // Exported field: 'node-garden-field_gardener_name'.
   $fields['node-garden-field_gardener_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -582,7 +594,7 @@ function gardenwalk_gardens_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_gardener_name',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -597,6 +609,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -618,9 +631,10 @@ function gardenwalk_gardens_field_default_fields() {
         ),
         'default' => array(
           'label' => 'above',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '11',
+          'type' => 'text_default',
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -629,6 +643,7 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '10',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_gardener_name',
       'label' => 'Gardener Name',
@@ -649,7 +664,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_gardener_phone_cell'
+  // Exported field: 'node-garden-field_gardener_phone_cell'.
   $fields['node-garden-field_gardener_phone_cell'] = array(
     'field_config' => array(
       'active' => '1',
@@ -657,6 +672,9 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_gardener_phone_cell',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -670,6 +688,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -691,9 +710,10 @@ function gardenwalk_gardens_field_default_fields() {
         ),
         'default' => array(
           'label' => 'above',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '15',
+          'type' => 'text_default',
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -702,6 +722,7 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '12',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_gardener_phone_cell',
       'label' => 'Cell Phone',
@@ -722,7 +743,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_gardener_phone_home'
+  // Exported field: 'node-garden-field_gardener_phone_home'.
   $fields['node-garden-field_gardener_phone_home'] = array(
     'field_config' => array(
       'active' => '1',
@@ -731,7 +752,7 @@ function gardenwalk_gardens_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_gardener_phone_home',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(
         'format' => array(
@@ -746,6 +767,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -767,9 +789,10 @@ function gardenwalk_gardens_field_default_fields() {
         ),
         'default' => array(
           'label' => 'above',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '13',
+          'type' => 'text_default',
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -778,6 +801,7 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '11',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_gardener_phone_home',
       'label' => 'Home Phone',
@@ -798,7 +822,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_gardenwalk_past_year'
+  // Exported field: 'node-garden-field_gardenwalk_past_year'.
   $fields['node-garden-field_gardenwalk_past_year'] = array(
     'field_config' => array(
       'active' => '1',
@@ -815,6 +839,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -844,7 +869,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => 16,
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -870,7 +895,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_gardenwalk_year'
+  // Exported field: 'node-garden-field_gardenwalk_year'.
   $fields['node-garden-field_gardenwalk_year'] = array(
     'field_config' => array(
       'active' => '1',
@@ -894,6 +919,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -927,8 +953,8 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'above',
           'module' => 'taxonomy',
           'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '4',
+          'type' => 'taxonomy_term_reference_plain',
+          'weight' => '0',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -954,7 +980,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_handicap_accessible'
+  // Exported field: 'node-garden-field_handicap_accessible'.
   $fields['node-garden-field_handicap_accessible'] = array(
     'field_config' => array(
       'active' => '1',
@@ -968,6 +994,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1000,9 +1027,10 @@ function gardenwalk_gardens_field_default_fields() {
         ),
         'default' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '9',
+          'type' => 'list_default',
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1030,7 +1058,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_neighborhood'
+  // Exported field: 'node-garden-field_neighborhood'.
   $fields['node-garden-field_neighborhood'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1051,6 +1079,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -1107,7 +1136,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_ok'
+  // Exported field: 'node-garden-field_ok'.
   $fields['node-garden-field_ok'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1116,7 +1145,7 @@ function gardenwalk_gardens_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_ok',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -1124,6 +1153,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1156,9 +1186,10 @@ function gardenwalk_gardens_field_default_fields() {
         ),
         'default' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '12',
+          'type' => 'list_default',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1167,6 +1198,7 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '3',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_ok',
       'label' => 'OK to photograph?',
@@ -1184,7 +1216,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-garden-field_yard_areas'
+  // Exported field: 'node-garden-field_yard_areas'.
   $fields['node-garden-field_yard_areas'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1201,6 +1233,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -1230,9 +1263,10 @@ function gardenwalk_gardens_field_default_fields() {
         ),
         'default' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '7',
+          'type' => 'list_default',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1258,7 +1292,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-neighborhood-field_garden_finders'
+  // Exported field: 'taxonomy_term-neighborhood-field_garden_finders'.
   $fields['taxonomy_term-neighborhood-field_garden_finders'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1282,6 +1316,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'uid',
         ),
       ),
+      'locked' => '0',
       'module' => 'user_reference',
       'settings' => array(
         'referenceable_roles' => array(
@@ -1337,7 +1372,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-neighborhood-field_map_label_prefix'
+  // Exported field: 'taxonomy_term-neighborhood-field_map_label_prefix'.
   $fields['taxonomy_term-neighborhood-field_map_label_prefix'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1361,6 +1396,7 @@ function gardenwalk_gardens_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '2',
@@ -1398,7 +1434,156 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '2',
         ),
         'type' => 'text_textfield',
-        'weight' => '5',
+        'weight' => '7',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-neighborhood-field_neighborhood_location'.
+  $fields['taxonomy_term-neighborhood-field_neighborhood_location'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_neighborhood_location',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'addressfield',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'addressfield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'neighborhood',
+      'default_value' => array(
+        0 => array(
+          'element_key' => 'taxonomy_term|neighborhood|field_neighborhood_location|und|0',
+          'thoroughfare' => '',
+          'premise' => '',
+          'locality' => 'Cleveland',
+          'administrative_area' => 'OH',
+          'postal_code' => '',
+          'country' => 'US',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'addressfield',
+          'settings' => array(
+            'format_handlers' => array(
+              0 => 'address',
+            ),
+            'use_widget_handlers' => 1,
+          ),
+          'type' => 'addressfield_default',
+          'weight' => 2,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_neighborhood_location',
+      'label' => 'Neighborhood Location',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'addressfield',
+        'settings' => array(
+          'available_countries' => array(),
+          'format_handlers' => array(
+            'address' => 'address',
+            'address-hide-country' => 0,
+            'organisation' => 0,
+            'name-full' => 0,
+            'name-oneline' => 0,
+          ),
+        ),
+        'type' => 'addressfield_standard',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'taxonomy_term-neighborhood-field_neighborhood_location_geof'.
+  $fields['taxonomy_term-neighborhood-field_neighborhood_location_geof'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_neighborhood_location_geof',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'geofield',
+      'settings' => array(),
+      'translatable' => '0',
+      'type' => 'geofield',
+    ),
+    'field_instance' => array(
+      'bundle' => 'neighborhood',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'geofield',
+          'settings' => array(
+            'data' => 'full',
+          ),
+          'type' => 'geofield_wkt',
+          'weight' => 3,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'taxonomy_term',
+      'field_name' => 'field_neighborhood_location_geof',
+      'label' => 'Neighborhood Location Geofield',
+      'required' => 0,
+      'settings' => array(
+        'local_solr' => array(
+          'enabled' => FALSE,
+          'lat_field' => 'lat',
+          'lng_field' => 'lng',
+        ),
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'geocoder',
+        'settings' => array(
+          'delta_handling' => 'default',
+          'geocoder_field' => 'field_neighborhood_location',
+          'geocoder_handler' => 'google',
+          'handler_settings' => array(
+            'google' => array(
+              'all_results' => 0,
+              'geometry_type' => 'point',
+              'reject_results' => array(
+                'APPROXIMATE' => 0,
+                'GEOMETRIC_CENTER' => 0,
+                'RANGE_INTERPOLATED' => 0,
+                'ROOFTOP' => 0,
+              ),
+            ),
+          ),
+        ),
+        'type' => 'geocoder',
+        'weight' => '4',
       ),
     ),
   );
@@ -1418,6 +1603,8 @@ function gardenwalk_gardens_field_default_fields() {
   t('Home Phone');
   t('Map Label Prefix');
   t('Neighborhood');
+  t('Neighborhood Location');
+  t('Neighborhood Location Geofield');
   t('OK to photograph?');
   t('Part of GardenWalk 2011?');
   t('Please limit to 25 words. GardenWalk Cleveland reserves the right to edit content.');

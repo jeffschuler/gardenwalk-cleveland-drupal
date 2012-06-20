@@ -563,6 +563,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['alter']['nl2br'] = 0;
   $handler->display->display_options['fields']['field_neighborhood']['alter']['word_boundary'] = 1;
   $handler->display->display_options['fields']['field_neighborhood']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_neighborhood']['alter']['more_link'] = 0;
   $handler->display->display_options['fields']['field_neighborhood']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_neighborhood']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_neighborhood']['alter']['html'] = 0;
@@ -570,7 +571,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_neighborhood']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_neighborhood']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_neighborhood']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_neighborhood']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_neighborhood']['field_api_classes'] = 0;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
@@ -766,7 +767,7 @@ function gardenwalk_gardens_views_default_views() {
   /* Display: Manage Garden Locations */
   $handler = $view->new_display('page', 'Manage Garden Locations', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Manage Garden Locations';
+  $handler->display->display_options['title'] = 'Manage Garden (and all) Locations';
   $handler->display->display_options['defaults']['use_ajax'] = FALSE;
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -1064,6 +1065,74 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['vbo']['display_result'] = 1;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo']['merge_single_action'] = 0;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo']['force_single'] = 0;
+  /* Field: Content: Type */
+  $handler->display->display_options['fields']['type']['id'] = 'type';
+  $handler->display->display_options['fields']['type']['table'] = 'node';
+  $handler->display->display_options['fields']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['type']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['type']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['type']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['type']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['type']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['type']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['type']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['type']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['type']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['type']['link_to_node'] = 0;
+  $handler->display->display_options['fields']['type']['machine_name'] = 0;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Name';
+  $handler->display->display_options['fields']['title']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['title']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['title']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['title']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['title']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['title']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['title']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['title']['link_to_node'] = 1;
+  /* Field: Content: Edit link */
+  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
+  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
+  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['edit_node']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
   /* Field: Content: Year */
   $handler->display->display_options['fields']['field_gardenwalk_year']['id'] = 'field_gardenwalk_year';
   $handler->display->display_options['fields']['field_gardenwalk_year']['table'] = 'field_data_field_gardenwalk_year';
@@ -1183,34 +1252,27 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_address_2']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['field_address_2']['type'] = 'location_map';
   $handler->display->display_options['fields']['field_address_2']['field_api_classes'] = 0;
-  /* Field: Content: Edit link */
-  $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
-  $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['label'] = 'Edit';
-  $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['edit_node']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['edit_node']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['edit_node']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
+    'community_garden' => 'community_garden',
     'garden' => 'garden',
+    'headquarters' => 'headquarters',
+    'reimagining_project' => 'reimagining_project',
+    'special_feature' => 'special_feature',
+    'urban_farm' => 'urban_farm',
   );
+  $handler->display->display_options['filters']['type']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['type']['expose']['operator_id'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['label'] = 'Filter by Type (OR)';
+  $handler->display->display_options['filters']['type']['expose']['operator'] = 'type_op';
+  $handler->display->display_options['filters']['type']['expose']['identifier'] = 'type';
+  $handler->display->display_options['filters']['type']['expose']['remember'] = 1;
+  $handler->display->display_options['filters']['type']['expose']['multiple'] = 1;
+  $handler->display->display_options['filters']['type']['expose']['reduce'] = 1;
   /* Filter criterion: Content: Has taxonomy term */
   $handler->display->display_options['filters']['tid']['id'] = 'tid';
   $handler->display->display_options['filters']['tid']['table'] = 'taxonomy_index';
@@ -1266,8 +1328,6 @@ function gardenwalk_gardens_views_default_views() {
 
   /* Display: OpenLayers Data Overlay - Neighborhood */
   $handler = $view->new_display('openlayers', 'OpenLayers Data Overlay - Neighborhood', 'openlayers_1');
-  $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'openlayers_data';
   $handler->display->display_options['style_options']['data_source'] = array(
@@ -1467,11 +1527,39 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['arguments']['field_neighborhood_tid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['field_neighborhood_tid']['break_phrase'] = 0;
   $handler->display->display_options['arguments']['field_neighborhood_tid']['not'] = 0;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'community_garden' => 'community_garden',
+    'garden' => 'garden',
+    'reimagining_project' => 'reimagining_project',
+    'special_feature' => 'special_feature',
+    'urban_farm' => 'urban_farm',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Year (field_gardenwalk_year) */
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
+    21 => '21',
+  );
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['reduce_duplicates'] = 0;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = '1';
+  $handler->display->display_options['filters']['status']['group'] = 1;
 
   /* Display: OpenLayers Data Overlay */
   $handler = $view->new_display('openlayers', 'OpenLayers Data Overlay', 'openlayers_2');
-  $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'openlayers_data';
   $handler->display->display_options['style_options']['data_source'] = array(
@@ -1607,7 +1695,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
-  $handler->display->display_options['fields']['nid']['label'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'ID';
   $handler->display->display_options['fields']['nid']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['nid']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['nid']['alter']['absolute'] = 0;
@@ -1627,29 +1715,6 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['nid']['empty_zero'] = 0;
   $handler->display->display_options['fields']['nid']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['nid']['link_to_node'] = 0;
-  /* Field: Workflow: Current state name */
-  $handler->display->display_options['fields']['state']['id'] = 'state';
-  $handler->display->display_options['fields']['state']['table'] = 'workflow_states';
-  $handler->display->display_options['fields']['state']['field'] = 'state';
-  $handler->display->display_options['fields']['state']['label'] = 'Workflow state';
-  $handler->display->display_options['fields']['state']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['state']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['state']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['state']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['state']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['state']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['state']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['state']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['state']['hide_alter_empty'] = 1;
   /* Field: Content: Neighborhood */
   $handler->display->display_options['fields']['field_neighborhood']['id'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
@@ -1701,7 +1766,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_gardener_addressfield_2']['id'] = 'field_gardener_addressfield_2';
   $handler->display->display_options['fields']['field_gardener_addressfield_2']['table'] = 'field_data_field_gardener_addressfield';
   $handler->display->display_options['fields']['field_gardener_addressfield_2']['field'] = 'field_gardener_addressfield';
-  $handler->display->display_options['fields']['field_gardener_addressfield_2']['label'] = 'Street';
+  $handler->display->display_options['fields']['field_gardener_addressfield_2']['label'] = 'Gardener Street';
   $handler->display->display_options['fields']['field_gardener_addressfield_2']['alter']['alter_text'] = 0;
   $handler->display->display_options['fields']['field_gardener_addressfield_2']['alter']['make_link'] = 0;
   $handler->display->display_options['fields']['field_gardener_addressfield_2']['alter']['absolute'] = 0;
@@ -1762,38 +1827,6 @@ function gardenwalk_gardens_views_default_views() {
   );
   $handler->display->display_options['fields']['field_gardener_addressfield_3']['field_api_classes'] = 0;
   /* Field: Content: Gardener Address */
-  $handler->display->display_options['fields']['field_gardener_addressfield']['id'] = 'field_gardener_addressfield';
-  $handler->display->display_options['fields']['field_gardener_addressfield']['table'] = 'field_data_field_gardener_addressfield';
-  $handler->display->display_options['fields']['field_gardener_addressfield']['field'] = 'field_gardener_addressfield';
-  $handler->display->display_options['fields']['field_gardener_addressfield']['label'] = 'State';
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['alter_text'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['make_link'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['absolute'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['external'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['replace_spaces'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['trim_whitespace'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['nl2br'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['word_boundary'] = 1;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['ellipsis'] = 1;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['more_link'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['strip_tags'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['trim'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['html'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['element_label_colon'] = 1;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['element_default_classes'] = 1;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['hide_empty'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['empty_zero'] = 0;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['hide_alter_empty'] = 1;
-  $handler->display->display_options['fields']['field_gardener_addressfield']['click_sort_column'] = 'country';
-  $handler->display->display_options['fields']['field_gardener_addressfield']['type'] = 'administrative_area';
-  $handler->display->display_options['fields']['field_gardener_addressfield']['settings'] = array(
-    'use_widget_handlers' => 1,
-    'format_handlers' => array(
-      'address' => 'address',
-    ),
-  );
-  $handler->display->display_options['fields']['field_gardener_addressfield']['field_api_classes'] = 0;
-  /* Field: Content: Gardener Address */
   $handler->display->display_options['fields']['field_gardener_addressfield_1']['id'] = 'field_gardener_addressfield_1';
   $handler->display->display_options['fields']['field_gardener_addressfield_1']['table'] = 'field_data_field_gardener_addressfield';
   $handler->display->display_options['fields']['field_gardener_addressfield_1']['field'] = 'field_gardener_addressfield';
@@ -1825,6 +1858,38 @@ function gardenwalk_gardens_views_default_views() {
     ),
   );
   $handler->display->display_options['fields']['field_gardener_addressfield_1']['field_api_classes'] = 0;
+  /* Field: Content: Gardener Address */
+  $handler->display->display_options['fields']['field_gardener_addressfield']['id'] = 'field_gardener_addressfield';
+  $handler->display->display_options['fields']['field_gardener_addressfield']['table'] = 'field_data_field_gardener_addressfield';
+  $handler->display->display_options['fields']['field_gardener_addressfield']['field'] = 'field_gardener_addressfield';
+  $handler->display->display_options['fields']['field_gardener_addressfield']['label'] = 'State';
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['hide_empty'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_gardener_addressfield']['click_sort_column'] = 'country';
+  $handler->display->display_options['fields']['field_gardener_addressfield']['type'] = 'administrative_area';
+  $handler->display->display_options['fields']['field_gardener_addressfield']['settings'] = array(
+    'use_widget_handlers' => 1,
+    'format_handlers' => array(
+      'address' => 'address',
+    ),
+  );
+  $handler->display->display_options['fields']['field_gardener_addressfield']['field_api_classes'] = 0;
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Neighborhood (field_neighborhood) */
   $handler->display->display_options['sorts']['field_neighborhood_tid']['id'] = 'field_neighborhood_tid';
@@ -1854,9 +1919,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
   $handler->display->display_options['filters']['sid']['field'] = 'sid';
   $handler->display->display_options['filters']['sid']['value'] = array(
-    2 => '2',
     3 => '3',
-    4 => '4',
   );
   $handler->display->display_options['path'] = 'gardeners-export.xls';
   $export['gardens'] = $view;
