@@ -403,43 +403,67 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['access']['perm'] = 'edit any sponsor content';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
-  $handler->display->display_options['style_options']['grouping'] = '';
   $handler->display->display_options['style_options']['columns'] = array(
+    'views_bulk_operations' => 'views_bulk_operations',
+    'field_gardenwalk_years' => 'field_gardenwalk_years',
     'title' => 'title',
     'field_images' => 'field_images',
     'field_link' => 'field_link',
     'field_sponsorship_level' => 'field_sponsorship_level',
+    'status' => 'status',
     'edit_node' => 'edit_node',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
   $handler->display->display_options['style_options']['info'] = array(
+    'views_bulk_operations' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_gardenwalk_years' => array(
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
     'title' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
+      'empty_column' => 0,
     ),
     'field_images' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
+      'empty_column' => 0,
     ),
     'field_link' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
+      'empty_column' => 0,
     ),
     'field_sponsorship_level' => array(
       'sortable' => 1,
       'default_sort_order' => 'asc',
       'align' => '',
       'separator' => '',
+      'empty_column' => 0,
+    ),
+    'status' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
     ),
     'edit_node' => array(
       'align' => '',
       'separator' => '',
+      'empty_column' => 0,
     ),
   );
   $handler->display->display_options['style_options']['override'] = 1;
@@ -802,13 +826,6 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
   $handler->display->display_options['fields']['edit_node']['text'] = 'Edit';
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
   /* Filter criterion: Content: Type */
   $handler->display->display_options['filters']['type']['id'] = 'type';
   $handler->display->display_options['filters']['type']['table'] = 'node';
@@ -838,6 +855,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['id'] = 'field_sponsorship_level_tid';
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['table'] = 'field_data_field_sponsorship_level';
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['field'] = 'field_sponsorship_level_tid';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['expose']['operator_id'] = 'field_sponsorship_level_tid_op';
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['expose']['label'] = 'Filter by Sponsorship Level (OR)';

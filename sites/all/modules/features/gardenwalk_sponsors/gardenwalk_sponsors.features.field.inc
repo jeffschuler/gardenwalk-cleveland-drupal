@@ -10,7 +10,7 @@
 function gardenwalk_sponsors_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-sponsor-body'
+  // Exported field: 'node-sponsor-body'.
   $fields['node-sponsor-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -28,6 +28,7 @@ function gardenwalk_sponsors_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -79,7 +80,7 @@ function gardenwalk_sponsors_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sponsor-field_gardenwalk_years'
+  // Exported field: 'node-sponsor-field_gardenwalk_years'.
   $fields['node-sponsor-field_gardenwalk_years'] = array(
     'field_config' => array(
       'active' => '1',
@@ -103,6 +104,7 @@ function gardenwalk_sponsors_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -157,7 +159,7 @@ function gardenwalk_sponsors_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sponsor-field_images'
+  // Exported field: 'node-sponsor-field_images'.
   $fields['node-sponsor-field_images'] = array(
     'field_config' => array(
       'active' => '1',
@@ -178,6 +180,7 @@ function gardenwalk_sponsors_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -236,7 +239,7 @@ function gardenwalk_sponsors_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sponsor-field_in_kind'
+  // Exported field: 'node-sponsor-field_in_kind'.
   $fields['node-sponsor-field_in_kind'] = array(
     'field_config' => array(
       'active' => '1',
@@ -250,6 +253,7 @@ function gardenwalk_sponsors_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -307,7 +311,7 @@ function gardenwalk_sponsors_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sponsor-field_link'
+  // Exported field: 'node-sponsor-field_link'.
   $fields['node-sponsor-field_link'] = array(
     'field_config' => array(
       'active' => '1',
@@ -317,6 +321,7 @@ function gardenwalk_sponsors_field_default_fields() {
       'field_name' => 'field_link',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'link',
       'settings' => array(
         'attributes' => array(
@@ -387,7 +392,7 @@ function gardenwalk_sponsors_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-sponsor-field_sponsorship_level'
+  // Exported field: 'node-sponsor-field_sponsorship_level'.
   $fields['node-sponsor-field_sponsorship_level'] = array(
     'field_config' => array(
       'active' => '1',
@@ -408,6 +413,7 @@ function gardenwalk_sponsors_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -457,7 +463,7 @@ function gardenwalk_sponsors_field_default_fields() {
     ),
   );
 
-  // Exported field: 'taxonomy_term-sponsorship_level-field_min_amount'
+  // Exported field: 'taxonomy_term-sponsorship_level-field_min_amount'.
   $fields['taxonomy_term-sponsorship_level-field_min_amount'] = array(
     'field_config' => array(
       'active' => '1',
@@ -467,6 +473,7 @@ function gardenwalk_sponsors_field_default_fields() {
       'field_name' => 'field_min_amount',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'number',
       'settings' => array(),
       'translatable' => '1',
