@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * Link gardens in list view to map.
+ */
+
+/*
+ * Add the javascript file to Neighborhood pages.
+ */
+function gardenwalk_maplink_preprocess_page(&$variables) {
+  if (strpos(request_uri(), '/neighborhood/') === 0) {
+    drupal_add_js(drupal_get_path('module', 'gardenwalk_maplink') . '/gardenwalk_maplink.js');
+    $variables['scripts'] = drupal_get_js();
+  }
+}
