@@ -1,6 +1,7 @@
 name = GardenWalk OL Maps
 core = 7.x
 package = Features
+php = 5.2.4
 dependencies[] = ctools
 dependencies[] = openlayers
 features[ctools][] = openlayers:openlayers_layers:1
