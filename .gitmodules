@@ -1,6 +1,6 @@
 [submodule "sites/all/modules/contrib/openlayers_plus"]
 	path = sites/all/modules/contrib/openlayers_plus
-	url = https://github.com/jeffschuler/openlayers_plus.git
+	url = http://github.com/jeffschuler/openlayers_plus.git
 [submodule "sites/all/libraries/wax"]
 	path = sites/all/libraries/wax
 	url = http://github.com/mapbox/wax.git
