@@ -25,8 +25,13 @@ Drupal.gardenwalk_maplink = {
       var layer_id = Drupal.gardenwalk_maplink.nids[nid][0];
       var index = Drupal.gardenwalk_maplink.nids[nid][1];
       var feature = $('div.openlayers-map-neighborhood_map').data('openlayers').openlayers.layers[layer_id].features[index];
-      var selectControl = $('div.openlayers-map-neighborhood_map').data('openlayers').openlayers.controls[0];
-      Drupal.openlayers_plus_behavior_popup.openPopup(feature, selectControl);
+      var controls = $('div.openlayers-map-neighborhood_map').data('openlayers').openlayers.controls;
+      for (var i in controls) {
+        if (controls[i].displayClass == "olControlSelectFeature") {
+          Drupal.openlayers_plus_behavior_popup.openPopup(feature, controls[i]);
+          break;
+        }
+      }
     } 
     return false;
   }
