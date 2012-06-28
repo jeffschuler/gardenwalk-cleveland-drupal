@@ -1,0 +1,11 @@
+name = GardenWalk Map Link
+description = "Link gardens list to map features."
+
+core = 7.x
+
+package = GardenWalk Custom
+
+files[] = gardenwalk_maplink.module
+
+dependencies[] = openlayers
+dependencies[] = views (3.x)
