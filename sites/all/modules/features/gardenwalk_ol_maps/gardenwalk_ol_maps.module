@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the GardenWalk OL Maps feature.
+ */
+
+include_once 'gardenwalk_ol_maps.features.inc';
