@@ -144,38 +144,45 @@ h3 {
 }
 #block-block-1 .top {
   background-color: $ltgreen;
-  width: 65px;
+  width: 87px;
   height: 35px;
 }
 #block-block-1 .month {
   height: 35px;
-  width: 65px;
-  padding-top: 10px;
+  width: 87px;
+  padding-top: 9px;
   font-weight: 300;
-  font-size: 21px;
+  font-size: 24px;
 }
 #block-block-1 .bottom {
   position: relative;
   left: 6px;
   background-image: url('../images/date-tag-bottom.png');
-  width: 65px;
+  width: 87px;
   height: 75px;
   z-index: 10; /* higher than [over] header logo #site-name */
 }
 #block-block-1 .day {
-  font-weight: 700;
+  font-weight: 300;
   font-size: 22px;
-  width: 67px;
+  width: 87px;
   overflow: visible;
   padding-top: 14px;
   height: 27px;
 }
 #block-block-1 .year {
   font-weight: 300;
-  font-size: 21px;
-  width: 65px;
+  font-size: 24px;
+  width: 87px;
   background-color: $ltgreen;
 }
+#block-block-1 .time {
+  font-weight: 500;
+  font-size: 15px;
+  width: 87px;
+  background-color: $ltgreen;
+}
+
 
 
 /* Header
