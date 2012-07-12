@@ -1,6 +1,7 @@
 name = GardenWalk Urban Farms
 core = 7.x
 package = Features
+php = 5.2.4
 dependencies[] = ctools
 dependencies[] = ds
 dependencies[] = email
