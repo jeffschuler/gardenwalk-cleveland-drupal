@@ -4,9 +4,10 @@ Drupal.gardenwalk_maplink = {
   nids : [],
 
   init_map : function() {
-    for (var layer_id in [0,1,2,4,5]) {
-      layer_features = $('div.openlayers-map-neighborhood_map').data('openlayers').openlayers.layers[layer_id].features;
-      //var all_features = Drupal.gardenwalk_maplink.getAllFeatures.features;
+    for (var layer_id in [0,1,2,3,4,5]) {
+      layer = $('div.openlayers-map-neighborhood_map').data('openlayers').openlayers.layers[layer_id];
+      //layer_name = layer.name;
+      layer_features = layer.features;
       for (var key in layer_features) {
         var feature = layer_features[key];
         Drupal.gardenwalk_maplink.nids[feature.attributes.nid] = [layer_id, key];
