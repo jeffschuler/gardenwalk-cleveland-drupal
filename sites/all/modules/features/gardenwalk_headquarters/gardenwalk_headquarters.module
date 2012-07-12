@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the GardenWalk Headquarters feature.
+ */
+
+include_once 'gardenwalk_headquarters.features.inc';
