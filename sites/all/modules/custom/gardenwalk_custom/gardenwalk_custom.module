@@ -1,0 +1,15 @@
+<?php
+/**
+ * @file
+ * GardenWalk Customizations
+ */
+
+/*
+ * Implements hook_views_query_alter().
+ */
+function gardenwalk_custom_views_query_alter(&$view, &$query) {
+  // Order Gardens Block list by Content Type, deliberately
+  if ($view->name == 'gardens' && $view->current_display == 'block_1') {
+    $query->orderby[0]['field'] = "FIELD(node_type, 'garden', 'community_garden', 'urban_farm', 'reimagining_project', 'special_feature')";
+  }
+}
