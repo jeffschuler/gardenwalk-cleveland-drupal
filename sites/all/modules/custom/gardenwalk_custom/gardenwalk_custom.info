@@ -6,5 +6,3 @@ core = 7.x
 package = GardenWalk Custom
 
 files[] = gardenwalk_custom.module
-
-dependencies[] = views (3.x)
