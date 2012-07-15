@@ -409,10 +409,9 @@ h3 {
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a:visited {
   color: $purple;
 }
-#main .view-id-gardens.view-display-id-block_1 .views-field-tid a,
-#main .view-id-gardens.view-display-id-block_1 .views-field-tid a:link,
-#main .view-id-gardens.view-display-id-block_1 .views-field-tid a:visited {
-    color: $brown_darker;
+#main .view-id-gardens.view-display-id-block_1 .views-field-type {
+  color: $brown;
+  font-size: 9pt;
 }
 #main .view-id-gardens.view-display-id-block_1 ul {
   margin-left: 0;
