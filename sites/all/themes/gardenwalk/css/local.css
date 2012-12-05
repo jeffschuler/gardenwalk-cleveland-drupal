@@ -131,15 +131,15 @@ h3 {
 
 #block-block-1 .day {
   font-weight: 300;
-  font-size: 22px;
+  font-size: 20px;
   width: 87px;
   overflow: visible;
-  padding-top: 14px;
+  padding-top: 12px;
   height: 27px; }
 
 #block-block-1 .year {
-  font-weight: 300;
-  font-size: 24px;
+  font-weight: 700;
+  font-size: 28px;
   width: 87px;
   background-color: #a3c6b1; }
 
