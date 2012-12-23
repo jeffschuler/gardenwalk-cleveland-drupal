@@ -1581,6 +1581,29 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['type']['hide_alter_empty'] = 1;
   $handler->display->display_options['fields']['type']['link_to_node'] = 0;
   $handler->display->display_options['fields']['type']['machine_name'] = 0;
+  /* Field: Content: Garden Age */
+  $handler->display->display_options['fields']['field_garden_age']['id'] = 'field_garden_age';
+  $handler->display->display_options['fields']['field_garden_age']['table'] = 'field_data_field_garden_age';
+  $handler->display->display_options['fields']['field_garden_age']['field'] = 'field_garden_age';
+  $handler->display->display_options['fields']['field_garden_age']['alter']['alter_text'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['make_link'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['absolute'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['external'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['replace_spaces'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['trim_whitespace'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['nl2br'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['word_boundary'] = 1;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['ellipsis'] = 1;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['more_link'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['strip_tags'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['trim'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['element_label_colon'] = 1;
+  $handler->display->display_options['fields']['field_garden_age']['element_default_classes'] = 1;
+  $handler->display->display_options['fields']['field_garden_age']['hide_empty'] = 1;
+  $handler->display->display_options['fields']['field_garden_age']['empty_zero'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['hide_alter_empty'] = 1;
+  $handler->display->display_options['fields']['field_garden_age']['field_api_classes'] = 0;
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';

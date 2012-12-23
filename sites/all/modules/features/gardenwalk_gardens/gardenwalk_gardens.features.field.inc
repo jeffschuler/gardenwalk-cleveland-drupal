@@ -51,7 +51,7 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'hidden',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '19',
+          'weight' => '20',
         ),
         'teaser' => array(
           'label' => 'hidden',
@@ -77,7 +77,7 @@ function gardenwalk_gardens_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '10',
+        'weight' => '38',
       ),
       'widget_type' => 'text_textarea_with_summary',
     ),
@@ -128,7 +128,7 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '20',
+          'weight' => '21',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -340,7 +340,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_plain',
-          'weight' => '6',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -361,7 +361,7 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '8',
+        'weight' => '36',
       ),
     ),
   );
@@ -407,7 +407,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '5',
+          'weight' => '6',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -432,7 +432,81 @@ function gardenwalk_gardens_field_default_fields() {
           'rows' => '3',
         ),
         'type' => 'text_textarea',
-        'weight' => '9',
+        'weight' => '37',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-garden-field_garden_age'.
+  $fields['node-garden-field_garden_age'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_garden_age',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'Less than 1 year' => 'Less than 1 year',
+          '1-2 years' => '1-2 years',
+          '2-5 years' => '2-5 years',
+          '5-10 years' => '5-10 years',
+          '10-20 years' => '10-20 years',
+          'More than 20 years' => 'More than 20 years',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'default_value_php' => '',
+      'deleted' => '0',
+      'description' => 'How long have you (or the gardener) been developing this garden?',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '5',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'node',
+      'field_name' => 'field_garden_age',
+      'label' => 'Garden Age',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '35',
       ),
     ),
   );
@@ -482,7 +556,7 @@ function gardenwalk_gardens_field_default_fields() {
             'use_widget_handlers' => 1,
           ),
           'type' => 'addressfield_default',
-          'weight' => '10',
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -556,7 +630,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'email',
           'settings' => array(),
           'type' => 'email_default',
-          'weight' => '13',
+          'weight' => '14',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -634,7 +708,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '9',
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -713,7 +787,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '12',
+          'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -792,7 +866,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '11',
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1030,7 +1104,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '8',
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1189,7 +1263,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '7',
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1595,12 +1669,14 @@ function gardenwalk_gardens_field_default_fields() {
   t('Cell Phone');
   t('Email');
   t('Garden Address');
+  t('Garden Age');
   t('Garden Description');
   t('Garden Finders');
   t('Gardener Address');
   t('Gardener Name');
   t('Handicap accessible');
   t('Home Phone');
+  t('How long have you (or the gardener) been developing this garden?');
   t('Map Label Prefix');
   t('Neighborhood');
   t('Neighborhood Location');
