@@ -52,6 +52,9 @@ function gardenwalk_gardens_strongarm() {
         'workflow' => array(
           'weight' => '10',
         ),
+        'redirect' => array(
+          'weight' => '30',
+        ),
       ),
       'display' => array(),
     ),
