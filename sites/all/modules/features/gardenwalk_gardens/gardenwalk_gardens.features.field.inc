@@ -478,7 +478,7 @@ function gardenwalk_gardens_field_default_fields() {
       'default_value_function' => '',
       'default_value_php' => '',
       'deleted' => '0',
-      'description' => 'How long have you (or the gardener) been developing this garden?',
+      'description' => 'How long have you (or the gardener) been building this garden?',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -1680,7 +1680,7 @@ function gardenwalk_gardens_field_default_fields() {
   t('Gardener Name');
   t('Handicap accessible');
   t('Home Phone');
-  t('How long have you (or the gardener) been developing this garden?');
+  t('How long have you (or the gardener) been building this garden?');
   t('Map Label Prefix');
   t('Neighborhood');
   t('Neighborhood Location');
