@@ -39,8 +39,8 @@
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
   <meta name="keywords" content="cleveland,garden,walk,tour,community,urban,market,reimagining,flower,vegetable,neighborhood,harvard,lee,miles,hough,tremont,detroit,shoreway,glenville,old,brooklyn,centre,ohio,city,slavic,village,st,clair,superior,tremont" />
-  <meta name="description" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more -- on July 21st & 22nd, 2012 -- in neighborhoods of Cleveland, Ohio. Neighborhoods selected for 2012 are: Brooklyn Centre, Detroit Shoreway, Glenville, Hough, Lee Harvard Miles, Ohio City, Old Brooklyn, Slavic Village, St. Clair Superior, and Tremont." />
-  <meta name="abstract" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more -- on July 21st & 22nd, 2012 -- in neighborhoods of Cleveland, Ohio." />
+  <meta name="description" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more -- on June 22nd & 23rd, 2013 -- in neighborhoods of Cleveland, Ohio. Neighborhoods selected for 2012 are: Brooklyn Centre, Detroit Shoreway, Glenville, Hough, Lee Harvard Miles, Ohio City, Old Brooklyn, Slavic Village, St. Clair Superior, and Tremont." />
+  <meta name="abstract" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more -- on June 22nd & 23rd, 2013 -- in neighborhoods of Cleveland, Ohio." />
   <?php print $styles; ?>
   <?php print $scripts; ?>
   <link rel="apple-touch-icon" sizes="57x57" href="/sites/all/themes/gardenwalk/images/apple-touch-icon-57.png" />
