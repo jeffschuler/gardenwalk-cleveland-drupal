@@ -1598,6 +1598,8 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_garden_age']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['field_garden_age']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['field_garden_age']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['field_garden_age']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_garden_age']['element_label_type'] = 'span';
   $handler->display->display_options['fields']['field_garden_age']['element_label_colon'] = 1;
   $handler->display->display_options['fields']['field_garden_age']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['field_garden_age']['hide_empty'] = 1;
