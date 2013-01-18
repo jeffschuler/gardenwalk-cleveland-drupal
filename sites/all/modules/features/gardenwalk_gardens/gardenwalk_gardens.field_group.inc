@@ -27,6 +27,7 @@ function gardenwalk_gardens_field_group_info() {
       1 => 'field_accessibility_notes',
       2 => 'field_ok',
       3 => 'field_gardenwalk_past_year',
+      4 => 'field_past_gardenwalks',
     ),
     'format_type' => 'tab',
     'format_settings' => array(
@@ -55,8 +56,9 @@ function gardenwalk_gardens_field_group_info() {
     'children' => array(
       0 => 'body',
       1 => 'field_attractions',
-      2 => 'field_description',
-      3 => 'field_garden_age',
+      2 => 'field_garden_age',
+      3 => 'field_description',
+      4 => 'field_garden_type',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

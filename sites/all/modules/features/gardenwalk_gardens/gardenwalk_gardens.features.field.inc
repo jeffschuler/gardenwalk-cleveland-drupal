@@ -77,7 +77,7 @@ function gardenwalk_gardens_field_default_fields() {
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '38',
+        'weight' => '48',
       ),
       'widget_type' => 'text_textarea_with_summary',
     ),
@@ -152,7 +152,7 @@ function gardenwalk_gardens_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '34',
+        'weight' => '53',
       ),
     ),
   );
@@ -362,7 +362,7 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '36',
+        'weight' => '46',
       ),
     ),
   );
@@ -433,7 +433,7 @@ function gardenwalk_gardens_field_default_fields() {
           'rows' => '3',
         ),
         'type' => 'text_textarea',
-        'weight' => '37',
+        'weight' => '47',
       ),
     ),
   );
@@ -507,7 +507,83 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '35',
+        'weight' => '45',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-garden-field_garden_type'.
+  $fields['node-garden-field_garden_type'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_garden_type',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          'Private (Home/Business) Garden' => 'Private (Home/Business) Garden',
+          'Community Garden' => 'Community Garden',
+          'Urban Farm / Market Garden' => 'Urban Farm / Market Garden',
+          'Other' => 'Other',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'default_value' => array(
+        0 => array(
+          'value' => 'Private (Home/Business) Garden',
+        ),
+      ),
+      'default_value_function' => '',
+      'default_value_php' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 22,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'node',
+      'field_name' => 'field_garden_type',
+      'label' => 'Garden Type',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '44',
       ),
     ),
   );
@@ -906,7 +982,7 @@ function gardenwalk_gardens_field_default_fields() {
       'entity_types' => array(),
       'field_name' => 'field_gardenwalk_past_year',
       'field_permissions' => array(
-        'type' => '0',
+        'type' => '2',
       ),
       'foreign keys' => array(),
       'indexes' => array(
@@ -953,6 +1029,7 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '5',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_gardenwalk_past_year',
       'label' => 'Part of GardenWalk 2011?',
@@ -965,7 +1042,7 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '31',
+        'weight' => '50',
       ),
     ),
   );
@@ -1011,7 +1088,7 @@ function gardenwalk_gardens_field_default_fields() {
       'bundle' => 'garden',
       'default_value' => array(
         0 => array(
-          'tid' => '21',
+          'tid' => '42',
         ),
       ),
       'deleted' => '0',
@@ -1039,6 +1116,7 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '0',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_gardenwalk_year',
       'label' => 'Year',
@@ -1129,7 +1207,7 @@ function gardenwalk_gardens_field_default_fields() {
           'display_label' => 1,
         ),
         'type' => 'options_onoff',
-        'weight' => '33',
+        'weight' => '52',
       ),
     ),
   );
@@ -1288,7 +1366,77 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '32',
+        'weight' => '51',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-garden-field_past_gardenwalks'.
+  $fields['node-garden-field_past_gardenwalks'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '-1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_past_gardenwalks',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          2011 => '2011',
+          2012 => '2012',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'default_value' => NULL,
+      'default_value_function' => '',
+      'default_value_php' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 23,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'node',
+      'field_name' => 'field_past_gardenwalks',
+      'label' => 'Included in past GardenWalks?',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_buttons',
+        'weight' => '49',
       ),
     ),
   );
@@ -1676,11 +1824,13 @@ function gardenwalk_gardens_field_default_fields() {
   t('Garden Age');
   t('Garden Description');
   t('Garden Finders');
+  t('Garden Type');
   t('Gardener Address');
   t('Gardener Name');
   t('Handicap accessible');
   t('Home Phone');
   t('How long have you (or the gardener) been building this garden?');
+  t('Included in past GardenWalks?');
   t('Map Label Prefix');
   t('Neighborhood');
   t('Neighborhood Location');
