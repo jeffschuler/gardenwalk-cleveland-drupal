@@ -370,11 +370,53 @@ h3 {
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a,
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a:link,
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a:visited {
+  color: #726965;
+  font-size: 115%;
+  font-weight: bold; }
+
+#main .view-id-gardens.view-display-id-block_1 .views-field-title a:hover {
+  color: #f15b2a; }
+
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-attractions a,
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-attractions a:link,
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-attractions a:visited {
   color: #615fc1; }
 
 #main .view-id-gardens.view-display-id-block_1 .views-field-type {
-  color: #726965;
-  font-size: 9pt; }
+  display: block;
+  margin: 3px 0; }
+
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .field-content {
+  padding: 0 4px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: white; }
+
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Headquarters {
+  border-color: #f15a82;
+  color: #d31245; }
+
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Special-Feature {
+  border-color: #f7a58a;
+  color: #f15b2a; }
+
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Garden {
+  border-color: #08f677;
+  border-color: #039447;
+  color: #059347; }
+
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Community-Garden {
+  border-color: #4475d4;
+  color: #214791; }
+
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Urban-Farm---Market-Garden {
+  border-color: #a49c99;
+  color: #726965; }
+
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Reimagining-Project {
+  border-color: #aaa9dd;
+  color: #615fc1; }
 
 #main .view-id-gardens.view-display-id-block_1 ul {
   margin-left: 0; }
