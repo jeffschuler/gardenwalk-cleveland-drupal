@@ -11,6 +11,15 @@ $ltgreen: #A3C6B1;
 $red: #D31245;
 $white: #FFFFFF;
 $black: #000000;
+$blue: #214791;
+
+$red_lighter: lighten($red, 20%);
+$orange_lighter: lighten($orange, 20%);
+$green_lighter: lighten($green, 20%);
+$blue_lighter: lighten($blue, 20%);
+$brown_lighter: lighten($brown, 20%);
+$purple_lighter: lighten($purple, 20%);
+$brown_lighter: lighten($brown, 20%);
 
 $imgborder: 1px solid $brown;
 
@@ -419,12 +428,56 @@ h3 {
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a,
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a:link,
 #main .view-id-gardens.view-display-id-block_1 .views-field-title a:visited {
+  color: $brown;
+  font-size: 115%;
+  font-weight: bold;
+}
+#main .view-id-gardens.view-display-id-block_1 .views-field-title a:hover {
+  color: $orange;
+}
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-attractions a,
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-attractions a:link,
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-attractions a:visited {
   color: $purple;
 }
+
 #main .view-id-gardens.view-display-id-block_1 .views-field-type {
-  color: $brown;
-  font-size: 9pt;
+  display: block;
+  margin: 3px 0;
 }
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .field-content {
+  padding: 0 4px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid $black;
+  color: $white;
+}
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Headquarters {
+  border-color: $red_lighter;
+  color: $red;
+}
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Special-Feature {
+  border-color: $orange_lighter;
+  color: $orange;
+}
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Garden {
+  border-color: $green_lighter;
+  border-color: #039447;
+  color: $green;
+}
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Community-Garden {
+  border-color: $blue_lighter;
+  color: $blue;
+}
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Urban-Farm---Market-Garden {
+  border-color: $brown_lighter;
+  color: $brown;
+}
+#main .view-id-gardens.view-display-id-block_1 .views-field-type .Reimagining-Project {
+  border-color: $purple_lighter;
+  color: $purple;
+}
+
 #main .view-id-gardens.view-display-id-block_1 ul {
   margin-left: 0;
 }

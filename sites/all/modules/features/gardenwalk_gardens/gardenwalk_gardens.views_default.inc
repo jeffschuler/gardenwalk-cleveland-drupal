@@ -1574,6 +1574,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['type']['alter']['strip_tags'] = 0;
   $handler->display->display_options['fields']['type']['alter']['trim'] = 0;
   $handler->display->display_options['fields']['type']['alter']['html'] = 0;
+  $handler->display->display_options['fields']['type']['element_class'] = '[type]';
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['type']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['type']['hide_empty'] = 0;
