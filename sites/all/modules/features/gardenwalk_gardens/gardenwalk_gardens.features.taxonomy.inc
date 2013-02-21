@@ -13,7 +13,7 @@ function gardenwalk_gardens_taxonomy_default_vocabularies() {
       'name' => 'Features',
       'machine_name' => 'attractions',
       'description' => '',
-      'hierarchy' => '1',
+      'hierarchy' => '0',
       'module' => 'taxonomy',
       'weight' => '0',
       'rdf_mapping' => array(
