@@ -857,3 +857,24 @@ fieldset#edit-agreement {
   margin-left: 5px;
   margin-bottom: 5px;
 }
+
+/* Mailchimp Subscribe block/pane
+--------------------- */
+#mailchimp-subscribe input {
+  margin-right: 2em;
+}
+#mailchimp-subscribe .subscriber-info label {
+  display: inline-block;
+  width: 6em;
+}
+#mailchimp-subscribe .list-selection input {
+  margin-right: 1em;
+}
+#mailchimp-subscribe label {
+  font-weight: normal;
+  display: inline;
+}
+#mailchimp-subscribe .subscriber-info,
+#mailchimp-subscribe .list-selection {
+  margin-bottom: 1em;
+}
