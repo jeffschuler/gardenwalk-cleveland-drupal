@@ -1,3 +1,4 @@
+/* $ltgreen2: #94b4a1;  Elements in header top */
 /* Footer Stick to Bottom
 -------------------------------------------------------------- */
 * {
@@ -37,6 +38,19 @@ h2 {
 h3 {
   font-size: 130%; }
 
+/* Buttons
+--------------------- */
+form input.form-submit {
+  background: #f15b2a;
+  border: 1px solid #aa320b;
+  text-shadow: 1px 1px #aa320b;
+  color: white;
+  font-weight: bold;
+  padding: 3px;
+  cursor: pointer;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px; }
+
 /* Header Top
 -------------------------------------------------------------- */
 #header-top-wrapper {
@@ -67,6 +81,9 @@ h3 {
 #header-top a:active {
   color: #615fc1; }
 
+#header-top .contact {
+  padding-top: 1px; }
+
 /* Search Block (Header Top)
 --------------------- */
 #block-search-form {
@@ -79,25 +96,39 @@ h3 {
 
 #block-search-form,
 #block-search-form .form-text {
-  color: #726965; }
+  color: #726965;
+  margin-top: 2px;
+  vertical-align: top; }
 
 #edit-search-block-form--2 {
   height: 13px; }
 
-/* Contact Links (Header Top)
+#block-search-form input.form-submit {
+  background: #a3c6b1;
+  border: 1px solid #84b296;
+  text-shadow: 1px 1px #84b296;
+  margin-top: 2px; }
+
+/* Social/Contact Links (Header Top)
 --------------------- */
 #block-block-2 {
   text-align: right; }
 
 #block-block-2 .content div {
   margin: 0 5px;
-  display: inline; }
+  display: inline-block; }
 
 #block-block-2 .content div img {
   vertical-align: middle; }
 
 #block-block-2 .content div a {
   vertical-align: middle; }
+
+#block-block-2 .content div.social-icons {
+  vertical-align: top; }
+
+#block-block-2 .content div.contact {
+  padding-top: 2px; }
 
 /* Date Banner (Header Top)
 --------------------- */
