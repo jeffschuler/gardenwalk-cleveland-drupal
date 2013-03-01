@@ -443,13 +443,8 @@ form input.form-submit {
 
 /* Footer Connect Menu
 -------------------------------------------------------------- */
-#block-menu-menu-footer---connect .menu .last a {
-  display: block;
-  height: 0;
-  overflow: hidden;
-  padding-top: 27px;
-  background: transparent url('../images/facebook-connect.png') no-repeat top left;
-  margin-top: 5px;
+#block-menu-menu-footer---connect .social-buttons {
+  margin-top: 10px;
 }
 
 
