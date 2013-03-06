@@ -401,7 +401,7 @@ function gardenwalk_gardens_field_default_fields() {
       'bundle' => 'garden',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => 'Please limit to 25 words. GardenWalk Cleveland reserves the right to edit content.',
+      'description' => 'GardenWalk Cleveland reserves the right to edit garden descriptions.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -418,6 +418,7 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '2',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_description',
       'label' => 'Garden Description',
@@ -430,6 +431,10 @@ function gardenwalk_gardens_field_default_fields() {
         'active' => 1,
         'module' => 'text',
         'settings' => array(
+          'maxlength_js' => '150',
+          'maxlength_js_enforce' => 0,
+          'maxlength_js_label' => 'Max @limit characters, remaining: <strong>@remaining</strong>',
+          'maxlength_js_truncate_html' => 0,
           'rows' => '3',
         ),
         'type' => 'text_textarea',
@@ -1825,6 +1830,7 @@ function gardenwalk_gardens_field_default_fields() {
   t('Garden Description');
   t('Garden Finders');
   t('Garden Type');
+  t('GardenWalk Cleveland reserves the right to edit garden descriptions.');
   t('Gardener Address');
   t('Gardener Name');
   t('Handicap accessible');
@@ -1837,7 +1843,6 @@ function gardenwalk_gardens_field_default_fields() {
   t('Neighborhood Location Geofield');
   t('OK to photograph?');
   t('Part of GardenWalk 2011?');
-  t('Please limit to 25 words. GardenWalk Cleveland reserves the right to edit content.');
   t('Remarks (Old)');
   t('Special Attractions');
   t('Yard Areas');

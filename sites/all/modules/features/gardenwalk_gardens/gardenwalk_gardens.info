@@ -16,6 +16,7 @@ dependencies[] = geocoder
 dependencies[] = geofield
 dependencies[] = list
 dependencies[] = location_cck
+dependencies[] = maxlength
 dependencies[] = openlayers
 dependencies[] = options
 dependencies[] = strongarm
