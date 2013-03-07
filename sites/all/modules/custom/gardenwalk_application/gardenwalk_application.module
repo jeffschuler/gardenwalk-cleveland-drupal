@@ -58,8 +58,8 @@ function gardenwalk_application_form_garden_node_form_alter(&$form, &$form_state
       '#weight' => 4,
     );
     $form['agreement']['text'] = array(
-      '#markup' => t('<p>I agree to make my garden accessible June 22nd & 23rd, 
-      2013, (11am - 5pm.)</p><p>I understand that the selling of any items during 
+      '#markup' => t('<p>I agree to make my garden accessible June 22nd & 23rd,
+      2013, (11am - 5pm.)</p><p>I understand that the selling of any items during
       the event will prevent my participation in future events.</p><p>I agree to
       not hold GardenWalk Cleveland or LAND Studio, its fiscal agent, liable for
       any damanges done to my property or anyone on it.'),
@@ -70,6 +70,10 @@ function gardenwalk_application_form_garden_node_form_alter(&$form, &$form_state
        '#required' => TRUE,
     );
 
+    $form['field_neighborhood']['und']['#description'] =
+      t('Only gardens in the selected neighborhoods are eligible. If you would like to see your neighborhood included in GardenWalk, please <a href="/contact">contact us</a>.');
+
+    // List only neighborhoods in the current year
     $current_year_tid = _get_current_year_tid();
     foreach ($form['field_neighborhood']['und']['#options'] as $neighborhood_tid => $neighborhood) {
       $in_current_year = FALSE;
