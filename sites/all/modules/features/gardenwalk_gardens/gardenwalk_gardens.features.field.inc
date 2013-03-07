@@ -165,6 +165,9 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_address',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'lid' => array(
@@ -228,6 +231,7 @@ function gardenwalk_gardens_field_default_fields() {
                 'collect' => '4',
                 'default' => 'Ohio',
                 'weight' => '10',
+                'widget' => 'autocomplete',
               ),
               'street' => array(
                 'collect' => '1',
@@ -268,17 +272,20 @@ function gardenwalk_gardens_field_default_fields() {
           'weight' => '7',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_address',
       'label' => 'Garden Address',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 0,
         'module' => 'location_cck',
-        'settings' => array(),
+        'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        ),
         'type' => 'location',
         'weight' => '7',
       ),
@@ -1225,6 +1232,9 @@ function gardenwalk_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_neighborhood',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'tid' => array(
           'columns' => array(
@@ -1432,14 +1442,16 @@ function gardenwalk_gardens_field_default_fields() {
       'entity_type' => 'node',
       'field_name' => 'field_past_gardenwalks',
       'label' => 'Included in past GardenWalks?',
-      'required' => 1,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(),
+        'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        ),
         'type' => 'options_buttons',
         'weight' => '49',
       ),
