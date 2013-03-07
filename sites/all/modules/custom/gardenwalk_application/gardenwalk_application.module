@@ -4,10 +4,24 @@
  */
 
 /**
+ * Get term ID for current year from Year taxonomy vocab.
+ */
+function _get_current_year_tid() {
+  $years_vid = 4;
+  $current_year = '2013';
+  foreach(taxonomy_get_tree($years_vid) as $year_term) {
+    if ($year_term->name == $current_year) {
+      return $year_term->tid;
+    }
+  }
+  drupal_set_message(t('Could not get term id for current year.'), 'error');
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for garden_node_form.
  */
 function gardenwalk_application_form_garden_node_form_alter(&$form, &$form_state, $form_id) {
-  //dsm($form);
+  //dpm($form);
   global $user;
   if ($user->uid == 0) {
     drupal_set_title(t('GardenWalk Cleveland 2013 Garden Application'));
@@ -54,7 +68,29 @@ function gardenwalk_application_form_garden_node_form_alter(&$form, &$form_state
        '#type' => 'checkbox',
        '#title' => t('I agree'),
        '#required' => TRUE,
-     );
+    );
+
+    $current_year_tid = _get_current_year_tid();
+    foreach ($form['field_neighborhood']['und']['#options'] as $neighborhood_tid => $neighborhood) {
+      $in_current_year = FALSE;
+      $neighborhood_term = taxonomy_term_load($neighborhood_tid);
+      if (is_object($neighborhood_term)) {
+        foreach ($neighborhood_term->field_gardenwalk_years['und'] as $year) {
+         $year_tid = $year['tid'];
+          if ($year_tid == $current_year_tid) {
+            $in_current_year = TRUE;
+            break;
+          }
+        }
+      } else {
+        continue;
+      }
+      if (!$in_current_year) {
+        //dpm('Removed "' . $neighborhood_term->name . '" from neighborhood list: not in current year.');
+        unset($form['field_neighborhood']['und']['#options'][$neighborhood_tid]);
+      }
+    }
+
   } else {
     //unset($form['field_yard_areas']['und']['#description']);
   }
