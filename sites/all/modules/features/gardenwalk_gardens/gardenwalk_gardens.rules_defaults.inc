@@ -16,9 +16,9 @@ function gardenwalk_gardens_default_rules_configuration() {
       "ON" : [ "node_insert" ],
       "IF" : [
         { "node_is_of_type" : { "node" : [ "node" ], "type" : { "value" : { "garden" : "garden" } } } },
-        { "user_has_role" : {
+        { "NOT user_has_role" : {
             "account" : [ "node:author" ],
-            "roles" : { "value" : { "1" : "1" } },
+            "roles" : { "value" : { "2" : "2" } },
             "operation" : "OR"
           }
         }
