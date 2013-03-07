@@ -53,6 +53,7 @@ features[field][] = node-garden-field_ok
 features[field][] = node-garden-field_past_gardenwalks
 features[field][] = node-garden-field_yard_areas
 features[field][] = taxonomy_term-neighborhood-field_garden_finders
+features[field][] = taxonomy_term-neighborhood-field_gardenwalk_years
 features[field][] = taxonomy_term-neighborhood-field_map_label_prefix
 features[field][] = taxonomy_term-neighborhood-field_neighborhood_location
 features[field][] = taxonomy_term-neighborhood-field_neighborhood_location_geof
