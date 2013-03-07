@@ -18,6 +18,81 @@ function _get_current_year_tid() {
 }
 
 /**
+ *
+ */
+function _get_tid_from_neighborhood_name($neighborhood_name) {
+  $neighborhood_vid = 1;
+  foreach(taxonomy_get_tree($neighborhood_vid) as $neighborhood_term) {
+    if ($neighborhood_term->name == $neighborhood_name) {
+      dpm($neighborhood_term->tid);
+      return $neighborhood_term->tid;
+    }
+  }
+  drupal_set_message(t('Could not get term id for neighborhood.'), 'error');
+}
+
+/**
+ *
+ */
+function _get_neighborhood_garden_finders($neighborhood) {
+  $neighborhood_tid = is_numeric($neighborhood) ? $neighborhood :
+    _get_tid_from_neighborhood_name($neighborhood);
+  if (!is_numeric($neighborhood_tid)) return;
+  $neighborhood_term = taxonomy_term_load($neighborhood_tid);
+  $users = array();
+  foreach ($neighborhood_term->field_garden_finders['und'] as $finder_arr) {
+    $finder_uid = $finder_arr['uid'];
+    $users[] = user_load($finder_uid);
+  }
+  return $users;
+}
+
+/**
+ *
+ */
+function _get_neighborhood_garden_finder_email_addresses($neighborhood) {
+  $neighborhood_tid = is_numeric($neighborhood) ? $neighborhood :
+    _get_tid_from_neighborhood_name($neighborhood);
+  if (!is_numeric($neighborhood_tid)) return;
+  $users = _get_neighborhood_garden_finders($neighborhood_tid);
+  $i = 0;
+  $addresses_str = '';
+  foreach ($users as $user) {
+    if (++$i > 1) {
+      $addresses_str .= ', ';
+    }
+    $user_email_address = $user->name . ' <' . $user->mail . '>';
+    $addresses_str .= $user_email_address;
+  }
+  return $addresses_str;
+}
+
+/**
+ *
+ */
+function _get_neighborhood_garden_finder_names($neighborhood) {
+  $neighborhood_tid = is_numeric($neighborhood) ? $neighborhood :
+    _get_tid_from_neighborhood_name($neighborhood);
+  if (!is_numeric($neighborhood_tid)) return;
+  $users = _get_neighborhood_garden_finders($neighborhood_tid);
+  $i = 0;
+  $names_str = '';
+  foreach ($users as $user) {
+    if (++$i > 1) {
+      $names_str .= ', ';
+    }
+    $names_str .= $user->name;
+  }
+  return $names_str;
+}
+
+function gardenwalk_application_node_view () {
+  //dpm(_get_neighborhood_garden_finders());
+  //dpm(_get_neighborhood_garden_finder_names());
+  //dpm(_get_neighborhood_garden_finder_email_addresses());
+}
+
+/**
  * Implements hook_form_FORM_ID_alter() for garden_node_form.
  */
 function gardenwalk_application_form_garden_node_form_alter(&$form, &$form_state, $form_id) {
