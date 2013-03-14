@@ -36,7 +36,6 @@ features[ctools][] = views:views_default:3.0
 features[features_api][] = api:1
 features[feeds_importer][] = gardens
 features[feeds_importer][] = gardens_webform
-features[field][] = node-garden-body
 features[field][] = node-garden-field_accessibility_notes
 features[field][] = node-garden-field_address
 features[field][] = node-garden-field_attractions
