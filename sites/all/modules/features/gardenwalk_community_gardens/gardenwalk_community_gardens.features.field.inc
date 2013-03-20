@@ -87,6 +87,9 @@ function gardenwalk_community_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_address',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(),
       'indexes' => array(
         'lid' => array(
@@ -150,6 +153,7 @@ function gardenwalk_community_gardens_field_default_fields() {
                 'collect' => '4',
                 'default' => 'Ohio',
                 'weight' => '10',
+                'widget' => 'autocomplete',
               ),
               'street' => array(
                 'collect' => '1',
@@ -418,6 +422,9 @@ function gardenwalk_community_gardens_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_neighborhood',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'tid' => array(
           'columns' => array(
