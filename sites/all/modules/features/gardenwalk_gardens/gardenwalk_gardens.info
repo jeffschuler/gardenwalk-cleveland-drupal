@@ -54,6 +54,7 @@ features[field][] = node-garden-field_handicap_accessible
 features[field][] = node-garden-field_neighborhood
 features[field][] = node-garden-field_ok
 features[field][] = node-garden-field_past_gardenwalks
+features[field][] = node-garden-field_special_feature
 features[field][] = node-garden-field_yard_areas
 features[field][] = taxonomy_term-neighborhood-field_garden_finders
 features[field][] = taxonomy_term-neighborhood-field_gardenwalk_years

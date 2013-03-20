@@ -296,7 +296,7 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '46',
+        'weight' => '47',
       ),
     ),
   );
@@ -372,7 +372,7 @@ function gardenwalk_gardens_field_default_fields() {
           'rows' => '3',
         ),
         'type' => 'text_textarea',
-        'weight' => '47',
+        'weight' => '48',
       ),
     ),
   );
@@ -446,7 +446,7 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '45',
+        'weight' => '46',
       ),
     ),
   );
@@ -1387,6 +1387,79 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-garden-field_special_feature'.
+  $fields['node-garden-field_special_feature'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_special_feature',
+      'field_permissions' => array(
+        'type' => '2',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'No',
+          1 => 'Yes',
+        ),
+        'allowed_values_function' => '',
+      ),
+      'translatable' => '0',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'default_value' => array(
+        0 => array(
+          'value' => '0',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'Is this garden/location a "Special Feature" -- to be highlighted on the GardenWalk?',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 24,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'node',
+      'field_name' => 'field_special_feature',
+      'label' => 'Special Feature',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        ),
+        'type' => 'options_buttons',
+        'weight' => '45',
+      ),
+    ),
+  );
+
   // Exported field: 'node-garden-field_yard_areas'.
   $fields['node-garden-field_yard_areas'] = array(
     'field_config' => array(
@@ -1848,6 +1921,7 @@ function gardenwalk_gardens_field_default_fields() {
   t('Home Phone');
   t('How long have you (or the gardener) been building this garden?');
   t('Included in past GardenWalks?');
+  t('Is this garden/location a "Special Feature" -- to be highlighted on the GardenWalk?');
   t('Map Label Prefix');
   t('Neighborhood');
   t('Neighborhood Location');
@@ -1855,6 +1929,7 @@ function gardenwalk_gardens_field_default_fields() {
   t('OK to photograph?');
   t('Part of GardenWalk 2011?');
   t('Special Attractions');
+  t('Special Feature');
   t('Yard Areas');
   t('Year');
   t('Year(s)');
