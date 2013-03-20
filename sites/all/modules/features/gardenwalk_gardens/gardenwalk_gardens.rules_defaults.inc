@@ -12,7 +12,7 @@ function gardenwalk_gardens_default_rules_configuration() {
   $items['rules_notify_garden_finder_on_application_submitted'] = entity_import('rules_config', '{ "rules_notify_garden_finder_on_application_submitted" : {
       "LABEL" : "Notify Garden Finder on Application Submitted",
       "PLUGIN" : "reaction rule",
-      "REQUIRES" : [ "rules", "php" ],
+      "REQUIRES" : [ "rules" ],
       "ON" : [ "node_insert" ],
       "IF" : [
         { "node_is_of_type" : { "node" : [ "node" ], "type" : { "value" : { "garden" : "garden" } } } },
@@ -27,8 +27,16 @@ function gardenwalk_gardens_default_rules_configuration() {
         { "mail" : {
             "to" : "\\u003C?php print _get_neighborhood_garden_finder_email_addresses($node-\\u003Efield_neighborhood[\\u0027und\\u0027][0][\\u0027tid\\u0027]); ?\\u003E",
             "subject" : "GardenWalk application for [node:field-neighborhood]: [node:field-gardener-addressfield:thoroughfare]",
-            "message" : "Hi \\u003C?php print _get_neighborhood_garden_finder_names($node-\\u003Efield_neighborhood[\\u0027und\\u0027][0][\\u0027tid\\u0027]); ?\\u003E,\\u000D\\u000A\\u000D\\u000AA new garden GardenWalk Cleveland garden application has been submitted:\\u000D\\u000A\\u000D\\u000ANeighborhood: [node:field-neighborhood]\\u000D\\u000AGardener: [node:field-gardener-name]\\u000D\\u000AEmail: [node:field-gardener-email]\\u000D\\u000APhone (home): [node:field-gardener-phone-home]\\u000D\\u000APhone (cell): [node:field-gardener-phone-cell]\\u000D\\u000AGarden Address: [node:field_address]\\u000D\\u000A\\u000D\\u000AView this application at [node:url] to approve or deny the submission, and to edit garden details.\\u000D\\u000A\\u000D\\u000AReply to this message to respond to the gardener applicant.\\u000D\\u000A\\u000D\\u000AThanks for helping make GardenWalk 2013 amazing!",
+            "message" : "Hi \\u003C?php print _get_neighborhood_garden_finder_names($node-\\u003Efield_neighborhood[\\u0027und\\u0027][0][\\u0027tid\\u0027]); ?\\u003E,\\r\\n\\r\\nA new garden GardenWalk Cleveland garden application has been submitted:\\r\\n\\r\\nNeighborhood: [node:field-neighborhood]\\r\\nGardener: [node:field-gardener-name]\\r\\nEmail: [node:field-gardener-email]\\r\\nPhone (home): [node:field-gardener-phone-home]\\r\\nPhone (cell): [node:field-gardener-phone-cell]\\r\\nGarden Address: [node:field_address]\\r\\n\\r\\nView this application at [node:url] to approve or deny the submission, and to edit garden details.\\r\\n\\r\\nReply to this message to respond to the gardener applicant.\\r\\n\\r\\nThanks for helping make GardenWalk 2013 amazing!",
             "from" : "[node:field-gardener-name] \\u003C[node:field-gardener-email]\\u003E",
+            "language" : [ "" ]
+          }
+        },
+        { "mail" : {
+            "to" : "[node:field-gardener-name] \\u003C[node:field-gardener-email]\\u003E",
+            "subject" : "GardenWalk Cleveland application received",
+            "message" : "Hi [node:field-gardener-name],\\r\\n\\r\\nThank you for applying to show your garden in GardenWalk Cleveland 2013!\\r\\nA volunteer garden finder for [node:field-neighborhood] will review your application soon and let you know whether it has been accepted.\\r\\n\\r\\nGardenWalk Cleveland is organized by volunteers. If you are interested in helping out on GardenWalk weekend or in planning the event, please let us know -- http:\\/\\/www.gardenwalkcleveland.org\\/contact. And check out our Frequently Asked Questions -- http:\\/\\/www.gardenwalkcleveland.org\\/faq -- for more info.\\r\\n\\r\\nWe can\\u0027t wait to see you -- and hopefully your garden -- at GardenWalk 2013 on June 22nd \\u0026 23rd!\\r\\n\\r\\nSincerely,\\r\\n\\r\\nThe GardenWalk Cleveland team\\r\\n\\r\\n--\\r\\nLike us on Facebook - https:\\/\\/www.facebook.com\\/gardenwalk.cleveland\\r\\nFollow us on Twitter - https:\\/\\/twitter.com\\/GardenWalkCle\\r\\nSubscribe to our Mailing List - http:\\/\\/eepurl.com\\/uvMjX",
+            "from" : "GardenWalk Cleveland \\u003Cjanetkious@sbcglobal.net\\u003E",
             "language" : [ "" ]
           }
         }
