@@ -10,7 +10,7 @@
 function gardenwalk_stories_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'node-story-body'
+  // Exported field: 'node-story-body'.
   $fields['node-story-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -28,6 +28,7 @@ function gardenwalk_stories_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -78,7 +79,7 @@ function gardenwalk_stories_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-story-field_garden_ref'
+  // Exported field: 'node-story-field_garden_ref'.
   $fields['node-story-field_garden_ref'] = array(
     'field_config' => array(
       'active' => '1',
@@ -99,6 +100,7 @@ function gardenwalk_stories_field_default_fields() {
           0 => 'nid',
         ),
       ),
+      'locked' => '0',
       'module' => 'node_reference',
       'settings' => array(
         'referenceable_types' => array(
@@ -164,7 +166,7 @@ function gardenwalk_stories_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-story-field_gardenwalk_year'
+  // Exported field: 'node-story-field_gardenwalk_year'.
   $fields['node-story-field_gardenwalk_year'] = array(
     'field_config' => array(
       'active' => '1',
@@ -188,6 +190,7 @@ function gardenwalk_stories_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -241,7 +244,7 @@ function gardenwalk_stories_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-story-field_images'
+  // Exported field: 'node-story-field_images'.
   $fields['node-story-field_images'] = array(
     'field_config' => array(
       'active' => '1',
@@ -262,6 +265,7 @@ function gardenwalk_stories_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
@@ -324,7 +328,7 @@ function gardenwalk_stories_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-story-field_neighborhood'
+  // Exported field: 'node-story-field_neighborhood'.
   $fields['node-story-field_neighborhood'] = array(
     'field_config' => array(
       'active' => '1',
@@ -332,6 +336,9 @@ function gardenwalk_stories_field_default_fields() {
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_neighborhood',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
       'foreign keys' => array(
         'tid' => array(
           'columns' => array(
@@ -345,6 +352,7 @@ function gardenwalk_stories_field_default_fields() {
           0 => 'tid',
         ),
       ),
+      'locked' => '0',
       'module' => 'taxonomy',
       'settings' => array(
         'allowed_values' => array(
@@ -394,7 +402,7 @@ function gardenwalk_stories_field_default_fields() {
     ),
   );
 
-  // Exported field: 'node-story-field_thumbnail'
+  // Exported field: 'node-story-field_thumbnail'.
   $fields['node-story-field_thumbnail'] = array(
     'field_config' => array(
       'active' => '1',
@@ -415,6 +423,7 @@ function gardenwalk_stories_field_default_fields() {
           0 => 'fid',
         ),
       ),
+      'locked' => '0',
       'module' => 'image',
       'settings' => array(
         'default_image' => 0,
