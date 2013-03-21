@@ -474,6 +474,7 @@ function gardenwalk_gardens_field_default_fields() {
         'allowed_values' => array(
           'Private (Home/Business) Garden' => 'Private (Home/Business) Garden',
           'Community Garden' => 'Community Garden',
+          'Reimagining Cleveland Project' => 'Reimagining Cleveland Project',
           'Urban Farm / Market Garden' => 'Urban Farm / Market Garden',
           'Other' => 'Other',
         ),
@@ -520,7 +521,9 @@ function gardenwalk_gardens_field_default_fields() {
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(),
+        'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        ),
         'type' => 'options_select',
         'weight' => '44',
       ),
