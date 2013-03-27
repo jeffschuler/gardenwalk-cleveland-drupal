@@ -1,10 +1,9 @@
-name = Workflow UI
-description = "Provides administrative UI for workflow."
-package = Workflow
+name = Workflow Search API
+description = "Adds workflow state information to Search API index"
 dependencies[] = workflow
+dependencies[] = entity
 core = 7.x
-configure = admin/config/workflow/workflow
-stylesheets[all][] = workflow_admin_ui.css
+package = Workflow
 
 ; Information added by drupal.org packaging script on 2013-03-15
 version = "7.x-1.1-rc1"
