@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the GardenWalk FAQs feature.
+ */
+
+include_once 'gardenwalk_faqs.features.inc';
