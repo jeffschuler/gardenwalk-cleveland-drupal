@@ -127,7 +127,7 @@ function gardenwalk_special_features_field_default_fields() {
                 'weight' => '6',
               ),
               'city' => array(
-                'collect' => '1',
+                'collect' => '2',
                 'default' => 'Cleveland',
                 'weight' => '8',
               ),
@@ -146,7 +146,7 @@ function gardenwalk_special_features_field_default_fields() {
                 'weight' => '2',
               ),
               'postal_code' => array(
-                'collect' => '1',
+                'collect' => '2',
                 'default' => '',
                 'weight' => '12',
               ),
@@ -157,7 +157,7 @@ function gardenwalk_special_features_field_default_fields() {
                 'widget' => 'autocomplete',
               ),
               'street' => array(
-                'collect' => '1',
+                'collect' => '2',
                 'default' => '',
                 'weight' => '4',
               ),

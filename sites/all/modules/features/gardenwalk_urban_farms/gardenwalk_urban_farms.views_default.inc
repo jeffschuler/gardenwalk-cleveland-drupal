@@ -99,7 +99,6 @@ function gardenwalk_urban_farms_views_default_views() {
   $handler = $view->new_display('page', 'Manage Urban Farms Page', 'page_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Manage Urban Farms';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'edit any urban_farm content';
@@ -376,7 +375,6 @@ function gardenwalk_urban_farms_views_default_views() {
   $handler = $view->new_display('page', 'Urban Farms List Page', 'page_3');
   $handler->display->display_options['defaults']['css_class'] = FALSE;
   $handler->display->display_options['css_class'] = 'location-grid';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['grouping'] = '';
@@ -427,7 +425,6 @@ function gardenwalk_urban_farms_views_default_views() {
 
   /* Display: OpenLayers Data Overlay */
   $handler = $view->new_display('openlayers', 'OpenLayers Data Overlay', 'openlayers_1');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'openlayers_data';
   $handler->display->display_options['style_options']['grouping'] = '';
@@ -482,7 +479,6 @@ function gardenwalk_urban_farms_views_default_views() {
   $handler = $view->new_display('openlayers', 'OpenLayers Data Overlay - Neighborhood', 'openlayers_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Urban Farms';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'openlayers_data';
   $handler->display->display_options['style_options']['grouping'] = '';
@@ -552,7 +548,6 @@ function gardenwalk_urban_farms_views_default_views() {
   $handler = $view->new_display('openlayers', '2011 OpenLayers Data Overlay', 'openlayers_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = '2011 Urban Farms';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'openlayers_data';
   $handler->display->display_options['style_options']['grouping'] = '';

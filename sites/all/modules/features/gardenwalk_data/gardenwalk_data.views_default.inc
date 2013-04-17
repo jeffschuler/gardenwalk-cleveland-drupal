@@ -119,7 +119,6 @@ function gardenwalk_data_views_default_views() {
   $handler = $view->new_display('page', 'Neighborhood GeoJSON', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Neighborhood GeoJSON';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['relationships'] = FALSE;
   /* Relationship: Nodequeue: Queue */
   $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
@@ -316,7 +315,6 @@ function gardenwalk_data_views_default_views() {
   $handler = $view->new_display('page', 'Neighborhood Lists', 'page_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Neighborhoods';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['columns'] = array(
@@ -486,7 +484,6 @@ function gardenwalk_data_views_default_views() {
   $handler = $view->new_display('page', 'Gardens Lists', 'page_6');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Gardens';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Taxonomy term: Map Label Prefix */
   $handler->display->display_options['fields']['field_map_label_prefix']['id'] = 'field_map_label_prefix';
@@ -570,7 +567,6 @@ function gardenwalk_data_views_default_views() {
   $handler = $view->new_display('page', 'Community Gardens List', 'page_4');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Community Gardens';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
@@ -630,7 +626,6 @@ function gardenwalk_data_views_default_views() {
   $handler = $view->new_display('page', 'Reimagining List', 'page_5');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Reimagining';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
@@ -690,7 +685,6 @@ function gardenwalk_data_views_default_views() {
   $handler = $view->new_display('page', 'Urban Farms List', 'page_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Urban Farms';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_map_label']['id'] = 'field_map_label';
@@ -750,7 +744,6 @@ function gardenwalk_data_views_default_views() {
   $handler = $view->new_display('page', 'Special Features List', 'page_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Special Features';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
@@ -1203,7 +1196,6 @@ function gardenwalk_data_views_default_views() {
   $handler = $view->new_display('views_data_export', 'Neighborhood XLS', 'views_data_export_1');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Neighborhood XLS';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'views_data_export_xls';

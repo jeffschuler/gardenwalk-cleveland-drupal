@@ -267,7 +267,6 @@ function gardenwalk_sponsors_views_default_views() {
   $handler = $view->new_display('page', 'Manage Sponsors Page', 'page');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Manage Sponsors';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'edit any sponsor content';
@@ -604,7 +603,6 @@ function gardenwalk_sponsors_views_default_views() {
 
   /* Display: Sponsors Page */
   $handler = $view->new_display('page', 'Sponsors Page', 'page_1');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Sponsorship Level */
   $handler->display->display_options['fields']['field_sponsorship_level']['id'] = 'field_sponsorship_level';
@@ -656,7 +654,6 @@ function gardenwalk_sponsors_views_default_views() {
 
   /* Display: Sponsors List Block */
   $handler = $view->new_display('block', 'Sponsors List Block', 'block_1');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'list';
   $handler->display->display_options['style_options']['grouping'] = '';
@@ -699,7 +696,6 @@ function gardenwalk_sponsors_views_default_views() {
 
   /* Display: Logo Rotator Block */
   $handler = $view->new_display('block', 'Logo Rotator Block', 'block_2');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'slideshow';
   $handler->display->display_options['style_options']['slideshow_type'] = 'views_slideshow_cycle';
@@ -782,7 +778,6 @@ function gardenwalk_sponsors_views_default_views() {
 
   /* Display: Sponsors Others Page */
   $handler = $view->new_display('page', 'Sponsors Others Page', 'page_2');
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
@@ -877,7 +872,6 @@ function gardenwalk_sponsors_views_default_views() {
   $handler = $view->new_display('page', 'Sponsors Major Page', 'page_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Major Donors';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '2';

@@ -100,7 +100,6 @@ function gardenwalk_stories_views_default_views() {
   /* Display: Manage Stories Page */
   $handler = $view->new_display('page', 'Manage Stories Page', 'page_1');
   $handler->display->display_options['display_description'] = 'Manage Gardener Stories Page';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'role';
   $handler->display->display_options['access']['role'] = array(
@@ -465,7 +464,6 @@ function gardenwalk_stories_views_default_views() {
   /* Display: Neighborhood Stories Block */
   $handler = $view->new_display('block', 'Neighborhood Stories Block', 'block');
   $handler->display->display_options['display_description'] = 'for Neighborhood page';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Logo */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
@@ -519,7 +517,6 @@ function gardenwalk_stories_views_default_views() {
   /* Display: Mini-Block */
   $handler = $view->new_display('block', 'Mini-Block', 'block_1');
   $handler->display->display_options['display_description'] = 'for Front page';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '2';
