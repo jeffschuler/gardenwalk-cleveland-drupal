@@ -1,6 +1,7 @@
 name = GardenWalk FAQs
 core = 7.x
 package = Features
+php = 5.2.4
 dependencies[] = ctools
 dependencies[] = faq
 dependencies[] = strongarm
@@ -57,3 +58,4 @@ features[variable][] = taxonomy_menu_vocab_parent_faq_category
 features[variable][] = workflow_faq
 features[variable][] = xmlsitemap_settings_node_faq
 features[variable][] = xmlsitemap_settings_taxonomy_term_faq_category
+features[views_view][] = faq
