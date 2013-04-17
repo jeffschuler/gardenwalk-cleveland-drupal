@@ -54,11 +54,12 @@ function gardenwalk_gardens_field_group_info() {
     'label' => 'Garden info',
     'weight' => '13',
     'children' => array(
-      0 => 'field_attractions',
-      1 => 'field_garden_age',
-      2 => 'field_description',
-      3 => 'field_garden_type',
-      4 => 'field_special_feature',
+      0 => 'field_special_feature',
+      1 => 'field_attractions',
+      2 => 'field_garden_age',
+      3 => 'field_description',
+      4 => 'field_garden_type',
+      5 => 'field_garden_name',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

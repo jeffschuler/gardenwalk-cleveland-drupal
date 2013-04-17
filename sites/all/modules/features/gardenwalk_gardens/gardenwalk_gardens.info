@@ -42,6 +42,7 @@ features[field][] = node-garden-field_address
 features[field][] = node-garden-field_attractions
 features[field][] = node-garden-field_description
 features[field][] = node-garden-field_garden_age
+features[field][] = node-garden-field_garden_name
 features[field][] = node-garden-field_garden_type
 features[field][] = node-garden-field_gardener_addressfield
 features[field][] = node-garden-field_gardener_email

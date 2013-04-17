@@ -55,83 +55,83 @@ function gardenwalk_gardens_node_info() {
 }
 
 /**
- * Implements hook_workflow_features_default_workflow().
+ * Implements hook_workflow_default_workflows().
  */
-function gardenwalk_gardens_workflow_features_default_workflow() {
-  return array(
-    'Garden Approval' => array(
-      'name' => 'Garden Approval',
-      'tab_roles' => '2,3,4,8',
-      'options' => 'a:3:{s:16:"comment_log_node";i:0;s:15:"comment_log_tab";i:0;s:13:"name_as_title";i:0;}',
-      'states' => array(
-        0 => array(
-          'state' => '(creation)',
-          'weight' => '-50',
-          'sysid' => '1',
-          'status' => '1',
-        ),
-        1 => array(
-          'state' => 'Application',
-          'weight' => '0',
-          'sysid' => '0',
-          'status' => '1',
-        ),
-        2 => array(
-          'state' => 'Approved',
-          'weight' => '0',
-          'sysid' => '0',
-          'status' => '1',
-        ),
-        3 => array(
-          'state' => 'Denied',
-          'weight' => '0',
-          'sysid' => '0',
-          'status' => '1',
-        ),
+function gardenwalk_gardens_workflow_default_workflows() {
+  $workflows = array();
+
+  // Exported workflow: Garden Approval
+  $workflows['Garden Approval'] = array(
+    'name' => 'Garden Approval',
+    'tab_roles' => '2,3,4,8',
+    'options' => 'a:3:{s:16:"comment_log_node";i:0;s:15:"comment_log_tab";i:0;s:13:"name_as_title";i:0;}',
+    'states' => array(
+      0 => array(
+        'state' => '(creation)',
+        'weight' => '-50',
+        'sysid' => '1',
+        'status' => '1',
       ),
-      'transitions' => array(
-        0 => array(
-          'sid' => '(creation)',
-          'target_sid' => 'Application',
-          'roles' => 'author,1,2,3,4,5,6,7,8',
-        ),
-        1 => array(
-          'sid' => 'Application',
-          'target_sid' => 'Approved',
-          'roles' => ',3,4,8',
-        ),
-        2 => array(
-          'sid' => 'Application',
-          'target_sid' => 'Denied',
-          'roles' => ',3,4,8',
-        ),
-        3 => array(
-          'sid' => 'Approved',
-          'target_sid' => 'Application',
-          'roles' => '3,8,4',
-        ),
-        4 => array(
-          'sid' => 'Approved',
-          'target_sid' => 'Denied',
-          'roles' => '3,8,4',
-        ),
-        5 => array(
-          'sid' => 'Denied',
-          'target_sid' => 'Approved',
-          'roles' => '3,8,4',
-        ),
-        6 => array(
-          'sid' => 'Denied',
-          'target_sid' => 'Application',
-          'roles' => '3,8,4',
-        ),
+      1 => array(
+        'state' => 'Application',
+        'weight' => '0',
+        'sysid' => '0',
+        'status' => '1',
       ),
-      'node_types' => array(
-        0 => array(
-          'type' => 'garden',
-          'wid' => '1',
-        ),
+      2 => array(
+        'state' => 'Approved',
+        'weight' => '0',
+        'sysid' => '0',
+        'status' => '1',
+      ),
+      3 => array(
+        'state' => 'Denied',
+        'weight' => '0',
+        'sysid' => '0',
+        'status' => '1',
       ),
     ),
+    'transitions' => array(
+      0 => array(
+        'roles' => 'workflow_features_author_name,anonymous user,authenticated user,administrator,developer,reimagining editor,editor,guide editor,garden finder',
+        'state' => '(creation)',
+        'target_state' => 'Application',
+      ),
+      1 => array(
+        'roles' => 'administrator,developer,garden finder',
+        'state' => 'Application',
+        'target_state' => 'Approved',
+      ),
+      2 => array(
+        'roles' => 'administrator,developer,garden finder',
+        'state' => 'Application',
+        'target_state' => 'Denied',
+      ),
+      3 => array(
+        'roles' => 'administrator,developer,garden finder',
+        'state' => 'Approved',
+        'target_state' => 'Application',
+      ),
+      4 => array(
+        'roles' => 'administrator,developer,garden finder',
+        'state' => 'Approved',
+        'target_state' => 'Denied',
+      ),
+      5 => array(
+        'roles' => 'administrator,developer,garden finder',
+        'state' => 'Denied',
+        'target_state' => 'Approved',
+      ),
+      6 => array(
+        'roles' => 'administrator,developer,garden finder',
+        'state' => 'Denied',
+        'target_state' => 'Application',
+      ),
+    ),
+    'node_types' => array(
+      0 => 'garden',
+    ),
   );
+
+  return $workflows;
 }

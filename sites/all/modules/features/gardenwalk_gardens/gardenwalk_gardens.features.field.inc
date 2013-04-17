@@ -296,7 +296,7 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_buttons',
-        'weight' => '47',
+        'weight' => '51',
       ),
     ),
   );
@@ -372,7 +372,7 @@ function gardenwalk_gardens_field_default_fields() {
           'rows' => '3',
         ),
         'type' => 'text_textarea',
-        'weight' => '48',
+        'weight' => '52',
       ),
     ),
   );
@@ -446,7 +446,82 @@ function gardenwalk_gardens_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '46',
+        'weight' => '50',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-garden-field_garden_name'.
+  $fields['node-garden-field_garden_name'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_garden_name',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'Enter the name here if this is a community garden, urban farm, market garden, or Reimagining Cleveland project.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 25,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'node',
+      'field_name' => 'field_garden_name',
+      'label' => 'Garden/Location Name',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'maxlength_js' => 0,
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '48',
       ),
     ),
   );
@@ -525,7 +600,7 @@ function gardenwalk_gardens_field_default_fields() {
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'options_select',
-        'weight' => '44',
+        'weight' => '47',
       ),
     ),
   );
@@ -1415,6 +1490,7 @@ function gardenwalk_gardens_field_default_fields() {
           1 => 'Yes',
         ),
         'allowed_values_function' => '',
+        'allowed_values_php' => '',
       ),
       'translatable' => '0',
       'type' => 'list_boolean',
@@ -1426,6 +1502,8 @@ function gardenwalk_gardens_field_default_fields() {
           'value' => '0',
         ),
       ),
+      'default_value_function' => '',
+      'default_value_php' => '',
       'deleted' => '0',
       'description' => 'Is this garden/location a "Special Feature" -- to be highlighted on the GardenWalk?',
       'display' => array(
@@ -1458,7 +1536,7 @@ function gardenwalk_gardens_field_default_fields() {
           'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
         ),
         'type' => 'options_buttons',
-        'weight' => '45',
+        'weight' => '49',
       ),
     ),
   );
@@ -1912,11 +1990,13 @@ function gardenwalk_gardens_field_default_fields() {
   t('Accessibility notes');
   t('Cell Phone');
   t('Email');
+  t('Enter the name here if this is a community garden, urban farm, market garden, or Reimagining Cleveland project.');
   t('Garden Address');
   t('Garden Age');
   t('Garden Description');
   t('Garden Finders');
   t('Garden Type');
+  t('Garden/Location Name');
   t('GardenWalk Cleveland reserves the right to edit garden descriptions.');
   t('Gardener Address');
   t('Gardener Name');
