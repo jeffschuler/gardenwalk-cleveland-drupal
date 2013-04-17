@@ -127,7 +127,7 @@ function gardenwalk_headquarters_field_default_fields() {
                 'weight' => '6',
               ),
               'city' => array(
-                'collect' => '1',
+                'collect' => '2',
                 'default' => 'Cleveland',
                 'weight' => '8',
               ),
@@ -146,7 +146,7 @@ function gardenwalk_headquarters_field_default_fields() {
                 'weight' => '2',
               ),
               'postal_code' => array(
-                'collect' => '1',
+                'collect' => '2',
                 'default' => '',
                 'weight' => '12',
               ),
@@ -157,7 +157,7 @@ function gardenwalk_headquarters_field_default_fields() {
                 'widget' => 'autocomplete',
               ),
               'street' => array(
-                'collect' => '1',
+                'collect' => '2',
                 'default' => '',
                 'weight' => '4',
               ),
@@ -246,7 +246,7 @@ function gardenwalk_headquarters_field_default_fields() {
       'bundle' => 'headquarters',
       'default_value' => array(
         0 => array(
-          'tid' => '21',
+          'tid' => '42',
         ),
       ),
       'deleted' => '0',
@@ -266,6 +266,7 @@ function gardenwalk_headquarters_field_default_fields() {
           'weight' => 0,
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_gardenwalk_year',
       'label' => 'Year',
@@ -276,7 +277,9 @@ function gardenwalk_headquarters_field_default_fields() {
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(),
+        'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        ),
         'type' => 'options_buttons',
         'weight' => '2',
       ),
