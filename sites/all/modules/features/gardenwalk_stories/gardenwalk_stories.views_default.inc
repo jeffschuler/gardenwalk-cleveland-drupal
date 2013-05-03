@@ -565,6 +565,12 @@ function gardenwalk_stories_views_default_views() {
 
   /* Display: Stories Page */
   $handler = $view->new_display('page', 'Stories Page', 'page_2');
+  $handler->display->display_options['defaults']['pager'] = FALSE;
+  $handler->display->display_options['pager']['type'] = 'full';
+  $handler->display->display_options['pager']['options']['items_per_page'] = '10';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['pager']['options']['id'] = '0';
+  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'default';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
@@ -620,13 +626,19 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = '';
   $handler->display->display_options['fields']['body']['alter']['max_length'] = '800';
-  $handler->display->display_options['fields']['body']['alter']['more_link'] = TRUE;
   $handler->display->display_options['fields']['body']['alter']['more_link_text'] = 'Read more';
   $handler->display->display_options['fields']['body']['alter']['trim'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['body']['settings'] = array(
     'trim_length' => '200',
   );
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['view_node']['id'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['table'] = 'views_entity_node';
+  $handler->display->display_options['fields']['view_node']['field'] = 'view_node';
+  $handler->display->display_options['fields']['view_node']['label'] = '';
+  $handler->display->display_options['fields']['view_node']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['view_node']['text'] = 'Read more...';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Year (field_gardenwalk_year) */
   $handler->display->display_options['sorts']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
@@ -637,6 +649,13 @@ function gardenwalk_stories_views_default_views() {
 
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'panel_pane_1');
+  $handler->display->display_options['defaults']['use_more'] = FALSE;
+  $handler->display->display_options['use_more'] = TRUE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_always'] = FALSE;
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['defaults']['use_more_text'] = FALSE;
+  $handler->display->display_options['use_more_text'] = 'More stories...';
   $handler->display->display_options['defaults']['pager'] = FALSE;
   $handler->display->display_options['pager']['type'] = 'some';
   $handler->display->display_options['pager']['options']['items_per_page'] = '2';
@@ -650,7 +669,7 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['fields']['field_thumbnail']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_thumbnail']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_thumbnail']['settings'] = array(
-    'image_style' => 'thumbnail',
+    'image_style' => 'front-halfpane-thumb',
     'image_link' => 'content',
   );
   /* Field: Content: Title */
