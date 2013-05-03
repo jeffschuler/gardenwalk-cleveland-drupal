@@ -470,6 +470,9 @@ form input.form-submit {
 .view-id-gardener_stories.view-display-id-panel_pane_1 td .views-field-field-thumbnail img {
   border: 1px solid #726965; }
 
+.view-id-gardener_stories.view-display-id-panel_pane_1 .more-link {
+  margin-top: 1em; }
+
 /* Gardener Stories Pane (Neighborhood Page)
 -------------------------------------------------------------- */
 .pane-views-gardener-stories-block td {
