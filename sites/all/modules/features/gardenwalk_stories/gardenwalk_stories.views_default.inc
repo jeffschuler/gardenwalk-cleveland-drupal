@@ -611,15 +611,17 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['fields']['field_gardenwalk_year']['id'] = 'field_gardenwalk_year';
   $handler->display->display_options['fields']['field_gardenwalk_year']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['fields']['field_gardenwalk_year']['field'] = 'field_gardenwalk_year';
-  $handler->display->display_options['fields']['field_gardenwalk_year']['label'] = '';
-  $handler->display->display_options['fields']['field_gardenwalk_year']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_gardenwalk_year']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_gardenwalk_year']['element_label_type'] = 'div';
+  $handler->display->display_options['fields']['field_gardenwalk_year']['element_label_class'] = 'label-inline';
   $handler->display->display_options['fields']['field_gardenwalk_year']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Neighborhood */
   $handler->display->display_options['fields']['field_neighborhood']['id'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['field'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['element_type'] = 'span';
-  $handler->display->display_options['fields']['field_neighborhood']['element_label_type'] = 'span';
+  $handler->display->display_options['fields']['field_neighborhood']['element_label_type'] = 'div';
+  $handler->display->display_options['fields']['field_neighborhood']['element_label_class'] = 'label-inline';
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
