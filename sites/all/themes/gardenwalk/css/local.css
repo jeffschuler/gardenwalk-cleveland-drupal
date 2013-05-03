@@ -499,6 +499,9 @@ form input.form-submit {
   margin-left: 10px;
   margin-bottom: 23px; }
 
+.view-id-gardener_stories.view-display-id-page_2 .views-field-field-images img {
+  border: 1px solid #726965; }
+
 .view-id-gardener_stories.view-display-id-page_2 .views-row {
   clear: both; }
 
@@ -506,10 +509,10 @@ form input.form-submit {
 -------------------------------------------------------------- */
 .node-story.full-node .field-name-field-images {
   float: right;
-  margin-left: 20px;
-  border: 1px solid #726965; }
+  margin-left: 20px; }
 
 .node-story.full-node .field-name-field-images img {
+  border: 1px solid #726965;
   padding: 0;
   margin: 0;
   display: block; }
