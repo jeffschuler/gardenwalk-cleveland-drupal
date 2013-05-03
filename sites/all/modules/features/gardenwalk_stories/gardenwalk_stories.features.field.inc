@@ -288,6 +288,7 @@ function gardenwalk_stories_field_default_fields() {
             'colorbox_gallery' => 'post',
             'colorbox_gallery_custom' => '',
             'colorbox_image_style' => 'large',
+            'colorbox_multivalue_index' => NULL,
             'colorbox_node_style' => 'node-page-inline',
           ),
           'type' => 'colorbox',
