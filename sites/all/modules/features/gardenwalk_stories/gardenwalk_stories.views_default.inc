@@ -586,14 +586,9 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_images']['hide_empty'] = TRUE;
   $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_images']['type'] = 'colorbox';
   $handler->display->display_options['fields']['field_images']['settings'] = array(
-    'colorbox_node_style' => 'node-page-inline',
-    'colorbox_image_style' => '',
-    'colorbox_gallery' => 'page',
-    'colorbox_gallery_custom' => '',
-    'colorbox_caption' => 'auto',
-    'colorbox_caption_custom' => '',
+    'image_style' => 'node-page-inline',
+    'image_link' => 'content',
   );
   $handler->display->display_options['fields']['field_images']['group_column'] = 'fid';
   $handler->display->display_options['fields']['field_images']['delta_limit'] = '1';
