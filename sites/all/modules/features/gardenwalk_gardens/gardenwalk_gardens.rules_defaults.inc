@@ -12,7 +12,7 @@ function gardenwalk_gardens_default_rules_configuration() {
   $items['rules_notify_garden_finder_on_application_submitted'] = entity_import('rules_config', '{ "rules_notify_garden_finder_on_application_submitted" : {
       "LABEL" : "Notify Garden Finder on Application Submitted",
       "PLUGIN" : "reaction rule",
-      "REQUIRES" : [ "rules" ],
+      "REQUIRES" : [ "rules", "php" ],
       "ON" : [ "node_insert" ],
       "IF" : [
         { "node_is_of_type" : { "node" : [ "node" ], "type" : { "value" : { "garden" : "garden" } } } },

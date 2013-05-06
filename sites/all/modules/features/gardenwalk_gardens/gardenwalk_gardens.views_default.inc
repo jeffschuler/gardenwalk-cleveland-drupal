@@ -45,7 +45,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  /* Field: Content: Farmer / Program Manager */
+  /* Field: Content: Contact Person */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -408,7 +408,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Address';
-  /* Field: Content: Farmer / Program Manager */
+  /* Field: Content: Contact Person */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -1177,7 +1177,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['field'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['element_label_colon'] = FALSE;
-  /* Field: Content: Farmer / Program Manager */
+  /* Field: Content: Contact Person */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
