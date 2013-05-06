@@ -168,12 +168,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'community_garden' => 'community_garden',
     'garden' => 'garden',
-    'headquarters' => 'headquarters',
-    'reimagining_project' => 'reimagining_project',
-    'special_feature' => 'special_feature',
-    'urban_farm' => 'urban_farm',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Year (field_gardenwalk_year) */
@@ -181,12 +176,19 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
-    21 => '21',
+    42 => '42',
   );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
-  $handler->display->display_options['path'] = 'neighborhood-geojson/%/neighborhood.geojson';
+  /* Filter criterion: Workflow: Current state */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    3 => '3',
+  );
+  $handler->display->display_options['path'] = 'neighborhood/%/geojson';
   $export['guide_geojson'] = $view;
 
   $view = new view();
