@@ -95,6 +95,10 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['type']['field'] = 'type';
   $handler->display->display_options['fields']['type']['label'] = '';
   $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
+  /* Field: Content: Garden Type */
+  $handler->display->display_options['fields']['field_garden_type']['id'] = 'field_garden_type';
+  $handler->display->display_options['fields']['field_garden_type']['table'] = 'field_data_field_garden_type';
+  $handler->display->display_options['fields']['field_garden_type']['field'] = 'field_garden_type';
   /* Sort criterion: Nodequeue: Position */
   $handler->display->display_options['sorts']['position']['id'] = 'position';
   $handler->display->display_options['sorts']['position']['table'] = 'nodequeue_nodes';
@@ -170,6 +174,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'garden' => 'garden',
     'headquarters' => 'headquarters',
+    'special_feature' => 'special_feature',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Year (field_gardenwalk_year) */
