@@ -123,12 +123,6 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['access']['perm'] = 'edit any garden content';
-  $handler->display->display_options['defaults']['pager'] = FALSE;
-  $handler->display->display_options['pager']['type'] = 'full';
-  $handler->display->display_options['pager']['options']['items_per_page'] = '50';
-  $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['pager']['options']['id'] = '0';
-  $handler->display->display_options['pager']['options']['quantity'] = '9';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'table';
   $handler->display->display_options['style_options']['row_class'] = 'workflow-[state]';
@@ -139,10 +133,10 @@ function gardenwalk_gardens_views_default_views() {
     'field_neighborhood' => 'field_neighborhood',
     'title' => 'title',
     'field_gardener_name' => 'field_gardener_name',
-    'field_description' => 'field_description',
+    'body' => 'body',
     'state' => 'state',
+    'created' => 'created',
     'changed' => 'changed',
-    'clone_node' => 'clone_node',
     'edit_node' => 'edit_node',
   );
   $handler->display->display_options['style_options']['default'] = '-1';
@@ -187,7 +181,7 @@ function gardenwalk_gardens_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'field_description' => array(
+    'body' => array(
       'sortable' => 0,
       'default_sort_order' => 'asc',
       'align' => '',
@@ -201,14 +195,16 @@ function gardenwalk_gardens_views_default_views() {
       'separator' => '',
       'empty_column' => 0,
     ),
-    'changed' => array(
+    'created' => array(
       'sortable' => 1,
       'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
     ),
-    'clone_node' => array(
+    'changed' => array(
+      'sortable' => 1,
+      'default_sort_order' => 'desc',
       'align' => '',
       'separator' => '',
       'empty_column' => 0,
@@ -1072,11 +1068,8 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'community_garden' => 'community_garden',
     'garden' => 'garden',
-    'reimagining_project' => 'reimagining_project',
     'special_feature' => 'special_feature',
-    'urban_farm' => 'urban_farm',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Year (field_gardenwalk_year) */
@@ -1095,6 +1088,13 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['filters']['status']['field'] = 'status';
   $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
+  /* Filter criterion: Workflow: Current state */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    3 => '3',
+  );
 
   /* Display: OpenLayers Data Overlay */
   $handler = $view->new_display('openlayers', 'OpenLayers Data Overlay', 'openlayers_2');
