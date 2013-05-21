@@ -159,34 +159,40 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['type'] = 'convert';
   $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['transform'] = TRUE;
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'garden' => 'garden',
-    'headquarters' => 'headquarters',
-    'special_feature' => 'special_feature',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
+  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
+  $handler->display->display_options['filters']['status_1']['table'] = 'node';
+  $handler->display->display_options['filters']['status_1']['field'] = 'status';
+  $handler->display->display_options['filters']['status_1']['value'] = '1';
+  $handler->display->display_options['filters']['status_1']['group'] = 1;
   /* Filter criterion: Content: Year (field_gardenwalk_year) */
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['id'] = 'field_gardenwalk_year_tid_1';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['table'] = 'field_data_field_gardenwalk_year';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['field'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['value'] = array(
     42 => '42',
   );
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['group'] = 1;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['expose']['operator_id'] = 'field_gardenwalk_year_tid_1_op';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['expose']['label'] = 'Year (field_gardenwalk_year)';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['expose']['operator'] = 'field_gardenwalk_year_tid_1_op';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['expose']['identifier'] = 'field_gardenwalk_year_tid_1';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['type'] = 'select';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['vocabulary'] = 'year';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
+  $handler->display->display_options['filters']['type_1']['table'] = 'node';
+  $handler->display->display_options['filters']['type_1']['field'] = 'type';
+  $handler->display->display_options['filters']['type_1']['value'] = array(
+    'garden' => 'garden',
+    'headquarters' => 'headquarters',
+  );
+  $handler->display->display_options['filters']['type_1']['group'] = 2;
   /* Filter criterion: Workflow: Current state */
   $handler->display->display_options['filters']['sid']['id'] = 'sid';
   $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
@@ -194,6 +200,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['filters']['sid']['value'] = array(
     3 => '3',
   );
+  $handler->display->display_options['filters']['sid']['group'] = 2;
   $handler->display->display_options['path'] = 'neighborhood/%/geojson';
   $export['guide_geojson'] = $view;
 
@@ -933,7 +940,7 @@ function gardenwalk_data_views_default_views() {
     'headquarters' => 'headquarters',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  $handler->display->display_options['path'] = 'neighborhood-kml/%/neighborhood.kml';
+  $handler->display->display_options['path'] = 'neighborhood/%/kml';
   $handler->display->display_options['sitename_title'] = 0;
 
   /* Display: Urban Farms KML */
@@ -1099,10 +1106,11 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
   $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
   $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
-  /* Field: Content: Type */
-  $handler->display->display_options['fields']['type']['id'] = 'type';
-  $handler->display->display_options['fields']['type']['table'] = 'node';
-  $handler->display->display_options['fields']['type']['field'] = 'type';
+  /* Field: Content: Garden Type */
+  $handler->display->display_options['fields']['field_garden_type']['id'] = 'field_garden_type';
+  $handler->display->display_options['fields']['field_garden_type']['table'] = 'field_data_field_garden_type';
+  $handler->display->display_options['fields']['field_garden_type']['field'] = 'field_garden_type';
+  $handler->display->display_options['fields']['field_garden_type']['label'] = 'Type';
   /* Field: Taxonomy term: Map Label Prefix */
   $handler->display->display_options['fields']['field_map_label_prefix']['id'] = 'field_map_label_prefix';
   $handler->display->display_options['fields']['field_map_label_prefix']['table'] = 'field_data_field_map_label_prefix';
@@ -1124,15 +1132,14 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
+  $handler->display->display_options['fields']['nothing']['label'] = 'Marker';
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_map_label_prefix][position]';
   $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Location Name */
+  $handler->display->display_options['fields']['field_garden_name']['id'] = 'field_garden_name';
+  $handler->display->display_options['fields']['field_garden_name']['table'] = 'field_data_field_garden_name';
+  $handler->display->display_options['fields']['field_garden_name']['field'] = 'field_garden_name';
+  $handler->display->display_options['fields']['field_garden_name']['label'] = 'Garden/Location Name';
   /* Field: Location: Street */
   $handler->display->display_options['fields']['street']['id'] = 'street';
   $handler->display->display_options['fields']['street']['table'] = 'location';
@@ -1142,20 +1149,26 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
   $handler->display->display_options['fields']['body']['field'] = 'body';
   $handler->display->display_options['fields']['body']['label'] = 'Description';
+  $handler->display->display_options['fields']['body']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['body']['alter']['strip_tags'] = TRUE;
   $handler->display->display_options['fields']['body']['element_label_colon'] = FALSE;
   /* Field: Content: Garden Description */
   $handler->display->display_options['fields']['field_description']['id'] = 'field_description';
   $handler->display->display_options['fields']['field_description']['table'] = 'field_data_field_description';
   $handler->display->display_options['fields']['field_description']['field'] = 'field_description';
-  /* Sort criterion: Content: Type */
-  $handler->display->display_options['sorts']['type']['id'] = 'type';
-  $handler->display->display_options['sorts']['type']['table'] = 'node';
-  $handler->display->display_options['sorts']['type']['field'] = 'type';
+  $handler->display->display_options['fields']['field_description']['label'] = 'Description';
+  $handler->display->display_options['fields']['field_description']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_description']['alter']['text'] = '[field_description][field_description-format]';
+  $handler->display->display_options['fields']['field_description']['alter']['strip_tags'] = TRUE;
   /* Sort criterion: Nodequeue: Position */
   $handler->display->display_options['sorts']['position']['id'] = 'position';
   $handler->display->display_options['sorts']['position']['table'] = 'nodequeue_nodes';
   $handler->display->display_options['sorts']['position']['field'] = 'position';
   $handler->display->display_options['sorts']['position']['relationship'] = 'nodequeue_rel';
+  $handler->display->display_options['filter_groups']['groups'] = array(
+    1 => 'AND',
+    2 => 'OR',
+  );
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1163,15 +1176,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['filters']['status']['value'] = 1;
   $handler->display->display_options['filters']['status']['group'] = 1;
   $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'garden' => 'garden',
-    'headquarters' => 'headquarters',
-  );
-  $handler->display->display_options['filters']['type']['group'] = 1;
   /* Filter criterion: Content: Year (field_gardenwalk_year) */
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
@@ -1182,6 +1186,23 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'garden' => 'garden',
+    'headquarters' => 'headquarters',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 2;
+  /* Filter criterion: Workflow: Current state */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    3 => '3',
+  );
+  $handler->display->display_options['filters']['sid']['group'] = 2;
 
   /* Display: Neighborhood XLS */
   $handler = $view->new_display('views_data_export', 'Neighborhood XLS', 'views_data_export_1');
