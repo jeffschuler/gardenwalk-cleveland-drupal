@@ -551,7 +551,7 @@ function gardenwalk_gardens_field_default_fields() {
           'Community Garden' => 'Community Garden',
           'Reimagining Cleveland Project' => 'Reimagining Cleveland Project',
           'Urban Farm / Market Garden' => 'Urban Farm / Market Garden',
-          'Other' => 'Other',
+          'Other' => 'Special Feature',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
