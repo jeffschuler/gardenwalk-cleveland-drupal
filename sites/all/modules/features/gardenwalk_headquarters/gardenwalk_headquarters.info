@@ -16,6 +16,7 @@ features[ds_layout_settings][] = node|headquarters|default
 features[features_api][] = api:1
 features[field][] = node-headquarters-body
 features[field][] = node-headquarters-field_address
+features[field][] = node-headquarters-field_garden_name
 features[field][] = node-headquarters-field_gardenwalk_year
 features[field][] = node-headquarters-field_neighborhood
 features[node][] = headquarters

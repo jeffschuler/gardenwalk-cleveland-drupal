@@ -42,21 +42,21 @@ function gardenwalk_headquarters_strongarm() {
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'additional_settings__active_tab_headquarters';
-  $strongarm->value = 'edit-submission';
+  $strongarm->value = 'edit-auto-nodetitle';
   $export['additional_settings__active_tab_headquarters'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ant_headquarters';
-  $strongarm->value = '0';
+  $strongarm->value = '1';
   $export['ant_headquarters'] = $strongarm;
 
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
   $strongarm->name = 'ant_pattern_headquarters';
-  $strongarm->value = '';
+  $strongarm->value = '[node:field_garden_name]';
   $export['ant_pattern_headquarters'] = $strongarm;
 
   $strongarm = new stdClass();
@@ -97,10 +97,13 @@ function gardenwalk_headquarters_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '7',
         ),
         'xmlsitemap' => array(
-          'weight' => '7',
+          'weight' => '6',
+        ),
+        'redirect' => array(
+          'weight' => '8',
         ),
       ),
       'display' => array(),
