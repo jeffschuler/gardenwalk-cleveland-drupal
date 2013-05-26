@@ -1375,6 +1375,10 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
   $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
   $handler->display->display_options['fields']['field_map_marker_label']['label'] = 'Label';
+  /* Sort criterion: Content: Map Marker Label (field_map_marker_label) */
+  $handler->display->display_options['sorts']['field_map_marker_label_value']['id'] = 'field_map_marker_label_value';
+  $handler->display->display_options['sorts']['field_map_marker_label_value']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['sorts']['field_map_marker_label_value']['field'] = 'field_map_marker_label_value';
   /* Filter criterion: Content: Published */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
@@ -1423,9 +1427,54 @@ function gardenwalk_gardens_views_default_views() {
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
 
-  /* Display: Page */
-  $handler = $view->new_display('page', 'Page', 'page');
+  /* Display: List Page */
+  $handler = $view->new_display('page', 'List Page', 'page');
   $handler->display->display_options['path'] = 'special-attractions';
+
+  /* Display: Labels Page */
+  $handler = $view->new_display('page', 'Labels Page', 'page_1');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Garden Labels by Special Attraction';
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'default';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_attractions',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['default_row_class'] = FALSE;
+  $handler->display->display_options['style_options']['row_class_special'] = FALSE;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['row_options']['default_field_elements'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Special Attractions */
+  $handler->display->display_options['fields']['field_attractions']['id'] = 'field_attractions';
+  $handler->display->display_options['fields']['field_attractions']['table'] = 'field_data_field_attractions';
+  $handler->display->display_options['fields']['field_attractions']['field'] = 'field_attractions';
+  $handler->display->display_options['fields']['field_attractions']['label'] = '';
+  $handler->display->display_options['fields']['field_attractions']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_attractions']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_attractions']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_attractions']['group_columns'] = array(
+    'entity_id' => 'entity_id',
+  );
+  $handler->display->display_options['fields']['field_attractions']['group_rows'] = FALSE;
+  $handler->display->display_options['fields']['field_attractions']['delta_offset'] = '0';
+  /* Field: Content: Map Marker Label */
+  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['label'] = '';
+  $handler->display->display_options['fields']['field_map_marker_label']['element_type'] = '0';
+  $handler->display->display_options['fields']['field_map_marker_label']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_map_marker_label']['element_wrapper_type'] = '0';
+  $handler->display->display_options['fields']['field_map_marker_label']['element_default_classes'] = FALSE;
+  $handler->display->display_options['path'] = 'special-attractions-labels';
   $export['gardens_by_special_attraction'] = $view;
 
   return $export;
