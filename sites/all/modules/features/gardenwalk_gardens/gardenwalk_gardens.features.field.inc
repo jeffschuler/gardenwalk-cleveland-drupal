@@ -55,7 +55,7 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '21',
+          'weight' => '22',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -421,10 +421,9 @@ function gardenwalk_gardens_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '5',
+          'type' => 'hidden',
+          'weight' => '21',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -491,10 +490,9 @@ function gardenwalk_gardens_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 25,
+          'type' => 'hidden',
+          'weight' => '26',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -573,10 +571,9 @@ function gardenwalk_gardens_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 22,
+          'type' => 'hidden',
+          'weight' => '23',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1231,6 +1228,112 @@ function gardenwalk_gardens_field_default_fields() {
     ),
   );
 
+  // Exported field: 'node-garden-field_map_marker_label'.
+  $fields['node-garden-field_map_marker_label'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_map_marker_label',
+      'field_permissions' => array(
+        'type' => '0',
+      ),
+      'foreign keys' => array(),
+      'indexes' => array(),
+      'locked' => '0',
+      'module' => 'computed_field',
+      'settings' => array(
+        'code' => '// Get label prefix
+if (isset($entity->field_neighborhood[\'und\'][0][\'tid\'])) {
+  $term = taxonomy_term_load($entity->field_neighborhood[\'und\'][0][\'tid\']);
+  $prefix = $term->field_map_label_prefix[\'und\'][0][\'value\'];
+}
+
+// Get position in nodequeue
+$neighborhood_qid = 4;
+$neighborhood_tid = $entity->field_neighborhood[\'und\'][0][\'tid\'];
+$queue = array_shift(nodequeue_load_subqueues_by_reference(
+  array(
+    $neighborhood_qid => array(
+      $neighborhood_tid
+    )
+  )
+));
+if ($queue) {
+  $position = nodequeue_get_subqueue_position($queue->sqid, $entity->nid);
+}
+
+$entity_field[0][\'value\'] = $prefix . $position;',
+        'database' => array(
+          'data_default' => 'DEFAULT',
+          'data_index' => 0,
+          'data_length' => '32',
+          'data_not_NULL' => 0,
+          'data_precision' => '10',
+          'data_scale' => '2',
+          'data_size' => 'normal',
+          'data_type' => 'varchar',
+        ),
+        'display_format' => '// Get position in nodequeue
+$neighborhood_qid = 4;
+$neighborhood_tid = $entity->field_neighborhood[\'und\'][0][\'tid\'];
+$queue = array_shift(nodequeue_load_subqueues_by_reference(
+  array(
+    $neighborhood_qid => array(
+      $neighborhood_tid
+    )
+  )
+));
+if ($queue) {
+  $position = nodequeue_get_subqueue_position($queue->sqid, $entity->nid);
+}
+
+$display_output = $entity_field_item[\'value\'];',
+        'store' => 1,
+      ),
+      'translatable' => '0',
+      'type' => 'computed',
+    ),
+    'field_instance' => array(
+      'bundle' => 'garden',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'computed_field',
+          'settings' => array(),
+          'type' => 'computed_field_plain',
+          'weight' => '4',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'ds_extras_field_template' => '',
+      'entity_type' => 'node',
+      'field_name' => 'field_map_marker_label',
+      'label' => 'Map Marker Label',
+      'required' => 0,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 0,
+        'module' => 'computed_field',
+        'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        ),
+        'type' => 'computed',
+        'weight' => '8',
+      ),
+    ),
+  );
+
   // Exported field: 'node-garden-field_neighborhood'.
   $fields['node-garden-field_neighborhood'] = array(
     'field_config' => array(
@@ -1433,10 +1536,9 @@ function gardenwalk_gardens_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 23,
+          'type' => 'hidden',
+          'weight' => '24',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1509,10 +1611,9 @@ function gardenwalk_gardens_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 24,
+          'type' => 'hidden',
+          'weight' => '25',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1591,7 +1692,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '4',
+          'weight' => '5',
         ),
         'teaser' => array(
           'label' => 'inline',
@@ -2006,6 +2107,7 @@ function gardenwalk_gardens_field_default_fields() {
   t('Included in past GardenWalks?');
   t('Is this garden/location a "Special Feature" -- to be highlighted on the GardenWalk?');
   t('Map Label Prefix');
+  t('Map Marker Label');
   t('Neighborhood');
   t('Neighborhood Location');
   t('Neighborhood Location Geofield');

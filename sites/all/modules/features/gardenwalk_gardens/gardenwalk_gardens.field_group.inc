@@ -121,7 +121,8 @@ function gardenwalk_gardens_field_group_info() {
       1 => 'field_yard_areas',
       2 => 'field_neighborhood',
       3 => 'field_gardenwalk_year',
-      4 => 'title',
+      4 => 'field_map_marker_label',
+      5 => 'title',
     ),
     'format_type' => 'tab',
     'format_settings' => array(

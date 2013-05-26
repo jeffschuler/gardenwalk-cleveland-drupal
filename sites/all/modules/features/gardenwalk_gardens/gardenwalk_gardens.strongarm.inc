@@ -34,6 +34,9 @@ function gardenwalk_gardens_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
       'form' => array(
@@ -44,19 +47,32 @@ function gardenwalk_gardens_strongarm() {
           'weight' => 0,
         ),
         'path' => array(
-          'weight' => '30',
+          'weight' => '5',
         ),
         'xmlsitemap' => array(
-          'weight' => '30',
+          'weight' => '4',
         ),
         'workflow' => array(
-          'weight' => '10',
+          'weight' => '2',
         ),
         'redirect' => array(
-          'weight' => '30',
+          'weight' => '3',
         ),
       ),
-      'display' => array(),
+      'display' => array(
+        'workflow_current_state' => array(
+          'default' => array(
+            'weight' => '15',
+            'visible' => FALSE,
+          ),
+        ),
+        'workflow' => array(
+          'default' => array(
+            'weight' => '28',
+            'visible' => FALSE,
+          ),
+        ),
+      ),
     ),
   );
   $export['field_bundle_settings_node__garden'] = $strongarm;
