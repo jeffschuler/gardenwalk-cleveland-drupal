@@ -86,4 +86,5 @@ features[variable][] = node_options_garden
 features[variable][] = node_preview_garden
 features[variable][] = node_submitted_garden
 features[views_view][] = gardens
+features[views_view][] = gardens_by_special_attraction
 features[workflow][] = Garden Approval

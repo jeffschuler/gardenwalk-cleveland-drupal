@@ -394,6 +394,11 @@ function gardenwalk_gardens_views_default_views() {
       'postpone_processing' => 0,
     ),
   );
+  /* Field: Content: Map Marker Label */
+  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['label'] = 'Label';
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -1280,6 +1285,148 @@ function gardenwalk_gardens_views_default_views() {
   );
   $handler->display->display_options['path'] = 'gardeners-export.xls';
   $export['gardens'] = $view;
+
+  $view = new view();
+  $view->name = 'gardens_by_special_attraction';
+  $view->description = '';
+  $view->tag = 'default';
+  $view->base_table = 'node';
+  $view->human_name = 'Gardens by Special Attraction';
+  $view->core = 7;
+  $view->api_version = '3.0';
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+
+  /* Display: Master */
+  $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['title'] = 'Gardens by Special Attraction';
+  $handler->display->display_options['use_more_always'] = FALSE;
+  $handler->display->display_options['access']['type'] = 'perm';
+  $handler->display->display_options['cache']['type'] = 'none';
+  $handler->display->display_options['query']['type'] = 'views_query';
+  $handler->display->display_options['exposed_form']['type'] = 'basic';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['style_plugin'] = 'table';
+  $handler->display->display_options['style_options']['grouping'] = array(
+    0 => array(
+      'field' => 'field_attractions',
+      'rendered' => 1,
+      'rendered_strip' => 0,
+    ),
+  );
+  $handler->display->display_options['style_options']['columns'] = array(
+    'title' => 'title',
+    'field_attractions' => 'field_attractions',
+    'field_map_label_prefix' => 'field_map_label_prefix',
+    'position' => 'position',
+  );
+  $handler->display->display_options['style_options']['default'] = '-1';
+  $handler->display->display_options['style_options']['info'] = array(
+    'title' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_attractions' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'field_map_label_prefix' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+    'position' => array(
+      'sortable' => 0,
+      'default_sort_order' => 'asc',
+      'align' => '',
+      'separator' => '',
+      'empty_column' => 0,
+    ),
+  );
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  /* Field: Content: Special Attractions */
+  $handler->display->display_options['fields']['field_attractions']['id'] = 'field_attractions';
+  $handler->display->display_options['fields']['field_attractions']['table'] = 'field_data_field_attractions';
+  $handler->display->display_options['fields']['field_attractions']['field'] = 'field_attractions';
+  $handler->display->display_options['fields']['field_attractions']['label'] = '';
+  $handler->display->display_options['fields']['field_attractions']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_attractions']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_attractions']['type'] = 'taxonomy_term_reference_plain';
+  $handler->display->display_options['fields']['field_attractions']['group_columns'] = array(
+    'entity_id' => 'entity_id',
+  );
+  $handler->display->display_options['fields']['field_attractions']['group_rows'] = FALSE;
+  $handler->display->display_options['fields']['field_attractions']['delta_offset'] = '0';
+  /* Field: Content: Map Marker Label */
+  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['label'] = 'Label';
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 1;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'garden' => 'garden',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Year (field_gardenwalk_year) */
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
+    42 => '42',
+  );
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator_id'] = 'field_gardenwalk_year_tid_op';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['label'] = 'Year';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator'] = 'field_gardenwalk_year_tid_op';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['identifier'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+  );
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
+  /* Filter criterion: Workflow: Current state */
+  $handler->display->display_options['filters']['sid']['id'] = 'sid';
+  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
+  $handler->display->display_options['filters']['sid']['field'] = 'sid';
+  $handler->display->display_options['filters']['sid']['value'] = array(
+    3 => '3',
+  );
+  $handler->display->display_options['filters']['sid']['group'] = 1;
+
+  /* Display: Page */
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->display->display_options['path'] = 'special-attractions';
+  $export['gardens_by_special_attraction'] = $view;
 
   return $export;
 }
