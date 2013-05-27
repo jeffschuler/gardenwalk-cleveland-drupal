@@ -414,6 +414,11 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['id'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['field'] = 'field_neighborhood';
+  /* Field: Content: Garden/Location Name */
+  $handler->display->display_options['fields']['field_garden_name']['id'] = 'field_garden_name';
+  $handler->display->display_options['fields']['field_garden_name']['table'] = 'field_data_field_garden_name';
+  $handler->display->display_options['fields']['field_garden_name']['field'] = 'field_garden_name';
+  $handler->display->display_options['fields']['field_garden_name']['label'] = 'Name';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -436,7 +441,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_description']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_description']['type'] = 'text_trimmed';
   $handler->display->display_options['fields']['field_description']['settings'] = array(
-    'trim_length' => '100',
+    'trim_length' => '30',
   );
   /* Field: Workflow: Current state name */
   $handler->display->display_options['fields']['state']['id'] = 'state';
