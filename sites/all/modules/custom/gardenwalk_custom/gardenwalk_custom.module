@@ -13,3 +13,21 @@ function gardenwalk_custom_views_query_alter(&$view, &$query) {
     $query->orderby[0]['field'] = "FIELD(node_type, 'garden', 'community_garden', 'urban_farm', 'reimagining_project', 'special_feature')";
   }
 }
+
+/*
+ * Implements hook_preprocess_page()
+ *
+ * Adds Superfish CSS and JS since we have a custom SF main menu block.
+ *
+ * Waiting on "Please add starting level to superfish menu settings"
+ *   http://drupal.org/node/1316254
+ */
+function gardenwalk_custom_preprocess_page(&$variables) {
+  drupal_add_css('sites/all/libraries/superfish/css/superfish.css');
+  drupal_add_js(drupal_get_path('module', 'superfish') . '/superfish.js');
+  //drupal_add_js('sites/all/libraries/superfish/jquery.hoverIntent.minified.js');
+  //drupal_add_js('sites/all/libraries/superfish/sfsmallscreen.js');
+  //drupal_add_js('sites/all/libraries/superfish/superfish.js');
+  //drupal_add_js('sites/all/libraries/superfish/supersubs.js');
+  $variables['scripts'] = drupal_get_js();
+}
