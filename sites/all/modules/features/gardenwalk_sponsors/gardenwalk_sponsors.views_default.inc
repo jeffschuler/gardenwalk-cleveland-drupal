@@ -31,8 +31,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
   $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['grouping'] = 'field_sponsorship_level';
-  $handler->display->display_options['style_options']['columns'] = '3';
+  $handler->display->display_options['style_options']['columns'] = '5';
   $handler->display->display_options['row_plugin'] = 'fields';
   /* Field: Bulk operations: Content */
   $handler->display->display_options['fields']['views_bulk_operations']['id'] = 'views_bulk_operations';
@@ -259,7 +258,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    21 => '21',
+    42 => '42',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
@@ -811,7 +810,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_images']['settings'] = array(
-    'image_style' => 'medium',
+    'image_style' => 'sponsor-page-small',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_images']['group_column'] = 'fid';
@@ -853,7 +852,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    21 => '21',
+    42 => '42',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
@@ -876,7 +875,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['title'] = 'Major Donors';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'grid';
-  $handler->display->display_options['style_options']['columns'] = '2';
+  $handler->display->display_options['style_options']['columns'] = '3';
   $handler->display->display_options['defaults']['style_options'] = FALSE;
   $handler->display->display_options['defaults']['row_plugin'] = FALSE;
   $handler->display->display_options['row_plugin'] = 'fields';
@@ -912,7 +911,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_images']['settings'] = array(
-    'image_style' => 'node-page-inline',
+    'image_style' => 'sponsor-page-large',
     'image_link' => '',
   );
   $handler->display->display_options['fields']['field_images']['group_column'] = 'fid';
@@ -954,7 +953,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    21 => '21',
+    42 => '42',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';

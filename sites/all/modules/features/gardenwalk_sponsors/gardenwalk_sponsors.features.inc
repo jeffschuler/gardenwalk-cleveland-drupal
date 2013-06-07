@@ -22,6 +22,61 @@ function gardenwalk_sponsors_views_api() {
 }
 
 /**
+ * Implements hook_image_default_styles().
+ */
+function gardenwalk_sponsors_image_default_styles() {
+  $styles = array();
+
+  // Exported image style: sponsor-page-large.
+  $styles['sponsor-page-large'] = array(
+    'name' => 'sponsor-page-large',
+    'effects' => array(
+      7 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '280',
+          'height' => '150',
+          'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  // Exported image style: sponsor-page-small.
+  $styles['sponsor-page-small'] = array(
+    'name' => 'sponsor-page-small',
+    'effects' => array(
+      8 => array(
+        'label' => 'Scale',
+        'help' => 'Scaling will maintain the aspect-ratio of the original image. If only a single dimension is specified, the other dimension will be calculated.',
+        'effect callback' => 'image_scale_effect',
+        'dimensions callback' => 'image_scale_dimensions',
+        'form callback' => 'image_scale_form',
+        'summary theme' => 'image_scale_summary',
+        'module' => 'image',
+        'name' => 'image_scale',
+        'data' => array(
+          'width' => '150',
+          'height' => '80',
+          'upscale' => 0,
+        ),
+        'weight' => '1',
+      ),
+    ),
+  );
+
+  return $styles;
+}
+
+/**
  * Implements hook_node_info().
  */
 function gardenwalk_sponsors_node_info() {

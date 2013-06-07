@@ -121,7 +121,7 @@ function gardenwalk_sponsors_field_default_fields() {
       'bundle' => 'sponsor',
       'default_value' => array(
         0 => array(
-          'tid' => '21',
+          'tid' => '42',
         ),
       ),
       'deleted' => '0',
@@ -152,7 +152,9 @@ function gardenwalk_sponsors_field_default_fields() {
       'widget' => array(
         'active' => 1,
         'module' => 'options',
-        'settings' => array(),
+        'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        ),
         'type' => 'options_select',
         'weight' => '3',
       ),
