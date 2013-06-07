@@ -34,7 +34,6 @@ function gardenwalk_gardens_feeds_importer_default() {
     'processor' => array(
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
-        'content_type' => 'garden',
         'expire' => '-1',
         'author' => '1',
         'mappings' => array(
@@ -86,6 +85,7 @@ function gardenwalk_gardens_feeds_importer_default() {
         ),
         'update_existing' => '2',
         'input_format' => '1',
+        'bundle' => 'garden',
       ),
     ),
     'content_type' => '',
