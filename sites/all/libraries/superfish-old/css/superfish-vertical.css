@@ -2,8 +2,10 @@
 .sf-vertical li {
   width: 12em;
 }
-.sf-vertical li:hover > ul,
-.sf-vertical li.sfHover > ul {
+.sf-vertical li:focus ul,
+.sf-vertical li:hover ul,
+.sf-vertical li:active ul,
+.sf-vertical li.sfHover ul {
   left: 12em;
   top: 0;
 }
