@@ -8,7 +8,6 @@ features[ctools][] = openlayers:openlayers_layers:1
 features[ctools][] = openlayers:openlayers_maps:1
 features[ctools][] = openlayers:openlayers_styles:1
 features[features_api][] = api:1
-features[openlayers_layers][] = gardenwalk_mapbox
 features[openlayers_layers][] = neighborhoods_geojson
 features[openlayers_maps][] = all_map
 features[openlayers_maps][] = all_map_dark
