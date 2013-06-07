@@ -61,8 +61,25 @@ function workflow_tab_page($node = NULL) {
     else {
       $old_state_name = '*';
     }
-    $rows[] = theme('workflow_history_table_row', array( 'history' => $history, 'old_state_name' => $old_state_name, 'state_name' => $state_name ));
+
+    $variables = array(
+        'history' => $history,
+        'old_sid' => $history->old_sid,
+        'old_state_name' => $old_state_name,
+        'sid' => $history->sid,
+        'state_name' => $state_name,
+        );
+
+    // Allow other modules to modify the row.
+    drupal_alter('workflow_history', $variables);
+
+    $rows[] = theme('workflow_history_table_row', $variables);
   }
+
+  // Mark the first and last rows.
+  $rows[0]['class'][] = 'first';
+  $last = count($rows) - 1;
+  $rows[$last]['class'][] = 'last';
 
   // Only display the table if there's anything in it.
   if ($rows) {
@@ -79,17 +96,26 @@ function workflow_tab_page($node = NULL) {
  * to calling this theme function.
  */
 function theme_workflow_history_table_row($variables) {
+  $row = array();
   $old_state_name = $variables['old_state_name'];
   $state_name = $variables['state_name'];
   $history = $variables['history'];
-  return array(
-    format_date($history->stamp),
-    $old_state_name,
-    $state_name,
-    theme('username', array('account' => $history)),
-//    filter_xss($history->comment, array('a', 'em', 'strong')),
-    check_markup($history->comment, filter_default_format()),
-  );
+  $row = array(
+    'data' => array(
+      format_date($history->stamp),
+      $old_state_name,
+      $state_name,
+      theme('username', array('account' => $history)),
+      check_markup($history->comment, filter_default_format()),
+      ),
+    'class' => array('workflow_history_row'),
+    );
+
+  if (!empty($variables['extra'])) {
+    $row['data'][] = $variables['extra'];
+  }
+
+  return $row;
 }
 
 /*
@@ -134,7 +160,12 @@ function theme_workflow_deleted_state($variables) {
  * @return
  *   Form definition array.
  */
-function workflow_tab_form($form_id, $form_state, $node, $wid, $states, $current) {
+function workflow_tab_form($form, $form_state, $node, $wid, $states, $current) {
+  // Let's make sure we should be here.
+  if (workflow_node_tab_access($node) === FALSE) {
+    return;
+  }
+
   $form['#tab'] = TRUE;
   $choices = workflow_field_choices($node);
   $min = $states[$current] == t('(creation)') ? 1 : 2;
@@ -164,6 +195,7 @@ function workflow_tab_form($form_id, $form_state, $node, $wid, $states, $current
     $workflow = workflow_get_workflows_by_wid($workflow->wid);
 
     $form['#wf'] = $workflow;
+    $form['#choices'] = $choices;
 
     $name = check_plain((t($workflow->name)));
     $timestamp = '';
