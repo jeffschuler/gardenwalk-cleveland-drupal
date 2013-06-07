@@ -34,7 +34,6 @@ function gardenwalk_reimagining_feeds_importer_default() {
     'processor' => array(
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
-        'content_type' => 'reimagining_project',
         'expire' => '-1',
         'author' => '1',
         'mappings' => array(
@@ -61,6 +60,7 @@ function gardenwalk_reimagining_feeds_importer_default() {
         ),
         'update_existing' => '2',
         'input_format' => '1',
+        'bundle' => 'reimagining_project',
       ),
     ),
     'content_type' => '',

@@ -34,7 +34,6 @@ function gardenwalk_community_gardens_feeds_importer_default() {
     'processor' => array(
       'plugin_key' => 'FeedsNodeProcessor',
       'config' => array(
-        'content_type' => 'community_garden',
         'expire' => '-1',
         'author' => '1',
         'mappings' => array(
@@ -61,6 +60,7 @@ function gardenwalk_community_gardens_feeds_importer_default() {
         ),
         'update_existing' => '0',
         'input_format' => '1',
+        'bundle' => 'community_garden',
       ),
     ),
     'content_type' => '',
