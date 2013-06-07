@@ -75,24 +75,28 @@ function gardenwalk_gardens_workflow_default_workflows() {
         'weight' => '-50',
         'sysid' => '1',
         'status' => '1',
+        'name' => 'Garden Approval',
       ),
       1 => array(
         'state' => 'Application',
         'weight' => '0',
         'sysid' => '0',
         'status' => '1',
+        'name' => 'Garden Approval',
       ),
       2 => array(
         'state' => 'Approved',
         'weight' => '0',
         'sysid' => '0',
         'status' => '1',
+        'name' => 'Garden Approval',
       ),
       3 => array(
         'state' => 'Denied',
         'weight' => '0',
         'sysid' => '0',
         'status' => '1',
+        'name' => 'Garden Approval',
       ),
     ),
     'transitions' => array(
