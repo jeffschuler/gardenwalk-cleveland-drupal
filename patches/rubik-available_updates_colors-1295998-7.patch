@@ -1,0 +1,39 @@
+diff --git a/core.css b/core.css
+index b27c303..3ee8583 100644
+--- a/core.css
++++ b/core.css
+@@ -186,12 +186,30 @@ table tr.region td { background:#f8f8f8; }
+ 
+ /* Hide tabledrag markers */
+ table tr.draggable span.tabledrag-changed { display:none; }
+- 
++
+ /* Stripe administrative tables */
+-.page-admin table tr.even, .page-admin table tr.even td {
+-  background: #f9f9f9;
++.page-admin table tr.even,
++.page-admin table tr.even td {
++  background-color: #f9f9f9;
++}
++
++/* Use Drupal's default colors for Available Updates page statuses */
++.page-admin table tr.warning,
++.page-admin table tr.warning td {
++  background-color: #ffd;
++  color: #020;
+ }
+-               
++.page-admin table tr.ok,
++.page-admin table tr.ok td {
++  background-color: #dfd;
++  color: #020;
++}
++.page-admin table tr.error,
++.page-admin table tr.error td {
++  background-color: #fcc;
++  color: #020;
++}
++
+ /**
+  * Forms ==============================================================
+  */
