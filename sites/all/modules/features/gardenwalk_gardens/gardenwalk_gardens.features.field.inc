@@ -190,7 +190,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'location_cck',
           'settings' => array(),
           'type' => 'location_all',
-          'weight' => '3',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1305,7 +1305,7 @@ $display_output = $entity_field_item[\'value\'];',
           'module' => 'computed_field',
           'settings' => array(),
           'type' => 'computed_field_plain',
-          'weight' => '4',
+          'weight' => '3',
         ),
         'teaser' => array(
           'label' => 'above',
