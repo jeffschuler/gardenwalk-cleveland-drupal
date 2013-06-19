@@ -1067,20 +1067,13 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Type */
-  $handler->display->display_options['fields']['type']['id'] = 'type';
-  $handler->display->display_options['fields']['type']['table'] = 'node';
-  $handler->display->display_options['fields']['type']['field'] = 'type';
-  $handler->display->display_options['fields']['type']['label'] = '';
-  $handler->display->display_options['fields']['type']['element_class'] = '[type]';
-  $handler->display->display_options['fields']['type']['element_label_colon'] = FALSE;
   /* Field: Content: Garden Type */
   $handler->display->display_options['fields']['field_garden_type']['id'] = 'field_garden_type';
   $handler->display->display_options['fields']['field_garden_type']['table'] = 'field_data_field_garden_type';
   $handler->display->display_options['fields']['field_garden_type']['field'] = 'field_garden_type';
   $handler->display->display_options['fields']['field_garden_type']['label'] = '';
-  $handler->display->display_options['fields']['field_garden_type']['element_type'] = 'div';
-  $handler->display->display_options['fields']['field_garden_type']['element_class'] = '[type]';
+  $handler->display->display_options['fields']['field_garden_type']['element_type'] = 'span';
+  $handler->display->display_options['fields']['field_garden_type']['element_class'] = '[field_garden_type]';
   $handler->display->display_options['fields']['field_garden_type']['element_label_colon'] = FALSE;
   /* Field: Content: Garden Age */
   $handler->display->display_options['fields']['field_garden_age']['id'] = 'field_garden_age';

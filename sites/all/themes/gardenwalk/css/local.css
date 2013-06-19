@@ -408,11 +408,10 @@ form input.form-submit {
 #main .view-id-gardens.view-display-id-block_1 .views-field-field-attractions a:visited {
   color: #615fc1; }
 
-#main .view-id-gardens.view-display-id-block_1 .views-field-type {
-  display: block;
-  margin: 3px 0; }
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-garden-type {
+  margin: 5px 0; }
 
-#main .view-id-gardens.view-display-id-block_1 .views-field-type .field-content {
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-garden-type .field-content {
   padding: 0 4px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -423,24 +422,24 @@ form input.form-submit {
   border-color: #f15a82;
   color: #d31245; }
 
-#main .view-id-gardens.view-display-id-block_1 .views-field-type .Special-Feature {
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-garden-type .Special-Feature {
   border-color: #f7a58a;
   color: #f15b2a; }
 
-#main .view-id-gardens.view-display-id-block_1 .views-field-type .Garden {
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-garden-type .Private-Home-Business-Garden {
   border-color: #08f677;
   border-color: #039447;
   color: #059347; }
 
-#main .view-id-gardens.view-display-id-block_1 .views-field-type .Community-Garden {
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-garden-type .Community-Garden {
   border-color: #4475d4;
   color: #214791; }
 
-#main .view-id-gardens.view-display-id-block_1 .views-field-type .Urban-Farm---Market-Garden {
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-garden-type .Urban-Farm---Market-Garden {
   border-color: #a49c99;
   color: #726965; }
 
-#main .view-id-gardens.view-display-id-block_1 .views-field-type .Reimagining-Project {
+#main .view-id-gardens.view-display-id-block_1 .views-field-field-garden-type .Reimagining-Cleveland-Project {
   border-color: #aaa9dd;
   color: #615fc1; }
 
@@ -630,15 +629,18 @@ form input.form-submit {
   opacity: 0.85;
   border: 1px solid #666666;
   color: white;
+  font-size: 1.1em;
   width: 300px;
-  z-index: 100000; }
+  z-index: 100000;
+  top: auto; }
 
 .openlayers-popupbox * {
   opacity: 1.0; }
 
 .openlayers-popupbox h2.popup-title,
 .openlayers-popupbox .popup-content {
-  margin: 10px; }
+  margin: 10px;
+  padding: 0; }
 
 .openlayers-popupbox a.popup-close {
   border: 1px solid #615fc1;
