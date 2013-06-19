@@ -7,17 +7,18 @@
 /**
  * Ctools plugin definition.
  */
-$plugin = array(
-   'title' => t('Draw Features'),
-   'description' => t('Provides functionality for adding features to a map.'),
-   'type' => 'layer',
-   'behavior' => array(
-    'file' => 'openlayers_behavior_drawfeatures.inc',
-     'class' => 'openlayers_behavior_drawfeatures',
-     'parent' => 'openlayers_behavior',
-   ),
-);
-
+function openlayers_openlayers_behavior_drawfeatures_openlayers_behaviors() {
+  return array(
+    'title' => t('Draw Features'),
+    'description' => t('Provides functionality for adding features to a map.'),
+    'type' => 'layer',
+    'behavior' => array(
+      'file' => 'openlayers_behavior_drawfeatures.inc',
+      'class' => 'openlayers_behavior_drawfeatures',
+      'parent' => 'openlayers_behavior',
+    ),
+  );
+}
 /**
  * Draw Features behavior
  */
@@ -69,7 +70,7 @@ class openlayers_behavior_drawfeatures extends openlayers_behavior {
    * Render.
    */
   function render(&$map) {
-    drupal_add_css(drupal_get_path('module', 'openlayers')  .
+    drupal_add_css(drupal_get_path('module', 'openlayers') .
       '/plugins/behaviors/openlayers_behavior_drawfeatures.css');
     drupal_add_js(drupal_get_path('module', 'openlayers') .
       '/plugins/behaviors/openlayers_behavior_drawfeatures.js');
