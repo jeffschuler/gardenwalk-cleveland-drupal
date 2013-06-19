@@ -19,8 +19,8 @@ function gardenwalk_gardens_openlayers_maps() {
   $openlayers_maps->data = array(
     'width' => 'auto',
     'height' => '500px',
-    'image_path' => 'sites/all/libraries/openlayers_theme_dark/dark/',
-    'css_path' => 'sites/all/libraries/OpenLayers-2.10/theme/default/style.css',
+    'image_path' => 'sites/all/modules/contrib/openlayers/themes/default_dark/img/',
+    'css_path' => 'sites/all/modules/contrib/openlayers/themes/default_dark/style.css',
     'proxy_host' => '',
     'hide_empty_map' => 0,
     'center' => array(
@@ -49,7 +49,11 @@ function gardenwalk_gardens_openlayers_maps() {
         'zoomBoxEnabled' => 1,
         'documentDrag' => 0,
       ),
-      'openlayers_plus_behavior_popup' => array(),
+      'openlayers_plus_behavior_popup' => array(
+        'layers' => array(
+          'gardens_openlayers_1' => 0,
+        ),
+      ),
       'openlayers_behavior_panzoombar' => array(
         'zoomWorldIcon' => 0,
         'panIcons' => 1,
@@ -57,6 +61,7 @@ function gardenwalk_gardens_openlayers_maps() {
       'openlayers_behavior_scaleline' => array(),
       'openlayers_behavior_zoomtolayer' => array(
         'zoomtolayer' => array(
+          'google_hybrid' => 0,
           'gardenwalk_mapbox' => 0,
           'gardens_openlayers_1' => 0,
         ),
@@ -64,9 +69,10 @@ function gardenwalk_gardens_openlayers_maps() {
         'zoomtolayer_scale' => '1',
       ),
     ),
-    'default_layer' => 'google_normal',
+    'default_layer' => 'gardenwalk_mapbox',
     'layers' => array(
-      'google_normal' => 'google_normal',
+      'google_hybrid' => 'google_hybrid',
+      'gardenwalk_mapbox' => 'gardenwalk_mapbox',
       'gardens_openlayers_1' => 'gardens_openlayers_1',
     ),
     'layer_weight' => array(
@@ -82,20 +88,22 @@ function gardenwalk_gardens_openlayers_maps() {
       'reimagining_projects_openlayers_1' => '0',
       'neighborhoods_page_1' => '0',
       'guide_geojson_page_1' => '0',
-      'headquarters_openlayers_2' => '0',
       'headquarters_openlayers_1' => '0',
       'openlayers_geojson_picture_this' => '0',
+      'openlayers_kml_example' => '0',
       'geofield_formatter' => '0',
+      'headquarters_openlayers_2' => '0',
       'headquarters_openlayers_4' => '0',
-      'urban_farms_openlayers_1' => '0',
       'gardens_openlayers_2' => '0',
       'urban_farms_openlayers_3' => '0',
       'urban_farms_openlayers_2' => '0',
+      'urban_farms_openlayers_1' => '0',
       'neighborhoods_geojson' => '0',
     ),
     'layer_styles' => array(
       'neighborhoods_geojson' => '0',
       'geofield_formatter' => '0',
+      'openlayers_kml_example' => '0',
       'openlayers_geojson_picture_this' => '0',
       'headquarters_openlayers_1' => '0',
       'headquarters_openlayers_2' => '0',
@@ -120,6 +128,7 @@ function gardenwalk_gardens_openlayers_maps() {
     'layer_styles_select' => array(
       'neighborhoods_geojson' => '0',
       'geofield_formatter' => '0',
+      'openlayers_kml_example' => '0',
       'openlayers_geojson_picture_this' => '0',
       'headquarters_openlayers_1' => '0',
       'headquarters_openlayers_2' => '0',
@@ -145,6 +154,7 @@ function gardenwalk_gardens_openlayers_maps() {
       'gardens_openlayers_1' => 'gardens_openlayers_1',
       'neighborhoods_geojson' => 0,
       'geofield_formatter' => 0,
+      'openlayers_kml_example' => 0,
       'openlayers_geojson_picture_this' => 0,
       'headquarters_openlayers_1' => 0,
       'headquarters_openlayers_2' => 0,
@@ -169,6 +179,7 @@ function gardenwalk_gardens_openlayers_maps() {
       'gardens_openlayers_1' => 0,
       'neighborhoods_geojson' => 0,
       'geofield_formatter' => 0,
+      'openlayers_kml_example' => 0,
       'openlayers_geojson_picture_this' => 0,
       'headquarters_openlayers_1' => 0,
       'headquarters_openlayers_2' => 0,
@@ -189,8 +200,8 @@ function gardenwalk_gardens_openlayers_maps() {
       'reimagining_projects_openlayers_2' => 0,
       'reimagining_projects_openlayers_3' => 0,
     ),
-    'projection' => '900913',
-    'displayProjection' => '4326',
+    'projection' => 'EPSG:3857',
+    'displayProjection' => 'EPSG:4326',
     'styles' => array(
       'default' => 'default',
       'select' => 'default',
