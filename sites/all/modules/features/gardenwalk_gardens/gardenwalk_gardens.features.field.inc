@@ -1519,6 +1519,7 @@ $display_output = $entity_field_item[\'value\'];',
         'allowed_values' => array(
           2011 => '2011',
           2012 => '2012',
+          2013 => '2013',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
