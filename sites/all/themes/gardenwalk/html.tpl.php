@@ -38,9 +38,9 @@
 <head profile="<?php print $grddl_profile; ?>">
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
-  <meta name="keywords" content="cleveland,garden,walk,tour,community,urban,market,reimagining,flower,vegetable,neighborhood,harvard,lee,miles,hough,tremont,detroit,shoreway,glenville,old,brooklyn,centre,ohio,city,slavic,village,st,clair,superior,tremont" />
-  <meta name="description" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more -- on June 22nd & 23rd, 2013 -- in neighborhoods of Cleveland, Ohio. Neighborhoods selected for 2012 are: Brooklyn Centre, Detroit Shoreway, Glenville, Hough, Lee Harvard Miles, Ohio City, Old Brooklyn, Slavic Village, St. Clair Superior, and Tremont." />
-  <meta name="abstract" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more -- on June 22nd & 23rd, 2013 -- in neighborhoods of Cleveland, Ohio." />
+  <meta name="keywords" content="cleveland,garden,walk,tour,community,urban,market,reimagining,flower,vegetable,neighborhood,tremont,ohio,city,tremont,larchmere,detroit,shoreway,glenville,old,brooklyn,centre,harvard,lee,miles,hough,slavic,village,st,clair,superior" />
+  <meta name="description" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more -- on July 12th and 13th, 2014 -- in neighborhoods of Cleveland, Ohio. Neighborhoods selected for 2014 are: Larchmere, Slavic Village, Old Brooklyn, Hough, Detroit Superior, St. Clair Superior, Glenville, and Tremont." />
+  <meta name="abstract" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more -- on July 12th and 13th, 2014 -- in neighborhoods of Cleveland, Ohio." />
   <?php print $styles; ?>
   <?php print $scripts; ?>
   <link rel="apple-touch-icon" sizes="57x57" href="/sites/all/themes/gardenwalk/images/apple-touch-icon-57.png" />
