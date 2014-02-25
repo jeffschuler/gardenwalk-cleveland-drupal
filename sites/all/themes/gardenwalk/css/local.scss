@@ -927,3 +927,17 @@ fieldset#edit-agreement {
 #mailchimp-subscribe .list-selection {
   margin-bottom: 1em;
 }
+
+
+/* Garden application form
+--------------------- */
+.page-node-add-garden {
+  &.not-logged-in {
+    .vertical-tabs {
+      display: none;
+    }
+    .group-main .vertical-tabs {
+      display: block;
+    }
+  }
+}
