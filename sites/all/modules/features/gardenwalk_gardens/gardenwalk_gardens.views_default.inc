@@ -1426,6 +1426,11 @@ function gardenwalk_gardens_views_default_views() {
     'urban_farm' => 'urban_farm',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Email (field_gardener_email) */
+  $handler->display->display_options['filters']['field_gardener_email_email']['id'] = 'field_gardener_email_email';
+  $handler->display->display_options['filters']['field_gardener_email_email']['table'] = 'field_data_field_gardener_email';
+  $handler->display->display_options['filters']['field_gardener_email_email']['field'] = 'field_gardener_email_email';
+  $handler->display->display_options['filters']['field_gardener_email_email']['operator'] = 'not empty';
   $handler->display->display_options['path'] = 'gardeners-export-all.xls';
   $handler->display->display_options['sitename_title'] = 0;
 
