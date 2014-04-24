@@ -31,6 +31,14 @@ $meta: "ff-meta-web-pro-1", "Helvetica Neue", Helvetica, Verdana, Arial, sans-se
 $museo: "museo-1", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
 $georgia: Georgia, "Times New Roman", Times, serif;
 
+@mixin transparent-bg($color, $opacity) {
+  $rgba: rgba($color, $opacity);
+  $ie-hex-str: ie-hex-str($rgba);
+  background-image: none !important;
+  background-color: transparent !important;
+  background-color: $rgba !important;
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#{$ie-hex-str},endColorstr=#{$ie-hex-str});
+}
 
 /* Footer Stick to Bottom
 -------------------------------------------------------------- */
@@ -55,7 +63,7 @@ html, body {
 /* General
 -------------------------------------------------------------- */
 body {
-  background: $khaki url('../images/page-bg-edges.png') repeat-y top center;
+  background: $khaki url('../images/page-bg-paper.png') repeat top center;
   font-family: $meta;
   color: $brown_darker;
 }
@@ -94,7 +102,7 @@ form input.form-submit {
 /* Header Top
 -------------------------------------------------------------- */
 #header-top-wrapper {
-  background-color: $tan;
+  @include transparent-bg(#FFF, .5);
 }
 #header-top {
   height: 35px;
@@ -231,7 +239,6 @@ form input.form-submit {
 /* Header
 -------------------------------------------------------------- */
 #header-group {
-  background: $white url('../images/dot-border-horiz-tan.png') no-repeat bottom center;
   padding-bottom: 15px;
 }
 #header-site-info {
@@ -278,9 +285,6 @@ form input.form-submit {
   padding: 0 10px;
 }
 #block-menu_block-2 li a {
-  height: 150px;
-  width: 120px;
-  background: transparent url('../images/menu-pot.png') no-repeat 50% bottom;
   display: block;
   text-align: center;
 }
@@ -290,10 +294,7 @@ form input.form-submit {
   font-size: 18px;
 }
 #block-menu_block-2 li a .description {
-  margin-top: 10px;
-  font-family: $georgia;
-  font-style: italic;
-  font-size: .9em;
+  display: none; // TODO: remove
 }
 #block-menu_block-2 li a a,
 #block-menu_block-2 li a:link,
@@ -367,7 +368,6 @@ form input.form-submit {
 /* Main
 -------------------------------------------------------------- */
 #main {
-  background-color: $white;
   margin-bottom: 40px;
 }
 #main a,
@@ -605,7 +605,6 @@ form input.form-submit {
 -------------------------------------------------------------- */
 .panel-3col-33-stacked .panel-col-top .inside {
   padding-bottom: 20px;
-  background: $white url('../images/dot-border-horiz-tan.png') no-repeat bottom center;
 }
 
 
