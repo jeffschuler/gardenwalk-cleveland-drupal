@@ -290,14 +290,9 @@ h1#site-name {
   text-align: center;
   padding: 10px 15px;
   @include transparent-bg(#FFF, .5);
-}
-#block-menu_block-2 li a .title {
   font-family: $museo;
   font-weight: 500;
   font-size: 18px;
-}
-#block-menu_block-2 li a .description {
-  display: none; // @TODO: remove
 }
 #block-menu_block-2 li a a,
 #block-menu_block-2 li a:link,

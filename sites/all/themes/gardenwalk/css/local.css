@@ -233,15 +233,10 @@ h1#site-name {
   background-image: none !important;
   background-color: transparent !important;
   background-color: rgba(255, 255, 255, 0.5) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF); }
-
-#block-menu_block-2 li a .title {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF);
   font-family: "museo-1", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
   font-weight: 500;
   font-size: 18px; }
-
-#block-menu_block-2 li a .description {
-  display: none; }
 
 #block-menu_block-2 li a a,
 #block-menu_block-2 li a:link,
