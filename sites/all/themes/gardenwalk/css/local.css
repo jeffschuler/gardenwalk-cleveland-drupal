@@ -19,7 +19,7 @@ html, body {
 /* General
 -------------------------------------------------------------- */
 body {
-  background: #f2ece9 url("../images/page-bg-edges.png") repeat-y top center;
+  background: #ececec url("../images/page-bg-paper.png") repeat top center;
   font-family: "ff-meta-web-pro-1", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
   color: #57504d; }
 
@@ -54,7 +54,10 @@ form input.form-submit {
 /* Header Top
 -------------------------------------------------------------- */
 #header-top-wrapper {
-  background-color: #d3cccb; }
+  background-image: none !important;
+  background-color: transparent !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF); }
 
 #header-top {
   height: 35px; }
@@ -101,7 +104,7 @@ form input.form-submit {
   vertical-align: top; }
 
 #edit-search-block-form--2 {
-  height: 13px; }
+  height: 15px; }
 
 #block-search-form input.form-submit {
   background: #a3c6b1;
@@ -182,58 +185,55 @@ form input.form-submit {
 
 /* Header
 -------------------------------------------------------------- */
-#header-group {
-  background: white url("../images/dot-border-horiz-tan.png") no-repeat bottom center;
-  padding-bottom: 15px; }
-
 #header-site-info {
-  width: 480px;
   margin-bottom: 0; }
 
 #header-group-inner {
-  padding-top: 35px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
   position: relative; }
 
-#header-group .block .inner {
+h1#site-name {
   margin: 0; }
+  h1#site-name a {
+    background: transparent url("../images/gwc-logo.png") no-repeat left top;
+    height: 0;
+    padding-top: 144px;
+    display: block;
+    overflow: hidden;
+    width: 300px;
+    z-index: 0;
+    /* lower than [under] date banner #block-block-1 */ }
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      h1#site-name a {
+        background-image: url("../images/gwc-logo@2x.png");
+        background-size: 300px 144px; } }
 
-#site-name-wrapper {
-  float: right; }
-
-#site-name a {
-  background: transparent url("../images/gardenwalk-header-logo-trans.gif") no-repeat left top;
-  height: 0;
-  padding-top: 202px;
-  display: block;
-  overflow: hidden;
-  width: 409px;
-  z-index: 0;
-  /* lower than [under] date banner #block-block-1 */ }
-
-/* Main (Flowerpots) Menu
+/* Main Menu
 --------------------- */
 #block-menu_block-2 {
   margin-bottom: 0;
   position: absolute;
   bottom: 0;
-  right: 20px; }
+  left: 320px; }
 
 #block-menu_block-2 ul {
-  margin-left: 40px; }
+  margin-left: 0; }
 
 #block-menu_block-2 li {
   list-style-type: none;
   list-style-image: none;
   float: left;
-  padding: 0 10px; }
+  margin-right: 15px; }
 
 #block-menu_block-2 li a {
-  height: 150px;
-  width: 120px;
-  background: transparent url("../images/menu-pot.png") no-repeat 50% bottom;
   display: block;
-  text-align: center; }
+  text-align: center;
+  padding: 10px 15px;
+  background-image: none !important;
+  background-color: transparent !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF); }
 
 #block-menu_block-2 li a .title {
   font-family: "museo-1", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
@@ -241,10 +241,7 @@ form input.form-submit {
   font-size: 18px; }
 
 #block-menu_block-2 li a .description {
-  margin-top: 10px;
-  font-family: Georgia, "Times New Roman", Times, serif;
-  font-style: italic;
-  font-size: .9em; }
+  display: none; }
 
 #block-menu_block-2 li a a,
 #block-menu_block-2 li a:link,
@@ -255,18 +252,11 @@ form input.form-submit {
 #block-menu_block-2 li a:focus,
 #block-menu_block-2 li a:active {
   color: #f15b2a;
-  text-decoration: none;
-  background-image: url("../images/menu-pot-hover.png"); }
-
-#block-menu_block-2 li a:hover .description,
-#block-menu_block-2 li a:focus .description,
-#block-menu_block-2 li a:active .description {
-  color: #059347; }
+  text-decoration: none; }
 
 #block-menu_block-2 li a.active,
 #block-menu_block-2 li a.active-trail {
-  color: #615fc1;
-  background-image: url("../images/menu-pot-active.png"); }
+  color: #615fc1; }
 
 /* Secondary Menu
 --------------------- */
@@ -308,12 +298,16 @@ form input.form-submit {
   display: inline; }
 
 #main-menu-wrapper ul ul li {
-  background-color: #f2ece9; }
+  background-color: #ececec; }
+
+/* Drupal misc
+-------------------------------------------------------------- */
+#content-messages {
+  margin-bottom: 0; }
 
 /* Main
 -------------------------------------------------------------- */
 #main {
-  background-color: white;
   margin-bottom: 40px; }
 
 #main a,
@@ -452,7 +446,7 @@ form input.form-submit {
   list-style-type: none; }
 
 #main .view-id-gardens.view-display-id-block_1 li.views-row-even {
-  background-color: #f2ece9; }
+  background-color: #ececec; }
 
 /* Gardener Stories Pane (Front Page)
 -------------------------------------------------------------- */
@@ -530,8 +524,7 @@ form input.form-submit {
 /* Image Rotator (Front Page)
 -------------------------------------------------------------- */
 .panel-3col-33-stacked .panel-col-top .inside {
-  padding-bottom: 20px;
-  background: white url("../images/dot-border-horiz-tan.png") no-repeat bottom center; }
+  padding-bottom: 20px; }
 
 /* Sponsors Page
 -------------------------------------------------------------- */
@@ -694,7 +687,7 @@ div.vertical-tabs-processed {
   border: none; }
 
 .vertical-tabs ul.vertical-tabs-list li {
-  background-color: #f2ece9; }
+  background-color: #ececec; }
 
 .vertical-tabs ul.vertical-tabs-list,
 .vertical-tabs ul.vertical-tabs-list li,
@@ -716,7 +709,7 @@ fieldset {
   border: 1px solid #d3cccb; }
 
 fieldset#edit-agreement {
-  background-color: #f2ece9; }
+  background-color: #ececec; }
 
 .marker, .form-required {
   color: #d31245; }
