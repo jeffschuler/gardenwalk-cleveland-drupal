@@ -151,7 +151,7 @@ form input.form-submit {
   vertical-align: top;
 }
 #edit-search-block-form--2 {
-  height: 13px;
+  height: 15px;
 }
 #block-search-form input.form-submit {
   background: $ltgreen;
@@ -235,39 +235,39 @@ form input.form-submit {
 }
 
 
-
 /* Header
 -------------------------------------------------------------- */
 #header-group {
-  padding-bottom: 15px;
 }
 #header-site-info {
-  width: 480px;
   margin-bottom: 0;
 }
 #header-group-inner {
-  padding-top: 35px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
   position: relative;
 }
-#header-group .block .inner {
+h1#site-name {
+  $logo_width: 300px;
+  $logo_height: 144px;
   margin: 0;
-}
-#site-name-wrapper {
-  float: right;
-}
-#site-name a {
-  background: transparent url('../images/gardenwalk-header-logo-trans.gif') no-repeat left top;
-  height: 0;
-  padding-top: 202px;
-  display: block;
-  overflow: hidden;
-  width: 409px;
-  z-index: 0; /* lower than [under] date banner #block-block-1 */
+  a {
+    background: transparent url('../images/gwc-logo.png') no-repeat left top;
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      background-image: url('../images/gwc-logo@2x.png');
+      background-size: $logo_width $logo_height;
+    }
+    height: 0;
+    padding-top: $logo_height;
+    display: block;
+    overflow: hidden;
+    width: $logo_width;
+    z-index: 0; /* lower than [under] date banner #block-block-1 */
+  }
 }
 
 
-/* Main (Flowerpots) Menu
+/* Main Menu
 --------------------- */
 #block-menu_block-2 {
   margin-bottom: 0;
@@ -276,17 +276,19 @@ form input.form-submit {
   right: 20px;
 }
 #block-menu_block-2 ul {
-  margin-left: 40px;
+  margin-left: 0;
 }
 #block-menu_block-2 li {
   list-style-type: none;
   list-style-image: none;
   float: left;
-  padding: 0 10px;
+  margin-right: 15px;
 }
 #block-menu_block-2 li a {
   display: block;
   text-align: center;
+  padding: 10px 15px;
+  @include transparent-bg(#FFF, .5);
 }
 #block-menu_block-2 li a .title {
   font-family: $museo;
@@ -294,7 +296,7 @@ form input.form-submit {
   font-size: 18px;
 }
 #block-menu_block-2 li a .description {
-  display: none; // TODO: remove
+  display: none; // @TODO: remove
 }
 #block-menu_block-2 li a a,
 #block-menu_block-2 li a:link,
@@ -306,17 +308,10 @@ form input.form-submit {
 #block-menu_block-2 li a:active {
   color: $orange;
   text-decoration: none;
-  background-image: url('../images/menu-pot-hover.png');
 }
-#block-menu_block-2 li a:hover .description,
-#block-menu_block-2 li a:focus .description,
-#block-menu_block-2 li a:active .description {
-  color: $green;
-}
-#block-menu_block-2 li a.active, 
+#block-menu_block-2 li a.active,
 #block-menu_block-2 li a.active-trail {
   color: $purple;
-  background-image: url('../images/menu-pot-active.png');
 }
 
 
@@ -364,6 +359,14 @@ form input.form-submit {
 #main-menu-wrapper ul ul li {
   background-color: $khaki;
 }
+
+
+/* Drupal misc
+-------------------------------------------------------------- */
+#content-messages {
+  margin-bottom: 0;
+}
+
 
 /* Main
 -------------------------------------------------------------- */
