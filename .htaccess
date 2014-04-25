@@ -104,8 +104,8 @@ DirectoryIndex index.php index.html index.htm
 
    # Rewrite .net and .com to .org
    RewriteCond %{HTTP_HOST} ^(www\.)?gardenwalkcleveland\.(net|com)$ [NC,OR]
-   # Rewrite dev.gardenwalk.* to www.gardenwalk.org
-   RewriteCond %{HTTP_HOST} ^dev\.gardenwalkcleveland\.(org|net|com)$ [NC,OR]
+   ## Rewrite dev.gardenwalk.* to www.gardenwalk.org
+   #RewriteCond %{HTTP_HOST} ^dev\.gardenwalkcleveland\.(org|net|com)$ [NC,OR]
    # Rewrite gardenwalk.org to www.gardenwalk.org
    RewriteCond %{HTTP_HOST} ^gardenwalkcleveland\.org$ [NC]
    RewriteRule ^(.*)$ http://www.gardenwalkcleveland.org/$1 [L,R=301]
