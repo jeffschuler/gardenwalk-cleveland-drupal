@@ -6,7 +6,7 @@
     <div id="header-group-wrapper" class="header-group-wrapper full-width clearfix">
       <div id="header-group" class="header-group region <?php print $grid_width; ?>">
         <div id="header-group-inner" class="header-group-inner inner clearfix">
-          <div id="header-site-info" class="header-site-info block grid12-6">
+          <div id="header-site-info" class="header-site-info block grid12-4">
             <div id="header-site-info-inner" class="header-site-info-inner gutter">
               <div id="site-name-wrapper" class="clearfix">
                 <?php if ($title): ?>
