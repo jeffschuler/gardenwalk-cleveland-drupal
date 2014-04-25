@@ -1,6 +1,7 @@
 $brown: #726965;
 $brown_darker: darken($brown, 10%);
 $khaki: #F2ECE9;
+$grey: #ECECEC;
 $tan: #D3CCCB;
 $purple: #615FC1;
 $orange: #F15B2A;
@@ -63,7 +64,7 @@ html, body {
 /* General
 -------------------------------------------------------------- */
 body {
-  background: $khaki url('../images/page-bg-paper.png') repeat top center;
+  background: $grey url('../images/page-bg-paper.png') repeat top center;
   font-family: $meta;
   color: $brown_darker;
 }
@@ -273,7 +274,7 @@ h1#site-name {
   margin-bottom: 0;
   position: absolute;
   bottom: 0;
-  right: 20px;
+  left: 320px;
 }
 #block-menu_block-2 ul {
   margin-left: 0;
@@ -357,7 +358,7 @@ h1#site-name {
   display: inline;
 }
 #main-menu-wrapper ul ul li {
-  background-color: $khaki;
+  background-color: $grey;
 }
 
 
@@ -518,7 +519,7 @@ h1#site-name {
   list-style-type: none;
 }
 #main .view-id-gardens.view-display-id-block_1 li.views-row-even {
-  background-color: $khaki;
+  background-color: $grey;
 }
 
 
@@ -795,7 +796,7 @@ div.vertical-tabs-processed {
   border: none;
 }
 .vertical-tabs ul.vertical-tabs-list li {
-  background-color: $khaki;
+  background-color: $grey;
 }
 .vertical-tabs ul.vertical-tabs-list,
 .vertical-tabs ul.vertical-tabs-list li,
@@ -815,7 +816,7 @@ fieldset {
   border: 1px solid $tan;
 }
 fieldset#edit-agreement {
-  background-color: $khaki;
+  background-color: $grey;
 }
 .marker, .form-required {
   color: $red;

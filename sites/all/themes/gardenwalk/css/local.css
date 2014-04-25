@@ -19,7 +19,7 @@ html, body {
 /* General
 -------------------------------------------------------------- */
 body {
-  background: #f2ece9 url("../images/page-bg-paper.png") repeat top center;
+  background: #ececec url("../images/page-bg-paper.png") repeat top center;
   font-family: "ff-meta-web-pro-1", "Helvetica Neue", Helvetica, Verdana, Arial, sans-serif;
   color: #57504d; }
 
@@ -215,7 +215,7 @@ h1#site-name {
   margin-bottom: 0;
   position: absolute;
   bottom: 0;
-  right: 20px; }
+  left: 320px; }
 
 #block-menu_block-2 ul {
   margin-left: 0; }
@@ -298,7 +298,7 @@ h1#site-name {
   display: inline; }
 
 #main-menu-wrapper ul ul li {
-  background-color: #f2ece9; }
+  background-color: #ececec; }
 
 /* Drupal misc
 -------------------------------------------------------------- */
@@ -446,7 +446,7 @@ h1#site-name {
   list-style-type: none; }
 
 #main .view-id-gardens.view-display-id-block_1 li.views-row-even {
-  background-color: #f2ece9; }
+  background-color: #ececec; }
 
 /* Gardener Stories Pane (Front Page)
 -------------------------------------------------------------- */
@@ -687,7 +687,7 @@ div.vertical-tabs-processed {
   border: none; }
 
 .vertical-tabs ul.vertical-tabs-list li {
-  background-color: #f2ece9; }
+  background-color: #ececec; }
 
 .vertical-tabs ul.vertical-tabs-list,
 .vertical-tabs ul.vertical-tabs-list li,
@@ -709,7 +709,7 @@ fieldset {
   border: 1px solid #d3cccb; }
 
 fieldset#edit-agreement {
-  background-color: #f2ece9; }
+  background-color: #ececec; }
 
 .marker, .form-required {
   color: #d31245; }
