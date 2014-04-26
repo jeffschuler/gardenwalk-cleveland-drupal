@@ -226,7 +226,7 @@ h1#site-name {
     #block-menu_block-2 li a {
       display: block;
       text-align: center;
-      padding: 10px 15px;
+      padding: 10px 15px 10px 8px;
       background-image: none !important;
       background-color: transparent !important;
       background-color: rgba(255, 255, 255, 0.5) !important;
@@ -235,13 +235,23 @@ h1#site-name {
       font-weight: 500;
       font-size: 18px;
       color: #726965; }
+      #block-menu_block-2 li a::before {
+        content: "\2022\A0"; }
       #block-menu_block-2 li a:link, #block-menu_block-2 li a:visited {
         color: #726965; }
-      #block-menu_block-2 li a:hover, #block-menu_block-2 li a:focus, #block-menu_block-2 li a:active {
+      #block-menu_block-2 li a:hover, #block-menu_block-2 li a:focus {
         color: #f15b2a;
-        text-decoration: none; }
-      #block-menu_block-2 li a.active, #block-menu_block-2 li a.active-trail {
-        color: #615fc1; }
+        text-decoration: none;
+        background-image: none !important;
+        background-color: transparent !important;
+        background-color: rgba(255, 255, 255, 0.75) !important;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#BFFFFFFF,endColorstr=#BFFFFFFF); }
+      #block-menu_block-2 li a.active, #block-menu_block-2 li a.active-trail, #block-menu_block-2 li a:active {
+        color: #615fc1;
+        background-image: none !important;
+        background-color: transparent !important;
+        background-color: rgba(255, 255, 255, 0.75) !important;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#BFFFFFFF,endColorstr=#BFFFFFFF); }
 
 /* Secondary Menu
 --------------------- */

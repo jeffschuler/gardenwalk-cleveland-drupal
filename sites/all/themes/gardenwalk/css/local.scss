@@ -286,25 +286,30 @@ h1#site-name {
     a {
       display: block;
       text-align: center;
-      padding: 10px 15px;
+      padding: 10px 15px 10px 8px;
       @include transparent-bg(#FFF, .5);
       font-family: $museo;
       font-weight: 500;
       font-size: 18px;
       color: $brown;
+      &::before {
+        content: "\2022\A0";
+      }
       &:link,
       &:visited {
         color: $brown;
       }
       &:hover,
-      &:focus,
-      &:active {
+      &:focus {
         color: $orange;
         text-decoration: none;
+        @include transparent-bg(#FFF, .75);
       }
       &.active,
-      &.active-trail {
+      &.active-trail,
+      &:active {
         color: $purple;
+        @include transparent-bg(#FFF, .75);
       }
     }
   }
