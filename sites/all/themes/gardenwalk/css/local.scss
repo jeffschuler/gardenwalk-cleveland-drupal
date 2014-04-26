@@ -223,7 +223,7 @@ form input.form-submit {
   height: 27px;
 }
 #block-block-1 .year {
-  font-weight: 700;
+  font-weight: 500;
   font-size: 28px;
   width: 87px;
   background-color: $ltgreen;
@@ -289,7 +289,7 @@ h1#site-name {
       padding: 10px 15px 10px 8px;
       @include transparent-bg(#FFF, .5);
       font-family: $museo;
-      font-weight: 500;
+      font-weight: 300;
       font-size: 18px;
       color: $brown;
       &::before {
