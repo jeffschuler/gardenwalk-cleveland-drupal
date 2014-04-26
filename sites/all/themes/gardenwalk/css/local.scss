@@ -275,44 +275,44 @@ h1#site-name {
   position: absolute;
   bottom: 0;
   left: 320px;
-}
-#block-menu_block-2 ul {
-  margin-left: 0;
-}
-#block-menu_block-2 li {
-  list-style-type: none;
-  list-style-image: none;
-  float: left;
-  margin-right: 15px;
-}
-#block-menu_block-2 li a {
-  display: block;
-  text-align: center;
-  padding: 10px 15px;
-  @include transparent-bg(#FFF, .5);
-}
-#block-menu_block-2 li a .title {
-  font-family: $museo;
-  font-weight: 500;
-  font-size: 18px;
-}
-#block-menu_block-2 li a .description {
-  display: none; // @TODO: remove
-}
-#block-menu_block-2 li a a,
-#block-menu_block-2 li a:link,
-#block-menu_block-2 li a:visited {
-  color: $brown;
-}
-#block-menu_block-2 li a:hover,
-#block-menu_block-2 li a:focus,
-#block-menu_block-2 li a:active {
-  color: $orange;
-  text-decoration: none;
-}
-#block-menu_block-2 li a.active,
-#block-menu_block-2 li a.active-trail {
-  color: $purple;
+  ul {
+    margin-left: 0;
+  }
+  li {
+    list-style-type: none;
+    list-style-image: none;
+    float: left;
+    margin-right: 15px;
+    a {
+      display: block;
+      text-align: center;
+      padding: 10px 15px 10px 8px;
+      @include transparent-bg(#FFF, .5);
+      font-family: $museo;
+      font-weight: 500;
+      font-size: 18px;
+      color: $brown;
+      &::before {
+        content: "\2022\A0";
+      }
+      &:link,
+      &:visited {
+        color: $brown;
+      }
+      &:hover,
+      &:focus {
+        color: $orange;
+        text-decoration: none;
+        @include transparent-bg(#FFF, .75);
+      }
+      &.active,
+      &.active-trail,
+      &:active {
+        color: $purple;
+        @include transparent-bg(#FFF, .75);
+      }
+    }
+  }
 }
 
 
