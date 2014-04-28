@@ -336,7 +336,7 @@ form input.form-submit {
   padding: 10px 0 16px;
 }
 #main-menu ul.menu li ul {
-  padding: 10px 0;
+  padding: 13px 0;
 }
 #main-menu ul.menu li li a {
   padding: 5px 0;
@@ -348,7 +348,7 @@ form input.form-submit {
 }
 #main-menu ul.menu li a:active,
 #main-menu ul.menu li a:hover {
-  color: $orange;  
+  color: $orange;
 }
 #main-menu ul.menu li a.active,
 #main-menu ul.menu li a.active-trail {
@@ -358,7 +358,7 @@ form input.form-submit {
   display: inline;
 }
 #main-menu-wrapper ul ul li {
-  background-color: $grey;
+  @include transparent-bg(#FFF, .5);
 }
 
 
