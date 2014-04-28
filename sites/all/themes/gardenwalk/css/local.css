@@ -271,7 +271,7 @@ form input.form-submit {
   padding: 10px 0 16px; }
 
 #main-menu ul.menu li ul {
-  padding: 10px 0; }
+  padding: 13px 0; }
 
 #main-menu ul.menu li li a {
   padding: 5px 0; }
@@ -293,7 +293,10 @@ form input.form-submit {
   display: inline; }
 
 #main-menu-wrapper ul ul li {
-  background-color: #ececec; }
+  background-image: none !important;
+  background-color: transparent !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF); }
 
 /* Drupal misc
 -------------------------------------------------------------- */
