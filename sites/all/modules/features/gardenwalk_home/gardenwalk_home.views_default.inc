@@ -75,7 +75,7 @@ function gardenwalk_home_views_default_views() {
   $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
     'image_rotator_queue' => 'image_rotator_queue',
   );
-  /* Field: Content: Logo */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
   $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
   $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
