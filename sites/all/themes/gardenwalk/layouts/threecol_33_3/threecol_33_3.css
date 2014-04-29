@@ -1,0 +1,38 @@
+.panel-3col-33-3 .panel-row-top {
+}
+.panel-3col-33-3 .panel-row-top .panel-col-first {
+  float: left;
+  width: 33%;
+}
+.panel-3col-33-3 .panel-row-top .panel-col-last {
+  float: left;
+  width: 66%;
+}
+
+
+.panel-3col-33-3 .panel-row-bottom {
+  margin-top: 40px;
+}
+.panel-3col-33-3 .panel-row-bottom .panel-panel {
+}
+
+
+.panel-3col-33-3 .panel-panel .inside {
+}
+.panel-3col-33-3 .panel-col-first .inside {
+  float: left;
+  width: 33%;
+}
+.panel-3col-33-3 .panel-col .inside {
+  float: left;
+  width: 33%;
+}
+.panel-3col-33-3 .panel-col-last .inside {
+  float: left;
+  width: 33%;
+}
+
+.panel-3col-33-3 .panel-panel .inside .panel-pane {
+  margin-left: 10px;
+  margin-right: 10px;
+}
