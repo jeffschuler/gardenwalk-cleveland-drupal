@@ -233,7 +233,7 @@ form input.form-submit {
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80FFFFFF,endColorstr=#80FFFFFF);
       font-family: "museo-1", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
       font-weight: 300;
-      font-size: 18px;
+      font-size: 16pt;
       color: #726965; }
       #block-menu_block-2 li a::before {
         content: "\2022\A0"; }
