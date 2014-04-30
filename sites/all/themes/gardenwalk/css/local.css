@@ -329,45 +329,55 @@ form input.form-submit {
   color: #615fc1; }
 .page-home #main h2 a:hover {
   color: #aa320b; }
-.page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first {
+.page-home #main .panel-3col-33-3 .panel-row-top {
   background-image: none !important;
   background-color: transparent !important;
   background-color: rgba(55, 157, 193, 0.5) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80379DC1,endColorstr=#80379DC1);
-  text-align: center;
-  color: white; }
-  .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside {
-    width: 100%;
-    height: 430px; }
-    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane {
-      margin: 10px;
-      height: 410px;
-      border: 1px solid white; }
-  .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content {
-    padding: 20px; }
-  .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h1, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h2, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h3, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h4, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h5, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h6,
-  .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a:link, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a:visited {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80379DC1,endColorstr=#80379DC1); }
+  .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first {
+    text-align: center;
     color: white; }
-  .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first hr {
-    background-color: white;
-    color: white;
-    width: 50%;
-    border: none;
-    margin: 0 auto; }
-  .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h1 {
-    font-weight: 700;
-    font-size: 26pt;
-    margin: 0; }
-  .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h3 {
-    font-weight: 300;
-    font-size: 18pt;
-    margin-top: 0;
-    margin-bottom: 20px; }
-  .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h4 {
-    font-weight: 300;
-    font-size: 16pt;
-    margin: 20px 0;
-    text-align: justify; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside {
+      width: 100%;
+      height: 430px; }
+      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane {
+        margin: 10px 0 10px 10px;
+        height: 410px;
+        border: 1px solid white; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content {
+      padding: 20px; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h1, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h2, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h3, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h4, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h5, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h6,
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a:link, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a:visited {
+      color: white; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first hr {
+      background-color: white;
+      color: white;
+      width: 50%;
+      border: none;
+      margin: 0 auto; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h1 {
+      font-weight: 700;
+      font-size: 26pt;
+      margin: 0; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h3 {
+      font-weight: 300;
+      font-size: 18pt;
+      margin-top: 0;
+      margin-bottom: 20px; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h4 {
+      font-weight: 300;
+      font-size: 16pt;
+      margin: 20px 0;
+      text-align: justify; }
+
+#views_slideshow_cycle_main_image_rotator-block_1 #views_slideshow_cycle_teaser_section_image_rotator-block_1 {
+  height: 430px; }
+
+/* Image Rotator (Front Page)
+-------------------------------------------------------------- */
+.panel-3col-33-stacked .panel-col-top .inside {
+  padding-bottom: 20px;
+  background: transparent url("../images/dot-divider-horiz-grey.png") no-repeat bottom center; }
 
 /* Footer
 -------------------------------------------------------------- */
@@ -558,12 +568,6 @@ form input.form-submit {
 
 .panel-3col-33-stacked .panel-col-last .inside {
   margin: 0 -10px 10px 20px; }
-
-/* Image Rotator (Front Page)
--------------------------------------------------------------- */
-.panel-3col-33-stacked .panel-col-top .inside {
-  padding-bottom: 20px;
-  background: transparent url("../images/dot-divider-horiz-grey.png") no-repeat bottom center; }
 
 /* Sponsors Page
 -------------------------------------------------------------- */
