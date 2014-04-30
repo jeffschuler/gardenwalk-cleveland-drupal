@@ -34,6 +34,7 @@ function gardenwalk_home_image_default_styles() {
   // Exported image style: home_slider.
   $styles['home_slider'] = array(
     'name' => 'home_slider',
+    'label' => 'home_slider',
     'effects' => array(
       9 => array(
         'label' => 'Scale and crop',
@@ -56,6 +57,7 @@ function gardenwalk_home_image_default_styles() {
   // Exported image style: rotator.
   $styles['rotator'] = array(
     'name' => 'rotator',
+    'label' => 'rotator',
     'effects' => array(
       3 => array(
         'label' => 'Scale and crop',
