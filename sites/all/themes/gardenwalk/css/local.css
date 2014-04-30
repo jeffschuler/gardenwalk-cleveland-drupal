@@ -370,14 +370,54 @@ form input.form-submit {
       margin: 20px 0;
       text-align: justify; }
 
+/* Image Slider/Rotator (Home Page)
+-------------------------------------------------------------- */
 #views_slideshow_cycle_main_image_rotator-block_1 #views_slideshow_cycle_teaser_section_image_rotator-block_1 {
   height: 430px; }
 
-/* Image Rotator (Front Page)
--------------------------------------------------------------- */
 .panel-3col-33-stacked .panel-col-top .inside {
-  padding-bottom: 20px;
-  background: transparent url("../images/dot-divider-horiz-grey.png") no-repeat bottom center; }
+  padding-bottom: 20px; }
+
+/* How-To Steps (Home Page)
+-------------------------------------------------------------- */
+#howto-steps {
+  padding-top: 40px;
+  margin-top: 20px;
+  background: transparent url("../images/dot-divider-horiz-grey.png") no-repeat top center; }
+  #howto-steps .step {
+    display: inline-block;
+    width: 226px;
+    vertical-align: top;
+    text-align: center;
+    color: #636466; }
+    #howto-steps .step.last {
+      float: right; }
+    #howto-steps .step .icon-bg {
+      background: transparent url("../images/howto-steps-bg.png") no-repeat top center;
+      height: 152px;
+      width: 152px;
+      margin: 0 auto;
+      position: relative; }
+    #howto-steps .step .icon {
+      background: transparent url("../images/howto-steps-icons.png") no-repeat top center;
+      height: 72px;
+      position: relative;
+      top: 35px;
+      left: 38px; }
+      #howto-steps .step .icon.guide {
+        background-position: 0px 0px;
+        width: 77px; }
+      #howto-steps .step .icon.neighborhood {
+        background-position: -77px 0px;
+        width: 76px; }
+      #howto-steps .step .icon.headquarters {
+        background-position: -153px 0px;
+        width: 75px; }
+      #howto-steps .step .icon.explore {
+        background-position: -228px 0px;
+        width: 57px; }
+    #howto-steps .step h2 {
+      color: #636466; }
 
 /* Footer
 -------------------------------------------------------------- */
