@@ -63,6 +63,7 @@ function gardenwalk_home_default_page_manager_pages() {
       'botleft' => NULL,
       'botmid' => NULL,
       'botright' => NULL,
+      'mid' => NULL,
     ),
   );
   $display->cache = array();
@@ -233,6 +234,30 @@ function gardenwalk_home_default_page_manager_pages() {
     $display->panels['botright'][1] = 'new-7';
     $pane = new stdClass();
     $pane->pid = 'new-8';
+    $pane->panel = 'mid';
+    $pane->type = 'block';
+    $pane->subtype = 'block-5';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '<none>',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'howto-steps',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-8'] = $pane;
+    $display->panels['mid'][0] = 'new-8';
+    $pane = new stdClass();
+    $pane->pid = 'new-9';
     $pane->panel = 'topleft';
     $pane->type = 'block';
     $pane->subtype = 'block-4';
@@ -250,10 +275,10 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['topleft'][0] = 'new-8';
+    $display->content['new-9'] = $pane;
+    $display->panels['topleft'][0] = 'new-9';
     $pane = new stdClass();
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-10';
     $pane->panel = 'topright';
     $pane->type = 'block';
     $pane->subtype = 'views-image_rotator-block';
@@ -271,10 +296,10 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $display->content['new-9'] = $pane;
-    $display->panels['topright'][0] = 'new-9';
+    $display->content['new-10'] = $pane;
+    $display->panels['topright'][0] = 'new-10';
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-11';
     $pane->panel = 'topright';
     $pane->type = 'views';
     $pane->subtype = 'image_rotator';
@@ -304,8 +329,8 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['topright'][1] = 'new-10';
+    $display->content['new-11'] = $pane;
+    $display->panels['topright'][1] = 'new-11';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;
