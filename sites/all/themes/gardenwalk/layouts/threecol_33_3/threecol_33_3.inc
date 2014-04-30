@@ -13,6 +13,7 @@ $plugin = array(
   'regions' => array(
     'topleft' => t('Top left (33%)'),
     'topright' => t('Top right (66%)'),
+    'mid' => t('Middle (100%)'),
     'botleft' => t('Bottom left (33%)'),
     'botmid' => t('Bottom center (33%)'),
     'botright' => t('Bottom right (33%)'),

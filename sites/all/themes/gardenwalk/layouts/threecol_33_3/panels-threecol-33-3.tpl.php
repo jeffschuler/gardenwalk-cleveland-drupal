@@ -9,6 +9,12 @@
     </div>
   </div>
 
+  <div class="panel-row-middle clearfix">
+    <div class="panel-panel">
+      <div class="inside"><?php print $content['mid']; ?></div>
+    </div>
+  </div>
+
   <div class="panel-row-bottom clearfix">
     <div class="panel-panel panel-col-first">
       <div class="inside"><?php print $content['botleft']; ?></div>
