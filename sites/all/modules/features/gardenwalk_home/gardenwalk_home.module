@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the GardenWalk Home feature.
+ */
+
+include_once 'gardenwalk_home.features.inc';
