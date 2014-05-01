@@ -104,7 +104,11 @@ form input.form-submit {
 /* Header Top
 -------------------------------------------------------------- */
 #header-top-wrapper {
-  @include transparent-bg(#FFF, .5);
+  @include transparent-bg(#FFF, .15);
+  padding-bottom: 5px;
+}
+#header-top-wrapper-inner {
+  @include transparent-bg(#FFF, .4);
 }
 #header-top {
   height: 35px;
@@ -377,7 +381,7 @@ form input.form-submit {
 -------------------------------------------------------------- */
 .page-home {
   #header-group {
-    padding-bottom: none;
+    padding-bottom: 0;
     background: none;
   }
   #main {
