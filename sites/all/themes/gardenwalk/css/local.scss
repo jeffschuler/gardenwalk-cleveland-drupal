@@ -313,10 +313,11 @@ form input.form-submit {
         @include transparent-bg(#FFF, .75);
       }
     } // a
-    ul {
+    ul { // Sub-menu
       top: 40px;
       li {
         a {
+          font-size: 12pt;
           text-align: left;
           @include transparent-bg(#FFF, .8);
           &::before {
