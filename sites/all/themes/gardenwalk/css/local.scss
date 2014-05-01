@@ -240,14 +240,16 @@ form input.form-submit {
 /* Header
 -------------------------------------------------------------- */
 #header-group {
-}
-#header-site-info {
-  margin-bottom: 0;
+  padding-bottom: 20px;
+  background: transparent url('../images/dot-divider-horiz-grey.png') no-repeat bottom center;
 }
 #header-group-inner {
   margin-top: 10px;
   margin-bottom: 15px;
   position: relative;
+}
+#header-site-info {
+  margin-bottom: 0;
 }
 #site-name {
   $logo_width: 300px;
@@ -374,6 +376,10 @@ form input.form-submit {
 /* Home page
 -------------------------------------------------------------- */
 .page-home {
+  #header-group {
+    padding-bottom: none;
+    background: none;
+  }
   #main {
     h2 {
       a,
