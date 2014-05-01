@@ -276,51 +276,6 @@ form input.form-submit {
       #block-superfish-1 li ul li ul {
         top: 0; }
 
-/* Secondary Menu
---------------------- */
-#main-menu {
-  background: transparent url("../images/dot-divider-horiz-grey.png") no-repeat bottom center; }
-
-#main-menu-inner .block {
-  margin-bottom: 0; }
-
-#main-menu ul.menu {
-  margin: 0; }
-
-#main-menu ul.menu li {
-  padding: 0 10px 0; }
-
-#main-menu ul.menu li a {
-  padding: 10px 0 16px; }
-
-#main-menu ul.menu li ul {
-  padding: 13px 0; }
-
-#main-menu ul.menu li li a {
-  padding: 5px 0; }
-
-#main-menu ul.menu li a,
-#main-menu ul.menu li a:link,
-#main-menu ul.menu li a:visited {
-  color: #726965; }
-
-#main-menu ul.menu li a:active,
-#main-menu ul.menu li a:hover {
-  color: #f15b2a; }
-
-#main-menu ul.menu li a.active,
-#main-menu ul.menu li a.active-trail {
-  color: #615fc1; }
-
-#main-menu-wrapper ul ul {
-  display: inline; }
-
-#main-menu-wrapper ul ul li {
-  background-image: none !important;
-  background-color: transparent !important;
-  background-color: rgba(249, 249, 249, 0.95) !important;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#F2F9F9F9,endColorstr=#F2F9F9F9); }
-
 /* Drupal misc
 -------------------------------------------------------------- */
 #content-messages {
