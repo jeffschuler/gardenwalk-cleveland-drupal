@@ -255,6 +255,7 @@ form input.form-submit {
     #block-superfish-1 li ul {
       top: 40px; }
       #block-superfish-1 li ul li a {
+        font-size: 12pt;
         text-align: left;
         background-image: none !important;
         background-color: transparent !important;
