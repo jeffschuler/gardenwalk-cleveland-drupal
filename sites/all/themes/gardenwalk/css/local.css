@@ -209,21 +209,21 @@ form input.form-submit {
         background-image: url("../images/gwc-logo@2x.png");
         background-size: 300px 144px; } }
 
-/* Main Menu
+/* Main Menu (Superfish)
 --------------------- */
-#block-menu_block-2 {
+#block-superfish-1 {
   margin-bottom: 0;
   position: absolute;
   bottom: 0;
   left: 320px; }
-  #block-menu_block-2 ul {
+  #block-superfish-1 ul {
     margin-left: 0; }
-  #block-menu_block-2 li {
+  #block-superfish-1 li {
     list-style-type: none;
     list-style-image: none;
     float: left;
     margin-right: 15px; }
-    #block-menu_block-2 li a {
+    #block-superfish-1 li a {
       display: block;
       text-align: center;
       padding: 10px 15px 10px 8px;
@@ -235,23 +235,43 @@ form input.form-submit {
       font-weight: 300;
       font-size: 16pt;
       color: #726965; }
-      #block-menu_block-2 li a::before {
+      #block-superfish-1 li a::before {
         content: "\2022\A0"; }
-      #block-menu_block-2 li a:link, #block-menu_block-2 li a:visited {
+      #block-superfish-1 li a:link, #block-superfish-1 li a:visited {
         color: #726965; }
-      #block-menu_block-2 li a:hover, #block-menu_block-2 li a:focus {
+      #block-superfish-1 li a:hover, #block-superfish-1 li a:focus {
         color: #f15b2a;
         text-decoration: none;
         background-image: none !important;
         background-color: transparent !important;
         background-color: rgba(255, 255, 255, 0.75) !important;
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#BFFFFFFF,endColorstr=#BFFFFFFF); }
-      #block-menu_block-2 li a.active, #block-menu_block-2 li a.active-trail, #block-menu_block-2 li a:active {
-        color: #615fc1;
+      #block-superfish-1 li a.active, #block-superfish-1 li a.active-trail, #block-superfish-1 li a:active {
+        color: #059347;
         background-image: none !important;
         background-color: transparent !important;
         background-color: rgba(255, 255, 255, 0.75) !important;
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#BFFFFFFF,endColorstr=#BFFFFFFF); }
+    #block-superfish-1 li ul {
+      top: 40px; }
+      #block-superfish-1 li ul li a {
+        text-align: left;
+        background-image: none !important;
+        background-color: transparent !important;
+        background-color: rgba(255, 255, 255, 0.8) !important;
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#CCFFFFFF,endColorstr=#CCFFFFFF); }
+        #block-superfish-1 li ul li a::before {
+          content: none; }
+        #block-superfish-1 li ul li a:hover, #block-superfish-1 li ul li a:focus {
+          background-image: none !important;
+          background-color: transparent !important;
+          background-color: rgba(255, 255, 255, 0.9) !important;
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E6FFFFFF,endColorstr=#E6FFFFFF); }
+        #block-superfish-1 li ul li a.active, #block-superfish-1 li ul li a.active-trail, #block-superfish-1 li ul li a:active {
+          background-image: none !important;
+          background-color: transparent !important;
+          background-color: rgba(255, 255, 255, 0.9) !important;
+          filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#E6FFFFFF,endColorstr=#E6FFFFFF); }
 
 /* Secondary Menu
 --------------------- */
@@ -374,9 +394,6 @@ form input.form-submit {
 -------------------------------------------------------------- */
 #views_slideshow_cycle_main_image_rotator-block_1 #views_slideshow_cycle_teaser_section_image_rotator-block_1 {
   height: 430px; }
-
-.panel-3col-33-stacked .panel-col-top .inside {
-  padding-bottom: 20px; }
 
 /* How-To Steps (Home Page)
 -------------------------------------------------------------- */
