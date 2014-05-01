@@ -15,6 +15,7 @@ $red: #D31245;
 $white: #FFFFFF;
 $black: #000000;
 $blue: #214791;
+$card_blue: #379DC1;
 
 $red_lighter: lighten($red, 20%);
 $orange_lighter: lighten($orange, 20%);
@@ -268,9 +269,9 @@ form input.form-submit {
 }
 
 
-/* Main Menu
+/* Main Menu (Superfish)
 --------------------- */
-#block-menu_block-2 {
+#block-superfish-1 {
   margin-bottom: 0;
   position: absolute;
   bottom: 0;
@@ -308,11 +309,32 @@ form input.form-submit {
       &.active,
       &.active-trail,
       &:active {
-        color: $purple;
+        color: $green;
         @include transparent-bg(#FFF, .75);
       }
-    }
-  }
+    } // a
+    ul {
+      top: 40px;
+      li {
+        a {
+          text-align: left;
+          @include transparent-bg(#FFF, .8);
+          &::before {
+            content: none;
+          }
+          &:hover,
+          &:focus {
+            @include transparent-bg(#FFF, .9);
+          }
+          &.active,
+          &.active-trail,
+          &:active {
+            @include transparent-bg(#FFF, .9);
+          }
+        }
+      }
+    } // li ul
+  } // li
 }
 
 
@@ -406,7 +428,8 @@ form input.form-submit {
       }
     }
     .panel-3col-33-3 .panel-row-top {
-      @include transparent-bg(#379DC1, .5);
+      // Front page card/banner (left of slider)
+      @include transparent-bg($card_blue, .5);
       .panel-col-first {
         text-align: center;
         color: $white;
@@ -461,10 +484,6 @@ form input.form-submit {
   #views_slideshow_cycle_teaser_section_image_rotator-block_1 {
     height: 430px;
   }
-}
-.panel-3col-33-stacked .panel-col-top .inside {
-  padding-bottom: 20px;
-  //background: transparent url('../images/dot-divider-horiz-grey.png') no-repeat bottom center;
 }
 
 /* How-To Steps (Home Page)
