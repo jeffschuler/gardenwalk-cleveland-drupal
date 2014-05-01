@@ -198,7 +198,6 @@ form input.form-submit {
 
 #header-group-inner {
   margin-top: 10px;
-  margin-bottom: 15px;
   position: relative; }
 
 #header-site-info {
@@ -315,6 +314,8 @@ form input.form-submit {
 .page-home #header-group {
   padding-bottom: 0;
   background: none; }
+.page-home #header-group-inner {
+  margin-bottom: 15px; }
 .page-home #main h2 a,
 .page-home #main h2 a:link,
 .page-home #main h2 a:visited {
