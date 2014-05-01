@@ -249,7 +249,6 @@ form input.form-submit {
 }
 #header-group-inner {
   margin-top: 10px;
-  margin-bottom: 15px;
   position: relative;
 }
 #header-site-info {
@@ -383,6 +382,9 @@ form input.form-submit {
   #header-group {
     padding-bottom: 0;
     background: none;
+  }
+  #header-group-inner {
+    margin-bottom: 15px;
   }
   #main {
     h2 {
