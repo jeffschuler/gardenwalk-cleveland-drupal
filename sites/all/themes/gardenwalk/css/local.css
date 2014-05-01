@@ -335,7 +335,7 @@ form input.form-submit {
       .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane {
         margin: 10px 0 10px 10px;
         height: 410px;
-        border: 1px solid white; }
+        background: transparent url("../images/banner-card-inborder.png") top left no-repeat; }
     .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content {
       padding: 20px; }
     .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h1, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h2, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h3, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h4, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h5, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h6,
