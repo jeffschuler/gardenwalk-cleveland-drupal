@@ -4,8 +4,6 @@
 /**
  * @file
  * GMap settings form.
- *
- * @todo move to GmapForms class
  */
 
 function gmap_admin_settings($form, &$form_state) {
@@ -308,7 +306,7 @@ function gmap_admin_settings($form, &$form_state) {
     $opts['clustermarker'] = array();
   }
 
-  $opts['gmap'] = array_merge(array( // None.
+  $opts['gmap'] = array_merge(array(// None.
   ), $opts['gmap']);
 
   $opts['gmarkermanager'] = array_merge(array(
@@ -610,12 +608,6 @@ function gmap_admin_settings($form, &$form_state) {
   return system_settings_form($form);
 }
 
-/**
- * @param $form
- * @param $form_state
- *
- * @todo move to GmapForms class
- */
 function gmap_admin_settings_validate($form, &$form_state) {
   $found = FALSE;
   foreach ($form_state['values']['gmap_default']['baselayers'] as $l) {
@@ -642,8 +634,6 @@ function gmap_admin_settings_validate($form, &$form_state) {
 
 /**
  * Handle correct storage of several MarkerClusterer settings.
- *
- * @todo move to GmapForms class
  */
 function gmap_admin_settings_markerclusterer_submit($form, &$form_state) {
   /**
@@ -669,8 +659,6 @@ function gmap_admin_settings_markerclusterer_submit($form, &$form_state) {
 
 /**
  * Rebuild marker js.
- *
- * @todo move to GmapForms class
  */
 function _gmap_rebuild_marker_js_submit($form, &$form_state) {
   gmap_regenerate_markers();
