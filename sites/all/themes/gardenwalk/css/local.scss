@@ -332,8 +332,11 @@ form input.form-submit {
           &:active {
             @include transparent-bg(#FFF, .9);
           }
-        }
-      }
+        } // li ul li a
+        ul {
+          top: 0;
+        } // li ul li ul
+      } // li ul li
     } // li ul
   } // li
 }
