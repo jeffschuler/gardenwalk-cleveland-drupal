@@ -396,7 +396,7 @@ form input.form-submit {
       }
     }
     .panel-3col-33-3 .panel-row-top {
-      // Front page card/banner (left of slider)
+      // Front page banner-card (left of slider)
       @include transparent-bg($card_blue, .5);
       .panel-col-first {
         text-align: center;
@@ -407,7 +407,8 @@ form input.form-submit {
           .panel-pane {
             margin: 10px 0 10px 10px;
             height: 410px;
-            border: 1px solid white;
+            //border: 1px solid white;
+            background: transparent url('../images/banner-card-inborder.png') top left no-repeat;
           }
         }
         .content {
