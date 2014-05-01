@@ -12,7 +12,7 @@ function gardenwalk_gardens_default_rules_configuration() {
   $items['rules_notify_garden_finder_on_application_submitted'] = entity_import('rules_config', '{ "rules_notify_garden_finder_on_application_submitted" : {
       "LABEL" : "Notify Garden Finder on Application Submitted",
       "PLUGIN" : "reaction rule",
-      "REQUIRES" : [ "rules", "php" ],
+      "REQUIRES" : [ "rules" ],
       "ON" : [ "node_insert" ],
       "IF" : [
         { "node_is_of_type" : { "node" : [ "node" ], "type" : { "value" : { "garden" : "garden" } } } },
@@ -25,18 +25,18 @@ function gardenwalk_gardens_default_rules_configuration() {
       ],
       "DO" : [
         { "mail" : {
-            "to" : "\\u003c?php print _get_neighborhood_garden_finder_email_addresses($node-\\u003efield_neighborhood[\\u0027und\\u0027][0][\\u0027tid\\u0027]); ?\\u003e",
+            "to" : "\\u003C?php print _get_neighborhood_garden_finder_email_addresses($node-\\u003Efield_neighborhood[\\u0027und\\u0027][0][\\u0027tid\\u0027]); ?\\u003E",
             "subject" : "GardenWalk application for [node:field-neighborhood]: [node:field-gardener-addressfield:thoroughfare]",
-            "message" : "Hi \\u003c?php print _get_neighborhood_garden_finder_names($node-\\u003efield_neighborhood[\\u0027und\\u0027][0][\\u0027tid\\u0027]); ?\\u003e,\\u000d\\u000a\\u000d\\u000aA new garden GardenWalk Cleveland garden application has been submitted:\\u000d\\u000a\\u000d\\u000aNeighborhood: [node:field-neighborhood]\\u000d\\u000aGardener: [node:field-gardener-name]\\u000d\\u000aEmail: [node:field-gardener-email]\\u000d\\u000aPhone (home): [node:field-gardener-phone-home]\\u000d\\u000aPhone (cell): [node:field-gardener-phone-cell]\\u000d\\u000aGarden Address: [node:field_address]\\u000d\\u000a\\u000d\\u000aView this application at [node:url] to approve or deny the submission, and to edit garden details.\\u000d\\u000a\\u000d\\u000aReply to this message to respond to the gardener applicant.\\u000d\\u000a\\u000d\\u000aThanks for helping make GardenWalk 2014 amazing!",
-            "from" : "[node:field-gardener-name] \\u003c[node:field-gardener-email]\\u003e",
+            "message" : "Hi \\u003C?php print _get_neighborhood_garden_finder_names($node-\\u003Efield_neighborhood[\\u0027und\\u0027][0][\\u0027tid\\u0027]); ?\\u003E,\\r\\n\\r\\nA new garden GardenWalk Cleveland garden application has been submitted:\\r\\n\\r\\nNeighborhood: [node:field-neighborhood]\\r\\nGardener: [node:field-gardener-name]\\r\\nEmail: [node:field-gardener-email]\\r\\nPhone (home): [node:field-gardener-phone-home]\\r\\nPhone (cell): [node:field-gardener-phone-cell]\\r\\nGarden Address: [node:field_address]\\r\\n\\r\\nView this application at [node:url] to approve or deny the submission, and to edit garden details.\\r\\n\\r\\nReply to this message to respond to the gardener applicant.\\r\\n\\r\\nThanks for helping make GardenWalk 2014 amazing!",
+            "from" : "[node:field-gardener-name] \\u003C[node:field-gardener-email]\\u003E",
             "language" : [ "" ]
           }
         },
         { "mail" : {
-            "to" : "\\u0022[node:field-gardener-name]\\u0022 \\u003c[node:field-gardener-email]\\u003e",
+            "to" : "\\u0022[node:field-gardener-name]\\u0022 \\u003C[node:field-gardener-email]\\u003E",
             "subject" : "GardenWalk Cleveland application received",
-            "message" : "Hi [node:field-gardener-name],\\u000d\\u000a\\u000d\\u000aThank you for applying to show your garden in GardenWalk Cleveland 2014!\\u000d\\u000aA volunteer garden finder for [node:field-neighborhood] will review your application soon and let you know whether it has been accepted.\\u000d\\u000a\\u000d\\u000aGardenWalk Cleveland is organized by volunteers. If you are interested in helping out on GardenWalk weekend or in planning the event, please let us know -- http:\\u002f\\u002fwww.gardenwalkcleveland.org\\u002fcontact. And check out our Frequently Asked Questions -- http:\\u002f\\u002fwww.gardenwalkcleveland.org\\u002ffaq -- for more info.\\u000d\\u000a\\u000d\\u000aWe can\\u0027t wait to see you -- and hopefully your garden -- at GardenWalk 2014 on July 12th and 13th!\\u000d\\u000a\\u000d\\u000aSincerely,\\u000d\\u000a\\u000d\\u000aThe GardenWalk Cleveland team\\u000d\\u000a\\u000d\\u000a--\\u000d\\u000aLike us on Facebook - https:\\u002f\\u002fwww.facebook.com\\u002fgardenwalk.cleveland\\u000d\\u000aFollow us on Twitter - https:\\u002f\\u002ftwitter.com\\u002fGardenWalkCle\\u000d\\u000aSubscribe to our Mailing List - http:\\u002f\\u002feepurl.com\\u002fuvMjX",
-            "from" : "GardenWalk Cleveland \\u003cinfo@gardenwalkcleveland.org\\u003e",
+            "message" : "Hi [node:field-gardener-name],\\r\\n\\r\\nThank you for applying to show your garden in GardenWalk Cleveland 2014!\\r\\nA volunteer garden finder for [node:field-neighborhood] will review your application soon and let you know whether it has been accepted.\\r\\n\\r\\nGardenWalk Cleveland is organized by volunteers. If you are interested in helping out on GardenWalk weekend or in planning the event, please let us know -- http:\\/\\/www.gardenwalkcleveland.org\\/contact. And check out our Frequently Asked Questions -- http:\\/\\/www.gardenwalkcleveland.org\\/faq -- for more info.\\r\\n\\r\\nWe can\\u0027t wait to see you -- and hopefully your garden -- at GardenWalk 2014 on July 12th and 13th!\\r\\n\\r\\nSincerely,\\r\\n\\r\\nThe GardenWalk Cleveland team\\r\\n\\r\\n--\\r\\nLike us on Facebook - https:\\/\\/www.facebook.com\\/gardenwalk.cleveland\\r\\nFollow us on Twitter - https:\\/\\/twitter.com\\/GardenWalkCle\\r\\nSubscribe to our Mailing List - http:\\/\\/eepurl.com\\/uvMjX",
+            "from" : "GardenWalk Cleveland \\u003Cinfo@gardenwalkcleveland.org\\u003E",
             "language" : [ "" ]
           }
         }
@@ -59,10 +59,10 @@ function gardenwalk_gardens_default_rules_configuration() {
       ],
       "DO" : [
         { "mail" : {
-            "to" : "\\u0022[node:field-gardener-name]\\u0022 \\u003c[node:field-gardener-email]\\u003e",
+            "to" : "\\u0022[node:field-gardener-name]\\u0022 \\u003C[node:field-gardener-email]\\u003E",
             "subject" : "GardenWalk Cleveland: Application Approved!",
-            "message" : "Hi [node:field-gardener-name],\\u000d\\u000a\\u000d\\u000aCongratulations!\\u000d\\u000aYour garden application for GardenWalk Cleveland 2014 has been approved.\\u000d\\u000a\\u000d\\u000aThe garden address you submitted is:\\u000d\\u000a[node:field_address]\\u000d\\u000a\\u000d\\u000aThe volunteer garden finder for the [node:field-neighborhood] neighborhood will be in touch with any further concerns.\\u000d\\u000a\\u000d\\u000aPlease read through our Frequently Asked Questions -- http:\\u002f\\u002fwww.gardenwalkcleveland.org\\u002ffaq -- and let us know if you have any further questions. If you are interested in volunteering on GardenWalk weekend or in helping plan the event, please let us know.\\u000d\\u000a\\u000d\\u000aWe can\\u0027t wait to meet you and your garden at GardenWalk Cleveland 2014, on July 12th and 13th!\\u000d\\u000a\\u000d\\u000aSincerely,\\u000d\\u000a\\u000d\\u000aThe GardenWalk Cleveland team\\u000d\\u000a\\u000d\\u000a--\\u000d\\u000aLike us on Facebook - https:\\u002f\\u002fwww.facebook.com\\u002fgardenwalk.cleveland\\u000d\\u000aFollow us on Twitter - https:\\u002f\\u002ftwitter.com\\u002fGardenWalkCle\\u000d\\u000aSubscribe to our Mailing List - http:\\u002f\\u002feepurl.com\\u002fuvMjX",
-            "from" : "GardenWalk Cleveland \\u003cinfo@gardenwalkcleveland.org\\u003e",
+            "message" : "Hi [node:field-gardener-name],\\r\\n\\r\\nCongratulations!\\r\\nYour garden application for GardenWalk Cleveland 2014 has been approved.\\r\\n\\r\\nThe garden address you submitted is:\\r\\n[node:field_address]\\r\\n\\r\\nThe volunteer garden finder for the [node:field-neighborhood] neighborhood will be in touch with any further concerns.\\r\\n\\r\\nPlease read through our Frequently Asked Questions -- http:\\/\\/www.gardenwalkcleveland.org\\/faq -- and let us know if you have any further questions. If you are interested in volunteering on GardenWalk weekend or in helping plan the event, please let us know.\\r\\n\\r\\nWe can\\u0027t wait to meet you and your garden at GardenWalk Cleveland 2014, on July 12th and 13th!\\r\\n\\r\\nSincerely,\\r\\n\\r\\nThe GardenWalk Cleveland team\\r\\n\\r\\n--\\r\\nLike us on Facebook - https:\\/\\/www.facebook.com\\/gardenwalk.cleveland\\r\\nFollow us on Twitter - https:\\/\\/twitter.com\\/GardenWalkCle\\r\\nSubscribe to our Mailing List - http:\\/\\/eepurl.com\\/uvMjX",
+            "from" : "GardenWalk Cleveland \\u003Cinfo@gardenwalkcleveland.org\\u003E",
             "language" : [ "" ]
           }
         }

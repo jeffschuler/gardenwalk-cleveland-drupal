@@ -34,7 +34,7 @@ function gardenwalk_gardens_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-additional field-group-tab',
         'required_fields' => 1,
       ),
     ),
@@ -66,7 +66,7 @@ function gardenwalk_gardens_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-garden-info field-group-tab',
         'required_fields' => 1,
       ),
     ),
@@ -97,7 +97,7 @@ function gardenwalk_gardens_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-gardener field-group-tab',
         'required_fields' => 1,
       ),
     ),
@@ -129,7 +129,7 @@ function gardenwalk_gardens_field_group_info() {
       'formatter' => 'closed',
       'instance_settings' => array(
         'description' => '',
-        'classes' => '',
+        'classes' => ' group-location field-group-tab',
         'required_fields' => 1,
       ),
     ),
@@ -158,7 +158,7 @@ function gardenwalk_gardens_field_group_info() {
     'format_settings' => array(
       'formatter' => '',
       'instance_settings' => array(
-        'classes' => '',
+        'classes' => ' group-main field-group-tabs',
       ),
     ),
   );

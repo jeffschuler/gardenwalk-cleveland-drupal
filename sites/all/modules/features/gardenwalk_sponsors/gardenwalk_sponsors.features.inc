@@ -30,6 +30,7 @@ function gardenwalk_sponsors_image_default_styles() {
   // Exported image style: sponsor-page-large.
   $styles['sponsor-page-large'] = array(
     'name' => 'sponsor-page-large',
+    'label' => 'sponsor-page-large',
     'effects' => array(
       7 => array(
         'label' => 'Scale',
@@ -53,6 +54,7 @@ function gardenwalk_sponsors_image_default_styles() {
   // Exported image style: sponsor-page-small.
   $styles['sponsor-page-small'] = array(
     'name' => 'sponsor-page-small',
+    'label' => 'sponsor-page-small',
     'effects' => array(
       8 => array(
         'label' => 'Scale',
