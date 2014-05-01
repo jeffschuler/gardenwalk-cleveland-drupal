@@ -342,52 +342,6 @@ form input.form-submit {
 }
 
 
-/* Secondary Menu
---------------------- */
-#main-menu-wrapper {
-}
-#main-menu {
-  background: transparent url('../images/dot-divider-horiz-grey.png') no-repeat bottom center;
-}
-#main-menu-inner .block {
-  margin-bottom: 0;
-}
-#main-menu ul.menu {
-  margin: 0;
-}
-#main-menu ul.menu li {
-  padding: 0 10px 0;
-}
-#main-menu ul.menu li a {
-  padding: 10px 0 16px;
-}
-#main-menu ul.menu li ul {
-  padding: 13px 0;
-}
-#main-menu ul.menu li li a {
-  padding: 5px 0;
-}
-#main-menu ul.menu li a,
-#main-menu ul.menu li a:link,
-#main-menu ul.menu li a:visited {
-  color: $brown;
-}
-#main-menu ul.menu li a:active,
-#main-menu ul.menu li a:hover {
-  color: $orange;
-}
-#main-menu ul.menu li a.active,
-#main-menu ul.menu li a.active-trail {
-  color: $purple;
-}
-#main-menu-wrapper ul ul {
-  display: inline;
-}
-#main-menu-wrapper ul ul li {
-  @include transparent-bg(#F9F9F9, .95);
-}
-
-
 /* Drupal misc
 -------------------------------------------------------------- */
 #content-messages {
