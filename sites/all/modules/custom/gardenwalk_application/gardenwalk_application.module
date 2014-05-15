@@ -151,14 +151,20 @@ function gardenwalk_application_form_garden_node_form_alter(&$form, &$form_state
     // List only neighborhoods in the current year
     $current_year_tid = _get_current_year_tid();
     foreach ($form['field_neighborhood']['und']['#options'] as $neighborhood_tid => $neighborhood) {
+      if ($neighborhood_tid == '_none') {
+        continue;
+      }
       $in_current_year = FALSE;
       $neighborhood_term = taxonomy_term_load($neighborhood_tid);
-      if (is_object($neighborhood_term) && isset($neighborhood_term->field_gardenwalk_years['und'])) {
-        foreach ($neighborhood_term->field_gardenwalk_years['und'] as $year) {
-         $year_tid = $year['tid'];
-          if ($year_tid == $current_year_tid) {
-            $in_current_year = TRUE;
-            break;
+      //dpm($neighborhood_term->name);
+      if (is_object($neighborhood_term)) {
+        if (isset($neighborhood_term->field_gardenwalk_years['und'])) {
+          foreach ($neighborhood_term->field_gardenwalk_years['und'] as $year) {
+           $year_tid = $year['tid'];
+            if ($year_tid == $current_year_tid) {
+              $in_current_year = TRUE;
+              break;
+            }
           }
         }
       } else {
