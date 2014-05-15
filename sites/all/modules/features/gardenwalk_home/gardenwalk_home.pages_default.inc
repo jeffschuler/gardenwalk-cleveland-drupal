@@ -104,7 +104,7 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'How to do the GardenWalk',
       'title' => 'How to do the GardenWalk',
-      'body' => '<ol><li><span style="font-size: 12px;">Get a GardenWalk Guide: Beginning&nbsp;July 1 &nbsp;free Guides, with maps of each neighborhood&#39;s gardens,</span><span style="font-size: 12px;">&nbsp;will be available at all&nbsp;<a href="http://www.petittigardencenter.com/index.php?option=com_ourgardencenters&amp;task=locations&amp;Itemid=76">Petitti&rsquo;s Garden Centers</a>&nbsp;and <a href="http://www.davesmarkets.com/locations.shtml">Dave&rsquo;s Markets</a>.</span></li><li><a href="http://www.gardenwalkcleveland.org/guide">Choose a neighborhood</a>&nbsp;to begin in.</li><li>Go to that neighborhood&#39;s Headquarters on Saturday or Sunday to check-in (optional.) Guides will also be available at each Headquarters.</li><li>Explore...</li></ol><p>Check out the <a href="/faq">FAQ</a> for more...</p>',
+      'body' => '<ol><li><span style="font-size: 12px;">Get a GardenWalk Guide: Beginning&nbsp;July 1 &nbsp;free Guides, with maps of each neighborhood&#39;s gardens,</span><span style="font-size: 12px;">&nbsp;will be available at all&nbsp;<a href="http://www.petittigardencenter.com/index.php/locations" target="_blank">Petitti Garden Centers</a>&nbsp;and <a href="http://www.davesmarkets.com/locations.shtml" target="_blank">Dave&rsquo;s Markets</a>.</span></li><li><a href="http://www.gardenwalkcleveland.org/guide">Choose a neighborhood</a>&nbsp;to begin in.</li><li>Go to that neighborhood&#39;s Headquarters on Saturday or Sunday to check-in (optional.) Guides will also be available at each Headquarters.</li><li>Explore...</li></ol><p>Check out the <a href="/faq">FAQ</a> for more...</p><p><strong>New this year</strong>: Master Gardeners of Northeast Ohio will be available to answer questions and provide information at each of the neighborhood headquarters.&nbsp;<img src="webkit-fake-url://1FD0E49B-269F-47C2-B5E8-13F77C381372/image.tiff" /></p>',
       'format' => '1',
       'substitute' => 1,
     );
@@ -128,7 +128,7 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Maps Overview',
       'title' => 'Neighborhoods',
-      'body' => '<p>Tentative neighborhoods for GardenWalk 2014 include:</p><ul><li><a href="/neighborhood/detroit-shoreway">Detroit Shoreway</a></li><li><a href="/neighborhood/glenville">Glenville</a></li><li><a href="/neighborhood/larchmere">Larchmere</a></li><li><a href="/neighborhood/ohio-city">Ohio City</a></li><li><a href="/neighborhood/slavic-village">Slavic Village</a></li><li><a href="/neighborhood/st-clair-superior">St. Clair Superior</a></li><li><a href="/neighborhood/tremont">Tremont</a></li><li><a href="/neighborhood/west-park">West Park</a></li></ul><p>Questions? <a href="/contact">Contact us</a>.</p>',
+      'body' => '<p>Tentative neighborhoods for GardenWalk 2014 include:</p><ul><li><a href="/neighborhood/detroit-shoreway">Detroit Shoreway</a></li><li><a href="/neighborhood/glenville">Glenville</a></li><li><a href="/neighborhood/larchmere">Larchmere</a></li><li><a href="/neighborhood/slavic-village">Slavic Village</a></li><li><a href="/neighborhood/tremont">Tremont</a></li></ul><p>Questions? <a href="/contact">Contact us</a>.</p>',
       'format' => '1',
       'substitute' => 1,
     );
@@ -280,27 +280,6 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane = new stdClass();
     $pane->pid = 'new-10';
     $pane->panel = 'topright';
-    $pane->type = 'block';
-    $pane->subtype = 'views-image_rotator-block';
-    $pane->shown = FALSE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_title' => 1,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = '';
-    $display->content['new-10'] = $pane;
-    $display->panels['topright'][0] = 'new-10';
-    $pane = new stdClass();
-    $pane->pid = 'new-11';
-    $pane->panel = 'topright';
     $pane->type = 'views';
     $pane->subtype = 'image_rotator';
     $pane->shown = TRUE;
@@ -327,10 +306,10 @@ function gardenwalk_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-11'] = $pane;
-    $display->panels['topright'][1] = 'new-11';
+    $display->content['new-10'] = $pane;
+    $display->panels['topright'][0] = 'new-10';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = 'new-1';
   $handler->conf['display'] = $display;

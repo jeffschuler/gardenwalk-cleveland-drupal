@@ -721,6 +721,7 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
     0 => '21',
     1 => '42',
+    2 => '47',
   );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator_id'] = 'field_gardenwalk_year_tid_op';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['label'] = 'Year (field_gardenwalk_year)';
