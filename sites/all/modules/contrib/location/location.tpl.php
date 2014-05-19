@@ -3,25 +3,35 @@
     <?php if (!empty($name)): ?>
       <span class="fn"><?php print $name; ?></span>
     <?php endif; ?>
-    <?php if (!empty($street)): ?>
+    <?php if (!empty($street) || !empty($additional)): ?>
       <div class="street-address">
         <?php print $street; ?>
         <?php if (!empty($additional)): ?>
-          <?php print ' ' . $additional; ?>
+          <span class="additional">
+            <?php print ' ' . $additional; ?>
+          </span>
         <?php endif; ?>
       </div>
-    <?php endif; ?>
-    <?php if (!empty($city)): ?>
-      <span class="locality"><?php print $city; ?></span><?php if (!empty($province)) print ', '; ?>
-    <?php endif; ?>
-    <?php if (!empty($province)): ?>
-      <span class="region"><?php print $province_print; ?></span>
     <?php endif; ?>
     <?php if (!empty($postal_code)): ?>
       <span class="postal-code"><?php print $postal_code; ?></span>
     <?php endif; ?>
+    <?php if (!empty($city)): ?>
+      <span class="locality"><?php print $city; ?></span><?php if (!empty($province)) {
+        print ', ';
+      } ?>
+    <?php endif; ?>
+    <?php if (!empty($province)): ?>
+      <span class="region"><?php print $province_print; ?></span>
+    <?php endif; ?>
     <?php if (!empty($country_name)): ?>
       <div class="country-name"><?php print $country_name; ?></div>
+    <?php endif; ?>
+    <?php if (!empty($email)): ?>
+      <div class="email">
+        <abbr class="type" title="email"><?php print t("Email address"); ?>:</abbr>
+        <span><a href="mailto:<?php print $email; ?>"><?php print $email; ?></a></span>
+      </div>
     <?php endif; ?>
     <?php if (!empty($phone)): ?>
       <div class="tel">
@@ -39,7 +49,8 @@
     <?php if (isset($latitude) && isset($longitude)): ?>
       <?php // Assume that 0, 0 is invalid. ?>
       <?php if ($latitude != 0 || $longitude != 0): ?>
-        <span class="geo"><abbr class="latitude" title="<?php print $latitude; ?>"><?php print $latitude_dms; ?></abbr>, <abbr class="longitude" title="<?php print $longitude; ?>"><?php print $longitude_dms; ?></abbr></span>
+        <span class="geo"><abbr class="latitude" title="<?php print $latitude; ?>"><?php print $latitude_dms; ?></abbr>, <abbr
+            class="longitude" title="<?php print $longitude; ?>"><?php print $longitude_dms; ?></abbr></span>
       <?php endif; ?>
     <?php endif; ?>
   </div>

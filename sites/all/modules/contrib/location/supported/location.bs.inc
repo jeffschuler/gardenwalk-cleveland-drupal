@@ -3,7 +3,8 @@
 // Bahamas
 
 function location_province_list_bs() {
-  return array('ACK' => "Acklins",
+  return array(
+    'ACK' => "Acklins",
     'BER' => "Berry Islands",
     'BIM' => "Bimini",
     'BLK' => "Black Point",
@@ -15,6 +16,7 @@ function location_province_list_bs() {
     'CRO' => "Crooked Island",
     'EGB' => "East Grand Bahama",
     'EXU' => "Exuma",
+    'GRB' => "Grand Bahama",
     'GRD' => "Grand Cay",
     'HAR' => "Harbour Island",
     'HOP' => "Hope Town",
@@ -26,6 +28,7 @@ function location_province_list_bs() {
     'NAB' => "North Abaco",
     'NAN' => "North Andros",
     'NEL' => "North Eleuthera",
+    'NPR' => "New Providence",
     'RAG' => "Ragged Island",
     'RUM' => "Rum Cay",
     'SAL' => "San Salvador",
@@ -33,7 +36,8 @@ function location_province_list_bs() {
     'SAN' => "South Andros",
     'SEL' => "South Eleuthera",
     'SWE' => "Spanish Wells",
-    'WGB' => "West Grand Bahama");
+    'WGB' => "West Grand Bahama"
+  );
 }
 
 /**
