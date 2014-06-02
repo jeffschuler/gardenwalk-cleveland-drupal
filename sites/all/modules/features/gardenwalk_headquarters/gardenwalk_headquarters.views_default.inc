@@ -348,7 +348,6 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['id'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['field'] = 'field_neighborhood';
-  $handler->display->display_options['fields']['field_neighborhood']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Year */
   $handler->display->display_options['fields']['field_gardenwalk_year']['id'] = 'field_gardenwalk_year';
   $handler->display->display_options['fields']['field_gardenwalk_year']['table'] = 'field_data_field_gardenwalk_year';
@@ -364,7 +363,6 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['fields']['address']['table'] = 'location';
   $handler->display->display_options['fields']['address']['field'] = 'address';
   $handler->display->display_options['fields']['address']['hide'] = array(
-    'postal_code' => 'postal_code',
     'country' => 'country',
     'locpick' => 'locpick',
     'province_name' => 'province_name',
@@ -376,6 +374,7 @@ function gardenwalk_headquarters_views_default_views() {
     'additional' => 0,
     'city' => 0,
     'province' => 0,
+    'postal_code' => 0,
   );
   /* Field: Content: Published */
   $handler->display->display_options['fields']['status']['id'] = 'status';
@@ -475,8 +474,8 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['fields']['address']['table'] = 'location';
   $handler->display->display_options['fields']['address']['field'] = 'address';
   $handler->display->display_options['fields']['address']['label'] = '';
+  $handler->display->display_options['fields']['address']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['address']['hide'] = array(
-    'postal_code' => 'postal_code',
     'country' => 'country',
     'locpick' => 'locpick',
     'province_name' => 'province_name',
@@ -488,6 +487,7 @@ function gardenwalk_headquarters_views_default_views() {
     'additional' => 0,
     'city' => 0,
     'province' => 0,
+    'postal_code' => 0,
   );
   /* Field: Location: Latitude */
   $handler->display->display_options['fields']['latitude']['id'] = 'latitude';
@@ -525,8 +525,8 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['fields']['address']['table'] = 'location';
   $handler->display->display_options['fields']['address']['field'] = 'address';
   $handler->display->display_options['fields']['address']['label'] = '';
+  $handler->display->display_options['fields']['address']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['address']['hide'] = array(
-    'postal_code' => 'postal_code',
     'country' => 'country',
     'locpick' => 'locpick',
     'province_name' => 'province_name',
@@ -538,6 +538,7 @@ function gardenwalk_headquarters_views_default_views() {
     'additional' => 0,
     'city' => 0,
     'province' => 0,
+    'postal_code' => 0,
   );
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
@@ -676,8 +677,8 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['fields']['address']['table'] = 'location';
   $handler->display->display_options['fields']['address']['field'] = 'address';
   $handler->display->display_options['fields']['address']['label'] = '';
+  $handler->display->display_options['fields']['address']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['address']['hide'] = array(
-    'postal_code' => 'postal_code',
     'country' => 'country',
     'locpick' => 'locpick',
     'province_name' => 'province_name',
@@ -689,6 +690,7 @@ function gardenwalk_headquarters_views_default_views() {
     'additional' => 0,
     'city' => 0,
     'province' => 0,
+    'postal_code' => 0,
   );
   /* Field: Location: Latitude */
   $handler->display->display_options['fields']['latitude']['id'] = 'latitude';
