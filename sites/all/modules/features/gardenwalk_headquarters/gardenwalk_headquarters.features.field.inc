@@ -321,7 +321,7 @@ function gardenwalk_headquarters_field_default_fields() {
       'bundle' => 'headquarters',
       'default_value' => array(
         0 => array(
-          'tid' => '42',
+          'tid' => '47',
         ),
       ),
       'deleted' => '0',
