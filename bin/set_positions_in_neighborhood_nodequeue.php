@@ -18,9 +18,10 @@ nodequeue_queue_swap
 $qid = 4; // Neighborhood Queue
 
 //$sqid = 4; // Detroit Shoreway Subqueue
-$sqid = 10; // Slavic Village
+//$sqid = 10; // Slavic Village
+$sqid = 11; // Tremont
 
-$order_by_marker = array('D1', 'D33', 'D10', 'D39', 'D11', 'D19', 'D13', 'D34', 'D35', 'D37', 'D30', 'D40', 'D36', 'D4', 'D5', 'D25', 'D3', 'D24', 'D20', 'D12', 'D2', 'D14', 'D15', 'D21', 'D23', 'D29', 'D16', 'D27', 'D31', 'D6', 'D18', 'D8', 'D38', 'D26', 'D9', 'D28', 'D22', 'D17');
+$order_by_marker = array('E1', 'E31', 'E29', 'E34', 'E24', 'E2', 'E32', 'E43', 'E16', 'E15', 'E44', 'E26', 'E38', 'E30', 'E41', 'E17', 'E18', 'E21', 'E19', 'E37', 'E20', 'E7', 'E40', 'E39', 'E6', 'E28', 'E33', 'E14', 'E36', 'E12', 'E13', 'E11', 'E10', 'E25', 'E9', 'E4', 'E23', 'E22', 'E3');
 
 print_r('$order_by_marker:');
 print_r($order_by_marker);
