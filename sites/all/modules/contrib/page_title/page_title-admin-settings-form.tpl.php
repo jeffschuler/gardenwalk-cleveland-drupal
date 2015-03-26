@@ -36,7 +36,5 @@ $headers = array(
   array('data' => t('Pattern'),     'class' => 'pattern'),
   array('data' => t('Show Field'),  'class' => 'showfield'),
 );
-drupal_add_css(drupal_get_path('module', 'page_title') .'/page_title.admin.css', array('type' => 'file', 'preprocess' => FALSE));
 
 print theme('table', array('header' => $headers, 'rows' => $rows, 'attributed' => array('id' => 'page-title-settings')));
-//print drupal_render_children($form);

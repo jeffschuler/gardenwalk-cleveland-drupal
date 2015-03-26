@@ -616,6 +616,19 @@ function page_title_page_get_title($raw = FALSE) {
 
     // Apply token patterns using token_replace
     $title = token_replace($page_title_pattern, $types, array('sanitize' => FALSE));
+
+    // If some tokens failed to be replaced, fallback to the default pattern.
+    $remaining_tokens = token_scan($title);
+    if (count($remaining_tokens)) {
+      $settings = page_title_get_settings();
+      $page_title_pattern = variable_get('page_title_default', $settings['page_title_default']['default']);
+
+      // Append the pattern for pages with a pager on them
+      $page_title_pattern .= isset($_REQUEST['page']) ? variable_get('page_title_pager_pattern', '') : '';
+
+      // Apply token patterns using token_replace
+      $title = token_replace($page_title_pattern, $types, array('sanitize' => FALSE, 'clean' => TRUE));
+    }
   }
 
   // Trim trailing whitespace from the title
@@ -913,5 +926,5 @@ function uc_catalog_page_title_api() { return page_title_page_title_api(); }
  * Internal function for checking if Page Title is ok to run
  */
 function page_title_is_up_to_date() {
-  return drupal_get_installed_schema_version('page_title') >= max(drupal_get_schema_versions('page_title'));
+  return drupal_get_installed_schema_version('page_title') >= max((array)drupal_get_schema_versions('page_title'));
 }

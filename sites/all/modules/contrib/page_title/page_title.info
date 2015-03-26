@@ -11,9 +11,9 @@ files[] = views/plugins/page_title_plugin_display_page_with_page_title.inc
 files[] = views_handler_field_node_page_title.inc
 configure = admin/config/search/page-title
 
-; Information added by drupal.org packaging script on 2012-05-11
-version = "7.x-2.7+1-dev"
+; Information added by Drupal.org packaging script on 2014-10-02
+version = "7.x-2.7+4-dev"
 core = "7.x"
 project = "page_title"
-datestamp = "1336739626"
+datestamp = "1412254411"
 
