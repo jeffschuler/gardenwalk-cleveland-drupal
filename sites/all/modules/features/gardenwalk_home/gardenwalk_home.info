@@ -24,3 +24,4 @@ features[variable][] = node_options_slideshow_image
 features[variable][] = node_preview_slideshow_image
 features[variable][] = node_submitted_slideshow_image
 features[views_view][] = image_rotator
+mtime = 1398971338
