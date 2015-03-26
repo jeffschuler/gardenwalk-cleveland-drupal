@@ -31,3 +31,41 @@ function gardenwalk_custom_preprocess_page(&$variables) {
   //drupal_add_js('sites/all/libraries/superfish/supersubs.js');
   $variables['scripts'] = drupal_get_js();
 }
+
+/*
+ *
+ */
+function computed_field_field_map_marker_label_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
+  // Get label prefix
+  if (isset($entity->field_neighborhood['und'][0]['tid'])) {
+    $term = taxonomy_term_load($entity->field_neighborhood['und'][0]['tid']);
+    $prefix = $term->field_map_label_prefix['und'][0]['value'];
+  }
+
+  // Get position in nodequeue
+  $neighborhood_qid = 4;
+  $neighborhood_tid = $entity->field_neighborhood['und'][0]['tid'];
+  $queue_ = nodequeue_load_subqueues_by_reference(array($neighborhood_qid => array($neighborhood_tid)));
+  $queue = array_shift($queue_);
+  if ($queue) {
+    $position = nodequeue_get_subqueue_position($queue->sqid, $entity->nid);
+  }
+
+  $entity_field[0]['value'] = $prefix . $position;
+}
+
+/*
+ *
+ */
+function computed_field_field_map_marker_label_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
+  // Get position in nodequeue
+  $neighborhood_qid = 4;
+  $neighborhood_tid = $entity->field_neighborhood['und'][0]['tid'];
+  $queue_ = nodequeue_load_subqueues_by_reference(array($neighborhood_qid => array($neighborhood_tid)));
+  $queue = array_shift($queue_);
+  if ($queue) {
+    $position = nodequeue_get_subqueue_position($queue->sqid, $entity->nid);
+  }
+  $display_output = $entity_field_item['value'];
+  return $display_output;
+}
