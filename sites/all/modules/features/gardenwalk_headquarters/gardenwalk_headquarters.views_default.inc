@@ -344,6 +344,10 @@ function gardenwalk_headquarters_views_default_views() {
       'postpone_processing' => 0,
     ),
   );
+  /* Field: Content: Map Marker Label */
+  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
   /* Field: Content: Neighborhood */
   $handler->display->display_options['fields']['field_neighborhood']['id'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
@@ -423,6 +427,9 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
+    47 => '47',
+  );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = '0';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator_id'] = 'field_gardenwalk_year_tid_op';
@@ -430,6 +437,16 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator'] = 'field_gardenwalk_year_tid_op';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['identifier'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+  );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
   $handler->display->display_options['path'] = 'manage-headquarters';

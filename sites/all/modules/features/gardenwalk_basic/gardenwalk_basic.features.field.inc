@@ -220,9 +220,10 @@ function gardenwalk_basic_field_default_fields() {
           'weight' => '0',
         ),
       ),
+      'ds_extras_field_template' => '',
       'entity_type' => 'node',
       'field_name' => 'field_attached_images',
-      'label' => 'Attached images',
+      'label' => 'Images',
       'required' => 0,
       'settings' => array(
         'alt_field' => 0,
@@ -239,6 +240,7 @@ function gardenwalk_basic_field_default_fields() {
         'active' => 1,
         'module' => 'image',
         'settings' => array(
+          'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
           'preview_image_style' => 'medium',
           'progress_indicator' => 'throbber',
         ),
@@ -320,8 +322,8 @@ function gardenwalk_basic_field_default_fields() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Attached files');
-  t('Attached images');
   t('Body');
+  t('Images');
 
   return $fields;
 }

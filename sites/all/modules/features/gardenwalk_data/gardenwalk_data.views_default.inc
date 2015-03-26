@@ -35,7 +35,7 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['style_options']['data_source']['value'] = 'latlon';
   $handler->display->display_options['style_options']['data_source']['latitude'] = 'latitude';
   $handler->display->display_options['style_options']['data_source']['longitude'] = 'longitude';
-  $handler->display->display_options['style_options']['data_source']['name_field'] = 'nothing';
+  $handler->display->display_options['style_options']['data_source']['name_field'] = 'field_map_marker_label';
   $handler->display->display_options['style_options']['data_source']['description_field'] = 'title';
   $handler->display->display_options['style_options']['jsonp_prefix'] = '';
   $handler->display->display_options['style_options']['using_views_api_mode'] = 0;
@@ -43,28 +43,10 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
   $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
   $handler->display->display_options['relationships']['term_node_tid']['field'] = 'term_node_tid';
-  /* Field: Taxonomy term: Map Label Prefix */
-  $handler->display->display_options['fields']['field_map_label_prefix']['id'] = 'field_map_label_prefix';
-  $handler->display->display_options['fields']['field_map_label_prefix']['table'] = 'field_data_field_map_label_prefix';
-  $handler->display->display_options['fields']['field_map_label_prefix']['field'] = 'field_map_label_prefix';
-  $handler->display->display_options['fields']['field_map_label_prefix']['relationship'] = 'field_neighborhood_tid';
-  $handler->display->display_options['fields']['field_map_label_prefix']['label'] = '';
-  $handler->display->display_options['fields']['field_map_label_prefix']['element_label_colon'] = FALSE;
-  /* Field: Nodequeue: Position */
-  $handler->display->display_options['fields']['position']['id'] = 'position';
-  $handler->display->display_options['fields']['position']['table'] = 'nodequeue_nodes';
-  $handler->display->display_options['fields']['position']['field'] = 'position';
-  $handler->display->display_options['fields']['position']['relationship'] = 'nodequeue_rel';
-  $handler->display->display_options['fields']['position']['label'] = '';
-  $handler->display->display_options['fields']['position']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['position']['hide_empty'] = TRUE;
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = '';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_map_label_prefix][position]';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Content: Map Marker Label */
+  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -398,7 +380,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
   $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
   $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
-  $handler->display->display_options['relationships']['nodequeue_rel']['required'] = TRUE;
   $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
   $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
     'neighborhood_queues' => 'neighborhood_queues',
@@ -406,17 +387,10 @@ function gardenwalk_data_views_default_views() {
     'printable_maps' => 0,
   );
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Taxonomy term: Map Label Prefix */
-  $handler->display->display_options['fields']['field_map_label_prefix']['id'] = 'field_map_label_prefix';
-  $handler->display->display_options['fields']['field_map_label_prefix']['table'] = 'field_data_field_map_label_prefix';
-  $handler->display->display_options['fields']['field_map_label_prefix']['field'] = 'field_map_label_prefix';
-  $handler->display->display_options['fields']['field_map_label_prefix']['relationship'] = 'field_neighborhood_tid';
-  $handler->display->display_options['fields']['field_map_label_prefix']['label'] = 'Map Prefix';
-  /* Field: Nodequeue: Position */
-  $handler->display->display_options['fields']['position']['id'] = 'position';
-  $handler->display->display_options['fields']['position']['table'] = 'nodequeue_nodes';
-  $handler->display->display_options['fields']['position']['field'] = 'position';
-  $handler->display->display_options['fields']['position']['relationship'] = 'nodequeue_rel';
+  /* Field: Content: Map Marker Label */
+  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
   /* Field: Content: Neighborhood */
   $handler->display->display_options['fields']['field_neighborhood']['id'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
@@ -506,12 +480,11 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['defaults']['title'] = FALSE;
   $handler->display->display_options['title'] = 'Guide List - Gardens';
   $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = 'Label';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_map_label_prefix][field_map_label]';
+  /* Field: Content: Map Marker Label */
+  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['label'] = 'Label';
   /* Field: Content: Title */
   $handler->display->display_options['fields']['title']['id'] = 'title';
   $handler->display->display_options['fields']['title']['table'] = 'node';
@@ -1057,7 +1030,7 @@ function gardenwalk_data_views_default_views() {
   $view->description = '';
   $view->tag = 'default';
   $view->base_table = 'node';
-  $view->human_name = 'Guide XLS';
+  $view->human_name = 'Guide XLS/CSV';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
@@ -1096,30 +1069,15 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_garden_type']['table'] = 'field_data_field_garden_type';
   $handler->display->display_options['fields']['field_garden_type']['field'] = 'field_garden_type';
   $handler->display->display_options['fields']['field_garden_type']['label'] = 'Type';
-  /* Field: Taxonomy term: Map Label Prefix */
-  $handler->display->display_options['fields']['field_map_label_prefix']['id'] = 'field_map_label_prefix';
-  $handler->display->display_options['fields']['field_map_label_prefix']['table'] = 'field_data_field_map_label_prefix';
-  $handler->display->display_options['fields']['field_map_label_prefix']['field'] = 'field_map_label_prefix';
-  $handler->display->display_options['fields']['field_map_label_prefix']['relationship'] = 'field_neighborhood_tid';
-  $handler->display->display_options['fields']['field_map_label_prefix']['label'] = '';
-  $handler->display->display_options['fields']['field_map_label_prefix']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_map_label_prefix']['element_label_colon'] = FALSE;
-  /* Field: Nodequeue: Position */
-  $handler->display->display_options['fields']['position']['id'] = 'position';
-  $handler->display->display_options['fields']['position']['table'] = 'nodequeue_nodes';
-  $handler->display->display_options['fields']['position']['field'] = 'position';
-  $handler->display->display_options['fields']['position']['relationship'] = 'nodequeue_rel';
-  $handler->display->display_options['fields']['position']['label'] = '';
-  $handler->display->display_options['fields']['position']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['position']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['position']['hide_empty'] = TRUE;
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = 'Marker';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_map_label_prefix][position]';
-  $handler->display->display_options['fields']['nothing']['element_label_colon'] = FALSE;
+  /* Field: Content: Map Marker Label */
+  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['label'] = 'Marker';
+  /* Field: Content: Nid */
+  $handler->display->display_options['fields']['nid']['id'] = 'nid';
+  $handler->display->display_options['fields']['nid']['table'] = 'node';
+  $handler->display->display_options['fields']['nid']['field'] = 'nid';
   /* Field: Content: Garden/Location Name */
   $handler->display->display_options['fields']['field_garden_name']['id'] = 'field_garden_name';
   $handler->display->display_options['fields']['field_garden_name']['table'] = 'field_data_field_garden_name';
@@ -1128,6 +1086,13 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['street']['id'] = 'street';
   $handler->display->display_options['fields']['street']['table'] = 'location';
   $handler->display->display_options['fields']['street']['field'] = 'street';
+  $handler->display->display_options['fields']['street']['style'] = 'street';
+  /* Field: Location: Street */
+  $handler->display->display_options['fields']['street_1']['id'] = 'street_1';
+  $handler->display->display_options['fields']['street_1']['table'] = 'location';
+  $handler->display->display_options['fields']['street_1']['field'] = 'street';
+  $handler->display->display_options['fields']['street_1']['label'] = 'Street 2';
+  $handler->display->display_options['fields']['street_1']['style'] = 'additional';
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
@@ -1231,6 +1196,57 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['type'] = 'convert';
   $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['transform'] = TRUE;
   $handler->display->display_options['path'] = 'neighborhood/%/xls';
+  $handler->display->display_options['sitename_title'] = 0;
+  $handler->display->display_options['use_batch'] = '0';
+
+  /* Display: Neighborhood CSV */
+  $handler = $view->new_display('views_data_export', 'Neighborhood CSV', 'views_data_export_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Neighborhood CSV';
+  $handler->display->display_options['pager']['type'] = 'none';
+  $handler->display->display_options['pager']['options']['offset'] = '0';
+  $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
+  $handler->display->display_options['style_options']['provide_file'] = 1;
+  $handler->display->display_options['style_options']['filename'] = 'neighborhood-%1-value.csv';
+  $handler->display->display_options['style_options']['parent_sort'] = 0;
+  $handler->display->display_options['style_options']['quote'] = 1;
+  $handler->display->display_options['style_options']['trim'] = 0;
+  $handler->display->display_options['style_options']['replace_newlines'] = 0;
+  $handler->display->display_options['style_options']['header'] = 1;
+  $handler->display->display_options['style_options']['keep_html'] = 0;
+  $handler->display->display_options['defaults']['relationships'] = FALSE;
+  /* Relationship: Nodequeue: Queue */
+  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
+  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
+  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
+  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
+    'neighborhood_queues' => 'neighborhood_queues',
+    'image_rotator_queue' => 0,
+    'printable_maps' => 0,
+  );
+  /* Relationship: Content: Neighborhood (field_neighborhood) */
+  $handler->display->display_options['relationships']['field_neighborhood_tid']['id'] = 'field_neighborhood_tid';
+  $handler->display->display_options['relationships']['field_neighborhood_tid']['table'] = 'field_data_field_neighborhood';
+  $handler->display->display_options['relationships']['field_neighborhood_tid']['field'] = 'field_neighborhood_tid';
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  /* Contextual filter: Content: Neighborhood (field_neighborhood) */
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['id'] = 'field_neighborhood_tid';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['table'] = 'field_data_field_neighborhood';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['field'] = 'field_neighborhood_tid';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['default_action'] = 'not found';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['default_argument_type'] = 'fixed';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['summary']['number_of_records'] = '0';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['summary']['format'] = 'default_summary';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['summary_options']['items_per_page'] = '25';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['specify_validation'] = TRUE;
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['validate']['type'] = 'taxonomy_term';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['vocabularies'] = array(
+    'neighborhood' => 'neighborhood',
+  );
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['type'] = 'convert';
+  $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['transform'] = TRUE;
+  $handler->display->display_options['path'] = 'neighborhood/%/csv';
   $handler->display->display_options['sitename_title'] = 0;
   $handler->display->display_options['use_batch'] = '0';
   $export['guide_xls'] = $view;

@@ -126,7 +126,10 @@ function nodequeue_generate_repopulate_queues($qids, $nodes_limit = 10) {
  */
 function nodequeue_generate_rehash() {
   // Delete existing smartqueue taxonomy subqueues
-  db_query("DELETE ns FROM {nodequeue_subqueue} ns INNER JOIN {nodequeue_queue} nq ON ns.qid = nq.qid WHERE nq.owner = 'smartqueue_taxonomy'");
+  $subqueues = db_query("SELECT sqid FROM {nodequeue_subqueue} ns INNER JOIN {nodequeue_queue} nq ON ns.qid = nq.qid WHERE nq.owner = 'smartqueue_taxonomy'")->fetchCol();
+  if (!empty($subqueues)) {
+    db_query("DELETE FROM {nodequeue_subqueue} WHERE sqid IN (:subqueues)", array(':subqueues' => $subqueues));
+  }
 
   // Get all queues, owned by Smartqueue taxonomy.
   $qids = db_select('nodequeue_queue', 'nq')
@@ -172,8 +175,8 @@ function nodequeue_generate_rehash() {
         }
       }
 
-      foreach ($nids as $nid) {
-        $node = node_load($nid['entity_id']);
+      $nodes = node_load_multiple($nids);
+      foreach ($nodes as $node) {
         nodequeue_api_subqueues($queue, $node);
       }
     }
