@@ -67,7 +67,7 @@
         obj.bind("ready", function () {
             // Fake a click to set the initial point, if one was set.
             if (obj.vars.behavior.locpick) {
-                if (!obj.locpick_invalid) {
+                if (!obj.locpick_point) {
                     obj.locpick_coord = new google.maps.LatLng(obj.vars.latitude, obj.vars.longitude);
                     obj.change('locpickchange');
                 }
