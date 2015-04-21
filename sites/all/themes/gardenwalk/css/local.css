@@ -30,13 +30,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1em; }
 
 h1 {
-  font-size: 250%; }
+  font-size: 200%; }
 
 h2 {
-  font-size: 180%; }
+  font-size: 150%; }
 
 h3 {
-  font-size: 130%; }
+  font-size: 125%; }
 
 /* Buttons
 --------------------- */
@@ -67,32 +67,26 @@ form input.form-submit {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#66FFFFFF,endColorstr=#66FFFFFF); }
 
 #header-top {
-  height: 35px; }
-
-#header-top-inner {
-  position: relative; }
-
-#header-top .block {
-  margin: 5px 0; }
-
-#header-top .block .inner,
-#header-top .gutter {
-  margin: 0; }
-
-#header-top a,
-#header-top a:link,
-#header-top a:visited {
-  color: #726965; }
-
-#header-top a:hover,
-#header-top a:focus {
-  color: #f15b2a; }
-
-#header-top a:active {
-  color: #615fc1; }
-
-#header-top .contact {
-  padding-top: 1px; }
+  height: 35px;
+  line-height: 20px; }
+  #header-top #header-top-inner {
+    position: relative; }
+  #header-top .block {
+    margin: 5px 0; }
+  #header-top .block .inner,
+  #header-top .gutter {
+    margin: 0; }
+  #header-top a,
+  #header-top a:link,
+  #header-top a:visited {
+    color: #726965; }
+  #header-top a:hover,
+  #header-top a:focus {
+    color: #f15b2a; }
+  #header-top a:active {
+    color: #615fc1; }
+  #header-top .contact {
+    padding-top: 1px; }
 
 /* Search Block (Header Top)
 --------------------- */
@@ -101,8 +95,13 @@ form input.form-submit {
 
 #block-search-form input.form-submit {
   font-weight: normal;
+  font-size: 85%;
   max-height: 22px;
-  margin: 0; }
+  margin: 0;
+  background: #a3c6b1;
+  border: 1px solid #84b296;
+  text-shadow: 1px 1px #84b296;
+  margin-top: 2px; }
 
 #block-search-form,
 #block-search-form .form-text {
@@ -113,15 +112,10 @@ form input.form-submit {
 #edit-search-block-form--2 {
   height: 15px; }
 
-#block-search-form input.form-submit {
-  background: #a3c6b1;
-  border: 1px solid #84b296;
-  text-shadow: 1px 1px #84b296;
-  margin-top: 2px; }
-
 /* Social/Contact Links (Header Top)
 --------------------- */
 #block-block-2 {
+  max-height: 22px;
   text-align: right; }
 
 #block-block-2 .content div {
@@ -443,7 +437,7 @@ form input.form-submit {
   color: white; }
 
 #footer h2 {
-  font-size: 160%; }
+  font-size: 135%; }
 
 #footer ul li,
 #footer ol li {

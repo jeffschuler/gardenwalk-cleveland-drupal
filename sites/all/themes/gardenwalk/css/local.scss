@@ -76,13 +76,13 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1em;
 }
 h1 {
-  font-size: 250%;
+  font-size: 200%;
 }
 h2 {
-  font-size: 180%;
+  font-size: 150%;
 }
 h3 {
-  font-size: 130%;
+  font-size: 125%;
 }
 
 
@@ -112,31 +112,32 @@ form input.form-submit {
 }
 #header-top {
   height: 35px;
-}
-#header-top-inner {
-  position: relative;
-}
-#header-top .block {
-  margin: 5px 0;
-}
-#header-top .block .inner,
-#header-top .gutter {
-  margin: 0;
-}
-#header-top a,
-#header-top a:link,
-#header-top a:visited {
-  color: $brown;
-}
-#header-top a:hover,
-#header-top a:focus {
-  color: $orange;
-}
-#header-top a:active {
-  color: $purple;
-}
-#header-top .contact {
-  padding-top: 1px;
+  line-height: 20px;
+  #header-top-inner {
+    position: relative;
+  }
+  .block {
+    margin: 5px 0;
+  }
+  .block .inner,
+  .gutter {
+    margin: 0;
+  }
+  a,
+  a:link,
+  a:visited {
+    color: $brown;
+  }
+  a:hover,
+  a:focus {
+    color: $orange;
+  }
+  a:active {
+    color: $purple;
+  }
+  .contact {
+    padding-top: 1px;
+  }
 }
 
 
@@ -147,8 +148,13 @@ form input.form-submit {
 }
 #block-search-form input.form-submit {
   font-weight: normal;
+  font-size: 85%;
   max-height: 22px;
   margin: 0;
+  background: $ltgreen;
+  border: 1px solid $ltgreen_darker;
+  text-shadow: 1px 1px $ltgreen_darker;
+  margin-top: 2px;
 }
 #block-search-form,
 #block-search-form .form-text {
@@ -159,17 +165,12 @@ form input.form-submit {
 #edit-search-block-form--2 {
   height: 15px;
 }
-#block-search-form input.form-submit {
-  background: $ltgreen;
-  border: 1px solid $ltgreen_darker;
-  text-shadow: 1px 1px $ltgreen_darker;
-  margin-top: 2px;
-}
 
 
 /* Social/Contact Links (Header Top)
 --------------------- */
 #block-block-2 {
+  max-height: 22px;
   text-align: right;
 }
 #block-block-2 .content div {
@@ -186,6 +187,7 @@ form input.form-submit {
   vertical-align: top;
 }
 #block-block-2 .content div.contact {
+  //font-size: 85%;
   padding-top: 2px;
 }
 
@@ -543,7 +545,7 @@ form input.form-submit {
   color: $white;
 }
 #footer h2 {
-  font-size: 160%;
+  font-size: 135%;
 }
 #footer ul li,
 #footer ol li {
