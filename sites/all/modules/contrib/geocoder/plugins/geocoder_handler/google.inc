@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 /**
  * @file
@@ -25,6 +24,12 @@ $plugin = array(
  */
 function geocoder_google($address, $options = array()) {
   try {
+    $delay_trigger = &drupal_static(__FUNCTION__);
+    $delay = variable_get('geocoder_google_delay', 0);
+    if ($delay > 0 && $delay_trigger) {
+      usleep($delay * 1000);
+    }
+
     geophp_load();
 
     $query = array(
@@ -32,8 +37,13 @@ function geocoder_google($address, $options = array()) {
       'sensor' => 'false',
     );
 
+    if (isset($options['extra_query']) && is_array($options['extra_query'])) {
+      $query += $options['extra_query'];
+    }
+
     $url = url("http://maps.googleapis.com/maps/api/geocode/json", array('query' => $query));
     $result = drupal_http_request($url);
+    $delay_trigger = TRUE;
 
     if (isset($result->error)) {
       $args = array(
@@ -125,7 +135,7 @@ function geocoder_google_field($field, $field_item, $options = array()) {
   if ($field['type'] == 'text' || $field['type'] == 'text_long' || $field['type'] == 'text_with_summary' || $field['type'] == 'computed') {
     return geocoder_google($field_item['value'], $options);
   }
-  if ($field['type'] == 'addressfield') {
+  if ($field['type'] == 'addressfield' && module_exists('addressfield') && !addressfield_field_is_empty($field_item, $field)) {
     $address = geocoder_widget_parse_addressfield($field_item);
     return geocoder_google($address, $options);
   }
@@ -135,13 +145,13 @@ function geocoder_google_field($field, $field_item, $options = array()) {
   }
   if ($field['type'] == 'taxonomy_term_reference') {
     $term = taxonomy_term_load($field_item['tid']);
-    return geocoder_google($term->name);
+    return geocoder_google($term->name, $options);
   }
 }
 
 function geocoder_google_form($default_values = array()) {
   $form = array();
-  
+
   $form['geometry_type'] = array(
     '#type' => 'select',
     '#title' => 'Geometry Type',
@@ -150,16 +160,16 @@ function geocoder_google_form($default_values = array()) {
       'bounds' => 'Bounding Box',
       'viewport' => 'Viewport',
     ),
-    '#default_value' => isset($default_values['geometry_type']) ? $default_values['geometry_type'] : 'point', 
+    '#default_value' => isset($default_values['geometry_type']) ? $default_values['geometry_type'] : 'point',
   );
 
   $form['all_results'] = array(
     '#type' => 'checkbox',
     '#title' => 'Geocode all alternative results',
     '#default_value' => isset($default_values['all_results']) ? $default_values['all_results'] : FALSE,
-    '#description' => 'Often an ambiguous address (such as "Springfield USA") can result in multiple hits. By default we only return the first (best guess) result. Check this to return all results as a Multi-Geometry (MultiPoint or MultiPolygon).', 
+    '#description' => 'Often an ambiguous address (such as "Springfield USA") can result in multiple hits. By default we only return the first (best guess) result. Check this to return all results as a Multi-Geometry (MultiPoint or MultiPolygon).',
   );
-  
+
   $form['reject_results'] = array(
     '#type' => 'checkboxes',
     '#title' => 'Reject Results',
@@ -172,6 +182,6 @@ function geocoder_google_form($default_values = array()) {
     '#default_value' => isset($default_values['reject_results']) ? $default_values['reject_results'] : array(),
     '#description' => 'Reject results that do not meet a certain level of quality or precision. Check all types of results to reject.',
   );
-  
+
   return $form;
 }
