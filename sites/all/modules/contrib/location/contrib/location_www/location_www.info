@@ -1,7 +1,7 @@
-name = Location CCK
-description = Defines a Location field type.
+name = Location www
+package = Location
+description = Allows you to add a www adress to a location.
 dependencies[] = location
-package = Fields
 core = 7.x
 
 ; Information added by Drupal.org packaging script on 2015-03-14
