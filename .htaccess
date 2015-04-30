@@ -106,12 +106,15 @@ DirectoryIndex index.php index.html index.htm
    RewriteCond %{HTTP_HOST} ^www\.gardenwalk\.loco$ [NC]
    RewriteRule ^ http://local.gardenwalkcleveland.org%{REQUEST_URI} [L,R=301]
 
-   # Rewrite .net and .com to .org
+   # Rewrite .net and .com
    RewriteCond %{HTTP_HOST} ^(www\.)?gardenwalkcleveland\.(net|com)$ [NC,OR]
+   # Rewrite gardenwalk.org (without www.)
+   RewriteCond %{HTTP_HOST} ^gardenwalkcleveland\.org$ [NC,OR]
+   # Rewrite jobim. subdomain
+   RewriteCond %{HTTP_HOST} ^jobim\.gardenwalkcleveland\.org$ [NC,OR]
+   RewriteCond %{HTTP_HOST} ^jobim\.gardenwalkcleveland\.com$ [NC]
    ## Rewrite dev.gardenwalk.* to www.gardenwalk.org
    #RewriteCond %{HTTP_HOST} ^dev\.gardenwalkcleveland\.(org|net|com)$ [NC,OR]
-   # Rewrite gardenwalk.org to www.gardenwalk.org
-   RewriteCond %{HTTP_HOST} ^gardenwalkcleveland\.org$ [NC]
    RewriteRule ^(.*)$ http://www.gardenwalkcleveland.org/$1 [L,R=301]
 
   # Modify the RewriteBase if you are using Drupal in a subdirectory or in a
