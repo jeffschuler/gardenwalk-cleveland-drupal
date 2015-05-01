@@ -338,6 +338,7 @@ function gardenwalk_special_features_field_default_fields() {
       'label' => 'Link',
       'required' => 0,
       'settings' => array(
+        'absolute_url' => 1,
         'attributes' => array(
           'class' => '',
           'rel' => '',
@@ -348,6 +349,7 @@ function gardenwalk_special_features_field_default_fields() {
         ),
         'enable_tokens' => 1,
         'title' => 'none',
+        'title_label_use_field_label' => FALSE,
         'title_maxlength' => 128,
         'title_value' => '',
         'url' => 0,

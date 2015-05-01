@@ -40,3 +40,4 @@ features[variable][] = pathauto_node_special_feature_pattern
 features[variable][] = skinr_settings_special_feature
 features[variable][] = xmlsitemap_settings_node_special_feature
 features[views_view][] = attractions
+mtime = 1400177038
