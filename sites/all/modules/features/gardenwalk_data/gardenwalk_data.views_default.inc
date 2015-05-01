@@ -31,14 +31,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['exposed_form']['type'] = 'basic';
   $handler->display->display_options['pager']['type'] = 'none';
   $handler->display->display_options['pager']['options']['offset'] = '0';
-  $handler->display->display_options['style_plugin'] = 'views_geojson';
-  $handler->display->display_options['style_options']['data_source']['value'] = 'latlon';
-  $handler->display->display_options['style_options']['data_source']['latitude'] = 'latitude';
-  $handler->display->display_options['style_options']['data_source']['longitude'] = 'longitude';
-  $handler->display->display_options['style_options']['data_source']['name_field'] = 'field_map_marker_label';
-  $handler->display->display_options['style_options']['data_source']['description_field'] = 'title';
-  $handler->display->display_options['style_options']['jsonp_prefix'] = '';
-  $handler->display->display_options['style_options']['using_views_api_mode'] = 0;
   /* Relationship: Content: Taxonomy terms on node */
   $handler->display->display_options['relationships']['term_node_tid']['id'] = 'term_node_tid';
   $handler->display->display_options['relationships']['term_node_tid']['table'] = 'node';
