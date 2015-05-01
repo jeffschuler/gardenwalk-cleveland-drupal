@@ -7,6 +7,3 @@
 [submodule "sites/all/modules/contrib/mapbox"]
 	path = sites/all/modules/contrib/mapbox
 	url = http://git.drupal.org/project/mapbox.git
-[submodule "sites/all/modules/contrib/views_geojson"]
-	path = sites/all/modules/contrib/views_geojson
-	url = jeffschuler@git.drupal.org:project/views_geojson.git
