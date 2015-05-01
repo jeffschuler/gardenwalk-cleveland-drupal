@@ -68,11 +68,11 @@ function gardenwalk_home_default_page_manager_pages() {
   );
   $display->cache = array();
   $display->title = '';
-  $display->uuid = '2bfe24e7-51d5-485e-abea-2c1f0b2901e4';
+  $display->uuid = '3b9d9d5f-5d88-4b54-b782-6a7642d29724';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-a5fbc315-078c-4bf2-b4a2-ea762da664d5';
+    $pane->pid = 'new-784108c9-208f-4636-93d3-9383f98cd4bf';
     $pane->panel = 'botleft';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -93,11 +93,11 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $pane->uuid = 'a5fbc315-078c-4bf2-b4a2-ea762da664d5';
-    $display->content['new-a5fbc315-078c-4bf2-b4a2-ea762da664d5'] = $pane;
-    $display->panels['botleft'][0] = 'new-a5fbc315-078c-4bf2-b4a2-ea762da664d5';
+    $pane->uuid = '784108c9-208f-4636-93d3-9383f98cd4bf';
+    $display->content['new-784108c9-208f-4636-93d3-9383f98cd4bf'] = $pane;
+    $display->panels['botleft'][0] = 'new-784108c9-208f-4636-93d3-9383f98cd4bf';
     $pane = new stdClass();
-    $pane->pid = 'new-5c43893f-97f8-4e1c-9d05-bbb579ab5919';
+    $pane->pid = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
     $pane->panel = 'botleft';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -106,7 +106,8 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'How to do the GardenWalk',
       'title' => 'How to do the GardenWalk',
-      'body' => '<ol><li><span style="font-size: 12px;">Get a GardenWalk Guide: Beginning&nbsp;July 1 &nbsp;free Guides, with maps of each neighborhood&#39;s gardens,</span><span style="font-size: 12px;">&nbsp;will be available at all&nbsp;<a href="http://www.petittigardencenter.com/index.php/locations" target="_blank">Petitti Garden Centers</a>&nbsp;and <a href="http://www.davesmarkets.com/locations.shtml" target="_blank">Dave&rsquo;s Markets</a>.</span></li><li><a href="http://www.gardenwalkcleveland.org/guide">Choose a neighborhood</a>&nbsp;to begin in.</li><li>Go to that neighborhood&#39;s Headquarters on Saturday or Sunday to check-in (optional.) Guides will also be available at each Headquarters.</li><li>Explore...</li></ol><p>Check out the <a href="/faq">FAQ</a> for more...</p>',
+      'body' => '<ol><li>Get a GardenWalk Guide: Beginning July 1 free Guides, with maps of each neighborhood&#39;s gardens, will be available at all <a href="http://www.petittigardencenter.com/index.php/locations" target="_blank">Petitti Garden Centers</a> and <a href="http://www.davesmarkets.com/locations.shtml" target="_blank">Dave&rsquo;s Markets</a>.</li><li><a href="http://www.gardenwalkcleveland.org/guide">Choose a neighborhood</a> to begin in.</li><li>Go to that neighborhood&#39;s Headquarters on Saturday or Sunday to check-in (optional.) Guides will also be available at each Headquarters.</li><li>Explore...</li></ol><p>Check out the <a href="/faq">FAQ</a> for more...</p>
+',
       'format' => '2',
       'substitute' => 1,
     );
@@ -118,11 +119,11 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '5c43893f-97f8-4e1c-9d05-bbb579ab5919';
-    $display->content['new-5c43893f-97f8-4e1c-9d05-bbb579ab5919'] = $pane;
-    $display->panels['botleft'][1] = 'new-5c43893f-97f8-4e1c-9d05-bbb579ab5919';
+    $pane->uuid = '7cc637fd-bd62-4210-b14e-bddae13fed3f';
+    $display->content['new-7cc637fd-bd62-4210-b14e-bddae13fed3f'] = $pane;
+    $display->panels['botleft'][1] = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
     $pane = new stdClass();
-    $pane->pid = 'new-8e1bcaeb-4229-4f5c-a8cd-ee1be459d329';
+    $pane->pid = 'new-ac57a59c-8681-4944-9699-bf95de2f1ef5';
     $pane->panel = 'botleft';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -143,11 +144,11 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = '';
-    $pane->uuid = '8e1bcaeb-4229-4f5c-a8cd-ee1be459d329';
-    $display->content['new-8e1bcaeb-4229-4f5c-a8cd-ee1be459d329'] = $pane;
-    $display->panels['botleft'][2] = 'new-8e1bcaeb-4229-4f5c-a8cd-ee1be459d329';
+    $pane->uuid = 'ac57a59c-8681-4944-9699-bf95de2f1ef5';
+    $display->content['new-ac57a59c-8681-4944-9699-bf95de2f1ef5'] = $pane;
+    $display->panels['botleft'][2] = 'new-ac57a59c-8681-4944-9699-bf95de2f1ef5';
     $pane = new stdClass();
-    $pane->pid = 'new-1346c605-dd27-4f4e-b787-b1b97149fe5a';
+    $pane->pid = 'new-83cac6aa-1b9b-4c5b-9b7c-4e896fd0e745';
     $pane->panel = 'botmid';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -168,11 +169,11 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = '';
-    $pane->uuid = '1346c605-dd27-4f4e-b787-b1b97149fe5a';
-    $display->content['new-1346c605-dd27-4f4e-b787-b1b97149fe5a'] = $pane;
-    $display->panels['botmid'][0] = 'new-1346c605-dd27-4f4e-b787-b1b97149fe5a';
+    $pane->uuid = '83cac6aa-1b9b-4c5b-9b7c-4e896fd0e745';
+    $display->content['new-83cac6aa-1b9b-4c5b-9b7c-4e896fd0e745'] = $pane;
+    $display->panels['botmid'][0] = 'new-83cac6aa-1b9b-4c5b-9b7c-4e896fd0e745';
     $pane = new stdClass();
-    $pane->pid = 'new-d2ac393b-b115-430d-96bf-097cce472b10';
+    $pane->pid = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
     $pane->panel = 'botmid';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -181,7 +182,7 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->configuration = array(
       'admin_title' => 'Dunham Tavern',
       'title' => 'Visit the Dunham Tavern Museum and Gardens during GardenWalk',
-      'body' => '<p><a href="/dunham-tavern"><img alt="Dunham Tavern Museum" src="/sites/default/files/styles/medium/public/images/page/dtm.gif" style="width: 220px; height: 112px;" /></a></p><p>Saturday and Sunday of GardenWalk, Dunham Tavern&nbsp;Gardens will be open from 11am-5pm (and the Museum from 12pm-4pm) with&nbsp;<strong>Master Gardeners on site from 12pm-2pm</strong>.</p><p>Dunham Tavern Museum and Gardens are at:<br /><strong>6709 Euclid Avenue, Cleveland, OH 44103</strong></p><p><a href="/dunham-tavern">More info and map...</a></p>',
+      'body' => '<p><a href="/dunham-tavern"><img alt="Dunham Tavern Museum" src="/sites/default/files/styles/medium/public/images/page/dtm.gif" style="width: 220px; height: 112px;" /></a></p><p>On Saturday, July 11th Dunham Tavern&nbsp;Gardens will be open from 11am-5pm (and the Museum from 12pm-4pm) with&nbsp;<strong>Master Gardeners on site from 12pm-2pm</strong>.</p><p>Dunham Tavern Museum and Gardens are at:<br /><strong>6709 Euclid Avenue, Cleveland, OH 44103</strong></p><p><a href="/dunham-tavern">More info and map...</a></p>',
       'format' => '2',
       'substitute' => 0,
     );
@@ -191,11 +192,11 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = 'd2ac393b-b115-430d-96bf-097cce472b10';
-    $display->content['new-d2ac393b-b115-430d-96bf-097cce472b10'] = $pane;
-    $display->panels['botmid'][1] = 'new-d2ac393b-b115-430d-96bf-097cce472b10';
+    $pane->uuid = 'f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
+    $display->content['new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7'] = $pane;
+    $display->panels['botmid'][1] = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
     $pane = new stdClass();
-    $pane->pid = 'new-65b4712a-6acc-4e39-944e-e3bd4a8f45a7';
+    $pane->pid = 'new-26103756-43f7-4c7b-a86c-29d2bf63d45d';
     $pane->panel = 'botmid';
     $pane->type = 'block';
     $pane->subtype = 'block-3';
@@ -217,48 +218,11 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 2;
     $pane->locks = array();
-    $pane->uuid = '65b4712a-6acc-4e39-944e-e3bd4a8f45a7';
-    $display->content['new-65b4712a-6acc-4e39-944e-e3bd4a8f45a7'] = $pane;
-    $display->panels['botmid'][2] = 'new-65b4712a-6acc-4e39-944e-e3bd4a8f45a7';
+    $pane->uuid = '26103756-43f7-4c7b-a86c-29d2bf63d45d';
+    $display->content['new-26103756-43f7-4c7b-a86c-29d2bf63d45d'] = $pane;
+    $display->panels['botmid'][2] = 'new-26103756-43f7-4c7b-a86c-29d2bf63d45d';
     $pane = new stdClass();
-    $pane->pid = 'new-f99d3714-86ca-41ad-b9e8-8b084320ce11';
-    $pane->panel = 'botright';
-    $pane->type = 'views';
-    $pane->subtype = 'printable_maps';
-    $pane->shown = TRUE;
-    $pane->access = array();
-    $pane->configuration = array(
-      'override_pager_settings' => 0,
-      'use_pager' => 0,
-      'nodes_per_page' => '0',
-      'pager_id' => '0',
-      'offset' => '0',
-      'more_link' => 0,
-      'feed_icons' => 0,
-      'panel_args' => 0,
-      'link_to_view' => 0,
-      'args' => '',
-      'url' => '',
-      'display' => 'block_1',
-      'context' => array(
-        0 => '',
-      ),
-      'override_title' => 0,
-      'override_title_text' => '',
-    );
-    $pane->cache = array();
-    $pane->style = array(
-      'settings' => NULL,
-    );
-    $pane->css = array();
-    $pane->extras = array();
-    $pane->position = 0;
-    $pane->locks = array();
-    $pane->uuid = 'f99d3714-86ca-41ad-b9e8-8b084320ce11';
-    $display->content['new-f99d3714-86ca-41ad-b9e8-8b084320ce11'] = $pane;
-    $display->panels['botright'][0] = 'new-f99d3714-86ca-41ad-b9e8-8b084320ce11';
-    $pane = new stdClass();
-    $pane->pid = 'new-d4d8e5cc-c143-4f06-998d-8943dd3c746b';
+    $pane->pid = 'new-c1984ee5-48a6-4d10-87b7-0350412564e4';
     $pane->panel = 'botright';
     $pane->type = 'custom';
     $pane->subtype = 'custom';
@@ -277,13 +241,13 @@ function gardenwalk_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 1;
+    $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = 'd4d8e5cc-c143-4f06-998d-8943dd3c746b';
-    $display->content['new-d4d8e5cc-c143-4f06-998d-8943dd3c746b'] = $pane;
-    $display->panels['botright'][1] = 'new-d4d8e5cc-c143-4f06-998d-8943dd3c746b';
+    $pane->uuid = 'c1984ee5-48a6-4d10-87b7-0350412564e4';
+    $display->content['new-c1984ee5-48a6-4d10-87b7-0350412564e4'] = $pane;
+    $display->panels['botright'][0] = 'new-c1984ee5-48a6-4d10-87b7-0350412564e4';
     $pane = new stdClass();
-    $pane->pid = 'new-084de788-d6ac-402d-b20c-636aa06a0e5a';
+    $pane->pid = 'new-c3bc4432-dd8c-4785-8fd9-de2824ad0484';
     $pane->panel = 'botright';
     $pane->type = 'views_panes';
     $pane->subtype = 'gardener_stories-panel_pane_1';
@@ -296,13 +260,13 @@ function gardenwalk_home_default_page_manager_pages() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 2;
+    $pane->position = 1;
     $pane->locks = array();
-    $pane->uuid = '084de788-d6ac-402d-b20c-636aa06a0e5a';
-    $display->content['new-084de788-d6ac-402d-b20c-636aa06a0e5a'] = $pane;
-    $display->panels['botright'][2] = 'new-084de788-d6ac-402d-b20c-636aa06a0e5a';
+    $pane->uuid = 'c3bc4432-dd8c-4785-8fd9-de2824ad0484';
+    $display->content['new-c3bc4432-dd8c-4785-8fd9-de2824ad0484'] = $pane;
+    $display->panels['botright'][1] = 'new-c3bc4432-dd8c-4785-8fd9-de2824ad0484';
     $pane = new stdClass();
-    $pane->pid = 'new-7ad0bdcc-2dd7-4dd2-aef8-e1536bc0f40c';
+    $pane->pid = 'new-03e7f7f1-7d5b-4db7-acd1-6aa840f27921';
     $pane->panel = 'mid';
     $pane->type = 'block';
     $pane->subtype = 'block-5';
@@ -323,11 +287,11 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '7ad0bdcc-2dd7-4dd2-aef8-e1536bc0f40c';
-    $display->content['new-7ad0bdcc-2dd7-4dd2-aef8-e1536bc0f40c'] = $pane;
-    $display->panels['mid'][0] = 'new-7ad0bdcc-2dd7-4dd2-aef8-e1536bc0f40c';
+    $pane->uuid = '03e7f7f1-7d5b-4db7-acd1-6aa840f27921';
+    $display->content['new-03e7f7f1-7d5b-4db7-acd1-6aa840f27921'] = $pane;
+    $display->panels['mid'][0] = 'new-03e7f7f1-7d5b-4db7-acd1-6aa840f27921';
     $pane = new stdClass();
-    $pane->pid = 'new-3aa91c8c-bbd0-4782-9113-479050c22db3';
+    $pane->pid = 'new-8397396e-8c1c-480c-81fb-2dcddb2d04e4';
     $pane->panel = 'topleft';
     $pane->type = 'block';
     $pane->subtype = 'block-4';
@@ -345,11 +309,11 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '3aa91c8c-bbd0-4782-9113-479050c22db3';
-    $display->content['new-3aa91c8c-bbd0-4782-9113-479050c22db3'] = $pane;
-    $display->panels['topleft'][0] = 'new-3aa91c8c-bbd0-4782-9113-479050c22db3';
+    $pane->uuid = '8397396e-8c1c-480c-81fb-2dcddb2d04e4';
+    $display->content['new-8397396e-8c1c-480c-81fb-2dcddb2d04e4'] = $pane;
+    $display->panels['topleft'][0] = 'new-8397396e-8c1c-480c-81fb-2dcddb2d04e4';
     $pane = new stdClass();
-    $pane->pid = 'new-6a703418-9e1e-4ea0-9cd3-073e1623d7c8';
+    $pane->pid = 'new-fd6e03a9-19ec-4308-b0dd-c9fd099b1cf4';
     $pane->panel = 'topright';
     $pane->type = 'views';
     $pane->subtype = 'image_rotator';
@@ -379,11 +343,11 @@ function gardenwalk_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $pane->uuid = '6a703418-9e1e-4ea0-9cd3-073e1623d7c8';
-    $display->content['new-6a703418-9e1e-4ea0-9cd3-073e1623d7c8'] = $pane;
-    $display->panels['topright'][0] = 'new-6a703418-9e1e-4ea0-9cd3-073e1623d7c8';
+    $pane->uuid = 'fd6e03a9-19ec-4308-b0dd-c9fd099b1cf4';
+    $display->content['new-fd6e03a9-19ec-4308-b0dd-c9fd099b1cf4'] = $pane;
+    $display->panels['topright'][0] = 'new-fd6e03a9-19ec-4308-b0dd-c9fd099b1cf4';
   $display->hide_title = PANELS_TITLE_NONE;
-  $display->title_pane = 'new-a5fbc315-078c-4bf2-b4a2-ea762da664d5';
+  $display->title_pane = 'new-784108c9-208f-4636-93d3-9383f98cd4bf';
   $handler->conf['display'] = $display;
   $page->default_handlers[$handler->name] = $handler;
   $pages['home'] = $page;
