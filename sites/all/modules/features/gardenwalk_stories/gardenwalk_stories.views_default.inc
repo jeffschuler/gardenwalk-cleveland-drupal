@@ -742,11 +742,22 @@ function gardenwalk_stories_views_default_views() {
     0 => '21',
     1 => '42',
     2 => '47',
+    3 => '49',
   );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator_id'] = 'field_gardenwalk_year_tid_op';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['label'] = 'Year (field_gardenwalk_year)';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator'] = 'field_gardenwalk_year_tid_op';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['identifier'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+  );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
   $handler->display->display_options['link_to_view'] = '1';
   $export['gardener_stories'] = $view;

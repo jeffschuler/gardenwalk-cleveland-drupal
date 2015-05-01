@@ -137,7 +137,7 @@ function gardenwalk_community_gardens_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
-    47 => '47',
+    49 => '49',
   );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
