@@ -55,7 +55,7 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '22',
+          'weight' => '25',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -190,7 +190,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'location_cck',
           'settings' => array(),
           'type' => 'location_all',
-          'weight' => '4',
+          'weight' => '9',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -274,7 +274,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'taxonomy',
           'settings' => array(),
           'type' => 'taxonomy_term_reference_link',
-          'weight' => '7',
+          'weight' => '11',
         ),
         'teaser' => array(
           'label' => 'inline',
@@ -421,9 +421,10 @@ function gardenwalk_gardens_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '21',
+          'type' => 'list_default',
+          'weight' => '10',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -490,9 +491,10 @@ function gardenwalk_gardens_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'text',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '26',
+          'type' => 'text_default',
+          'weight' => '7',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -573,7 +575,7 @@ function gardenwalk_gardens_field_default_fields() {
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
-          'weight' => '23',
+          'weight' => '26',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -623,17 +625,7 @@ function gardenwalk_gardens_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'garden',
-      'default_value' => array(
-        0 => array(
-          'element_key' => 'node|garden|field_gardener_addressfield|und|0',
-          'thoroughfare' => '',
-          'premise' => '',
-          'locality' => 'Cleveland',
-          'administrative_area' => 'OH',
-          'postal_code' => '',
-          'country' => 'US',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -647,7 +639,7 @@ function gardenwalk_gardens_field_default_fields() {
             'use_widget_handlers' => 1,
           ),
           'type' => 'addressfield_default',
-          'weight' => '11',
+          'weight' => '15',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -671,6 +663,7 @@ function gardenwalk_gardens_field_default_fields() {
           'available_countries' => array(
             'US' => 'US',
           ),
+          'default_country' => NULL,
           'format_handlers' => array(
             'address' => 'address',
             'address-hide-country' => 0,
@@ -721,7 +714,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'email',
           'settings' => array(),
           'type' => 'email_default',
-          'weight' => '14',
+          'weight' => '18',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -799,7 +792,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '10',
+          'weight' => '14',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -878,7 +871,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '13',
+          'weight' => '17',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -959,7 +952,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '12',
+          'weight' => '16',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1033,10 +1026,9 @@ function gardenwalk_gardens_field_default_fields() {
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'list',
           'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '2',
+          'type' => 'hidden',
+          'weight' => '24',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1104,7 +1096,7 @@ function gardenwalk_gardens_field_default_fields() {
       'bundle' => 'garden',
       'default_value' => array(
         0 => array(
-          'tid' => '47',
+          'tid' => '49',
         ),
       ),
       'deleted' => '0',
@@ -1202,7 +1194,7 @@ function gardenwalk_gardens_field_default_fields() {
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '9',
+          'weight' => '13',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1307,7 +1299,7 @@ $display_output = $entity_field_item[\'value\'];',
           'module' => 'computed_field',
           'settings' => array(),
           'type' => 'computed_field_plain',
-          'weight' => '3',
+          'weight' => '8',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1471,7 +1463,7 @@ $display_output = $entity_field_item[\'value\'];',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
-          'weight' => '8',
+          'weight' => '12',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1522,6 +1514,7 @@ $display_output = $entity_field_item[\'value\'];',
           2011 => '2011',
           2012 => '2012',
           2013 => '2013',
+          2014 => '2014',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
@@ -1539,9 +1532,10 @@ $display_output = $entity_field_item[\'value\'];',
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '24',
+          'type' => 'list_default',
+          'weight' => '4',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1614,9 +1608,10 @@ $display_output = $entity_field_item[\'value\'];',
       'display' => array(
         'default' => array(
           'label' => 'above',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '25',
+          'type' => 'list_default',
+          'weight' => '2',
         ),
         'teaser' => array(
           'label' => 'above',
@@ -1961,17 +1956,7 @@ $display_output = $entity_field_item[\'value\'];',
     ),
     'field_instance' => array(
       'bundle' => 'neighborhood',
-      'default_value' => array(
-        0 => array(
-          'element_key' => 'taxonomy_term|neighborhood|field_neighborhood_location|und|0',
-          'thoroughfare' => '',
-          'premise' => '',
-          'locality' => 'Cleveland',
-          'administrative_area' => 'OH',
-          'postal_code' => '',
-          'country' => 'US',
-        ),
-      ),
+      'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
       'display' => array(
@@ -2001,6 +1986,7 @@ $display_output = $entity_field_item[\'value\'];',
         'module' => 'addressfield',
         'settings' => array(
           'available_countries' => array(),
+          'default_country' => '',
           'format_handlers' => array(
             'address' => 'address',
             'address-hide-country' => 0,

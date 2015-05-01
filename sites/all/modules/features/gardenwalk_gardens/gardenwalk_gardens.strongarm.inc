@@ -62,8 +62,8 @@ function gardenwalk_gardens_strongarm() {
       'display' => array(
         'workflow_current_state' => array(
           'default' => array(
-            'weight' => '20',
-            'visible' => FALSE,
+            'weight' => '3',
+            'visible' => TRUE,
           ),
         ),
         'workflow' => array(

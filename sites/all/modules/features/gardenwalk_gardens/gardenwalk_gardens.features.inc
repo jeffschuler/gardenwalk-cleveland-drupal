@@ -68,7 +68,7 @@ function gardenwalk_gardens_workflow_default_workflows() {
   $workflows['Garden Approval'] = array(
     'name' => 'Garden Approval',
     'tab_roles' => '2,3,4,8',
-    'options' => 'a:3:{s:16:"comment_log_node";i:0;s:15:"comment_log_tab";i:0;s:13:"name_as_title";i:0;}',
+    'options' => 'a:4:{s:16:"comment_log_node";i:0;s:15:"comment_log_tab";i:0;s:13:"name_as_title";i:0;s:12:"watchdog_log";i:1;}',
     'states' => array(
       0 => array(
         'state' => '(creation)',
