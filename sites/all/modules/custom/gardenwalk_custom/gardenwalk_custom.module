@@ -39,7 +39,12 @@ function computed_field_field_map_marker_label_compute(&$entity_field, $entity_t
   // Get label prefix
   if (isset($entity->field_neighborhood['und'][0]['tid'])) {
     $term = taxonomy_term_load($entity->field_neighborhood['und'][0]['tid']);
-    $prefix = $term->field_map_label_prefix['und'][0]['value'];
+    if (isset($term->field_map_label_prefix['und'])) {
+      $prefix = $term->field_map_label_prefix['und'][0]['value'];
+    } else {
+      // @TODO: Maybe error. The neighborhood for this garden doesn't have a prefix set
+      return;
+    }
   }
 
   // Get position in nodequeue
