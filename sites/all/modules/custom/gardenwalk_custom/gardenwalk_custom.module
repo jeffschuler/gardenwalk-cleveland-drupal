@@ -74,3 +74,15 @@ function computed_field_field_map_marker_label_display($field, $entity_field_ite
   $display_output = $entity_field_item['value'];
   return $display_output;
 }
+
+/**
+ * Implements hook_admin_paths_alter().
+ *
+ * We change the nodequeue ordering page for neighborhood queues, so that in our
+ * custom theme we can implement theme_nodequeue_arrange_subqueue_form_table()
+ * as gardenwalk_nodequeue_arrange_subqueue_form_table() in template.php
+ * and add the Map Market Label column.
+ */
+function gardenwalk_custom_admin_paths_alter(&$paths) {
+  $paths['admin/structure/nodequeue/4/view/*'] = FALSE;
+}
