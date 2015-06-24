@@ -18,9 +18,23 @@ Drupal.openlayers.layer.wmts = function(title, map, options) {
     url: options.url,
     style: options.style,
     matrixSet: options.matrixSet,
+    format: options.format,
     formatSuffix: options.formatSuffix,
-    maxExtent: OpenLayers.Bounds.fromArray(options.maxExtent)
+    isBaseLayer: options.isBaseLayer
   };
+
+  if (options.matrixIdsAuto) {
+    layer_options.matrixIds = new Array(26);
+    for (var i=0; i<26; ++i) {
+      layer_options.matrixIds[i] = options.matrixSet + ":" + i;
+    }
+  } else if (options.matrixIds) {
+    layer_options.matrixIds = options.matrixIds;
+  }
+
+  if (OpenLayers.Util.isArray(options.maxExtent)) {
+    layer_options.maxExtent = OpenLayers.Bounds.fromArray(options.maxExtent);
+  }
 
   if (options.resolutions) {
     layer_options.resolutions = jQuery.parseJSON('['+options.resolutions+']');

@@ -57,10 +57,10 @@ Drupal.behaviors.openlayers = {
             options.projection = new OpenLayers.Projection(map.projection);
             options.displayProjection = new OpenLayers.Projection(map.displayProjection);
 
-            // Restrict map to its projection extent (data outwith cannot be represented)
-            options.maxExtent = new OpenLayers.Bounds.fromArray(map.maxExtent);
+            // Restrict map to its extent (usually projection extent).
+            options.maxExtent = OpenLayers.Bounds.fromArray(map.maxExtent);
 
-            options.maxResolution = 'auto'; // 1.40625;
+            options.maxResolution = 'auto';
             options.controls = [];
 
             // Change image, CSS, and proxy paths if specified
@@ -93,14 +93,6 @@ Drupal.behaviors.openlayers = {
 
             // Finally, attach behaviors
             Drupal.attachBehaviors(this);
-
-            if ($.browser.msie) {
-              $(window).load(function() {
-                openlayers.render(map.id);
-              });
-            } else {
-              openlayers.render(map.id);
-            }
           }
           catch (e) {
             var errorMessage = e.name + ': ' + e.message;
@@ -312,6 +304,10 @@ Drupal.openlayers = {
         var style = map.layer_styles_select[layername];
         stylesAdded['select'] = new OpenLayers.Style(map.styles[style]);
       }
+      if (map.layer_styles_temporary !== undefined && map.layer_styles_temporary[layername]) {
+        var style = map.layer_styles_temporary[layername];
+        stylesAdded['temporary'] = new OpenLayers.Style(map.styles[style]);
+      }
 
       return new OpenLayers.StyleMap(stylesAdded);
     }
@@ -411,7 +407,7 @@ Drupal.openlayers = {
       Drupal.behaviors.proj4js.attach(context, settings);
     }
   },
-  
+
   /**
    * Logging implementation that logs using the browser's logging API.
    * Falls back to doing nothing in case no such API is available. Simulates

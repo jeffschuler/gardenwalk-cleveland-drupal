@@ -5,22 +5,6 @@
  */
 
 /**
- * Define the Ctools plugin options.
- */
-function openlayers_openlayers_layer_type_kml_openlayers_layer_types() {
-  return array(
-    'title' => t('KML'),
-    'description' => t('<a href="!url">KML</a> overlay.',
-      array('!url' => 'http://en.wikipedia.org/wiki/Keyhole_Markup_Language')),
-    'layer_type' => array(
-      'file' => 'openlayers_layer_type_kml.inc',
-      'class' => 'openlayers_layer_type_kml',
-      'parent' => 'openlayers_layer_type',
-    ),
-  );
-}
-
-/**
  * OpenLayers KML Layer Type class
  */
 class openlayers_layer_type_kml extends openlayers_layer_type {
@@ -43,6 +27,7 @@ class openlayers_layer_type_kml extends openlayers_layer_type {
         'extractTracks' => FALSE,
       ),
       'file' => '',
+      'attribution' => '',
     ) + parent::options_init();
   }
 
@@ -128,6 +113,12 @@ class openlayers_layer_type_kml extends openlayers_layer_type {
             $this->data['formatOptions']['extractAttributes'] : TRUE,
         ),
       ),
+      'attribution' => array(
+        '#type' => 'textfield',
+        '#title' => t('Attribution'),
+        '#default_value' => isset($this->data['attribution']) ?
+          $this->data['attribution'] : '',
+      ),
     );
   }
 
@@ -153,6 +144,8 @@ class openlayers_layer_type_kml extends openlayers_layer_type {
     $form_state['data']['formatOptions']['extractStyles'] = $form_state['data']['formatOptions']['extractStyles']!=0?TRUE:FALSE;
     $form_state['data']['formatOptions']['extractAttributes'] = $form_state['data']['formatOptions']['extractAttributes']!=0?TRUE:FALSE;
     $form_state['data']['formatOptions']['extractTracks'] = $form_state['data']['formatOptions']['extractTracks']!=0?TRUE:FALSE;
+
+    $form_state['data']['attribution'] = isset($form_state['data']['attribution']) ? filter_xss($form_state['data']['attribution']) : '';
   }
 
   /**
@@ -160,6 +153,7 @@ class openlayers_layer_type_kml extends openlayers_layer_type {
    */
   function options_form_submit($form, &$form_state) {
     parent::options_form_submit($form, $form_state);
+    global $user;
 
     $item = $form_state['item'];
     if (isset($item->data['file']) && $file = file_load($item->data['file'])) {
@@ -169,6 +163,7 @@ class openlayers_layer_type_kml extends openlayers_layer_type {
     if (isset($form_state['values']['data']['file']) && $file = file_load($form_state['values']['data']['file'])) {
       $file->status = FILE_STATUS_PERMANENT;
       file_save($file);
+      file_usage_add($file, 'openlayers', 'layer_type', $user->uid);
       $form_state['values']['data']['url'] = file_create_url($file->uri);
     }
   }
@@ -187,6 +182,7 @@ class openlayers_layer_type_kml extends openlayers_layer_type {
    * Render.
    */
   function render(&$map) {
+    $this->data['url'] = !empty($this->data['url']) ? file_create_url($this->data['url']) : '';
     drupal_add_js(drupal_get_path('module', 'openlayers')
       . '/plugins/layer_types/openlayers_layer_type_kml.js');
   }
