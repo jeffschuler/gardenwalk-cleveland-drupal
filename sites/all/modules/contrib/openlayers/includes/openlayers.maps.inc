@@ -2,16 +2,18 @@
 
 /**
  * @file
- * This file contains map implementations.
+ * This file contains map implementations
  *
  * @ingroup openlayers
  */
 
 /**
- * Internal callback
- * Helper function to return default maps.
+ * Map definitions
  *
- * @return mixed
+ * Internal callback for openlayers map implementation.
+ *
+ * @return
+ *   Array of maps
  */
 function _openlayers_openlayers_maps() {
   $items = array();
@@ -36,6 +38,7 @@ function _openlayers_openlayers_maps() {
     'image_path' => drupal_get_path('module', 'openlayers') . '/themes/default_dark/img/',
     'css_path' => drupal_get_path('module', 'openlayers') . '/themes/default_dark/style.css',
     'displayProjection' => 'EPSG:4326',
+    'maxExtent' => openlayers_get_extent('EPSG', '4326'),
     'behaviors' => array(
       'openlayers_behavior_panzoombar' => array(),
       'openlayers_behavior_layerswitcher' => array(),
@@ -206,7 +209,7 @@ function _openlayers_openlayers_maps() {
     'hide_empty_map' => 0,
     'center' => array(
       'initial' => array(
-        'centerpoint' => '0, 0',
+        'centerpoint' => '-122.0822035425683, 37.42228990140251',
         'zoom' => '6',
       ),
       'restrict' => array(
@@ -240,6 +243,7 @@ function _openlayers_openlayers_maps() {
         'panMapIfOutOfView' => 0,
         'keepInMap' => 1,
       ),
+      /*
       'openlayers_behavior_zoomtolayer' => array(
         'zoomtolayer' => array(
           'openlayers_kml_example' => 'openlayers_kml_example',
@@ -247,6 +251,7 @@ function _openlayers_openlayers_maps() {
         'point_zoom_level' => '5',
         'zoomtolayer_scale' => '1',
       ),
+      */
     ),
     'default_layer' => 'mapquest_osm',
     'layers' => array(
@@ -282,8 +287,8 @@ function _openlayers_openlayers_maps() {
     'hide_empty_map' => 0,
     'center' => array(
       'initial' => array(
-        'centerpoint' => '0, 0',
-        'zoom' => '3',
+        'centerpoint' => '-63.281250000007, -20.46819494553',
+        'zoom' => '2',
       ),
       'restrict' => array(
         'restrictextent' => 0,
@@ -342,8 +347,8 @@ function _openlayers_openlayers_maps() {
     'hide_empty_map' => 0,
     'center' => array(
       'initial' => array(
-        'centerpoint' => '0, 0',
-        'zoom' => '3',
+        'centerpoint' => '-0.093009923589588, 51.500381463117',
+        'zoom' => '12',
       ),
       'restrict' => array(
         'restrictextent' => 0,

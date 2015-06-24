@@ -2,16 +2,8 @@
 
 /**
  * @file
- * This file contains layers implementations.
  *
- * @ingroup openlayers
- */
-
-/**
- * Internal callback
- * Helper function to return default layers.
- *
- * @return mixed
+ * OpenLayers default packaged layers
  */
 function _openlayers_openlayers_layers() {
   global $is_https;
@@ -27,7 +19,7 @@ function _openlayers_openlayers_layers() {
   $layer->data = array(
     'isBaseLayer' => TRUE,
     'type' => 'satellite',
-    'projection' => array('EPSG:3857', 'EPSG:900913'),
+    'projection' => array('EPSG:3857'),
     'layer_type' => 'openlayers_layer_type_google',
   );
   $layers[$layer->name] = $layer;
@@ -40,7 +32,7 @@ function _openlayers_openlayers_layers() {
   $layer->data = array(
     'isBaseLayer' => TRUE,
     'type' => 'hybrid',
-    'projection' => array('EPSG:3857', 'EPSG:900913'),
+    'projection' => array('EPSG:3857'),
     'layer_type' => 'openlayers_layer_type_google',
   );
   $layers[$layer->name] = $layer;
@@ -53,7 +45,7 @@ function _openlayers_openlayers_layers() {
   $layer->data = array(
     'isBaseLayer' => TRUE,
     'type' => 'normal',
-    'projection' => array('EPSG:3857', 'EPSG:900913'),
+    'projection' => array('EPSG:3857'),
     'layer_type' => 'openlayers_layer_type_google',
   );
   $layers[$layer->name] = $layer;
@@ -66,7 +58,7 @@ function _openlayers_openlayers_layers() {
   $layer->data = array(
     'isBaseLayer' => TRUE,
     'type' => 'physical',
-    'projection' => array('EPSG:3857', 'EPSG:900913'),
+    'projection' => array('EPSG:3857'),
     'layer_type' => 'openlayers_layer_type_google',
   );
   $layers[$layer->name] = $layer;
@@ -280,6 +272,7 @@ function _openlayers_openlayers_layers() {
     ),
     'options' => array(
       'layers' => array('basic'),
+      'maxExtent' => openlayers_get_extent('EPSG', '4326'),
     ),
   );
   $layers[$layer->name] = $layer;

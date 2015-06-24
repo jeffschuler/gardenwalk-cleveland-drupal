@@ -42,7 +42,7 @@ class openlayers_maps_ui extends ctools_export_ui {
     // the map could be very in the way.
     if ( (isset($form_state['clicked_button']['#id'])
       && ($form_state['clicked_button']['#id'] == 'edit-buttons-preview'))
-      || (variable_get('openlayers_ui_preview_map', FALSE)))  {
+      || (variable_get('openlayers_ui_preview_map', TRUE)))  {
 
       $map_preview = isset($form_state['values']) ? openlayers_ui_maps_form_process($form_state['values']) : $map;
 
@@ -389,13 +389,12 @@ class openlayers_maps_ui extends ctools_export_ui {
       // Create overlay options.
       $form['layerstyles']['layer_styles']['#tree'] = TRUE;
       $form['layerstyles']['layer_styles_select']['#tree'] = TRUE;
-      $form['layerstyles']['layer_styles_temporary']['#tree'] = TRUE;
       $form['layerstyles']['layer_weight']['#tree'] = TRUE;
       foreach ($overlay_options_keys as $id) {
         $description = $overlay_options[$id];
         $form['layerstyles']['layers']['overlaylabels'][$id] = array('#markup' => $description);
 
-        // Layer styles that define the default style of layer.
+        // Layer styles tha define the default style of layer.
         $form['layerstyles']['layer_styles'][$id] = array(
           '#type' => 'select',
           '#options' => array('<' . t('use default style') . '>') + openlayers_ui_get_style_options(),
@@ -409,14 +408,6 @@ class openlayers_maps_ui extends ctools_export_ui {
           '#options' => array('<' . t('use default style') . '>') + openlayers_ui_get_style_options(),
           '#default_value' => !empty($defaults['layer_styles_select'][$id]) ?
             $defaults['layer_styles_select'][$id] : '',
-        );
-
-        // Layer temporary style.
-        $form['layerstyles']['layer_styles_temporary'][$id] = array(
-          '#type' => 'select',
-          '#options' => array('<' . t('use default style') . '>') + openlayers_ui_get_style_options(),
-          '#default_value' => !empty($defaults['layer_styles_temporary'][$id]) ?
-            $defaults['layer_styles_temporary'][$id] : '',
         );
 
         // Weight of layer.  This will affect how the layer shows up in the
@@ -499,8 +490,8 @@ class openlayers_maps_ui extends ctools_export_ui {
     $form['layerstyles']['styles']['temporary'] = array(
       '#type' => 'select',
       '#title' => t('Temporary Style'),
-      '#description' => t('Default temporary style for any features in a vector.
-      This can be used with the "Hover behavior" or things like Tooltips.'),
+      '#description' => t('Default style for any temporary features in a vector.
+      This will also be used for rollovers for things like Tooltips.'),
       '#options' => openlayers_ui_get_style_options(),
       '#default_value' => !empty($defaults['styles']['temporary']) ?
         $defaults['styles']['temporary'] : NULL,

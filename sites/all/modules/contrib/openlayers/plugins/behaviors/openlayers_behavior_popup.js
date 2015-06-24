@@ -54,49 +54,21 @@ Drupal.openlayers.addBehavior('openlayers_behavior_popup', function (data, optio
   // if only 1 layer exists, do not add as an array.  Kind of a
   // hack, see https://drupal.org/node/1393460
   if (layers.length == 1) {
-    //layers = layers[0];
+    layers = layers[0];
   }
 
   var popupSelect = new OpenLayers.Control.SelectFeature(layers,
     {
-      eventListeners:{
-        featurehighlighted:function(e){
-          lonlat = map.getLonLatFromPixel(
-            new OpenLayers.Pixel(
-              this.handlers.feature.evt.clientX - map.viewPortDiv.offsetLeft + jQuery(window).scrollLeft(),
-              this.handlers.feature.evt.clientY - map.viewPortDiv.offsetTop + jQuery(window).scrollTop()
-            )
-          );
-
-
-
-
-
-        }
-      },
       onSelect: function(feature) {
-        var lonlat;
-        if (options.popupAtPosition == 'mouse') {
-          lonlat = map.getLonLatFromPixel(
-            this.handlers.feature.evt.xy
-          );
-        } else {
-          lonlat = feature.geometry.getBounds().getCenterLonLat();
-        }
-
         // Create FramedCloud popup.
         popup = new OpenLayers.Popup.FramedCloud(
           'popup',
-          lonlat,
-          //feature.geometry.getBounds().getCenterLonLat(),
+          feature.geometry.getBounds().getCenterLonLat(),
           null,
           Drupal.theme('openlayersPopup', feature),
           null,
           true,
           function(evt) {
-            while( map.popups.length ) {
-              map.removePopup(map.popups[0]);
-              }
             Drupal.openlayers.popup.popupSelect.unselect(selectedFeature);
           }
         );
@@ -106,20 +78,16 @@ Drupal.openlayers.addBehavior('openlayers_behavior_popup', function (data, optio
         popup.keepInMap = options.keepInMap;
         selectedFeature = feature;
         feature.popup = popup;
-        map.addPopup(popup, true);
         Drupal.attachBehaviors();
+        map.addPopup(popup);
       },
       onUnselect: function(feature) {
         map.removePopup(feature.popup);
         feature.popup.destroy();
         feature.popup = null;
-        this.unselectAll();
-        Drupal.attachBehaviors();
       }
     }
   );
-  popupSelect.handlers['feature'].stopDown = false;
-  popupSelect.handlers['feature'].stopUp = false;
 
   map.addControl(popupSelect);
   popupSelect.activate();

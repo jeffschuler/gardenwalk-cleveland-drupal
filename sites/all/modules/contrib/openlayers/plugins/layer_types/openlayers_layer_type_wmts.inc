@@ -5,6 +5,22 @@
  */
 
 /**
+ * Define the Ctools plugin options.
+ */
+function openlayers_openlayers_layer_type_wmts_openlayers_layer_types() {
+  return array(
+    'title' => t('WMTS'),
+    'description' => t('<a href="!url">Web Map Tile Service</a>',
+      array('!url' => 'http://en.wikipedia.org/wiki/Tile_Map_Service')),
+    'layer_type' => array(
+      'file' => 'openlayers_layer_type_wmts.inc',
+      'class' => 'openlayers_layer_type_wmts',
+      'parent' => 'openlayers_layer_type',
+    ),
+  );
+}
+
+/**
  * OpenLayers TMS Layer Type class
  */
 class openlayers_layer_type_wmts extends openlayers_layer_type {
@@ -54,35 +70,6 @@ class openlayers_layer_type_wmts extends openlayers_layer_type {
         '#default_value' => isset($this->data['matrixSet']) ? $this->data['matrixSet'] : '',
         '#description' => t('One of the advertised matrix set identifiers. Must be provided.'),
       ),
-      'matrixIdsAuto' => array(
-        '#type' => 'checkbox',
-        '#default_value' => isset($this->data['matrixIdsAuto']) ?
-          $this->data['matrixIdsAuto'] : TRUE,
-        '#title' => t('Auto-generate matrix identifiers.'),
-        '#description' => t('Generate identifiers in the format [matrixSet]:[zoomLevel]. Use this options for Geoserver WMTS tiles. Overwrites explicit matrix IDs specified above.'),
-      ),
-      'matrixIds' => array(
-        '#type' => 'textfield',
-        '#title' => t('Matrix IDs'),
-        '#default_value' => isset($this->data['matrixIds']) ? implode(',', $this->data['matrixIds']) : '',
-        '#description' => t('Matrix identifiers per zoom level. Comma separated. Leave empty to use zoom level as identifier.'),
-        '#states' => array(
-          'invisible' => array(
-           ':input[name*="matrixIdsAuto"]' => array('checked' => TRUE),
-          ),
-        ),
-      ),
-      'format' => array(
-        '#type' => 'select',
-        '#title' => t('Tile format'),
-        '#options' => array(
-          'image/png' => 'image/png',
-          'image/gif' => 'image/gif',
-          'image/jpeg' => 'image/jpeg'
-        ),
-        '#default_value' => isset($this->data['format']) ? $this->data['format'] : 'image/jpeg',
-        '#description' => t('The image MIME type.  Default is "image/jpeg".'),
-      ),
       'formatSuffix' => array(
         '#type' => 'textfield',
         '#title' => t('Format Suffix'),
@@ -93,7 +80,7 @@ class openlayers_layer_type_wmts extends openlayers_layer_type {
         '#type' => 'textfield',
         '#title' => t('Max Extent'),
         '#default_value' => isset($this->data['maxExtent']) ? implode(', ', $this->data['maxExtent']) : '',
-        '#description' => t('Should consist of four values (left, bottom, right, top). The maximum extent for the layer.'),
+        '#description' => t('Should consist of four values (left, bottom, right, top). The maximum extent for the layer. Defaults to null.'),
       ),
       'resolutions' => array(
         '#type' => 'textfield',
@@ -122,16 +109,8 @@ class openlayers_layer_type_wmts extends openlayers_layer_type {
     //parent::options_form_validate($form, $form_state);
     $form_state['data']['resolutions'] = array_map('floatval', explode(' ', $form_state['data']['resolutions']));
     $form_state['data']['serverResolutions'] = array_map('floatval', explode(' ', $form_state['data']['serverResolutions']));
-    if (empty($form_state['data']['matrixIds'])) {
-      $form_state['data']['matrixIds'] = NULL;
-    } else {
-      $form_state['data']['matrixIds'] = array_map('trim', explode(',', $form_state['data']['matrixIds']));
-    }
     $form_state['data']['url'] = explode("\n", $form_state['data']['url']);
     $form_state['data']['maxExtent'] = array_map('floatval', explode(",", $form_state['data']['maxExtent']));
-    if (empty($form_state['data']['formatSuffix'])) {
-      $form_state['data']['formatSuffix'] = NULL;
-    }
   }
 
   function options_form_submit($form, &$form_state) {

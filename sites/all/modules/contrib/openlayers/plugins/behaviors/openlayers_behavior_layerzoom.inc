@@ -5,7 +5,24 @@
  */
 
 /**
- * Layer Zoom Behavior
+ * Ctools plugin definition.
+ */
+
+function openlayers_openlayers_behavior_layerzoom_openlayers_behaviors() {
+  return array(
+   'title' => t('Zoom restrictions for non-base layers.'),
+   'description' => t('Enables restriction of layer display based on zoom level.'),
+   'type' => 'layer',
+   'behavior' => array(
+     'file' => 'openlayers_behavior_layerzoom.inc',
+     'class' => 'openlayers_behavior_layerzoom',
+     'parent' => 'openlayers_behavior',
+   ),
+ );
+}
+
+/**
+ * Attribution Behavior
  */
 class openlayers_behavior_layerzoom extends openlayers_behavior {
 

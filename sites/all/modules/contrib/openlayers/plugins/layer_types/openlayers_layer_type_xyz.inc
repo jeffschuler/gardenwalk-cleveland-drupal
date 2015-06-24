@@ -6,6 +6,21 @@
  */
 
 /**
+ * Define the Ctools plugin options.
+ */
+function openlayers_openlayers_layer_type_xyz_openlayers_layer_types() {
+  return array(
+    'title' => t('XYZ'),
+    'description' => t('XYZ layer type.  These are tiles sets usually in the form of {z}/{x}/{y}.png.'),
+    'layer_type' => array(
+      'file' => 'openlayers_layer_type_xyz.inc',
+      'class' => 'openlayers_layer_type_xyz',
+      'parent' => 'openlayers_layer_type',
+    ),
+  );
+}
+
+/**
  * OpenLayers XYZ Layer Type class
  */
 class openlayers_layer_type_xyz extends openlayers_layer_type {
@@ -38,11 +53,11 @@ class openlayers_layer_type_xyz extends openlayers_layer_type {
       'serverResolutions' => array(
         '#type' => 'select',
         '#multiple' => TRUE,
-        '#description' => t('Only set this if you need to request very specific resolutions from the server.'),
+        '#description' => t('Only set this if you need a very specific resolution.'),
         '#options' => array_combine(
           array_map('strval', openlayers_get_resolutions('EPSG:900913')),
           range(0, 21)),
-        '#title' => t('Server Zoom Level Range'),
+        '#title' => t('Zoom Level Range'),
         '#default_value' => isset($this->data['serverResolutions']) ?
           array_map('strval', $this->data['serverResolutions']) : array(),
       ),

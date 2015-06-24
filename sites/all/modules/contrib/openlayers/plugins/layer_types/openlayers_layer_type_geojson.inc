@@ -5,6 +5,22 @@
  */
 
 /**
+ * Define the Ctools plugin options.
+ */
+function openlayers_openlayers_layer_type_geojson_openlayers_layer_types() {
+  return array(
+    'title' => t('GeoJSON'),
+    'description' => t('Provides a vector layer based on <a href="!url">GeoJSON</a>.',
+      array('!url' => 'http://geojson.org/')),
+    'layer_type' => array(
+      'file' => 'openlayers_layer_type_geojson.inc',
+      'class' => 'openlayers_layer_type_geojson',
+      'parent' => 'openlayers_layer_type',
+    ),
+  );
+}
+
+/**
  * OpenLayers GeoJSON Layer Type class
  */
 class openlayers_layer_type_geojson extends openlayers_layer_type {
@@ -14,7 +30,6 @@ class openlayers_layer_type_geojson extends openlayers_layer_type {
    */
   function options_init() {
     return array(
-      'layer_type' => 'openlayers_layer_type_geojson',
       'layer_handler' => 'geojson',
       'projection' => array('EPSG:4326'),
       'serverResolutions' => openlayers_get_resolutions('EPSG:4326'),
@@ -59,20 +74,7 @@ class openlayers_layer_type_geojson extends openlayers_layer_type {
           '),
         '#default_value' => isset($this->data['resFactor']) ? $this->data['resFactor'] : 1
       ),
-      //see http://dev.openlayers.org/docs/files/OpenLayers/Strategy/BBOX-js.html#OpenLayers.Strategy.BBOX.ratio
-      'ratio' => array(
-        '#type' => 'textfield',
-        '#title' => t('Bounding Box ratio'),
-        '#description' => t('The ratio of the data bounds to the viewport bounds (in each dimension).  Default is 3.'),
-        '#default_value' => isset($this->data['ratio']) ? $this->data['ratio'] : 3
-      ),
-      'preload' => array(
-        '#type' => 'checkbox',
-        '#title' => t('Preload layer'),
-        '#description' => t('Load data before layer is made visible. Useful when you want to avoid having to wait for an Ajax call to load the data'),
-        '#default_value' => isset($this->data['preload']) ? $this->data['preload'] : FALSE,
-      ),
-      'useScript' => array(
+     'useScript' => array(
         '#type' => 'checkbox',
         '#title' => t('Use Script Method'),
         '#description' => t('Avoid 405 error and XSS issues load data from another server with ajax'),
@@ -103,12 +105,7 @@ class openlayers_layer_type_geojson extends openlayers_layer_type {
       }
     }
 
-    if (module_exists('facetapi') && (isset($_GET['f']))) {
-      $this->data['url'] = !empty($this->data['url']) ? file_create_url($this->data['url'], array('query' => array('f' => $_GET['f']))) : '';
-    }
-    else {
-      $this->data['url'] = !empty($this->data['url']) ? file_create_url($this->data['url']) : '';
-    }
+    $this->data['url'] = !empty($this->data['url']) ? url($this->data['url']) : '';
 
     drupal_add_js(drupal_get_path('module', 'openlayers')
       . '/plugins/layer_types/openlayers_layer_type_geojson.js');

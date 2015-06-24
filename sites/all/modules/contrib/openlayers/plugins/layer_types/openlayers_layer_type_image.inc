@@ -6,6 +6,21 @@
  */
 
 /**
+ * Define the Ctools plugin options.
+ */
+function openlayers_openlayers_layer_type_image_openlayers_layer_types() {
+  return array(
+    'title' => t('Image'),
+    'description' => t('Use an image as a layer.'),
+    'layer_type' => array(
+      'file' => 'openlayers_layer_type_image.inc',
+      'class' => 'openlayers_layer_type_image',
+      'parent' => 'openlayers_layer_type',
+    ),
+  );
+}
+
+/**
  * OpenLayers Image Layer Type class
  */
 class openlayers_layer_type_image extends openlayers_layer_type {
@@ -17,7 +32,7 @@ class openlayers_layer_type_image extends openlayers_layer_type {
     return array(
       'layer_handler' => 'image',
       'file' => NULL,
-      'image_style' => NULL,
+      'maxExtent' => openlayers_get_extent('EPSG', '4326'),
       'opacity' => 1,
       'factors' => array(
         'x' => 1,
@@ -39,32 +54,24 @@ class openlayers_layer_type_image extends openlayers_layer_type {
         '#default_value' => isset($this->data['file']) ? $this->data['file'] : '',
         '#upload_location' =>  'public://',
       ),
-      'image_style' => array(
-        '#type' => 'select',
-        '#options' => array(''=> 'None (original image)') + image_style_options(FALSE),
-        '#default_value' => isset($this->data['image_style']) ? $this->data['image_style'] : NULL,
-        '#description' => t('Apply an image style.'),
-      ),
       'factors' => array(
         '#tree' => TRUE,
         'x' => array(
            '#title' => 'Width divider',
            '#type' => 'textfield',
-           '#default_value' => isset($this->data['factors']['x']) ? $this->data['factors']['x'] : 1,
-           '#description' => t('Width divider.'),
+           '#default_value' => isset($this->data['factors']['x']) ? $this->data['factors']['x'] : 1
         ),
         'y' => array(
            '#title' => 'Height divider',
            '#type' => 'textfield',
-           '#default_value' => isset($this->data['factors']['y']) ? $this->data['factors']['y'] : 1,
-           '#description' => t('Height divider.'),
+           '#default_value' => isset($this->data['factors']['y']) ? $this->data['factors']['y'] : 1
         ),
       ),
       'maxExtent' => array(
         '#type' => 'textfield',
         '#title' => t('Max Extent'),
         '#default_value' => isset($this->data['maxExtent']) ? implode(', ', $this->data['maxExtent']) : '',
-        '#description' => t('Should consist of four values (left, bottom, right, top). The maximum extent for the layer. Image is stretched to cover whole map if left empty.'),
+        '#description' => t('Should consist of four values (left, bottom, right, top). The maximum extent for the layer. Defaults to null.'),
       ),
       'numZoomLevels' => array(
          '#title' => 'Zoomlevels',
@@ -107,25 +114,11 @@ class openlayers_layer_type_image extends openlayers_layer_type {
       file_save($file);
       file_usage_add($file, 'openlayers', 'openlayers_layer_type', $user->uid);
     }
-
-    $style = $form_state['values']['data']['image_style'];
-
-    if (!empty($style)) {
-      $uri = image_style_path($style, $file->uri);
-      image_style_create_derivative(image_style_load($style), $file->uri, $uri);
-    } else {
-      $uri = $file->uri;
-    }
-
-    $infos = image_get_info($uri);
+    $infos = image_get_info($file->uri);
     $form_state['values']['data']['size'] = array();
     $form_state['values']['data']['size']['w'] = $infos['width'];
     $form_state['values']['data']['size']['h'] = $infos['height'];
     $form_state['values']['data']['maxExtent'] = array_map('floatval', explode(",", $form_state['values']['data']['maxExtent']));
-    if(count($form_state['values']['data']['maxExtent'])!==4){
-      // Ignore invalid input.
-      $form_state['values']['data']['maxExtent'] = NULL;
-    }
   }
 
   /*
@@ -143,12 +136,7 @@ class openlayers_layer_type_image extends openlayers_layer_type {
     if (isset($this->data['file'])) {
       if ($file = file_load($this->data['file'])) {
         $this->data['file'] = array();
-        if (!empty($this->data['image_style'])) {
-          $this->data['file'] = image_style_url($this->data['image_style'] ,$file->uri);
-        } else {
-          $this->data['file'] = file_create_url($file->uri);
-        }
-        unset($this->data['image_style']);
+        $this->data['file'] = file_create_url($file->uri);
 
         drupal_add_js(drupal_get_path('module', 'openlayers') .
           '/plugins/layer_types/openlayers_layer_type_image.js');

@@ -8,5 +8,7 @@
  * Openlayer layer handler for OSM layer
  */
 Drupal.openlayers.layer.osm = function(title, map, options) {
-    return new OpenLayers.Layer.OSM(title, options.url, options);
+    var layer = new OpenLayers.Layer.OSM(title, options.url, options);
+    layer.styleMap = Drupal.openlayers.getStyleMap(map, options.drupalID);
+    return layer;
 };
