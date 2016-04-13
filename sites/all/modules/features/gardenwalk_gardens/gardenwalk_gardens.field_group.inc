@@ -8,7 +8,7 @@
  * Implements hook_field_group_info().
  */
 function gardenwalk_gardens_field_group_info() {
-  $export = array();
+  $field_groups = array();
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -39,7 +39,7 @@ function gardenwalk_gardens_field_group_info() {
       ),
     ),
   );
-  $export['group_additional|node|garden|form'] = $field_group;
+  $field_groups['group_additional|node|garden|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -71,7 +71,7 @@ function gardenwalk_gardens_field_group_info() {
       ),
     ),
   );
-  $export['group_garden_info|node|garden|form'] = $field_group;
+  $field_groups['group_garden_info|node|garden|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -102,7 +102,7 @@ function gardenwalk_gardens_field_group_info() {
       ),
     ),
   );
-  $export['group_gardener|node|garden|form'] = $field_group;
+  $field_groups['group_gardener|node|garden|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -134,7 +134,7 @@ function gardenwalk_gardens_field_group_info() {
       ),
     ),
   );
-  $export['group_location|node|garden|form'] = $field_group;
+  $field_groups['group_location|node|garden|form'] = $field_group;
 
   $field_group = new stdClass();
   $field_group->disabled = FALSE; /* Edit this to true to make a default field_group disabled initially */
@@ -162,7 +162,15 @@ function gardenwalk_gardens_field_group_info() {
       ),
     ),
   );
-  $export['group_main|node|garden|form'] = $field_group;
+  $field_groups['group_main|node|garden|form'] = $field_group;
 
-  return $export;
+  // Translatables
+  // Included for use with string extractors like potx.
+  t('Additional');
+  t('Garden info');
+  t('Garden location');
+  t('Gardener info');
+  t('Main');
+
+  return $field_groups;
 }

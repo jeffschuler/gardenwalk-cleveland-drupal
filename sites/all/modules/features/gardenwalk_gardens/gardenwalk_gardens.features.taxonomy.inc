@@ -36,7 +36,7 @@ function gardenwalk_gardens_taxonomy_default_vocabularies() {
       'name' => 'Neighborhood',
       'machine_name' => 'neighborhood',
       'description' => '',
-      'hierarchy' => '1',
+      'hierarchy' => '0',
       'module' => 'taxonomy',
       'weight' => '0',
       'rdf_mapping' => array(

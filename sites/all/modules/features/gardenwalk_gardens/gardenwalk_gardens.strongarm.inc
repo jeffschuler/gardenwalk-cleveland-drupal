@@ -29,7 +29,7 @@ function gardenwalk_gardens_strongarm() {
         'custom_settings' => FALSE,
       ),
       'search_result' => array(
-        'custom_settings' => FALSE,
+        'custom_settings' => TRUE,
       ),
       'token' => array(
         'custom_settings' => FALSE,
@@ -65,10 +65,26 @@ function gardenwalk_gardens_strongarm() {
             'weight' => '3',
             'visible' => TRUE,
           ),
+          'search_index' => array(
+            'weight' => '3',
+            'visible' => TRUE,
+          ),
+          'search_result' => array(
+            'weight' => '6',
+            'visible' => TRUE,
+          ),
         ),
         'workflow' => array(
           'default' => array(
             'weight' => '27',
+            'visible' => FALSE,
+          ),
+          'search_index' => array(
+            'weight' => '27',
+            'visible' => FALSE,
+          ),
+          'search_result' => array(
+            'weight' => '22',
             'visible' => FALSE,
           ),
         ),

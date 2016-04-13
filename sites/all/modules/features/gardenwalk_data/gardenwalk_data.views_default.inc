@@ -1074,11 +1074,12 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
   $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
   $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
-  $handler->display->display_options['fields']['field_map_marker_label']['label'] = 'Marker';
+  $handler->display->display_options['fields']['field_map_marker_label']['label'] = 'Map Marker';
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
   $handler->display->display_options['fields']['nid']['field'] = 'nid';
+  $handler->display->display_options['fields']['nid']['label'] = 'ID';
   /* Field: Content: Garden/Location Name */
   $handler->display->display_options['fields']['field_garden_name']['id'] = 'field_garden_name';
   $handler->display->display_options['fields']['field_garden_name']['table'] = 'field_data_field_garden_name';
@@ -1141,7 +1142,6 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'garden' => 'garden',
     'headquarters' => 'headquarters',
   );
   $handler->display->display_options['filters']['type']['group'] = 2;
