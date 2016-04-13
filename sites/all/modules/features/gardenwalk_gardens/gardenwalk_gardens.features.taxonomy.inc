@@ -13,9 +13,9 @@ function gardenwalk_gardens_taxonomy_default_vocabularies() {
       'name' => 'Features',
       'machine_name' => 'attractions',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -36,9 +36,9 @@ function gardenwalk_gardens_taxonomy_default_vocabularies() {
       'name' => 'Neighborhood',
       'machine_name' => 'neighborhood',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',
@@ -59,9 +59,9 @@ function gardenwalk_gardens_taxonomy_default_vocabularies() {
       'name' => 'Year',
       'machine_name' => 'year',
       'description' => 'GardenWalk year',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
       'rdf_mapping' => array(
         'rdftype' => array(
           0 => 'skos:ConceptScheme',

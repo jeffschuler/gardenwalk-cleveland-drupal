@@ -7,28 +7,22 @@
 /**
  * Implements hook_ctools_plugin_api().
  */
-function gardenwalk_gardens_ctools_plugin_api() {
-  list($module, $api) = func_get_args();
+function gardenwalk_gardens_ctools_plugin_api($module = NULL, $api = NULL) {
   if ($module == "ds" && $api == "ds") {
     return array("version" => "1");
   }
-  list($module, $api) = func_get_args();
   if ($module == "feeds" && $api == "feeds_importer_default") {
     return array("version" => "1");
   }
-  list($module, $api) = func_get_args();
   if ($module == "feeds_tamper" && $api == "feeds_tamper_default") {
     return array("version" => "2");
   }
-  list($module, $api) = func_get_args();
   if ($module == "field_group" && $api == "field_group") {
     return array("version" => "1");
   }
-  list($module, $api) = func_get_args();
   if ($module == "openlayers" && $api == "openlayers_maps") {
     return array("version" => "1");
   }
-  list($module, $api) = func_get_args();
   if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => "1");
   }
@@ -37,8 +31,8 @@ function gardenwalk_gardens_ctools_plugin_api() {
 /**
  * Implements hook_views_api().
  */
-function gardenwalk_gardens_views_api() {
-  return array("version" => "3.0");
+function gardenwalk_gardens_views_api($module = NULL, $api = NULL) {
+  return array("api" => "3.0");
 }
 
 /**
@@ -55,6 +49,7 @@ function gardenwalk_gardens_node_info() {
       'help' => '',
     ),
   );
+  drupal_alter('node_info', $items);
   return $items;
 }
 
@@ -72,30 +67,30 @@ function gardenwalk_gardens_workflow_default_workflows() {
     'states' => array(
       0 => array(
         'state' => '(creation)',
-        'weight' => '-50',
-        'sysid' => '1',
-        'status' => '1',
+        'weight' => -50,
+        'sysid' => 1,
+        'status' => 1,
         'name' => 'Garden Approval',
       ),
       1 => array(
         'state' => 'Application',
-        'weight' => '0',
-        'sysid' => '0',
-        'status' => '1',
+        'weight' => 0,
+        'sysid' => 0,
+        'status' => 1,
         'name' => 'Garden Approval',
       ),
       2 => array(
         'state' => 'Approved',
-        'weight' => '0',
-        'sysid' => '0',
-        'status' => '1',
+        'weight' => 0,
+        'sysid' => 0,
+        'status' => 1,
         'name' => 'Garden Approval',
       ),
       3 => array(
         'state' => 'Denied',
-        'weight' => '0',
-        'sysid' => '0',
-        'status' => '1',
+        'weight' => 0,
+        'sysid' => 0,
+        'status' => 1,
         'name' => 'Garden Approval',
       ),
     ),
