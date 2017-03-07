@@ -13,7 +13,7 @@ function gardenwalk_gardens_default_rules_configuration() {
       "LABEL" : "Notify Garden Finder on Application Submitted",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
-      "REQUIRES" : [ "rules", "php" ],
+      "REQUIRES" : [ "rules" ],
       "ON" : { "node_insert" : [] },
       "IF" : [
         { "node_is_of_type" : { "node" : [ "node" ], "type" : { "value" : { "garden" : "garden" } } } },

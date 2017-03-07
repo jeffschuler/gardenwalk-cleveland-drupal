@@ -11,7 +11,7 @@ function gardenwalk_gardens_openlayers_maps() {
   $export = array();
 
   $openlayers_maps = new stdClass();
-  $openlayers_maps->disabled = FALSE; /* Edit this to true to make a default openlayers_maps disabled initially */
+  $openlayers_maps->disabled = TRUE; /* Edit this to true to make a default openlayers_maps disabled initially */
   $openlayers_maps->api_version = 1;
   $openlayers_maps->name = 'gardens';
   $openlayers_maps->title = 'Gardens Map';

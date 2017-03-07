@@ -727,61 +727,6 @@ function gardenwalk_gardens_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'node-garden-field_gardenwalk_past_year'.
-  $field_instances['node-garden-field_gardenwalk_past_year'] = array(
-    'bundle' => 'garden',
-    'default_value' => array(
-      0 => array(
-        'value' => 0,
-      ),
-    ),
-    'default_value_function' => '',
-    'default_value_php' => '',
-    'deleted' => 0,
-    'description' => '',
-    'display' => array(
-      'default' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 24,
-      ),
-      'search_index' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 24,
-      ),
-      'search_result' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 19,
-      ),
-      'teaser' => array(
-        'label' => 'above',
-        'settings' => array(),
-        'type' => 'hidden',
-        'weight' => 5,
-      ),
-    ),
-    'ds_extras_field_template' => '',
-    'entity_type' => 'node',
-    'field_name' => 'field_gardenwalk_past_year',
-    'label' => 'Part of GardenWalk 2011?',
-    'required' => 1,
-    'settings' => array(
-      'user_register_form' => FALSE,
-    ),
-    'widget' => array(
-      'active' => 1,
-      'module' => 'options',
-      'settings' => array(),
-      'type' => 'options_buttons',
-      'weight' => 50,
-    ),
-  );
-
   // Exported field_instance: 'node-garden-field_gardenwalk_year'.
   $field_instances['node-garden-field_gardenwalk_year'] = array(
     'bundle' => 'garden',
@@ -1134,9 +1079,7 @@ function gardenwalk_gardens_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(
-        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-      ),
+      'settings' => array(),
       'type' => 'options_buttons',
       'weight' => 49,
     ),
@@ -1493,7 +1436,6 @@ function gardenwalk_gardens_field_default_field_instances() {
   t('Neighborhood Location');
   t('Neighborhood Location Geofield');
   t('OK to photograph?');
-  t('Part of GardenWalk 2011?');
   t('Special Attractions');
   t('Special Feature');
   t('Yard Areas');
