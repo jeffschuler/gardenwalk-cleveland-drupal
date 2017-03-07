@@ -732,7 +732,7 @@ function gardenwalk_gardens_field_default_field_instances() {
     'bundle' => 'garden',
     'default_value' => array(
       0 => array(
-        'tid' => 49,
+        'tid' => 50,
       ),
     ),
     'deleted' => 0,
@@ -785,9 +785,7 @@ function gardenwalk_gardens_field_default_field_instances() {
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(
-        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
-      ),
+      'settings' => array(),
       'type' => 'options_select',
       'weight' => 6,
     ),
