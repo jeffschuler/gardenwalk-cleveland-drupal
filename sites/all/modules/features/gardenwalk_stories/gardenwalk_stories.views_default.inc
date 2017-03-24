@@ -207,50 +207,8 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['force_single'] = 0;
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_settings']['entity_load_capacity'] = '10';
   $handler->display->display_options['fields']['views_bulk_operations']['vbo_operations'] = array(
-    'action::nodequeue_add_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
-    'action::node_assign_owner_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
     'action::views_bulk_operations_delete_item' => array(
       'selected' => 1,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
-    'action::system_message_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
-    'action::views_bulk_operations_script_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
-    'action::node_make_sticky_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
-    'action::node_make_unsticky_action' => array(
-      'selected' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
@@ -270,45 +228,8 @@ function gardenwalk_stories_views_default_views() {
       ),
       'postpone_processing' => 0,
     ),
-    'action::views_bulk_operations_argument_selector_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'settings' => array(
-        'url' => '',
-      ),
-    ),
-    'action::node_promote_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
     'action::node_publish_action' => array(
       'selected' => 1,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
-    'action::system_goto_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
-    'action::node_unpromote_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
-    'action::nodequeue_remove_action' => array(
-      'selected' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
@@ -321,22 +242,8 @@ function gardenwalk_stories_views_default_views() {
       'label' => '',
       'postpone_processing' => 0,
     ),
-    'action::system_send_email_action' => array(
-      'selected' => 0,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
     'action::node_unpublish_action' => array(
       'selected' => 1,
-      'skip_confirmation' => 0,
-      'override_label' => 0,
-      'label' => '',
-      'postpone_processing' => 0,
-    ),
-    'action::node_unpublish_by_keyword_action' => array(
-      'selected' => 0,
       'skip_confirmation' => 0,
       'override_label' => 0,
       'label' => '',
@@ -446,6 +353,9 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['operator'] = 'and';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
+    50 => '50',
+  );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator_id'] = 'field_gardenwalk_year_tid_op';
@@ -453,6 +363,16 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator'] = 'field_gardenwalk_year_tid_op';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['identifier'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    3 => 0,
+    4 => 0,
+    5 => 0,
+    6 => 0,
+    7 => 0,
+    8 => 0,
+  );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
   $handler->display->display_options['path'] = 'manage-stories';
@@ -691,6 +611,13 @@ function gardenwalk_stories_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  /* Field: Content: Year */
+  $handler->display->display_options['fields']['field_gardenwalk_year']['id'] = 'field_gardenwalk_year';
+  $handler->display->display_options['fields']['field_gardenwalk_year']['table'] = 'field_data_field_gardenwalk_year';
+  $handler->display->display_options['fields']['field_gardenwalk_year']['field'] = 'field_gardenwalk_year';
+  $handler->display->display_options['fields']['field_gardenwalk_year']['label'] = '';
+  $handler->display->display_options['fields']['field_gardenwalk_year']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_gardenwalk_year']['type'] = 'taxonomy_term_reference_plain';
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';
   $handler->display->display_options['fields']['body']['table'] = 'field_data_body';
