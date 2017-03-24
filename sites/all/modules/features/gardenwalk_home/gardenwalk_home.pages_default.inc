@@ -99,6 +99,32 @@ function gardenwalk_home_default_page_manager_pages() {
   $display->content['new-784108c9-208f-4636-93d3-9383f98cd4bf'] = $pane;
   $display->panels['botleft'][0] = 'new-784108c9-208f-4636-93d3-9383f98cd4bf';
   $pane = new stdClass();
+  $pane->pid = 'new-26103756-43f7-4c7b-a86c-29d2bf63d45d';
+  $pane->panel = 'botleft';
+  $pane->type = 'block';
+  $pane->subtype = 'block-3';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_title' => 1,
+    'override_title_text' => 'Join our Mailing List',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+    'style' => 'default',
+  );
+  $pane->css = array(
+    'css_id' => 'mailchimp-subscribe',
+    'css_class' => '',
+  );
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = '26103756-43f7-4c7b-a86c-29d2bf63d45d';
+  $display->content['new-26103756-43f7-4c7b-a86c-29d2bf63d45d'] = $pane;
+  $display->panels['botleft'][1] = 'new-26103756-43f7-4c7b-a86c-29d2bf63d45d';
+  $pane = new stdClass();
   $pane->pid = 'new-c3bc4432-dd8c-4785-8fd9-de2824ad0484';
   $pane->panel = 'botleft';
   $pane->type = 'views_panes';
@@ -112,11 +138,35 @@ function gardenwalk_home_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = array();
   $pane->uuid = 'c3bc4432-dd8c-4785-8fd9-de2824ad0484';
   $display->content['new-c3bc4432-dd8c-4785-8fd9-de2824ad0484'] = $pane;
-  $display->panels['botleft'][1] = 'new-c3bc4432-dd8c-4785-8fd9-de2824ad0484';
+  $display->panels['botleft'][2] = 'new-c3bc4432-dd8c-4785-8fd9-de2824ad0484';
+  $pane = new stdClass();
+  $pane->pid = 'new-3bdaa561-b114-4677-9125-75677086be37';
+  $pane->panel = 'botmid';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Plant Sale 2017',
+    'title' => 'Spring Plant Sale',
+    'title_heading' => 'h2',
+    'body' => '<h3 style="margin: 0px; padding: 0px; font-family: Helvetica; font-size: 18px; line-height: 22.5px; letter-spacing: -0.5px; color: rgb(96, 96, 96) !important;"><span style="font-size: 16px;"><strong>Sale Date:</strong>&nbsp;<strong>May 13th, 12 to 4pm</strong></span><br /><strong style="font-size: 16px;">What&#39;s for Sale:</strong><font size="3">&nbsp;Annuals, specialty annuals and accent foliage, herbs, vegetables, native perennials, container combos, hanging baskets</font></h3><p><strong style="color: rgb(96, 96, 96); font-family: Helvetica; font-size: 16px;">Order Deadline:</strong><font size="3" style="color: rgb(96, 96, 96); font-family: Helvetica;">&nbsp;May 1</font><br style="color: rgb(96, 96, 96); font-family: Helvetica; font-size: 15px;" /><span style="color: rgb(96, 96, 96); font-family: Helvetica; font-size: 16px;"><strong>Plant pickup:&nbsp;</strong>Saturday May 13th from 12 to 4 pm at 12541 Cedar Road, Cleveland Heights 44106. Park in church parking lot.</span></p><p><span style="color: rgb(96, 96, 96); font-family: Helvetica; font-size: 16px;"><a href="http://www.gardenwalkcleveland.org/sites/default/files/GWCle%20PlantsPreSale_CAL.pdf">Click Here for Order Form.</a>&nbsp;</span></p>',
+    'format' => '1',
+    'substitute' => 1,
+  );
+  $pane->cache = array();
+  $pane->style = array();
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '3bdaa561-b114-4677-9125-75677086be37';
+  $display->content['new-3bdaa561-b114-4677-9125-75677086be37'] = $pane;
+  $display->panels['botmid'][0] = 'new-3bdaa561-b114-4677-9125-75677086be37';
   $pane = new stdClass();
   $pane->pid = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
   $pane->panel = 'botmid';
@@ -137,11 +187,11 @@ function gardenwalk_home_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 0;
+  $pane->position = 1;
   $pane->locks = array();
   $pane->uuid = '7cc637fd-bd62-4210-b14e-bddae13fed3f';
   $display->content['new-7cc637fd-bd62-4210-b14e-bddae13fed3f'] = $pane;
-  $display->panels['botmid'][0] = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
+  $display->panels['botmid'][1] = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
   $pane = new stdClass();
   $pane->pid = 'new-ac57a59c-8681-4944-9699-bf95de2f1ef5';
   $pane->panel = 'botmid';
@@ -162,37 +212,11 @@ function gardenwalk_home_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = '';
   $pane->uuid = 'ac57a59c-8681-4944-9699-bf95de2f1ef5';
   $display->content['new-ac57a59c-8681-4944-9699-bf95de2f1ef5'] = $pane;
-  $display->panels['botmid'][1] = 'new-ac57a59c-8681-4944-9699-bf95de2f1ef5';
-  $pane = new stdClass();
-  $pane->pid = 'new-26103756-43f7-4c7b-a86c-29d2bf63d45d';
-  $pane->panel = 'botmid';
-  $pane->type = 'block';
-  $pane->subtype = 'block-3';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'override_title' => 1,
-    'override_title_text' => 'Join our Mailing List',
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-    'style' => 'default',
-  );
-  $pane->css = array(
-    'css_id' => 'mailchimp-subscribe',
-    'css_class' => '',
-  );
-  $pane->extras = array();
-  $pane->position = 2;
-  $pane->locks = array();
-  $pane->uuid = '26103756-43f7-4c7b-a86c-29d2bf63d45d';
-  $display->content['new-26103756-43f7-4c7b-a86c-29d2bf63d45d'] = $pane;
-  $display->panels['botmid'][2] = 'new-26103756-43f7-4c7b-a86c-29d2bf63d45d';
+  $display->panels['botmid'][2] = 'new-ac57a59c-8681-4944-9699-bf95de2f1ef5';
   $pane = new stdClass();
   $pane->pid = 'new-83cac6aa-1b9b-4c5b-9b7c-4e896fd0e745';
   $pane->panel = 'botright';
