@@ -460,7 +460,7 @@ function _gmap_filter_process($text, $filter, $format) {
 function _gmap_filter_tips($filter, $format, $long = FALSE) {
   // Only display macro if user can create one.
   if (user_access('create gmap macro')) {
-    return t('Insert Google Map macro.') . '<a href="' . url('map/macro') . '" target="_blank" >' . t('Create a macro') . '</a>';
+    return t('Insert Google Map macro.') . l(t('Create a macro'), 'map/macro', array('attributes' => array('target' => '_blank')));
   }
   else {
     return t('Insert Google Map macro.');
@@ -491,27 +491,27 @@ function gmap_menu() {
  * @todo move this to GmapCacheToolbox
  */
 function gmap_regenerate_markers() {
-  // This often fails in cli mode, so bail.
-  if (drupal_is_cli()) {
-    return;
-  }
   $contents = '';
 
   $contents .= "// GMap marker image data.\n";
   $contents .= "Drupal.gmap = Drupal.gmap || {};\n";
   $contents .= "Drupal.gmap.icondata = " . drupal_json_encode(gmap_get_icondata(TRUE)) . ";\n";
 
-  $dir = "public://js/";
-
+  $dir = 'public://js/';
+  $filepath = $dir . 'gmap_markers.js';
   // Make sure js/ exists in the files folder.
   if (file_prepare_directory($dir, FILE_CREATE_DIRECTORY)) {
     $file = file_save_data($contents, 'public://js/gmap_markers.js', FILE_EXISTS_REPLACE);
-    if (!empty($file)) {
+    if ($file === FALSE) {
+      drupal_set_message(t('GMap is unable to save the marker bundle. Please check gmap_markers.js permissions!'), 'error');
+    }
+    else {
       variable_set('gmap_marker_file', $file->fid);
     }
   }
   else {
-    drupal_set_message(t('GMap is unable to save the marker bundle. Markers will not work!'), 'error');
+    drupal_set_message(t('GMap is unable to save the marker bundle, so the markers will not work. Please check file system permissions of the %filepath!', array('%filepath' => $filepath)), 'error');
+    watchdog('gmap', 'GMap write error when saving the marker bundle to %filepath.', array('%filepath' => $filepath), WATCHDOG_ERROR);
   }
 
   // Also regenerate the cached marker titles array.
@@ -997,7 +997,9 @@ function theme_gmap($variables) {
   // Theming needs to get fixed instead..
   if (isset($map['markers'])) {
     foreach ($map['markers'] as $i => $marker) {
-      unset($map['markers'][$i]['text']);
+      if (isset($marker['text'])) {
+        $map['markers'][$i]['text'] = '<div class="gmap-popup">' . $marker['text'] . '</div>';
+      }
     }
   }
 
@@ -1492,6 +1494,7 @@ function template_preprocess_gmap_view_gmap(&$vars) {
   $vars['map_element'] = array(
     '#type' => 'gmap',
     '#gmap_settings' => $vars['map_object'],
+    '#view' => $vars['view'],
   );
   // Theme the map.
   $vars['map'] = drupal_render($vars['map_element']);
@@ -1503,5 +1506,6 @@ function template_preprocess_gmap_view_gmap(&$vars) {
  * @todo move this to GmapRequest class
  */
 function gmap_views_protocol() {
-  return (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == 'on') ? 'https' : 'http';
+  global $base_url;
+  return parse_url($base_url, PHP_URL_SCHEME) == 'https' ? 'https' : 'http';
 }
