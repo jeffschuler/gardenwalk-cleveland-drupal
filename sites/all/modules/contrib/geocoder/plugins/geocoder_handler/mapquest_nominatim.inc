@@ -25,13 +25,12 @@ function geocoder_mapquest_nominatim($address, $options = array()) {
   $geocoder_settings = variable_get("geocoder_settings", array());
   $api_url = "http://open.mapquestapi.com/nominatim/v1/search";
   $params = array(
-    'q' => str_replace(' ', '+', $address),
     'format' => 'json',
     'addressdetails' => 0,
     'limit' => 1,
     'osm_type' => 'N',
   );
-  $request = drupal_http_request($api_url . '?' . drupal_http_build_query($params));
+  $request = drupal_http_request($api_url . '?q=' . urlencode($address) . '&' . drupal_http_build_query($params));
   $data = json_decode($request->data);
   return _geocoder_mapquest_nominatim_geometry($data);
 }
@@ -46,7 +45,7 @@ function geocoder_mapquest_nominatim_field($field, $field_item) {
   }
   if ($field['type'] == 'location') {
     $address = geocoder_widget_parse_locationfield($field_item);
-    return geocoder_mapquest_nomination($address);
+    return geocoder_mapquest_nominatim($address);
   }
   if ($field['type'] == 'taxonomy_term_reference') {
     $term = taxonomy_term_load($field_item['tid']);
