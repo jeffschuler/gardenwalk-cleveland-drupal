@@ -1,5 +1,7 @@
 <?php
 /**
  * @file
- * Drupal needs this blank file.
+ * Code for the GardenWalk Home feature.
  */
+
+include_once 'gardenwalk_home.features.inc';
