@@ -222,6 +222,13 @@ function gardenwalk_sponsors_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_taxonomy_term_year_pattern';
+  $strongarm->value = '';
+  $export['pathauto_taxonomy_term_year_pattern'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
   $strongarm->name = 'skinr_settings_webform';
   $strongarm->value = array(
     0 => 'node_group',
@@ -239,6 +246,16 @@ function gardenwalk_sponsors_strongarm() {
     'priority' => 0.5,
   );
   $export['xmlsitemap_settings_node_sponsor'] = $strongarm;
+
+  $strongarm = new stdClass();
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'xmlsitemap_settings_taxonomy_term_year';
+  $strongarm->value = array(
+    'status' => '0',
+    'priority' => '0.5',
+  );
+  $export['xmlsitemap_settings_taxonomy_term_year'] = $strongarm;
 
   return $export;
 }
