@@ -1,7 +1,5 @@
 <?php
 /**
  * @file
- * Code for the GardenWalk Sponsors feature.
+ * Drupal needs this blank file.
  */
-
-include_once 'gardenwalk_sponsors.features.inc';
