@@ -25,4 +25,5 @@ features[variable][] = menu_parent_slideshow_image
 features[variable][] = node_options_slideshow_image
 features[variable][] = node_preview_slideshow_image
 features[variable][] = node_submitted_slideshow_image
+features[variable][] = pathauto_node_slideshow_image_pattern
 features[views_view][] = image_rotator

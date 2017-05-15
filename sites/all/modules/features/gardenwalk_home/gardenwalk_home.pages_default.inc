@@ -83,9 +83,10 @@ function gardenwalk_home_default_page_manager_pages() {
   $pane->configuration = array(
     'admin_title' => 'Overview',
     'title' => 'News',
-    'body' => '<p>GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in several neighborhoods of Cleveland, Ohio.</p><p>GardenWalk Cleveland tours will be held July 8th and 9th, 2017.</p><p>We are planning a series of workshops educating gardeners about the benefits and uses of native plants in the home landscape. These workshops will be held in conjunction with <a href="http://www.leapbio.org">LEAP</a> (Lake Erie Allegheny Partnership for Biodiversity) at local venues.&nbsp;</p>',
+    'body' => '<p>GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in several neighborhoods of Cleveland, Ohio.</p><p>GardenWalk Cleveland tours will be held July 8th and 9th, from 10AM to 5PM.</p><p>We are planning a series of workshops educating gardeners about the benefits and uses of native plants in the home landscape. These workshops will be held in conjunction with <a href="http://www.leapbio.org">LEAP</a> (Lake Erie Allegheny Partnership for Biodiversity) at local venues.&nbsp;</p>',
     'format' => '2',
     'substitute' => 1,
+    'title_heading' => 'h2',
   );
   $pane->cache = array();
   $pane->style = array(
