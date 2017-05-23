@@ -625,16 +625,24 @@ form input.form-submit {
 #block-views-sponsors-block_1 h2 {
   color: #726965; }
 
+/* Neighborhood description (Neighborhood Page)
+-------------------------------------------------------------- */
+.view-taxonomy-term-neighborhood p {
+  margin-top: 0; }
+
 /* Headquarters Block (Neighborhood Page)
 -------------------------------------------------------------- */
 .pane-views-headquarters-block-2 h2.block-title {
   margin-top: 0; }
-
 .pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-header p {
   margin-bottom: 0; }
-
-.pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content {
+.pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content .views-field-title {
+  color: #059347;
+  font-weight: bold; }
+.pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content .views-field-address {
   color: #059347; }
+.pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content .views-field-body {
+  font-size: 85%; }
 
 /* Printable Map Block (Front Page)
 -------------------------------------------------------------- */

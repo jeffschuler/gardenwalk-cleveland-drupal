@@ -755,16 +755,38 @@ form input.form-submit {
 }
 
 
+/* Neighborhood description (Neighborhood Page)
+-------------------------------------------------------------- */
+.view-taxonomy-term-neighborhood {
+  p {
+    margin-top: 0; // Align top with Headquarters block on right
+  }
+}
+
+
 /* Headquarters Block (Neighborhood Page)
 -------------------------------------------------------------- */
-.pane-views-headquarters-block-2 h2.block-title {
-  margin-top: 0;
-}
-.pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-header p {
-  margin-bottom: 0;
-}
-.pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content {
-  color: $green;
+.pane-views-headquarters-block-2 {
+  h2.block-title {
+    margin-top: 0;
+  }
+  .view-id-headquarters.view-display-id-block_2 {
+    .view-header p {
+      margin-bottom: 0;
+    }
+    .view-content {
+      .views-field-title {
+        color: $green;
+        font-weight: bold;
+      }
+      .views-field-address {
+        color: $green;
+      }
+      .views-field-body {
+        font-size: 85%;
+      }
+    }
+  }
 }
 
 
