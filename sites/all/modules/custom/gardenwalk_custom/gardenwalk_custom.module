@@ -33,21 +33,23 @@ function gardenwalk_custom_preprocess_page(&$variables) {
 }
 
 /*
- *
+ * Compute callback for Map Marker Label computed field.
  */
 function computed_field_field_map_marker_label_compute(&$entity_field, $entity_type, $entity, $field, $instance, $langcode, $items) {
   // Get label prefix
+  $prefix = '';
   if (isset($entity->field_neighborhood['und'][0]['tid'])) {
     $term = taxonomy_term_load($entity->field_neighborhood['und'][0]['tid']);
     if (isset($term->field_map_label_prefix['und'])) {
       $prefix = $term->field_map_label_prefix['und'][0]['value'];
     } else {
       // @TODO: Maybe error. The neighborhood for this garden doesn't have a prefix set
-      return;
+      //return;
     }
   }
 
   // Get position in nodequeue
+  $position = '';
   $neighborhood_qid = 4;
   $neighborhood_tid = $entity->field_neighborhood['und'][0]['tid'];
   $queue_ = nodequeue_load_subqueues_by_reference(array($neighborhood_qid => array($neighborhood_tid)));
@@ -60,7 +62,10 @@ function computed_field_field_map_marker_label_compute(&$entity_field, $entity_t
 }
 
 /*
+ * Display callback for Map Marker Label computed field.
  *
+ * @TODO: Why not just display the stored value and enable Computed Field's
+ * "Recalculate the field value every time." option in the field settings.
  */
 function computed_field_field_map_marker_label_display($field, $entity_field_item, $entity_lang, $langcode, $entity) {
   // Get position in nodequeue
