@@ -459,8 +459,8 @@ form input.form-submit {
 
 /* Image Slider/Rotator (Home Page)
 -------------------------------------------------------------- */
-#views_slideshow_cycle_main_image_rotator-block_1 {
-  #views_slideshow_cycle_teaser_section_image_rotator-block_1 {
+.view-id-image_rotator {
+  .views_slideshow_main {
     height: 430px;
   }
 }
