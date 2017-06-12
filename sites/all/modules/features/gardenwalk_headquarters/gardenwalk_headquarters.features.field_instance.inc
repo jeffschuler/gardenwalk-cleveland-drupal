@@ -21,7 +21,7 @@ function gardenwalk_headquarters_field_default_field_instances() {
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'text_plain',
         'weight' => 2,
       ),
       'teaser' => array(
@@ -34,19 +34,26 @@ function gardenwalk_headquarters_field_default_field_instances() {
         'weight' => 0,
       ),
     ),
+    'ds_extras_field_template' => '',
     'entity_type' => 'node',
     'field_name' => 'body',
-    'label' => 'Description',
+    'label' => 'Notes',
     'required' => 0,
     'settings' => array(
       'display_summary' => 1,
-      'text_processing' => 1,
+      'text_processing' => 0,
       'user_register_form' => FALSE,
     ),
     'widget' => array(
       'active' => 1,
       'module' => 'text',
       'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_label_summary' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_summary' => '',
+        'maxlength_js_truncate_html' => 0,
         'rows' => 20,
         'summary_rows' => 5,
       ),
@@ -102,9 +109,8 @@ function gardenwalk_headquarters_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'text',
         'settings' => array(),
-        'type' => 'text_default',
+        'type' => 'hidden',
         'weight' => 4,
       ),
       'teaser' => array(
@@ -186,9 +192,8 @@ function gardenwalk_headquarters_field_default_field_instances() {
     'display' => array(
       'default' => array(
         'label' => 'above',
-        'module' => 'computed_field',
         'settings' => array(),
-        'type' => 'computed_field_plain',
+        'type' => 'hidden',
         'weight' => 5,
       ),
       'teaser' => array(
@@ -257,10 +262,10 @@ function gardenwalk_headquarters_field_default_field_instances() {
   // Translatables
   // Included for use with string extractors like potx.
   t('Address');
-  t('Description');
   t('Location Name');
   t('Map Marker Label');
   t('Neighborhood');
+  t('Notes');
   t('Year');
 
   return $field_instances;
