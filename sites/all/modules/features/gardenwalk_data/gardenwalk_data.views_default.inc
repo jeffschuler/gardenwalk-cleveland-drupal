@@ -22,7 +22,7 @@ function gardenwalk_data_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'GeoJSON';
+  $handler->display->display_options['title'] = 'Neighborhood GeoJSON';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -151,90 +151,6 @@ function gardenwalk_data_views_default_views() {
     3 => '3',
   );
   $handler->display->display_options['filters']['sid']['group'] = 2;
-
-  /* Display: Old */
-  $handler = $view->new_display('page', 'Old', 'page_1');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Neighborhood GeoJSON Old';
-  $handler->display->display_options['defaults']['relationships'] = FALSE;
-  /* Relationship: Nodequeue: Queue */
-  $handler->display->display_options['relationships']['nodequeue_rel']['id'] = 'nodequeue_rel';
-  $handler->display->display_options['relationships']['nodequeue_rel']['table'] = 'node';
-  $handler->display->display_options['relationships']['nodequeue_rel']['field'] = 'nodequeue_rel';
-  $handler->display->display_options['relationships']['nodequeue_rel']['label'] = 'neighborhood queue';
-  $handler->display->display_options['relationships']['nodequeue_rel']['limit'] = 1;
-  $handler->display->display_options['relationships']['nodequeue_rel']['names'] = array(
-    'neighborhood_queues' => 'neighborhood_queues',
-    'image_rotator_queue' => 0,
-    'printable_maps' => 0,
-  );
-  /* Relationship: Content: Neighborhood (field_neighborhood) */
-  $handler->display->display_options['relationships']['field_neighborhood_tid']['id'] = 'field_neighborhood_tid';
-  $handler->display->display_options['relationships']['field_neighborhood_tid']['table'] = 'field_data_field_neighborhood';
-  $handler->display->display_options['relationships']['field_neighborhood_tid']['field'] = 'field_neighborhood_tid';
-  $handler->display->display_options['relationships']['field_neighborhood_tid']['required'] = TRUE;
-  $handler->display->display_options['defaults']['arguments'] = FALSE;
-  /* Contextual filter: Content: Neighborhood (field_neighborhood) */
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['id'] = 'field_neighborhood_tid';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['table'] = 'field_data_field_neighborhood';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['field'] = 'field_neighborhood_tid';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['default_action'] = 'not found';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['default_argument_type'] = 'taxonomy_tid';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['default_argument_options']['term_page'] = FALSE;
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['summary']['number_of_records'] = '0';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['summary']['format'] = 'default_summary';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['summary_options']['items_per_page'] = '25';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['specify_validation'] = TRUE;
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['validate']['type'] = 'taxonomy_term';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['vocabularies'] = array(
-    'neighborhood' => 'neighborhood',
-  );
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['type'] = 'convert';
-  $handler->display->display_options['arguments']['field_neighborhood_tid']['validate_options']['transform'] = TRUE;
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['filter_groups']['groups'] = array(
-    1 => 'AND',
-    2 => 'OR',
-  );
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status_1']['id'] = 'status_1';
-  $handler->display->display_options['filters']['status_1']['table'] = 'node';
-  $handler->display->display_options['filters']['status_1']['field'] = 'status';
-  $handler->display->display_options['filters']['status_1']['value'] = '1';
-  $handler->display->display_options['filters']['status_1']['group'] = 1;
-  /* Filter criterion: Content: Year (field_gardenwalk_year) */
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['id'] = 'field_gardenwalk_year_tid_1';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['table'] = 'field_data_field_gardenwalk_year';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['field'] = 'field_gardenwalk_year_tid';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['value'] = array(
-    50 => '50',
-  );
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['group'] = 1;
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['expose']['operator_id'] = 'field_gardenwalk_year_tid_1_op';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['expose']['label'] = 'Year (field_gardenwalk_year)';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['expose']['operator'] = 'field_gardenwalk_year_tid_1_op';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['expose']['identifier'] = 'field_gardenwalk_year_tid_1';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['type'] = 'select';
-  $handler->display->display_options['filters']['field_gardenwalk_year_tid_1']['vocabulary'] = 'year';
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type_1']['id'] = 'type_1';
-  $handler->display->display_options['filters']['type_1']['table'] = 'node';
-  $handler->display->display_options['filters']['type_1']['field'] = 'type';
-  $handler->display->display_options['filters']['type_1']['value'] = array(
-    'garden' => 'garden',
-    'headquarters' => 'headquarters',
-  );
-  $handler->display->display_options['filters']['type_1']['group'] = 2;
-  /* Filter criterion: Workflow: Current state */
-  $handler->display->display_options['filters']['sid']['id'] = 'sid';
-  $handler->display->display_options['filters']['sid']['table'] = 'workflow_node';
-  $handler->display->display_options['filters']['sid']['field'] = 'sid';
-  $handler->display->display_options['filters']['sid']['value'] = array(
-    3 => '3',
-  );
-  $handler->display->display_options['filters']['sid']['group'] = 2;
-  $handler->display->display_options['path'] = 'neighborhood/%/geojson_old';
 
   /* Display: Neighborhood GeoJSON Feed */
   $handler = $view->new_display('feed', 'Neighborhood GeoJSON Feed', 'feed_1');
