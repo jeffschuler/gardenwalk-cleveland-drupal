@@ -161,8 +161,8 @@ function gardenwalk_data_views_default_views() {
   $handler->display->display_options['style_options']['data_source']['latitude'] = 'latitude';
   $handler->display->display_options['style_options']['data_source']['longitude'] = 'longitude';
   $handler->display->display_options['style_options']['data_source']['wkt'] = 'field_map_marker_label';
-  $handler->display->display_options['style_options']['data_source']['name_field'] = 'field_map_marker_label';
-  $handler->display->display_options['style_options']['data_source']['description_field'] = 'title';
+  $handler->display->display_options['style_options']['data_source']['name_field'] = 'title';
+  $handler->display->display_options['style_options']['data_source']['description_field'] = 'field_map_marker_label';
   $handler->display->display_options['style_options']['jsonp_prefix'] = '';
   $handler->display->display_options['path'] = 'neighborhood/%/geojson';
   $handler->display->display_options['sitename_title'] = 0;
