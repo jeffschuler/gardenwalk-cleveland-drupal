@@ -646,6 +646,13 @@ form input.form-submit {
 .pane-views-headquarters-block-2 .view-id-headquarters.view-display-id-block_2 .view-content .views-field-body {
   font-size: 85%; }
 
+/* Neighborhood Features Block (Neighborhood Page)
+-------------------------------------------------------------- */
+.view-neighborhood-features .views-field-field-attached-images {
+  float: right; }
+  .view-neighborhood-features .views-field-field-attached-images li {
+    list-style-type: none; }
+
 /* Printable Map Block (Front Page)
 -------------------------------------------------------------- */
 .view-id-printable_maps.view-display-id-block_1 ul {

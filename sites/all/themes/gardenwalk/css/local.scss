@@ -793,6 +793,18 @@ form input.form-submit {
 }
 
 
+/* Neighborhood Features Block (Neighborhood Page)
+-------------------------------------------------------------- */
+.view-neighborhood-features {
+  .views-field-field-attached-images {
+    float: right;
+    li {
+      list-style-type: none;
+    }
+  }
+}
+
+
 /* Printable Map Block (Front Page)
 -------------------------------------------------------------- */
 
