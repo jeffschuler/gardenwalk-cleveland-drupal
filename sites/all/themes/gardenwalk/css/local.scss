@@ -729,19 +729,26 @@ form input.form-submit {
 
 /* Sponsors Page
 -------------------------------------------------------------- */
-.page-sponsors .views-view-grid td {
-  width: 25%;
-  padding-bottom: 20px;
-  vertical-align: bottom;
+.page-sponsors {
+  h2 {
+    margin: 40px 0;
+  }
+  .views-view-grid {
+    td {
+      width: 25%;
+      padding-bottom: 20px;
+      vertical-align: bottom;
+      .views-field-title {
+        font-size: .85em;
+        margin-top: 25px;
+      }
+      .views-field-field-images img {
+        padding: 10px;
+        background-color: white;
+      }
+    }
+  }
 }
-.page-sponsors h2 {
-  margin: 40px 0;
-}
-.page-sponsors .views-view-grid .views-field-title {
-  font-size: .85em;
-  margin-top: 25px;
-}
-
 
 /* Sponsors Logo Rotator Block
 -------------------------------------------------------------- */
