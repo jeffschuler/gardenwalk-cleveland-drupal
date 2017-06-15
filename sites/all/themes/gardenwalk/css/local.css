@@ -339,7 +339,9 @@ form input.form-submit {
           font-size: 21pt;
           line-height: 1em; }
       .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content {
-        padding: 20px; }
+        padding: 20px;
+        font-size: 1.5em;
+        line-height: 1.3em; }
       .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h1, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h2, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h3, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h4, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h5, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h6,
       .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a:link, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a:visited {
         color: #FFFFFF; }
