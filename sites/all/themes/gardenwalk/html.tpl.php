@@ -38,7 +38,7 @@
 <head profile="<?php print $grddl_profile; ?>">
   <?php print $head; ?>
   <title><?php print $head_title; ?></title>
-  <meta name="keywords" content="cleveland,garden,walk,tour,community,urban,market,reimagining,flower,vegetable,neighborhood,tremont,ohio,city,tremont,larchmere,detroit,shoreway,glenville,old,brooklyn,centre,harvard,lee,miles,hough,slavic,village,st,clair,superior,west,park" />
+  <meta name="keywords" content="cleveland,garden,walk,tour,community,urban,market,reimagining,flower,vegetable,neighborhood,tremont,ohio,city,tremont,larchmere,detroit,shoreway,glenville,old,brooklyn,centre,harvard,lee,miles,hough,slavic,village,st,clair,superior,west,park,collinwood" />
   <meta name="description" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more in neighborhoods of Cleveland, Ohio." />
   <meta name="abstract" content="GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, urban farms and more in neighborhoods of Cleveland, Ohio." />
   <?php print $styles; ?>
