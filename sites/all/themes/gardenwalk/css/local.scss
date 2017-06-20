@@ -1103,3 +1103,13 @@ fieldset#edit-agreement {
     }
   }
 }
+
+
+/* Special Feature content
+--------------------- */
+.node-type-neighborhood-feature .field-name-field-attached-images {
+  float: right;
+  img {
+    border: $imgborder;
+  }
+}

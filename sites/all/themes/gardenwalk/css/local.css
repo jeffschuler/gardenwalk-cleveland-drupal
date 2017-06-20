@@ -912,4 +912,11 @@ fieldset#edit-agreement {
 .page-node-add-garden.not-logged-in .group-main .vertical-tabs {
   display: block; }
 
+/* Special Feature content
+--------------------- */
+.node-type-neighborhood-feature .field-name-field-attached-images {
+  float: right; }
+  .node-type-neighborhood-feature .field-name-field-attached-images img {
+    border: 1px solid #726965; }
+
 /*# sourceMappingURL=local.css.map */
