@@ -923,5 +923,7 @@ fieldset#edit-agreement {
 --------------------- */
 div.addressfield-container-inline:after {
   clear: none !important; }
+div.addressfield-container-inline .organisation-name {
+  font-weight: bold; }
 
 /*# sourceMappingURL=local.css.map */

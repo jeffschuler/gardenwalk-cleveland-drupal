@@ -1117,6 +1117,11 @@ fieldset#edit-agreement {
 
 /* Addressfields
 --------------------- */
-div.addressfield-container-inline:after {
-  clear: none !important;
+div.addressfield-container-inline {
+  &:after {
+    clear: none !important;
+  }
+  .organisation-name {
+    font-weight: bold;
+  }
 }
