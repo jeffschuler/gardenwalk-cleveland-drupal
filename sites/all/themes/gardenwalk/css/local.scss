@@ -409,21 +409,17 @@ form input.form-submit {
           .panel-pane {
             margin: 10px 0 10px 10px;
             height: 410px;
-            background: transparent url('../images/banner-card-inborder.png') top left no-repeat;
-          }
-          .pane-custom.pane-6 {
-            font-size: 21pt;
-            line-height: 1em;
-          }
-        }
-        .content {
-          text-align: center;
-          padding: 20px;
-          font-size: 1.5em;
-          line-height: 1.3em;
-          color: $white;
-          a,a:link,a:visited {
-            color: $white;
+            background: transparent url('../images/banner-card-inborder.png') top left no-repeat;   
+            .content {
+              text-align: center;
+              padding: 20px;
+              font-size: 1.5em;
+              line-height: 1.3em;
+              color: $white;
+              a,a:link,a:visited {
+                color: $white;
+              }
+            }
           }
         }
       }

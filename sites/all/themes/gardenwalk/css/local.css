@@ -329,17 +329,14 @@ form input.form-submit {
       margin: 10px 0 10px 10px;
       height: 410px;
       background: transparent url("../images/banner-card-inborder.png") top left no-repeat; }
-    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .pane-custom.pane-6 {
-      font-size: 21pt;
-      line-height: 1em; }
-    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content {
-      text-align: center;
-      padding: 20px;
-      font-size: 1.5em;
-      line-height: 1.3em;
-      color: #FFFFFF; }
-      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content a, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content a:link, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content a:visited {
+      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane .content {
+        text-align: center;
+        padding: 20px;
+        font-size: 1.5em;
+        line-height: 1.3em;
         color: #FFFFFF; }
+        .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane .content a, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane .content a:link, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane .content a:visited {
+          color: #FFFFFF; }
     .page-home #main .panel-3col-33-3 .panel-row-top .view-id-image_rotator .views_slideshow_main {
       height: 430px; }
 
