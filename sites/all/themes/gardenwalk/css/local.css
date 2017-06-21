@@ -831,10 +831,10 @@ fieldset#edit-agreement {
 
 /* Page content
 --------------------- */
-.node-page .field-name-field-attached-images {
+.node-page .field-name-field-attached-images .field-items {
   float: right;
   padding-left: 10px; }
-  .node-page .field-name-field-attached-images img {
+  .node-page .field-name-field-attached-images .field-items img {
     border: 1px solid #726965; }
 
 /* Post info
@@ -914,10 +914,10 @@ fieldset#edit-agreement {
 
 /* Special Feature content
 --------------------- */
-.node-type-neighborhood-feature .field-name-field-attached-images {
+.node-type-neighborhood-feature .field-name-field-attached-images .field-items {
   float: right;
   padding-left: 10px; }
-  .node-type-neighborhood-feature .field-name-field-attached-images img {
+  .node-type-neighborhood-feature .field-name-field-attached-images .field-items img {
     border: 1px solid #726965; }
 
 /* Addressfields
