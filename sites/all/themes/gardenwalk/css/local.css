@@ -919,4 +919,9 @@ fieldset#edit-agreement {
   .node-type-neighborhood-feature .field-name-field-attached-images img {
     border: 1px solid #726965; }
 
+/* Addressfields
+--------------------- */
+div.addressfield-container-inline:after {
+  clear: none !important; }
+
 /*# sourceMappingURL=local.css.map */

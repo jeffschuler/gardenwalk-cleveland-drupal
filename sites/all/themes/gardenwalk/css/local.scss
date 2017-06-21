@@ -1113,3 +1113,10 @@ fieldset#edit-agreement {
     border: $imgborder;
   }
 }
+
+
+/* Addressfields
+--------------------- */
+div.addressfield-container-inline:after {
+  clear: none !important;
+}
