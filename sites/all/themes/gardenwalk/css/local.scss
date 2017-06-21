@@ -1010,11 +1010,12 @@ fieldset#edit-agreement {
 
 /* Page content
 --------------------- */
-.node-page img {
-  border: $imgborder;
-}
 .node-page .field-name-field-attached-images {
   float: right;
+  padding-left: 10px;
+  img {
+    border: $imgborder;
+  }
 }
 
 
@@ -1109,6 +1110,7 @@ fieldset#edit-agreement {
 --------------------- */
 .node-type-neighborhood-feature .field-name-field-attached-images {
   float: right;
+  padding-left: 10px;
   img {
     border: $imgborder;
   }
