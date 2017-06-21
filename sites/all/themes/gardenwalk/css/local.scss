@@ -1106,13 +1106,22 @@ fieldset#edit-agreement {
 }
 
 
-/* Special Feature content
+/* Special Feature (Neighborhood Feature) content
 --------------------- */
-.node-type-neighborhood-feature .field-name-field-attached-images .field-items {
-  float: right;
-  padding-left: 10px;
-  img {
-    border: $imgborder;
+.node-type-neighborhood-feature {
+  .field-name-field-attached-images {
+    .field-items {
+      float: right;
+      padding-left: 10px;
+      img {
+        border: $imgborder;
+      }
+    }
+  }
+}
+.view-neighborhood-features {
+  .views-row {
+    margin-bottom: 2em;
   }
 }
 

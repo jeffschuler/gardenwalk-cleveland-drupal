@@ -912,13 +912,16 @@ fieldset#edit-agreement {
 .page-node-add-garden.not-logged-in .group-main .vertical-tabs {
   display: block; }
 
-/* Special Feature content
+/* Special Feature (Neighborhood Feature) content
 --------------------- */
 .node-type-neighborhood-feature .field-name-field-attached-images .field-items {
   float: right;
   padding-left: 10px; }
   .node-type-neighborhood-feature .field-name-field-attached-images .field-items img {
     border: 1px solid #726965; }
+
+.view-neighborhood-features .views-row {
+  margin-bottom: 2em; }
 
 /* Addressfields
 --------------------- */
