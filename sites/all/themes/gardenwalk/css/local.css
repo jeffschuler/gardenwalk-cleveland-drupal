@@ -922,9 +922,9 @@ fieldset#edit-agreement {
 
 /* Addressfields
 --------------------- */
-div.addressfield-container-inline:after {
+.field-items div.addressfield-container-inline:after {
   clear: none !important; }
-div.addressfield-container-inline .organisation-name {
+.field-items div.addressfield-container-inline .organisation-name {
   font-weight: bold; }
 
 /*# sourceMappingURL=local.css.map */
