@@ -1,5 +1,4 @@
-.panel-3col-33-3 .panel-row-top {
-}
+/* Top: 33%, 66% */
 .panel-3col-33-3 .panel-row-top .panel-col-first {
   float: left;
   width: 33%;
@@ -9,32 +8,29 @@
   width: 66%;
 }
 
-.panel-3col-33-3 .panel-row-middle {
-}
+
+/* Middle: 100% */
 .panel-3col-33-3 .panel-row-middle .panel-panel {
 }
 
+
+/* Bottom: 33%, 33%, 33% */
 .panel-3col-33-3 .panel-row-bottom {
   margin-top: 20px;
 }
-.panel-3col-33-3 .panel-row-bottom .panel-panel {
+.panel-3col-33-3 .panel-row-bottom .panel-col-first {
+  float: left;
+  width: 33%;
+}
+.panel-3col-33-3 .panel-row-bottom .panel-col {
+  float: left;
+  width: 33%;
+}
+.panel-3col-33-3 .panel-row-bottom .panel-col-last {
+  float: left;
+  width: 33%;
 }
 
-
-.panel-3col-33-3 .panel-panel .inside {
-}
-.panel-3col-33-3 .panel-col-first .inside {
-  float: left;
-  width: 33%;
-}
-.panel-3col-33-3 .panel-col .inside {
-  float: left;
-  width: 33%;
-}
-.panel-3col-33-3 .panel-col-last .inside {
-  float: left;
-  width: 33%;
-}
 
 .panel-3col-33-3 .panel-panel .inside .panel-pane {
   margin-left: 10px;

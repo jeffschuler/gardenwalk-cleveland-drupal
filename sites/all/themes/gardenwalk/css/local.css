@@ -325,51 +325,23 @@ form input.form-submit {
     background-color: transparent !important;
     background-color: rgba(55, 157, 193, 0.5) !important;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#80379DC1,endColorstr=#80379DC1); }
-    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first {
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane {
+      margin: 10px 0 10px 10px;
+      height: 410px;
+      background: transparent url("../images/banner-card-inborder.png") top left no-repeat; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .pane-custom.pane-6 {
+      font-size: 21pt;
+      line-height: 1em; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content {
       text-align: center;
+      padding: 20px;
+      font-size: 1.5em;
+      line-height: 1.3em;
       color: #FFFFFF; }
-      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside {
-        width: 100%;
-        height: 430px; }
-        .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane {
-          margin: 10px 0 10px 10px;
-          height: 410px;
-          background: transparent url("../images/banner-card-inborder.png") top left no-repeat; }
-        .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .pane-custom.pane-6 {
-          font-size: 21pt;
-          line-height: 1em; }
-      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content {
-        padding: 20px;
-        font-size: 1.5em;
-        line-height: 1.3em; }
-      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h1, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h2, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h3, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h4, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h5, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h6,
-      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a:link, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first a:visited {
+      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content a, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content a:link, .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .content a:visited {
         color: #FFFFFF; }
-      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first hr {
-        background-color: #FFFFFF;
-        color: #FFFFFF;
-        width: 50%;
-        border: none;
-        margin: 0 auto; }
-      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h1 {
-        font-weight: 700;
-        font-size: 26pt;
-        margin: 0; }
-      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h3 {
-        font-weight: 300;
-        font-size: 18pt;
-        margin-top: 0;
-        margin-bottom: 20px; }
-      .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first h4 {
-        font-weight: 300;
-        font-size: 16pt;
-        margin: 20px 0;
-        text-align: justify; }
-
-/* Image Slider/Rotator (Home Page)
--------------------------------------------------------------- */
-.view-id-image_rotator .views_slideshow_main {
-  height: 430px; }
+    .page-home #main .panel-3col-33-3 .panel-row-top .view-id-image_rotator .views_slideshow_main {
+      height: 430px; }
 
 /* How-To Steps (Home Page)
 -------------------------------------------------------------- */
