@@ -121,13 +121,16 @@ function gardenwalk_headquarters_strongarm() {
           'weight' => '0',
         ),
         'path' => array(
-          'weight' => '8',
+          'weight' => '10',
         ),
         'xmlsitemap' => array(
-          'weight' => '7',
+          'weight' => '9',
         ),
         'redirect' => array(
-          'weight' => '9',
+          'weight' => '11',
+        ),
+        'locations' => array(
+          'weight' => '12',
         ),
       ),
       'display' => array(),

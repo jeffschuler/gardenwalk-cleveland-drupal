@@ -34,6 +34,24 @@ function gardenwalk_headquarters_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
+  // Exported field_base: 'field_addressfield'.
+  $field_bases['field_addressfield'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_addressfield',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'addressfield',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'addressfield',
+  );
+
   // Exported field_base: 'field_garden_name'.
   $field_bases['field_garden_name'] = array(
     'active' => 1,
@@ -56,6 +74,24 @@ function gardenwalk_headquarters_field_default_field_bases() {
     ),
     'translatable' => 0,
     'type' => 'text',
+  );
+
+  // Exported field_base: 'field_geofield'.
+  $field_bases['field_geofield'] = array(
+    'active' => 1,
+    'cardinality' => 1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_geofield',
+    'field_permissions' => array(
+      'type' => 0,
+    ),
+    'indexes' => array(),
+    'locked' => 0,
+    'module' => 'geofield',
+    'settings' => array(),
+    'translatable' => 0,
+    'type' => 'geofield',
   );
 
   // Exported field_base: 'field_map_marker_label'.
