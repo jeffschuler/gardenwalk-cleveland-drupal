@@ -262,23 +262,16 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Location Name';
-  /* Field: Location: Address */
-  $handler->display->display_options['fields']['address']['id'] = 'address';
-  $handler->display->display_options['fields']['address']['table'] = 'location';
-  $handler->display->display_options['fields']['address']['field'] = 'address';
-  $handler->display->display_options['fields']['address']['hide'] = array(
-    'country' => 'country',
-    'locpick' => 'locpick',
-    'province_name' => 'province_name',
-    'country_name' => 'country_name',
-    'map_link' => 'map_link',
-    'coords' => 'coords',
-    'name' => 0,
-    'street' => 0,
-    'additional' => 0,
-    'city' => 0,
-    'province' => 0,
-    'postal_code' => 0,
+  /* Field: Content: Address */
+  $handler->display->display_options['fields']['field_addressfield']['id'] = 'field_addressfield';
+  $handler->display->display_options['fields']['field_addressfield']['table'] = 'field_data_field_addressfield';
+  $handler->display->display_options['fields']['field_addressfield']['field'] = 'field_addressfield';
+  $handler->display->display_options['fields']['field_addressfield']['click_sort_column'] = 'country';
+  $handler->display->display_options['fields']['field_addressfield']['settings'] = array(
+    'use_widget_handlers' => 1,
+    'format_handlers' => array(
+      'address' => 'address',
+    ),
   );
   /* Field: Content: Published */
   $handler->display->display_options['fields']['status']['id'] = 'status';
@@ -513,25 +506,19 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['fields']['title']['label'] = '';
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Location: Address */
-  $handler->display->display_options['fields']['address']['id'] = 'address';
-  $handler->display->display_options['fields']['address']['table'] = 'location';
-  $handler->display->display_options['fields']['address']['field'] = 'address';
-  $handler->display->display_options['fields']['address']['label'] = '';
-  $handler->display->display_options['fields']['address']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['address']['hide'] = array(
-    'country' => 'country',
-    'locpick' => 'locpick',
-    'province_name' => 'province_name',
-    'country_name' => 'country_name',
-    'map_link' => 'map_link',
-    'coords' => 'coords',
-    'name' => 0,
-    'street' => 0,
-    'additional' => 0,
-    'city' => 0,
-    'province' => 0,
-    'postal_code' => 0,
+  /* Field: Content: Address */
+  $handler->display->display_options['fields']['field_addressfield']['id'] = 'field_addressfield';
+  $handler->display->display_options['fields']['field_addressfield']['table'] = 'field_data_field_addressfield';
+  $handler->display->display_options['fields']['field_addressfield']['field'] = 'field_addressfield';
+  $handler->display->display_options['fields']['field_addressfield']['label'] = '';
+  $handler->display->display_options['fields']['field_addressfield']['element_class'] = 'views-field-address';
+  $handler->display->display_options['fields']['field_addressfield']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_addressfield']['click_sort_column'] = 'country';
+  $handler->display->display_options['fields']['field_addressfield']['settings'] = array(
+    'use_widget_handlers' => 1,
+    'format_handlers' => array(
+      'address' => 'address',
+    ),
   );
   /* Field: Content: Body */
   $handler->display->display_options['fields']['body']['id'] = 'body';

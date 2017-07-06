@@ -8,6 +8,7 @@ dependencies[] = ds
 dependencies[] = features
 dependencies[] = gardenwalk_reimagining
 dependencies[] = geocoder
+dependencies[] = geofield
 dependencies[] = geofield_map
 dependencies[] = location_cck
 dependencies[] = openlayers_views

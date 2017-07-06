@@ -28,7 +28,8 @@ function gardenwalk_headquarters_ds_layout_settings_info() {
       ),
       'right' => array(
         0 => 'field_address',
-        1 => 'field_geofield',
+        1 => 'field_addressfield',
+        2 => 'field_geofield',
       ),
     ),
     'fields' => array(
@@ -36,6 +37,7 @@ function gardenwalk_headquarters_ds_layout_settings_info() {
       'field_neighborhood' => 'left',
       'body' => 'left',
       'field_address' => 'right',
+      'field_addressfield' => 'right',
       'field_geofield' => 'right',
     ),
     'classes' => array(),
