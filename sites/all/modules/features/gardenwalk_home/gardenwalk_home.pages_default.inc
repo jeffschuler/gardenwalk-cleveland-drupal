@@ -82,8 +82,8 @@ function gardenwalk_home_default_page_manager_pages() {
   $pane->access = array();
   $pane->configuration = array(
     'admin_title' => 'Overview',
-    'title' => 'News',
-    'body' => '<p>GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in several neighborhoods of Cleveland, Ohio.</p><p>GardenWalk Cleveland tours will be held July 8th and 9th, from 10AM to 5PM.</p><p>We are planning a series of workshops educating gardeners about the benefits and uses of native plants in the home landscape. These workshops will be held in conjunction with <a href="http://www.leapbio.org">LEAP</a> (Lake Erie Allegheny Partnership for Biodiversity) at local venues.&nbsp;</p>',
+    'title' => 'GardenWalk Cleveland: July 8 & 9, 2017',
+    'body' => '<p>GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in neighborhoods of Cleveland, Ohio.</p><p>GardenWalk Cleveland will be held <strong>July 8th and 9th, from 10am to 5pm</strong>, in the following neighborhoods:</p><ul><li><a href="/neighborhood/detroit-shoreway">Detroit Shoreway</a></li><li><a href="/neighborhood/north-collinwood">North Collinwood</a></li><li><a href="/neighborhood/slavic-village">Slavic Village</a></li><li><a href="/neighborhood/west-park">West Park</a></li></ul>',
     'format' => '2',
     'substitute' => 1,
     'title_heading' => 'h2',
@@ -145,40 +145,17 @@ function gardenwalk_home_default_page_manager_pages() {
   $display->content['new-c3bc4432-dd8c-4785-8fd9-de2824ad0484'] = $pane;
   $display->panels['botleft'][2] = 'new-c3bc4432-dd8c-4785-8fd9-de2824ad0484';
   $pane = new stdClass();
-  $pane->pid = 'new-3bdaa561-b114-4677-9125-75677086be37';
-  $pane->panel = 'botmid';
+  $pane->pid = 'new-aa108b98-6116-43f4-a555-a871ece318db';
+  $pane->panel = 'botleft';
   $pane->type = 'custom';
   $pane->subtype = 'custom';
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
-    'admin_title' => 'Plant Sale 2017',
-    'title' => 'Spring Plant Sale',
+    'admin_title' => 'Native Plant Workshops',
+    'title' => 'Native Plant Workshops',
     'title_heading' => 'h2',
-    'body' => '<h3 style="margin: 0px; padding: 0px; font-family: Helvetica; font-size: 18px; line-height: 22.5px; letter-spacing: -0.5px; color: rgb(96, 96, 96) !important;"><span style="font-size: 16px;"><strong>Sale Date:</strong>&nbsp;<strong>May 13th, 12 to 4pm</strong></span><br /><strong style="font-size: 16px;">What&#39;s for Sale:</strong><font size="3">&nbsp;Annuals, specialty annuals and accent foliage, herbs, vegetables, native perennials, container combos, hanging baskets</font></h3><p><strong style="color: rgb(96, 96, 96); font-family: Helvetica; font-size: 16px;">Order Deadline:</strong><font size="3" style="color: rgb(96, 96, 96); font-family: Helvetica;">&nbsp;May 1</font><br style="color: rgb(96, 96, 96); font-family: Helvetica; font-size: 15px;" /><span style="color: rgb(96, 96, 96); font-family: Helvetica; font-size: 16px;"><strong>Plant pickup:&nbsp;</strong>Saturday May 13th from 12 to 4 pm at 12541 Cedar Road, Cleveland Heights 44106. Park in church parking lot.</span></p><p><span style="color: rgb(96, 96, 96); font-family: Helvetica; font-size: 16px;"><a href="http://www.gardenwalkcleveland.org/sites/default/files/GWCle%20PlantsPreSale_CAL.pdf">Click Here for Order Form.</a>&nbsp;</span></p>',
-    'format' => '1',
-    'substitute' => 1,
-  );
-  $pane->cache = array();
-  $pane->style = array();
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 0;
-  $pane->locks = array();
-  $pane->uuid = '3bdaa561-b114-4677-9125-75677086be37';
-  $display->content['new-3bdaa561-b114-4677-9125-75677086be37'] = $pane;
-  $display->panels['botmid'][0] = 'new-3bdaa561-b114-4677-9125-75677086be37';
-  $pane = new stdClass();
-  $pane->pid = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
-  $pane->panel = 'botmid';
-  $pane->type = 'custom';
-  $pane->subtype = 'custom';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'admin_title' => 'How to do the GardenWalk',
-    'title' => 'GardenWalk Cleveland July 8 & 9, 2017',
-    'body' => '<p>2017 is the City of Cleveland&rsquo;s Celebration&nbsp;<a href="http://www.sustainablecleveland.org">Year of Vibrant Green Space</a>. We are proud to be able to promote GardenWalk Cleveland as part of that Celebration Year. Cleveland gardeners have created green spaces that bring together neighbors and sustain the natural beauty of our area.</p>',
+    'body' => '<p>We are planning a series of workshops educating gardeners about the benefits and uses of native plants in the home landscape. These workshops will be held in conjunction with <a href="https://www.leapbio.org/" target="_blank">LEAP (Lake Erie Allegheny Partnership for Biodiversity)</a> at local venues.</p><p><a href="http://www.leapbio.org/" target="_blank">[[{"fid":"348","view_mode":"default","fields":{"alt":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","title":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","height":134,"width":200,"style":"height: 134px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"5","format":"default","alignment":"center","field_file_image_alt_text[und][0][value]":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","field_file_image_title_text[und][0][value]":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","external_url":""},"type":"media","field_deltas":{"5":{"alt":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","title":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","height":134,"width":200,"style":"height: 134px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"5","format":"default","alignment":"center","field_file_image_alt_text[und][0][value]":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","field_file_image_title_text[und][0][value]":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","external_url":""}},"link_text":null,"attributes":{"alt":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","title":"Lake Erie Allegheny Partnership for Biodiversity (LEAP)","height":134,"width":200,"style":"height: 134px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"5"}}]]</a></p>',
     'format' => '2',
     'substitute' => 1,
   );
@@ -188,14 +165,224 @@ function gardenwalk_home_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 3;
+  $pane->locks = array();
+  $pane->uuid = 'aa108b98-6116-43f4-a555-a871ece318db';
+  $display->content['new-aa108b98-6116-43f4-a555-a871ece318db'] = $pane;
+  $display->panels['botleft'][3] = 'new-aa108b98-6116-43f4-a555-a871ece318db';
+  $pane = new stdClass();
+  $pane->pid = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
+  $pane->panel = 'botleft';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Year of Vibrant Green Space',
+    'title' => 'Year of Vibrant Green Space',
+    'body' => '<p>2017 is the City of Cleveland’s <a href="http://www.sustainablecleveland.org/yovgs" target="_blank">Celebration Year of Vibrant Green Space</a>.</p><p><a href="http://www.sustainablecleveland.org/yovgs">[[{"fid":"347","view_mode":"default","fields":{"alt":"Sustainable Cleveland 2019","title":"Sustainable Cleveland 2019","height":135,"width":200,"style":"height: 135px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"3","format":"default","alignment":"center","field_file_image_alt_text[und][0][value]":"Sustainable Cleveland 2019","field_file_image_title_text[und][0][value]":"Sustainable Cleveland 2019","external_url":""},"type":"media","field_deltas":{"3":{"alt":"Sustainable Cleveland 2019","title":"Sustainable Cleveland 2019","height":135,"width":200,"style":"height: 135px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"3","format":"default","alignment":"center","field_file_image_alt_text[und][0][value]":"Sustainable Cleveland 2019","field_file_image_title_text[und][0][value]":"Sustainable Cleveland 2019","external_url":""}},"link_text":null,"attributes":{"alt":"Sustainable Cleveland 2019","title":"Sustainable Cleveland 2019","height":135,"width":200,"style":"height: 135px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"3"}}]]</a></p><p>We are proud to be able to promote GardenWalk Cleveland as part of that Celebration Year. Cleveland gardeners have created green spaces that bring together neighbors and sustain the natural beauty of our area.</p><p>&nbsp;</p>',
+    'format' => '2',
+    'substitute' => 1,
+    'title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 4;
   $pane->locks = array();
   $pane->uuid = '7cc637fd-bd62-4210-b14e-bddae13fed3f';
   $display->content['new-7cc637fd-bd62-4210-b14e-bddae13fed3f'] = $pane;
-  $display->panels['botmid'][1] = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
+  $display->panels['botleft'][4] = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
+  $pane = new stdClass();
+  $pane->pid = 'new-46c3f718-eec3-4b5f-9698-ce9b289ed054';
+  $pane->panel = 'botmid';
+  $pane->type = 'views';
+  $pane->subtype = 'printable_maps';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_pager_settings' => 0,
+    'use_pager' => 0,
+    'nodes_per_page' => '0',
+    'pager_id' => '0',
+    'offset' => '0',
+    'more_link' => 0,
+    'feed_icons' => 0,
+    'panel_args' => 0,
+    'link_to_view' => 0,
+    'args' => '',
+    'url' => '',
+    'display' => 'block_1',
+    'context' => array(
+      0 => '',
+    ),
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array();
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '46c3f718-eec3-4b5f-9698-ce9b289ed054';
+  $display->content['new-46c3f718-eec3-4b5f-9698-ce9b289ed054'] = $pane;
+  $display->panels['botmid'][0] = 'new-46c3f718-eec3-4b5f-9698-ce9b289ed054';
+  $pane = new stdClass();
+  $pane->pid = 'new-21a944b2-d83d-431f-9610-297853139a85';
+  $pane->panel = 'botmid';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Dunham Tavern Museum and Gardens',
+    'title' => 'Dunham Tavern Museum and Gardens',
+    'title_heading' => 'h2',
+    'body' => '<p>Once a stagecoach stop of the Buffalo-Cleveland-Detroit post road, today the Dunham Tavern Museum is the oldest building still standing on its original site in Cleveland. The 1824 home of Rufus and Jane Pratt Dunham in MidTown Cleveland is now a designated Cleveland Landmark. The Museum and its gardens offer a glimpse of history and insight into the lifestyles of early Ohio settlers and travelers.</p><p><a href="/feature/dunham-tavern-museum-and-gardens">[[{"fid":"300","view_mode":"teaser","fields":{"format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"Dunham Tavern Museum and Gardens","field_file_image_title_text[und][0][value]":"Dunham Tavern Museum and Gardens"},"type":"media","field_deltas":{"1":{"format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"Dunham Tavern Museum and Gardens","field_file_image_title_text[und][0][value]":"Dunham Tavern Museum and Gardens"}},"link_text":null,"attributes":{"alt":"Dunham Tavern Museum and Gardens","title":"Dunham Tavern Museum and Gardens","height":165,"width":220,"class":"media-element file-teaser media-wysiwyg-align-center","data-delta":"1"}}]]</a></p><p>Visit <a href="/feature/dunham-tavern-museum-and-gardens">Dunham Tavern Museum and Gardens</a> on GardenWalk on&nbsp;<strong>Sunday, July 9th, ONLY</strong>. <a href="/feature/dunham-tavern-museum-and-gardens">More info and location</a>.</p>',
+    'format' => '2',
+    'substitute' => 1,
+  );
+  $pane->cache = array();
+  $pane->style = array();
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = '21a944b2-d83d-431f-9610-297853139a85';
+  $display->content['new-21a944b2-d83d-431f-9610-297853139a85'] = $pane;
+  $display->panels['botmid'][1] = 'new-21a944b2-d83d-431f-9610-297853139a85';
+  $pane = new stdClass();
+  $pane->pid = 'new-31891302-8de3-4534-bee0-778833ceec26';
+  $pane->panel = 'botmid';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Boys & Girls Clubs of Cleveland',
+    'title' => 'Boys & Girls Clubs of Cleveland',
+    'title_heading' => 'h2',
+    'body' => '<p>Surprises await those who visit the <a href="/feature/boys-girls-clubs-cleveland">Boys &amp; Girls Clubs of Cleveland</a> site on Broadway Avenue in <a href="/neighborhood/slavic-village">Slavic Village</a>. The property has a half-acre farm, a pollinator garden, 25 newly planted trees and a new interactive Children’s Garden.</p><p><a href="/feature/boys-girls-clubs-cleveland">[[{"fid":"344","view_mode":"teaser","fields":{"format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"Boys &amp; Girls Clubs garden","field_file_image_title_text[und][0][value]":"Boys &amp; Girls Clubs garden"},"type":"media","field_deltas":{"1":{"format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"Boys &amp; Girls Clubs garden","field_file_image_title_text[und][0][value]":"Boys &amp; Girls Clubs garden"}},"link_text":null,"attributes":{"alt":"Boys &amp; Girls Clubs garden","title":"Boys &amp; Girls Clubs garden","height":124,"width":220,"class":"media-element file-teaser media-wysiwyg-align-center","data-delta":"1"}}]]</a></p><p>All are maintained by teens in BGCC’s horticulture program, a work-study program for high school students. The program teaches work skills to inner-city youth and inspires them to reach for success.</p><p>Visit the&nbsp;<a href="/feature/boys-girls-clubs-cleveland">Boys &amp; Girls Clubs of Cleveland</a>&nbsp;during GardenWalk in the&nbsp;<a href="/neighborhood/slavic-village">Slavic Village</a>&nbsp;neighborhood.</p>',
+    'format' => '2',
+    'substitute' => 1,
+  );
+  $pane->cache = array();
+  $pane->style = array();
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 2;
+  $pane->locks = array();
+  $pane->uuid = '31891302-8de3-4534-bee0-778833ceec26';
+  $display->content['new-31891302-8de3-4534-bee0-778833ceec26'] = $pane;
+  $display->panels['botmid'][2] = 'new-31891302-8de3-4534-bee0-778833ceec26';
+  $pane = new stdClass();
+  $pane->pid = 'new-fe2d12cc-7ec2-4110-b4ed-e36d56047d7b';
+  $pane->panel = 'botmid';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Collinwood Community Potluck',
+    'title' => 'Collinwood Community Potluck',
+    'title_heading' => 'h2',
+    'body' => '<p>What better way to spend a Saturday in summer than by sharing a good plate of food next to new, old,&nbsp;and new-to-you neighbors with a view of the lake?</p><p style="text-align: center;"><a href="/feature/collinwood-community-potluck">[[{"fid":"342","view_mode":"teaser","fields":{"alt":"Potluck","height":179,"width":280,"style":"width: 280px; height: 179px;","class":"media-element file-default","data-delta":"1","format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"Potluck","field_file_image_title_text[und][0][value]":false},"type":"media","field_deltas":{"1":{"alt":"Potluck","height":179,"width":280,"style":"width: 280px; height: 179px;","class":"media-element file-default","data-delta":"1","format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"Potluck","field_file_image_title_text[und][0][value]":false}},"link_text":null,"attributes":{"alt":"Potluck","height":179,"width":280,"style":"width: 280px; height: 179px;","class":"media-element file-teaser media-wysiwyg-align-center","data-delta":"1"}}]]</a></p><p>Start brainstorming your best recipes for the first <a href="/feature/collinwood-community-potluck">Collinwood Community Potluck</a>: <strong>July 8th from 4-8pm</strong> at Euclid Beach Park. <strong>Free</strong> and open to all --&nbsp;with or without a dish.</p><p>Find out more on the <a href="/neighborhood/north-collinwood">North Collinwood neighborhood page</a>.</p>',
+    'format' => '2',
+    'substitute' => 1,
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 3;
+  $pane->locks = array();
+  $pane->uuid = 'fe2d12cc-7ec2-4110-b4ed-e36d56047d7b';
+  $display->content['new-fe2d12cc-7ec2-4110-b4ed-e36d56047d7b'] = $pane;
+  $display->panels['botmid'][3] = 'new-fe2d12cc-7ec2-4110-b4ed-e36d56047d7b';
+  $pane = new stdClass();
+  $pane->pid = 'new-d75263ec-ebe1-4355-a5ff-8071516f69f9';
+  $pane->panel = 'botright';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Bay Branch Farm',
+    'title' => 'Bay Branch Farm',
+    'title_heading' => 'h2',
+    'body' => '<p><a href="/feature/bay-branch-farm">Bay Branch Farm</a> is an urban vegetable farm with locations in Lakewood and Cleveland. The Cleveland site features a 12’ x 28’ hoophouse growing tomatoes and cucumbers, field crops and fruit trees, and some permaculture design, including “hugelkultur” beds and an herb spiral. Produce grown on the farm is sold at the Lakewood Farmer’s Market and to area restaurants.</p><p><a href="/feature/bay-branch-farm">[[{"fid":"363","view_mode":"teaser","fields":{"format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"Bay Branch Farm - inside the hoop house","field_file_image_title_text[und][0][value]":"Bay Branch Farm - inside the hoop house"},"type":"media","field_deltas":{"1":{"format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"Bay Branch Farm - inside the hoop house","field_file_image_title_text[und][0][value]":"Bay Branch Farm - inside the hoop house"}},"link_text":null,"attributes":{"alt":"Bay Branch Farm - inside the hoop house","title":"Bay Branch Farm - inside the hoop house","height":220,"width":165,"class":"media-element file-teaser media-wysiwyg-align-center","data-delta":"1"}}]]</a></p><p>Visit <a href="/feature/bay-branch-farm">Bay Branch Farm</a>&nbsp;during GardenWalk in the <a href="/neighborhood/west-park">West Park</a>&nbsp;neighborhood.</p>',
+    'format' => '2',
+    'substitute' => 1,
+  );
+  $pane->cache = array();
+  $pane->style = array();
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = 'd75263ec-ebe1-4355-a5ff-8071516f69f9';
+  $display->content['new-d75263ec-ebe1-4355-a5ff-8071516f69f9'] = $pane;
+  $display->panels['botright'][0] = 'new-d75263ec-ebe1-4355-a5ff-8071516f69f9';
+  $pane = new stdClass();
+  $pane->pid = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
+  $pane->panel = 'botright';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'GardenWalk Raffle is Back!',
+    'title' => 'GardenWalk Raffle is Back',
+    'body' => '<p>Support GardenWalk Cleveland by entering this year\'s raffle. Buy tickets to <strong>win a wheelbarrow-load of gardening supplies</strong>. Tickets will be available at each neighborhood headquarters. Winner will be notified within a week of the Walk.</p><p>Consider donating some gardening supplies. <a href="/contact">Let us know</a> if you want to help with this fun raffle project.</p><p style="text-align: center;"><a href="/feature/dunham-tavern-museum-and-gardens">[[{"fid":"338","view_mode":"default","fields":{"alt":"Jonathan Gauchat - Raffle Winner","height":267,"width":200,"style":"height: 267px; width: 200px;","class":"media-element file-default","data-delta":"1","format":"default","alignment":"center","field_file_image_alt_text[und][0][value]":"Jonathan Gauchat - Raffle Winner","field_file_image_title_text[und][0][value]":false},"type":"media","field_deltas":{"1":{"alt":"Jonathan Gauchat - Raffle Winner","height":267,"width":200,"style":"height: 267px; width: 200px;","class":"media-element file-default","data-delta":"1","format":"default","alignment":"center","field_file_image_alt_text[und][0][value]":"Jonathan Gauchat - Raffle Winner","field_file_image_title_text[und][0][value]":false}},"link_text":null,"attributes":{"alt":"Jonathan Gauchat - Raffle Winner","height":267,"width":200,"style":"height: 267px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"1"}}]]</a></p><p>Jonathan Gauchat of Shaker Heights was the winner of the GardenWalk Cleveland 2015 raffle!</p>',
+    'format' => '2',
+    'substitute' => 0,
+    'title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 1;
+  $pane->locks = array();
+  $pane->uuid = 'f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
+  $display->content['new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7'] = $pane;
+  $display->panels['botright'][1] = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
+  $pane = new stdClass();
+  $pane->pid = 'new-8bb00bbe-9f93-4318-a3d2-e1f41f11660b';
+  $pane->panel = 'botright';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'David Simpson Hospice House Vista Walk and Tribute Gardens',
+    'title' => 'David Simpson Hospice House Vista Walk and Tribute Gardens',
+    'title_heading' => 'h2',
+    'body' => '<p>The grounds of the <a href="/feature/david-simpson-hospice-house-vista-walk-and-tribute-gardens">David Simpson Hospice House</a>&nbsp;are a place of solace and reflection. More than a dozen gardens, named in tribute of friends of Hospice of the Western Reserve and in memory of loved ones, are open to all year-round.</p><p>Each garden is as unique as the individual, couple or family for whom it is named; each one a reflection of a special relationship.</p><p><a href="/feature/david-simpson-hospice-house-vista-walk-and-tribute-gardens">[[{"fid":"361","view_mode":"teaser","fields":{"alt":"David Simpson Hospice House - Hamilton Garden","title":"David Simpson Hospice House - Hamilton Garden","height":531,"width":800,"class":"media-element file-wysiwyg media-wysiwyg-align-center","data-delta":"1","format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"David Simpson Hospice House - Hamilton Garden","field_file_image_title_text[und][0][value]":"David Simpson Hospice House - Hamilton Garden"},"type":"media","field_deltas":{"1":{"alt":"David Simpson Hospice House - Hamilton Garden","title":"David Simpson Hospice House - Hamilton Garden","height":531,"width":800,"class":"media-element file-wysiwyg media-wysiwyg-align-center","data-delta":"1","format":"teaser","alignment":"center","field_file_image_alt_text[und][0][value]":"David Simpson Hospice House - Hamilton Garden","field_file_image_title_text[und][0][value]":"David Simpson Hospice House - Hamilton Garden"}},"link_text":null,"attributes":{"alt":"David Simpson Hospice House - Hamilton Garden","title":"David Simpson Hospice House - Hamilton Garden","height":146,"width":220,"class":"media-element file-teaser media-wysiwyg-align-center","data-delta":"1"}}]]</a></p><p>Visit the&nbsp;<a href="/feature/david-simpson-hospice-house-vista-walk-and-tribute-gardens">David Simpson Hospice House Vista Walk and Tribute Gardens</a>&nbsp;during GardenWalk in the&nbsp;<a href="/neighborhood/north-collinwood">North Collinwood neighborhood</a>.</p>',
+    'format' => '2',
+    'substitute' => 1,
+  );
+  $pane->cache = array();
+  $pane->style = array();
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 2;
+  $pane->locks = array();
+  $pane->uuid = '8bb00bbe-9f93-4318-a3d2-e1f41f11660b';
+  $display->content['new-8bb00bbe-9f93-4318-a3d2-e1f41f11660b'] = $pane;
+  $display->panels['botright'][2] = 'new-8bb00bbe-9f93-4318-a3d2-e1f41f11660b';
   $pane = new stdClass();
   $pane->pid = 'new-ac57a59c-8681-4944-9699-bf95de2f1ef5';
-  $pane->panel = 'botmid';
+  $pane->panel = 'botright';
   $pane->type = 'custom';
   $pane->subtype = 'custom';
   $pane->shown = TRUE;
@@ -213,62 +400,11 @@ function gardenwalk_home_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 2;
+  $pane->position = 3;
   $pane->locks = '';
   $pane->uuid = 'ac57a59c-8681-4944-9699-bf95de2f1ef5';
   $display->content['new-ac57a59c-8681-4944-9699-bf95de2f1ef5'] = $pane;
-  $display->panels['botmid'][2] = 'new-ac57a59c-8681-4944-9699-bf95de2f1ef5';
-  $pane = new stdClass();
-  $pane->pid = 'new-83cac6aa-1b9b-4c5b-9b7c-4e896fd0e745';
-  $pane->panel = 'botright';
-  $pane->type = 'custom';
-  $pane->subtype = 'custom';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'admin_title' => 'Maps Overview',
-    'title' => 'Neighborhoods',
-    'body' => '<p>GardenWalk Tours for 2017 will be in the following neighborhoods:</p><p>Detroit Shoreway<br />Collinwood<br />Slavic Village<br />West Park</p>',
-    'format' => '1',
-    'substitute' => 1,
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 0;
-  $pane->locks = '';
-  $pane->uuid = '83cac6aa-1b9b-4c5b-9b7c-4e896fd0e745';
-  $display->content['new-83cac6aa-1b9b-4c5b-9b7c-4e896fd0e745'] = $pane;
-  $display->panels['botright'][0] = 'new-83cac6aa-1b9b-4c5b-9b7c-4e896fd0e745';
-  $pane = new stdClass();
-  $pane->pid = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
-  $pane->panel = 'botright';
-  $pane->type = 'custom';
-  $pane->subtype = 'custom';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'admin_title' => 'GardenWalk Raffle is Back!',
-    'title' => 'GardenWalk Raffle is Back',
-    'body' => '<p>Support GardenWalk Cleveland by entering this year&#39;s raffle. Buy tickets to win a wheelbarrow-load of gardening supplies. Tickets will be available at each neighborhood headquarters. Winner will be notified within a week of the Walk.</p><p>Consider donating some gardening supplies. Let us know if you want to help with this fun raffle project.</p>
-<p><a href="/dunham-tavern"><img alt="Jonathan Gauchat-Raffle Winner" src="http://www.gardenwalkcleveland.org/sites/default/files/jonathan_gauchat_gwc200.jpg" style="width: 200px; height: 267px;" /></a><br />Jonathan Gauchat of Shaker Heights was the winner of the GardenWalk Cleveland 2015 raffle!<br />Photo: Jan Kious</p>',
-    'format' => '2',
-    'substitute' => 0,
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 1;
-  $pane->locks = array();
-  $pane->uuid = 'f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
-  $display->content['new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7'] = $pane;
-  $display->panels['botright'][1] = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
+  $display->panels['botright'][3] = 'new-ac57a59c-8681-4944-9699-bf95de2f1ef5';
   $pane = new stdClass();
   $pane->pid = 'new-d3f31880-a34b-444a-a5dd-0a15bf45bcf3';
   $pane->panel = 'mid';
@@ -305,9 +441,10 @@ function gardenwalk_home_default_page_manager_pages() {
   $pane->configuration = array(
     'admin_title' => '',
     'title' => '<no title>',
-    'body' => '<p><br /><br />GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in several neighborhoods of Cleveland, Ohio.</p><p>Check out what&#39;s new in 2017...</p>',
+    'body' => '<p><br /><br />GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in several neighborhoods of Cleveland, Ohio.</p><p>GardenWalk 2017&nbsp;will be held on July 8th &amp; 9th.</p>',
     'format' => '1',
     'substitute' => 1,
+    'title_heading' => 'h2',
   );
   $pane->cache = array();
   $pane->style = array(
