@@ -71,6 +71,17 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['fields']['longitude']['exclude'] = TRUE;
   $handler->display->display_options['fields']['longitude']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['longitude']['style'] = 'dd';
+  /* Field: Content: Geofield */
+  $handler->display->display_options['fields']['field_geofield']['id'] = 'field_geofield';
+  $handler->display->display_options['fields']['field_geofield']['table'] = 'field_data_field_geofield';
+  $handler->display->display_options['fields']['field_geofield']['field'] = 'field_geofield';
+  $handler->display->display_options['fields']['field_geofield']['label'] = '';
+  $handler->display->display_options['fields']['field_geofield']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_geofield']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_geofield']['click_sort_column'] = 'wkt';
+  $handler->display->display_options['fields']['field_geofield']['settings'] = array(
+    'data' => 'full',
+  );
   /* Contextual filter: Content: Has taxonomy term ID */
   $handler->display->display_options['arguments']['tid']['id'] = 'tid';
   $handler->display->display_options['arguments']['tid']['table'] = 'taxonomy_index';
@@ -740,6 +751,93 @@ function gardenwalk_headquarters_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator'] = 'field_gardenwalk_year_tid_op';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['identifier'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['multiple'] = TRUE;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
+
+  /* Display: Leaflet HQs Map */
+  $handler = $view->new_display('block', 'Leaflet HQs Map', 'block_1');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'leaflet';
+  $handler->display->display_options['style_options']['entity_type'] = 'node';
+  $handler->display->display_options['style_options']['data_source'] = 'field_geofield';
+  $handler->display->display_options['style_options']['name_field'] = 'field_neighborhood';
+  $handler->display->display_options['style_options']['description_field'] = 'field_addressfield';
+  $handler->display->display_options['style_options']['map'] = 'leaflet-mapbox';
+  $handler->display->display_options['style_options']['hide_empty'] = 0;
+  $handler->display->display_options['style_options']['zoom']['initialZoom'] = '-1';
+  $handler->display->display_options['style_options']['zoom']['minZoom'] = '0';
+  $handler->display->display_options['style_options']['zoom']['maxZoom'] = '18';
+  $handler->display->display_options['style_options']['vector_display']['stroke'] = 0;
+  $handler->display->display_options['style_options']['vector_display']['fill'] = 0;
+  $handler->display->display_options['style_options']['vector_display']['clickable'] = 0;
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Geofield */
+  $handler->display->display_options['fields']['field_geofield']['id'] = 'field_geofield';
+  $handler->display->display_options['fields']['field_geofield']['table'] = 'field_data_field_geofield';
+  $handler->display->display_options['fields']['field_geofield']['field'] = 'field_geofield';
+  $handler->display->display_options['fields']['field_geofield']['label'] = '';
+  $handler->display->display_options['fields']['field_geofield']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_geofield']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_geofield']['click_sort_column'] = 'wkt';
+  $handler->display->display_options['fields']['field_geofield']['settings'] = array(
+    'data' => 'full',
+  );
+  /* Field: Content: Neighborhood */
+  $handler->display->display_options['fields']['field_neighborhood']['id'] = 'field_neighborhood';
+  $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
+  $handler->display->display_options['fields']['field_neighborhood']['field'] = 'field_neighborhood';
+  $handler->display->display_options['fields']['field_neighborhood']['label'] = '';
+  $handler->display->display_options['fields']['field_neighborhood']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_neighborhood']['element_label_colon'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  /* Field: Content: Address */
+  $handler->display->display_options['fields']['field_addressfield']['id'] = 'field_addressfield';
+  $handler->display->display_options['fields']['field_addressfield']['table'] = 'field_data_field_addressfield';
+  $handler->display->display_options['fields']['field_addressfield']['field'] = 'field_addressfield';
+  $handler->display->display_options['fields']['field_addressfield']['label'] = '';
+  $handler->display->display_options['fields']['field_addressfield']['alter']['alter_text'] = TRUE;
+  $handler->display->display_options['fields']['field_addressfield']['alter']['text'] = '<div>[title]
+[field_addressfield]</div>';
+  $handler->display->display_options['fields']['field_addressfield']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_addressfield']['click_sort_column'] = 'country';
+  $handler->display->display_options['fields']['field_addressfield']['settings'] = array(
+    'use_widget_handlers' => 1,
+    'format_handlers' => array(
+      'address' => 'address',
+    ),
+  );
+  $handler->display->display_options['defaults']['arguments'] = FALSE;
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'headquarters' => 'headquarters',
+  );
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: Content: Year (field_gardenwalk_year) */
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
+    50 => '50',
+  );
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator_id'] = 'field_gardenwalk_year_tid_op';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['label'] = 'Year (field_gardenwalk_year)';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['operator'] = 'field_gardenwalk_year_tid_op';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['expose']['identifier'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
   $export['headquarters'] = $view;
