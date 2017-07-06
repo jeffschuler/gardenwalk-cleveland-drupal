@@ -22,7 +22,7 @@ function gardenwalk_sponsors_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Sponsors';
+  $handler->display->display_options['title'] = 'Supporters';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'none';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -373,14 +373,13 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['id'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
-  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['operator'] = 'and';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
     50 => '50',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['exposed'] = TRUE;
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['expose']['operator_id'] = 'field_gardenwalk_years_tid_op';
-  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['expose']['label'] = 'Filter by Year (AND)';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['expose']['label'] = 'Filter by Year (OR)';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['expose']['operator'] = 'field_gardenwalk_years_tid_op';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['expose']['identifier'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['expose']['multiple'] = TRUE;
@@ -415,8 +414,51 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['menu']['weight'] = '0';
   $handler->display->display_options['menu']['name'] = 'menu-administer';
 
-  /* Display: Sponsors Page */
-  $handler = $view->new_display('page', 'Sponsors Page', 'page_1');
+  /* Display: Sponsors List Block */
+  $handler = $view->new_display('block', 'Sponsors List Block', 'block_1');
+  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
+  $handler->display->display_options['style_plugin'] = 'list';
+  $handler->display->display_options['style_options']['grouping'] = '';
+  $handler->display->display_options['defaults']['style_options'] = FALSE;
+  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
+  $handler->display->display_options['row_plugin'] = 'fields';
+  $handler->display->display_options['defaults']['row_options'] = FALSE;
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
+  $handler->display->display_options['fields']['field_link']['field'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['label'] = '';
+  $handler->display->display_options['fields']['field_link']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_link']['type'] = 'plain';
+  $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
+  /* Field: Content: Sponsorship Level */
+  $handler->display->display_options['fields']['field_sponsorship_level']['id'] = 'field_sponsorship_level';
+  $handler->display->display_options['fields']['field_sponsorship_level']['table'] = 'field_data_field_sponsorship_level';
+  $handler->display->display_options['fields']['field_sponsorship_level']['field'] = 'field_sponsorship_level';
+  $handler->display->display_options['fields']['field_sponsorship_level']['label'] = '';
+  $handler->display->display_options['fields']['field_sponsorship_level']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_sponsorship_level']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_sponsorship_level']['type'] = 'taxonomy_term_reference_plain';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = '[field_link]';
+  $handler->display->display_options['fields']['title']['alter']['external'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['alt'] = '[title]: [field_sponsorship_level]';
+  $handler->display->display_options['fields']['title']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+
+  /* Display: All Sponsors Page */
+  $handler = $view->new_display('page', 'All Sponsors Page', 'page_1');
   $handler->display->display_options['defaults']['fields'] = FALSE;
   /* Field: Content: Sponsorship Level */
   $handler->display->display_options['fields']['field_sponsorship_level']['id'] = 'field_sponsorship_level';
@@ -465,48 +507,6 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
   $handler->display->display_options['path'] = 'sponsors-old';
-
-  /* Display: Sponsors List Block */
-  $handler = $view->new_display('block', 'Sponsors List Block', 'block_1');
-  $handler->display->display_options['defaults']['style_plugin'] = FALSE;
-  $handler->display->display_options['style_plugin'] = 'list';
-  $handler->display->display_options['style_options']['grouping'] = '';
-  $handler->display->display_options['defaults']['style_options'] = FALSE;
-  $handler->display->display_options['defaults']['row_plugin'] = FALSE;
-  $handler->display->display_options['row_plugin'] = 'fields';
-  $handler->display->display_options['defaults']['row_options'] = FALSE;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Link */
-  $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
-  $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
-  $handler->display->display_options['fields']['field_link']['field'] = 'field_link';
-  $handler->display->display_options['fields']['field_link']['label'] = '';
-  $handler->display->display_options['fields']['field_link']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_link']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
-  $handler->display->display_options['fields']['field_link']['type'] = 'plain';
-  $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
-  /* Field: Content: Sponsorship Level */
-  $handler->display->display_options['fields']['field_sponsorship_level']['id'] = 'field_sponsorship_level';
-  $handler->display->display_options['fields']['field_sponsorship_level']['table'] = 'field_data_field_sponsorship_level';
-  $handler->display->display_options['fields']['field_sponsorship_level']['field'] = 'field_sponsorship_level';
-  $handler->display->display_options['fields']['field_sponsorship_level']['label'] = '';
-  $handler->display->display_options['fields']['field_sponsorship_level']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_sponsorship_level']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_sponsorship_level']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['path'] = '[field_link]';
-  $handler->display->display_options['fields']['title']['alter']['external'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['alt'] = '[title]: [field_sponsorship_level]';
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
 
   /* Display: Logo Rotator Block */
   $handler = $view->new_display('block', 'Logo Rotator Block', 'block_2');
@@ -589,102 +589,10 @@ function gardenwalk_sponsors_views_default_views() {
   );
   $handler->display->display_options['fields']['field_images']['group_column'] = 'fid';
 
-  /* Display: Sponsors Others Page */
-  $handler = $view->new_display('page', 'Sponsors Others Page', 'page_2');
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
-  $handler->display->display_options['fields']['title_1']['table'] = 'node';
-  $handler->display->display_options['fields']['title_1']['field'] = 'title';
-  $handler->display->display_options['fields']['title_1']['label'] = '';
-  $handler->display->display_options['fields']['title_1']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['title_1']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title_1']['link_to_node'] = FALSE;
-  /* Field: Content: Link */
-  $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
-  $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
-  $handler->display->display_options['fields']['field_link']['field'] = 'field_link';
-  $handler->display->display_options['fields']['field_link']['label'] = '';
-  $handler->display->display_options['fields']['field_link']['exclude'] = TRUE;
-  $handler->display->display_options['fields']['field_link']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
-  $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
-  $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
-  /* Field: Content: Image */
-  $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
-  $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
-  $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
-  $handler->display->display_options['fields']['field_images']['label'] = '';
-  $handler->display->display_options['fields']['field_images']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['field_images']['alter']['path'] = '[field_link]';
-  $handler->display->display_options['fields']['field_images']['alter']['absolute'] = TRUE;
-  $handler->display->display_options['fields']['field_images']['alter']['alt'] = '[title_1]';
-  $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
-  $handler->display->display_options['fields']['field_images']['settings'] = array(
-    'image_style' => 'sponsor-page-small',
-    'image_link' => '',
-  );
-  $handler->display->display_options['fields']['field_images']['group_column'] = 'fid';
-  /* Field: Content: Title */
-  $handler->display->display_options['fields']['title']['id'] = 'title';
-  $handler->display->display_options['fields']['title']['table'] = 'node';
-  $handler->display->display_options['fields']['title']['field'] = 'title';
-  $handler->display->display_options['fields']['title']['label'] = '';
-  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['path'] = '[field_link]';
-  $handler->display->display_options['fields']['title']['alter']['absolute'] = TRUE;
-  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
-  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
-  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Title */
-  $handler->display->display_options['sorts']['title']['id'] = 'title';
-  $handler->display->display_options['sorts']['title']['table'] = 'node';
-  $handler->display->display_options['sorts']['title']['field'] = 'title';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
-  $handler->display->display_options['filters']['status']['id'] = 'status';
-  $handler->display->display_options['filters']['status']['table'] = 'node';
-  $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
-  $handler->display->display_options['filters']['status']['group'] = 0;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'sponsor' => 'sponsor',
-  );
-  /* Filter criterion: Field: Year(s) (field_gardenwalk_years) */
-  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['id'] = 'field_gardenwalk_years_tid';
-  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
-  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
-  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    50 => '50',
-  );
-  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
-  /* Filter criterion: Content: Sponsorship Level (field_sponsorship_level) */
-  $handler->display->display_options['filters']['field_sponsorship_level_tid']['id'] = 'field_sponsorship_level_tid';
-  $handler->display->display_options['filters']['field_sponsorship_level_tid']['table'] = 'field_data_field_sponsorship_level';
-  $handler->display->display_options['filters']['field_sponsorship_level_tid']['field'] = 'field_sponsorship_level_tid';
-  $handler->display->display_options['filters']['field_sponsorship_level_tid']['value'] = array(
-    17 => '17',
-    18 => '18',
-    41 => '41',
-  );
-  $handler->display->display_options['filters']['field_sponsorship_level_tid']['type'] = 'select';
-  $handler->display->display_options['filters']['field_sponsorship_level_tid']['vocabulary'] = 'sponsorship_level';
-  $handler->display->display_options['path'] = 'sponsors-other';
-
-  /* Display: Sponsors Major Page */
-  $handler = $view->new_display('page', 'Sponsors Major Page', 'page_3');
+  /* Display: Major Sponsors Page */
+  $handler = $view->new_display('page', 'Major Sponsors Page', 'page_3');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'Major Donors';
+  $handler->display->display_options['title'] = 'Major Sponsors';
   $handler->display->display_options['defaults']['style_plugin'] = FALSE;
   $handler->display->display_options['style_plugin'] = 'grid';
   $handler->display->display_options['style_options']['columns'] = '3';
@@ -720,6 +628,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['field_images']['alter']['path'] = '[field_link]';
   $handler->display->display_options['fields']['field_images']['alter']['absolute'] = TRUE;
   $handler->display->display_options['fields']['field_images']['alter']['alt'] = '[title_1]';
+  $handler->display->display_options['fields']['field_images']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
   $handler->display->display_options['fields']['field_images']['settings'] = array(
@@ -735,6 +644,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
   $handler->display->display_options['fields']['title']['alter']['path'] = '[field_link]';
   $handler->display->display_options['fields']['title']['alter']['absolute'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['target'] = '_blank';
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
@@ -775,11 +685,292 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['field'] = 'field_sponsorship_level_tid';
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['value'] = array(
     15 => '15',
-    16 => '16',
   );
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_sponsorship_level_tid']['vocabulary'] = 'sponsorship_level';
   $handler->display->display_options['path'] = 'sponsors-major';
+
+  /* Display: Donors Page */
+  $handler = $view->new_display('page', 'Donors Page', 'page_2');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Donors';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['fields']['title_1']['table'] = 'node';
+  $handler->display->display_options['fields']['title_1']['field'] = 'title';
+  $handler->display->display_options['fields']['title_1']['label'] = '';
+  $handler->display->display_options['fields']['title_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_1']['link_to_node'] = FALSE;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
+  $handler->display->display_options['fields']['field_link']['field'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['label'] = '';
+  $handler->display->display_options['fields']['field_link']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
+  $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
+  $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
+  $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
+  $handler->display->display_options['fields']['field_images']['label'] = '';
+  $handler->display->display_options['fields']['field_images']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_images']['alter']['path'] = '[field_link]';
+  $handler->display->display_options['fields']['field_images']['alter']['absolute'] = TRUE;
+  $handler->display->display_options['fields']['field_images']['alter']['alt'] = '[title_1]';
+  $handler->display->display_options['fields']['field_images']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_images']['settings'] = array(
+    'image_style' => 'sponsor-page-large',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_images']['group_column'] = 'fid';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = '[field_link]';
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'sponsor' => 'sponsor',
+  );
+  /* Filter criterion: Field: Year(s) (field_gardenwalk_years) */
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['id'] = 'field_gardenwalk_years_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
+    50 => '50',
+  );
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
+  /* Filter criterion: Content: Sponsorship Level (field_sponsorship_level) */
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['id'] = 'field_sponsorship_level_tid';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['table'] = 'field_data_field_sponsorship_level';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['field'] = 'field_sponsorship_level_tid';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['value'] = array(
+    16 => '16',
+  );
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['vocabulary'] = 'sponsorship_level';
+  $handler->display->display_options['path'] = 'sponsors-donors';
+
+  /* Display: Supporters Page */
+  $handler = $view->new_display('page', 'Supporters Page', 'page_4');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Supporters';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['fields']['title_1']['table'] = 'node';
+  $handler->display->display_options['fields']['title_1']['field'] = 'title';
+  $handler->display->display_options['fields']['title_1']['label'] = '';
+  $handler->display->display_options['fields']['title_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_1']['link_to_node'] = FALSE;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
+  $handler->display->display_options['fields']['field_link']['field'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['label'] = '';
+  $handler->display->display_options['fields']['field_link']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
+  $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
+  $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
+  $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
+  $handler->display->display_options['fields']['field_images']['label'] = '';
+  $handler->display->display_options['fields']['field_images']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_images']['alter']['path'] = '[field_link]';
+  $handler->display->display_options['fields']['field_images']['alter']['absolute'] = TRUE;
+  $handler->display->display_options['fields']['field_images']['alter']['alt'] = '[title_1]';
+  $handler->display->display_options['fields']['field_images']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_images']['settings'] = array(
+    'image_style' => 'sponsor-page-large',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_images']['group_column'] = 'fid';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = '[field_link]';
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'sponsor' => 'sponsor',
+  );
+  /* Filter criterion: Field: Year(s) (field_gardenwalk_years) */
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['id'] = 'field_gardenwalk_years_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
+    50 => '50',
+  );
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
+  /* Filter criterion: Content: Sponsorship Level (field_sponsorship_level) */
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['id'] = 'field_sponsorship_level_tid';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['table'] = 'field_data_field_sponsorship_level';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['field'] = 'field_sponsorship_level_tid';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['value'] = array(
+    17 => '17',
+  );
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['vocabulary'] = 'sponsorship_level';
+  $handler->display->display_options['path'] = 'sponsors-supporters';
+
+  /* Display: Contributors Page */
+  $handler = $view->new_display('page', 'Contributors Page', 'page_5');
+  $handler->display->display_options['defaults']['title'] = FALSE;
+  $handler->display->display_options['title'] = 'Contributors';
+  $handler->display->display_options['defaults']['fields'] = FALSE;
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title_1']['id'] = 'title_1';
+  $handler->display->display_options['fields']['title_1']['table'] = 'node';
+  $handler->display->display_options['fields']['title_1']['field'] = 'title';
+  $handler->display->display_options['fields']['title_1']['label'] = '';
+  $handler->display->display_options['fields']['title_1']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['title_1']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title_1']['link_to_node'] = FALSE;
+  /* Field: Content: Link */
+  $handler->display->display_options['fields']['field_link']['id'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['table'] = 'field_data_field_link';
+  $handler->display->display_options['fields']['field_link']['field'] = 'field_link';
+  $handler->display->display_options['fields']['field_link']['label'] = '';
+  $handler->display->display_options['fields']['field_link']['exclude'] = TRUE;
+  $handler->display->display_options['fields']['field_link']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
+  $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
+  $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
+  /* Field: Content: Image */
+  $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
+  $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
+  $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
+  $handler->display->display_options['fields']['field_images']['label'] = '';
+  $handler->display->display_options['fields']['field_images']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_images']['alter']['path'] = '[field_link]';
+  $handler->display->display_options['fields']['field_images']['alter']['absolute'] = TRUE;
+  $handler->display->display_options['fields']['field_images']['alter']['alt'] = '[title_1]';
+  $handler->display->display_options['fields']['field_images']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['field_images']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['field_images']['click_sort_column'] = 'fid';
+  $handler->display->display_options['fields']['field_images']['settings'] = array(
+    'image_style' => 'sponsor-page-large',
+    'image_link' => '',
+  );
+  $handler->display->display_options['fields']['field_images']['group_column'] = 'fid';
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = '';
+  $handler->display->display_options['fields']['title']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['path'] = '[field_link]';
+  $handler->display->display_options['fields']['title']['alter']['absolute'] = TRUE;
+  $handler->display->display_options['fields']['title']['alter']['target'] = '_blank';
+  $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
+  $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
+  $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
+  $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
+  $handler->display->display_options['defaults']['sorts'] = FALSE;
+  /* Sort criterion: Content: Title */
+  $handler->display->display_options['sorts']['title']['id'] = 'title';
+  $handler->display->display_options['sorts']['title']['table'] = 'node';
+  $handler->display->display_options['sorts']['title']['field'] = 'title';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: Content: Published */
+  $handler->display->display_options['filters']['status']['id'] = 'status';
+  $handler->display->display_options['filters']['status']['table'] = 'node';
+  $handler->display->display_options['filters']['status']['field'] = 'status';
+  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['group'] = 0;
+  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  /* Filter criterion: Content: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'node';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'sponsor' => 'sponsor',
+  );
+  /* Filter criterion: Field: Year(s) (field_gardenwalk_years) */
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['id'] = 'field_gardenwalk_years_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
+    50 => '50',
+  );
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
+  /* Filter criterion: Content: Sponsorship Level (field_sponsorship_level) */
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['id'] = 'field_sponsorship_level_tid';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['table'] = 'field_data_field_sponsorship_level';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['field'] = 'field_sponsorship_level_tid';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['value'] = array(
+    18 => '18',
+  );
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_sponsorship_level_tid']['vocabulary'] = 'sponsorship_level';
+  $handler->display->display_options['path'] = 'sponsors-contributors';
   $export['sponsors'] = $view;
 
   return $export;
