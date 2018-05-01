@@ -137,8 +137,7 @@ function gardenwalk_application_form_garden_node_form_alter(&$form, &$form_state
       2018, from 10am - 5pm.</p>
       <p>I understand that the selling of any items during
       the event will prevent my participation in future events.</p><p>I agree to
-      not hold GardenWalk Cleveland or the Cleveland Museum of Natural History,
-      its fiscal agent, liable for any damages done to my property or anyone on it.'),
+      not hold GardenWalk Cleveland liable for any damages done to my property or anyone on it.'),
     );
     $form['agreement']['agree'] = array(
        '#type' => 'checkbox',
