@@ -45,7 +45,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  /* Field: Content: Farmer / Program Manager */
+  /* Field: Content: Contact Person */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -112,7 +112,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
-    50 => '50',
+    52 => '52',
   );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
@@ -352,7 +352,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Address';
-  /* Field: Content: Garden/Location Name */
+  /* Field: Content: Location Name */
   $handler->display->display_options['fields']['field_garden_name']['id'] = 'field_garden_name';
   $handler->display->display_options['fields']['field_garden_name']['table'] = 'field_data_field_garden_name';
   $handler->display->display_options['fields']['field_garden_name']['field'] = 'field_garden_name';
@@ -372,7 +372,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_gardenwalk_year']['field'] = 'field_gardenwalk_year';
   $handler->display->display_options['fields']['field_gardenwalk_year']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_gardenwalk_year']['delta_offset'] = '0';
-  /* Field: Content: Farmer / Program Manager */
+  /* Field: Content: Contact Person */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -999,7 +999,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
-    50 => '50',
+    52 => '52',
   );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
@@ -1101,7 +1101,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['field'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['element_label_colon'] = FALSE;
-  /* Field: Content: Farmer / Program Manager */
+  /* Field: Content: Contact Person */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -1179,7 +1179,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
-    50 => '50',
+    52 => '52',
   );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
@@ -1195,7 +1195,7 @@ function gardenwalk_gardens_views_default_views() {
   /* Display: Data export - gardener emails */
   $handler = $view->new_display('views_data_export', 'Data export - gardener emails', 'views_data_export_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'All Gardeners\' Emails';
+  $handler->display->display_options['title'] = 'Gardeners\' Emails, Current Year';
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
   $handler->display->display_options['defaults']['access'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
@@ -1215,11 +1215,6 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_gardenwalk_year']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['fields']['field_gardenwalk_year']['field'] = 'field_gardenwalk_year';
   $handler->display->display_options['fields']['field_gardenwalk_year']['type'] = 'taxonomy_term_reference_plain';
-  /* Field: Content: Type */
-  $handler->display->display_options['fields']['type']['id'] = 'type';
-  $handler->display->display_options['fields']['type']['table'] = 'node';
-  $handler->display->display_options['fields']['type']['field'] = 'type';
-  $handler->display->display_options['fields']['type']['label'] = 'Base Type';
   /* Field: Content: Garden Type */
   $handler->display->display_options['fields']['field_garden_type']['id'] = 'field_garden_type';
   $handler->display->display_options['fields']['field_garden_type']['table'] = 'field_data_field_garden_type';
@@ -1234,7 +1229,12 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['field'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['element_label_colon'] = FALSE;
-  /* Field: Content: Farmer / Program Manager */
+  /* Field: Content: Title */
+  $handler->display->display_options['fields']['title']['id'] = 'title';
+  $handler->display->display_options['fields']['title']['table'] = 'node';
+  $handler->display->display_options['fields']['title']['field'] = 'title';
+  $handler->display->display_options['fields']['title']['label'] = 'Garden Address';
+  /* Field: Content: Contact Person */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -1250,6 +1250,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['nothing']['table'] = 'views';
   $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
   $handler->display->display_options['fields']['nothing']['label'] = 'Email formatted';
+  $handler->display->display_options['fields']['nothing']['exclude'] = TRUE;
   $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_gardener_name] <[field_gardener_email]>';
   $handler->display->display_options['defaults']['sorts'] = FALSE;
   /* Sort criterion: Content: Year (field_gardenwalk_year) */
@@ -1276,86 +1277,20 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['filters']['type']['table'] = 'node';
   $handler->display->display_options['filters']['type']['field'] = 'type';
   $handler->display->display_options['filters']['type']['value'] = array(
-    'community_garden' => 'community_garden',
     'garden' => 'garden',
-    'reimagining_project' => 'reimagining_project',
-    'special_feature' => 'special_feature',
-    'urban_farm' => 'urban_farm',
   );
   $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Email (field_gardener_email) */
-  $handler->display->display_options['filters']['field_gardener_email_email']['id'] = 'field_gardener_email_email';
-  $handler->display->display_options['filters']['field_gardener_email_email']['table'] = 'field_data_field_gardener_email';
-  $handler->display->display_options['filters']['field_gardener_email_email']['field'] = 'field_gardener_email_email';
-  $handler->display->display_options['filters']['field_gardener_email_email']['operator'] = 'not empty';
-  $handler->display->display_options['path'] = 'gardeners-export-all.xls';
-  $handler->display->display_options['sitename_title'] = 0;
-
-  /* Display: Data export - gardener emails, distinct */
-  $handler = $view->new_display('views_data_export', 'Data export - gardener emails, distinct', 'views_data_export_3');
-  $handler->display->display_options['defaults']['title'] = FALSE;
-  $handler->display->display_options['title'] = 'All Gardeners\' Emails, Distinct';
-  $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
-  $handler->display->display_options['defaults']['link_display'] = FALSE;
-  $handler->display->display_options['defaults']['group_by'] = FALSE;
-  $handler->display->display_options['defaults']['access'] = FALSE;
-  $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'edit any garden content';
-  $handler->display->display_options['defaults']['query'] = FALSE;
-  $handler->display->display_options['query']['type'] = 'views_query';
-  $handler->display->display_options['query']['options']['distinct'] = TRUE;
-  $handler->display->display_options['pager']['type'] = 'none';
-  $handler->display->display_options['style_plugin'] = 'views_data_export_csv';
-  $handler->display->display_options['style_options']['provide_file'] = 0;
-  $handler->display->display_options['style_options']['parent_sort'] = 0;
-  $handler->display->display_options['style_options']['quote'] = 1;
-  $handler->display->display_options['style_options']['trim'] = 0;
-  $handler->display->display_options['style_options']['replace_newlines'] = 0;
-  $handler->display->display_options['style_options']['header'] = 1;
-  $handler->display->display_options['defaults']['empty'] = FALSE;
-  $handler->display->display_options['defaults']['fields'] = FALSE;
-  /* Field: Content: Email */
-  $handler->display->display_options['fields']['field_gardener_email']['id'] = 'field_gardener_email';
-  $handler->display->display_options['fields']['field_gardener_email']['table'] = 'field_data_field_gardener_email';
-  $handler->display->display_options['fields']['field_gardener_email']['field'] = 'field_gardener_email';
-  $handler->display->display_options['fields']['field_gardener_email']['type'] = 'email_plain';
-  /* Field: Content: Farmer / Program Manager */
-  $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
-  $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
-  $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
-  $handler->display->display_options['fields']['field_gardener_name']['label'] = 'Gardener';
-  $handler->display->display_options['fields']['field_gardener_name']['element_label_colon'] = FALSE;
-  /* Field: Global: Custom text */
-  $handler->display->display_options['fields']['nothing']['id'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['table'] = 'views';
-  $handler->display->display_options['fields']['nothing']['field'] = 'nothing';
-  $handler->display->display_options['fields']['nothing']['label'] = 'Email formatted';
-  $handler->display->display_options['fields']['nothing']['alter']['text'] = '[field_gardener_name] <[field_gardener_email]>';
-  $handler->display->display_options['defaults']['sorts'] = FALSE;
-  /* Sort criterion: Content: Email (field_gardener_email) */
-  $handler->display->display_options['sorts']['field_gardener_email_email']['id'] = 'field_gardener_email_email';
-  $handler->display->display_options['sorts']['field_gardener_email_email']['table'] = 'field_data_field_gardener_email';
-  $handler->display->display_options['sorts']['field_gardener_email_email']['field'] = 'field_gardener_email_email';
-  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
-  $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Type */
-  $handler->display->display_options['filters']['type']['id'] = 'type';
-  $handler->display->display_options['filters']['type']['table'] = 'node';
-  $handler->display->display_options['filters']['type']['field'] = 'type';
-  $handler->display->display_options['filters']['type']['value'] = array(
-    'community_garden' => 'community_garden',
-    'garden' => 'garden',
-    'reimagining_project' => 'reimagining_project',
-    'special_feature' => 'special_feature',
-    'urban_farm' => 'urban_farm',
+  /* Filter criterion: Content: Year (field_gardenwalk_year) */
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['id'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
+    52 => '52',
   );
-  $handler->display->display_options['filters']['type']['group'] = 1;
-  /* Filter criterion: Content: Email (field_gardener_email) */
-  $handler->display->display_options['filters']['field_gardener_email_email']['id'] = 'field_gardener_email_email';
-  $handler->display->display_options['filters']['field_gardener_email_email']['table'] = 'field_data_field_gardener_email';
-  $handler->display->display_options['filters']['field_gardener_email_email']['field'] = 'field_gardener_email_email';
-  $handler->display->display_options['filters']['field_gardener_email_email']['operator'] = 'not empty';
-  $handler->display->display_options['path'] = 'gardeners-export-distinct.xls';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['group'] = 1;
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
+  $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
+  $handler->display->display_options['path'] = 'gardeners-export-current-year.csv';
   $handler->display->display_options['sitename_title'] = 0;
 
   /* Display: Data export - gardener emails */
@@ -1414,7 +1349,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['nid']['alter']['text'] = 'http://www.gardenwalkcleveland.org/node/[nid]';
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Content: Farmer / Program Manager */
+  /* Field: Content: Contact Person */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -1463,11 +1398,11 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['table'] = 'field_data_field_gardenwalk_year';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['field'] = 'field_gardenwalk_year_tid';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['value'] = array(
-    50 => '50',
+    52 => '52',
   );
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_year_tid']['vocabulary'] = 'year';
-  $handler->display->display_options['path'] = 'gardens-contacts-list-current.xls';
+  $handler->display->display_options['path'] = 'gardens-contacts-list-current.csv';
   $handler->display->display_options['sitename_title'] = 0;
   $export['gardens'] = $view;
 

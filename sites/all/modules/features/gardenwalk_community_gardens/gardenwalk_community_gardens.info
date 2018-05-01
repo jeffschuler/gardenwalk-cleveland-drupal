@@ -1,8 +1,10 @@
 name = GardenWalk Community Gardens
 core = 7.x
 package = Features
+dependencies[] = email
 dependencies[] = feeds
 dependencies[] = gardenwalk_gardens
+dependencies[] = gardenwalk_headquarters
 dependencies[] = openlayers_views
 features[ctools][] = ds:ds:1
 features[ctools][] = feeds:feeds_importer_default:1

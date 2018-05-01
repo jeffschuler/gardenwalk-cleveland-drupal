@@ -22,10 +22,10 @@ function gardenwalk_ol_maps_openlayers_styles() {
     'strokeColor' => '#214791',
     'strokeWidth' => 3,
     'fillOpacity' => 0.5,
-    'strokeOpacity' => 1,
+    'strokeOpacity' => 1.0,
     'strokeLinecap' => 'round',
     'strokeDashstyle' => 'solid',
-    'graphicOpacity' => 1,
+    'graphicOpacity' => 1.0,
     'labelAlign' => 'cm',
   );
   $export['blue_marker'] = $openlayers_styles;
@@ -42,10 +42,10 @@ function gardenwalk_ol_maps_openlayers_styles() {
     'strokeColor' => '#633c24',
     'strokeWidth' => 3,
     'fillOpacity' => 0.5,
-    'strokeOpacity' => 1,
+    'strokeOpacity' => 1.0,
     'strokeLinecap' => 'round',
     'strokeDashstyle' => 'solid',
-    'graphicOpacity' => 1,
+    'graphicOpacity' => 1.0,
     'labelAlign' => 'cm',
   );
   $export['brown_marker'] = $openlayers_styles;
@@ -62,10 +62,10 @@ function gardenwalk_ol_maps_openlayers_styles() {
     'strokeColor' => '#007a39',
     'strokeWidth' => 3,
     'fillOpacity' => 0.5,
-    'strokeOpacity' => 1,
+    'strokeOpacity' => 1.0,
     'strokeLinecap' => 'round',
     'strokeDashstyle' => 'solid',
-    'graphicOpacity' => 1,
+    'graphicOpacity' => 1.0,
     'labelAlign' => 'cm',
   );
   $export['green_marker'] = $openlayers_styles;
@@ -85,7 +85,7 @@ function gardenwalk_ol_maps_openlayers_styles() {
     'strokeOpacity' => 0.5,
     'strokeLinecap' => 'round',
     'strokeDashstyle' => 'solid',
-    'graphicOpacity' => 1,
+    'graphicOpacity' => 1.0,
     'labelAlign' => 'cm',
   );
   $export['green_marker_bigger'] = $openlayers_styles;
@@ -102,10 +102,10 @@ function gardenwalk_ol_maps_openlayers_styles() {
     'strokeColor' => '#eb6033',
     'strokeWidth' => 4,
     'fillOpacity' => 0.5,
-    'strokeOpacity' => 1,
+    'strokeOpacity' => 1.0,
     'strokeLinecap' => 'round',
     'strokeDashstyle' => 'solid',
-    'graphicOpacity' => 1,
+    'graphicOpacity' => 1.0,
     'labelAlign' => 'cm',
   );
   $export['lt_orange_marker_big'] = $openlayers_styles;
@@ -122,10 +122,10 @@ function gardenwalk_ol_maps_openlayers_styles() {
     'strokeColor' => '#d93e0b',
     'strokeWidth' => 3,
     'fillOpacity' => 0.5,
-    'strokeOpacity' => 1,
+    'strokeOpacity' => 1.0,
     'strokeLinecap' => 'round',
     'strokeDashstyle' => 'solid',
-    'graphicOpacity' => 1,
+    'graphicOpacity' => 1.0,
     'labelAlign' => 'cm',
   );
   $export['orange_marker'] = $openlayers_styles;
@@ -142,10 +142,10 @@ function gardenwalk_ol_maps_openlayers_styles() {
     'strokeColor' => '#d93e0b',
     'strokeWidth' => 4,
     'fillOpacity' => 0.5,
-    'strokeOpacity' => 1,
+    'strokeOpacity' => 1.0,
     'strokeLinecap' => 'round',
     'strokeDashstyle' => 'solid',
-    'graphicOpacity' => 1,
+    'graphicOpacity' => 1.0,
     'labelAlign' => 'cm',
   );
   $export['orange_marker_big'] = $openlayers_styles;
@@ -162,10 +162,10 @@ function gardenwalk_ol_maps_openlayers_styles() {
     'strokeColor' => '#4342a8',
     'strokeWidth' => 3,
     'fillOpacity' => 0.5,
-    'strokeOpacity' => 1,
+    'strokeOpacity' => 1.0,
     'strokeLinecap' => 'round',
     'strokeDashstyle' => 'solid',
-    'graphicOpacity' => 1,
+    'graphicOpacity' => 1.0,
     'labelAlign' => 'cm',
   );
   $export['purple_marker'] = $openlayers_styles;
@@ -182,10 +182,10 @@ function gardenwalk_ol_maps_openlayers_styles() {
     'strokeColor' => '#ba0032',
     'strokeWidth' => 3,
     'fillOpacity' => 0.5,
-    'strokeOpacity' => 1,
+    'strokeOpacity' => 1.0,
     'strokeLinecap' => 'round',
     'strokeDashstyle' => 'solid',
-    'graphicOpacity' => 1,
+    'graphicOpacity' => 1.0,
     'labelAlign' => 'cm',
   );
   $export['red_marker'] = $openlayers_styles;
