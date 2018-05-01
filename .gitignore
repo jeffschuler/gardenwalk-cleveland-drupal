@@ -5,8 +5,8 @@ sites/*/settings*.php
 sites/*/files
 sites/*/private
 
-backup/
-cache/
+/backup/
+/cache/
 CVS
 .svn
 .DS_Store
