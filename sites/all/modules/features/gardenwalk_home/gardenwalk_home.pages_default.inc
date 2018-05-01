@@ -82,8 +82,8 @@ function gardenwalk_home_default_page_manager_pages() {
   $pane->access = array();
   $pane->configuration = array(
     'admin_title' => 'Overview',
-    'title' => 'GardenWalk Cleveland: July 8 & 9, 2017',
-    'body' => '<p>GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in neighborhoods of Cleveland, Ohio.</p><p>GardenWalk Cleveland will be held <strong>July 8th and 9th, from 10am to 5pm</strong>, in the following neighborhoods:</p><ul><li><a href="/neighborhood/detroit-shoreway">Detroit Shoreway</a></li><li><a href="/neighborhood/north-collinwood">North Collinwood</a></li><li><a href="/neighborhood/slavic-village">Slavic Village</a></li><li><a href="/neighborhood/west-park">West Park</a></li></ul>',
+    'title' => 'GardenWalk Cleveland: July 7 & 8, 2018',
+    'body' => '<p>GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in neighborhoods of Cleveland, Ohio.</p><p>GardenWalk Cleveland will be held <strong>July 7th and 8th, from 10am to 5pm</strong>, in the following neighborhoods:</p><ul><li><a href="/neighborhood/detroit-shoreway">Detroit Shoreway</a></li><li><a href="/neighborhood/north-collinwood">North Collinwood</a></li><li><a href="/neighborhood/slavic-village">Slavic Village</a></li><li><a href="/neighborhood/west-park">West Park</a></li></ul>',
     'format' => '2',
     'substitute' => 1,
     'title_heading' => 'h2',
@@ -441,7 +441,7 @@ function gardenwalk_home_default_page_manager_pages() {
   $pane->configuration = array(
     'admin_title' => '',
     'title' => '<no title>',
-    'body' => '<p><br /><br />GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in several neighborhoods of Cleveland, Ohio.</p><p>GardenWalk 2017&nbsp;will be held on July 8th &amp; 9th.</p>',
+    'body' => '<p><br /><br />GardenWalk Cleveland is a free, self-guided tour of private gardens, community gardens, and home orchards in several neighborhoods of Cleveland, Ohio.</p><p>GardenWalk 2018&nbsp;will be held on July 7th &amp; 8th.</p>',
     'format' => '1',
     'substitute' => 1,
     'title_heading' => 'h2',
