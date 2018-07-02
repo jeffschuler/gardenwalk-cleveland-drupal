@@ -602,6 +602,13 @@ form input.form-submit {
 .view-taxonomy-term-neighborhood p {
   margin-top: 0; }
 
+/* Refreshment Stations Block (Neighborhood Page)
+-------------------------------------------------------------- */
+.pane-refreshment-stations h2.block-title {
+  margin-top: 0; }
+.pane-refreshment-stations .view-header p {
+  margin-bottom: 0; }
+
 /* Headquarters Block (Neighborhood Page)
 -------------------------------------------------------------- */
 .pane-views-headquarters-block-2 h2.block-title {
