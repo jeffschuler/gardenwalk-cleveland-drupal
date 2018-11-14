@@ -904,4 +904,9 @@ fieldset#edit-agreement {
 .field-items div.addressfield-container-inline .organisation-name {
   font-weight: bold; }
 
+/* TEMPORARY OFF-SEASON PLACEHOLDER OVERRIDES
+--------------------- */
+.page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane .content {
+  font-size: 1.3em; }
+
 /*# sourceMappingURL=local.css.map */
