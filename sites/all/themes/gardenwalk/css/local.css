@@ -904,9 +904,35 @@ fieldset#edit-agreement {
 .field-items div.addressfield-container-inline .organisation-name {
   font-weight: bold; }
 
-/* TEMPORARY OFF-SEASON PLACEHOLDER OVERRIDES
+/* TEMPORARY, OFF-SEASON, PLACEHOLDER OVERRIDES
 --------------------- */
 .page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane .content {
   font-size: 1.3em; }
+
+#site-name-wrapper {
+  margin-top: 30px; }
+
+.page-home #main .panel-3col-33-3 .panel-row-top {
+  margin-top: 15px; }
+
+#block-block-7 {
+  margin-bottom: 0;
+  position: absolute;
+  bottom: 0;
+  left: 330px;
+  padding: 10px;
+  margin: 10px;
+  max-width: 580px;
+  background-color: #f4805a;
+  color: white;
+  font-size: 1.3em;
+  text-align: center; }
+  #block-block-7 .gutter {
+    margin: 0; }
+  #block-block-7 .content {
+    border: 1px dotted white;
+    padding: 0 10px; }
+  #block-block-7 p {
+    margin: 10px 0; }
 
 /*# sourceMappingURL=local.css.map */
