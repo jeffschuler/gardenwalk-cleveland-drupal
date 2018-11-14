@@ -935,4 +935,12 @@ fieldset#edit-agreement {
   #block-block-7 p {
     margin: 10px 0; }
 
+.page-home .panel-row-middle .panel-panel .inside {
+  text-align: center;
+  background-color: white;
+  margin: 40px 0;
+  padding: 80px;
+  font-size: 1.7em;
+  line-height: 1.7em; }
+
 /*# sourceMappingURL=local.css.map */
