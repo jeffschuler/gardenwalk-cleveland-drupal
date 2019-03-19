@@ -1115,16 +1115,26 @@ fieldset#edit-agreement {
 
 /* TEMPORARY, OFF-SEASON, PLACEHOLDER OVERRIDES
 --------------------- */
-.page-home #main .panel-3col-33-3 .panel-row-top .panel-col-first .inside .panel-pane .content {
-  font-size: 1.3em;
-}
 
-#site-name-wrapper {
-  margin-top: 30px;
-}
-
-.page-home #main .panel-3col-33-3 .panel-row-top {
-  margin-top: 15px;
+.page-home.offseason {
+  #site-name-wrapper {
+    margin-top: 30px;
+  }
+  #main .panel-3col-33-3 {
+    .panel-row-top {
+      margin-top: 15px;
+      .panel-col-first .inside .panel-pane .content {
+        font-size: 1.3em;
+      }
+      .panel-row-middle .panel-panel .inside {
+        background-color: white;
+        margin: 40px 0;
+        padding: 60px;
+        font-size: 1.7em;
+        line-height: 1.7em;
+      }
+    }
+  }
 }
 
 #block-block-7 {
@@ -1149,12 +1159,4 @@ fieldset#edit-agreement {
   p {
     margin: 10px 0;
   }
-}
-
-.page-home .panel-row-middle .panel-panel .inside {
-  background-color: white;
-  margin: 40px 0;
-  padding: 60px;
-  font-size: 1.7em;
-  line-height: 1.7em;
 }
