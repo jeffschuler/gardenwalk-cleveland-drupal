@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * gardenwalk_sponsors.views_default.inc
@@ -100,7 +101,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Images */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
   $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
   $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
@@ -165,7 +166,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    50 => '50',
+    54 => '54',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
@@ -321,7 +322,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['word_boundary'] = FALSE;
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
-  /* Field: Content: Images */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
   $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
   $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
@@ -374,7 +375,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    50 => '50',
+    54 => '54',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['group'] = 1;
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['exposed'] = TRUE;
@@ -478,7 +479,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_link']['type'] = 'plain';
   $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
-  /* Field: Content: Images */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
   $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
   $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
@@ -573,7 +574,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['title']['alter']['ellipsis'] = FALSE;
   $handler->display->display_options['fields']['title']['element_label_colon'] = FALSE;
   $handler->display->display_options['fields']['title']['link_to_node'] = FALSE;
-  /* Field: Content: Images */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
   $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
   $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
@@ -619,7 +620,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
-  /* Field: Content: Images */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
   $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
   $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
@@ -675,7 +676,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    50 => '50',
+    54 => '54',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
@@ -713,7 +714,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
-  /* Field: Content: Images */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
   $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
   $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
@@ -769,7 +770,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    50 => '50',
+    54 => '54',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
@@ -807,7 +808,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
-  /* Field: Content: Images */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
   $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
   $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
@@ -863,7 +864,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    50 => '50',
+    54 => '54',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';
@@ -901,7 +902,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['fields']['field_link']['click_sort_column'] = 'url';
   $handler->display->display_options['fields']['field_link']['type'] = 'link_plain';
   $handler->display->display_options['fields']['field_link']['group_column'] = 'url';
-  /* Field: Content: Images */
+  /* Field: Content: Image */
   $handler->display->display_options['fields']['field_images']['id'] = 'field_images';
   $handler->display->display_options['fields']['field_images']['table'] = 'field_data_field_images';
   $handler->display->display_options['fields']['field_images']['field'] = 'field_images';
@@ -957,7 +958,7 @@ function gardenwalk_sponsors_views_default_views() {
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['table'] = 'field_data_field_gardenwalk_years';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['field'] = 'field_gardenwalk_years_tid';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['value'] = array(
-    50 => '50',
+    54 => '54',
   );
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['type'] = 'select';
   $handler->display->display_options['filters']['field_gardenwalk_years_tid']['vocabulary'] = 'year';

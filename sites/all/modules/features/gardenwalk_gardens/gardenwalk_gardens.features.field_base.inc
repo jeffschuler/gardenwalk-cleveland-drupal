@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * gardenwalk_gardens.features.field_base.inc
@@ -292,6 +293,7 @@ function gardenwalk_gardens_field_default_field_bases() {
         2013 => 2013,
         2014 => 2014,
         2015 => 2015,
+        2017 => 2017,
       ),
       'allowed_values_function' => '',
       'allowed_values_php' => '',

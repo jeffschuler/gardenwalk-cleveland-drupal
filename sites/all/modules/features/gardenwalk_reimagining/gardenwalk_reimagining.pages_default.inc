@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * gardenwalk_reimagining.pages_default.inc
@@ -9,7 +10,7 @@
  */
 function gardenwalk_reimagining_default_page_manager_pages() {
   $page = new stdClass();
-  $page->disabled = FALSE; /* Edit this to true to make a default page disabled initially */
+  $page->disabled = TRUE; /* Edit this to true to make a default page disabled initially */
   $page->api_version = 1;
   $page->name = 'reimagining_cleveland_projects';
   $page->task = 'page';
@@ -62,13 +63,13 @@ function gardenwalk_reimagining_default_page_manager_pages() {
   );
   $display->cache = array();
   $display->title = 'Reimagining Cleveland Projects';
-  $display->uuid = '018c85d5-fb52-44b8-ba09-992d64a127d1';
+  $display->uuid = '6c17c72e-f6c3-43fa-bf50-4ac08625d554';
   $display->storage_type = 'page_manager';
   $display->storage_id = 'page_reimagining_cleveland_projects_panel_context';
   $display->content = array();
   $display->panels = array();
   $pane = new stdClass();
-  $pane->pid = 'new-0fc747e6-a71f-4b3b-b692-da687783e549';
+  $pane->pid = 'new-3807833d-34e5-432e-a273-0bc398ed3763';
   $pane->panel = 'middle';
   $pane->type = 'openlayers_map';
   $pane->subtype = 'reimagining_projects';
@@ -86,11 +87,11 @@ function gardenwalk_reimagining_default_page_manager_pages() {
   $pane->extras = array();
   $pane->position = 0;
   $pane->locks = '';
-  $pane->uuid = '0fc747e6-a71f-4b3b-b692-da687783e549';
-  $display->content['new-0fc747e6-a71f-4b3b-b692-da687783e549'] = $pane;
-  $display->panels['middle'][0] = 'new-0fc747e6-a71f-4b3b-b692-da687783e549';
+  $pane->uuid = '3807833d-34e5-432e-a273-0bc398ed3763';
+  $display->content['new-3807833d-34e5-432e-a273-0bc398ed3763'] = $pane;
+  $display->panels['middle'][0] = 'new-3807833d-34e5-432e-a273-0bc398ed3763';
   $pane = new stdClass();
-  $pane->pid = 'new-2a58c5ad-4f6b-44b9-acba-4b0a8f08f5cb';
+  $pane->pid = 'new-423f9404-ba2c-42d8-81aa-24ad63fef0d5';
   $pane->panel = 'middle';
   $pane->type = 'views';
   $pane->subtype = 'reimagining_projects';
@@ -120,9 +121,9 @@ function gardenwalk_reimagining_default_page_manager_pages() {
   $pane->extras = array();
   $pane->position = 1;
   $pane->locks = '';
-  $pane->uuid = '2a58c5ad-4f6b-44b9-acba-4b0a8f08f5cb';
-  $display->content['new-2a58c5ad-4f6b-44b9-acba-4b0a8f08f5cb'] = $pane;
-  $display->panels['middle'][1] = 'new-2a58c5ad-4f6b-44b9-acba-4b0a8f08f5cb';
+  $pane->uuid = '423f9404-ba2c-42d8-81aa-24ad63fef0d5';
+  $display->content['new-423f9404-ba2c-42d8-81aa-24ad63fef0d5'] = $pane;
+  $display->panels['middle'][1] = 'new-423f9404-ba2c-42d8-81aa-24ad63fef0d5';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;

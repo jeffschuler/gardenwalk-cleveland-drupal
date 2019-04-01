@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * gardenwalk_gardens.features.user_permission.inc

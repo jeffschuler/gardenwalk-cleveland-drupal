@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * gardenwalk_gardens.rules_defaults.inc
@@ -13,7 +14,7 @@ function gardenwalk_gardens_default_rules_configuration() {
       "LABEL" : "Notify on Application Submitted (Gardener and Garden Finders)",
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
-      "REQUIRES" : [ "rules", "mimemail" ],
+      "REQUIRES" : [ "rules", "php", "mimemail" ],
       "ON" : { "node_insert" : [] },
       "IF" : [
         { "node_is_of_type" : { "node" : [ "node" ], "type" : { "value" : { "garden" : "garden" } } } },
@@ -42,7 +43,7 @@ function gardenwalk_gardens_default_rules_configuration() {
               "key" : "notify-submitted-gardener-[node:nid]-[site:current-date]",
               "to" : "[node:field-gardener-name] \\u003C[node:field-gardener-email]\\u003E",
               "subject" : "GardenWalk Cleveland application received",
-              "body" : "Hi [node:field-gardener-name],\\r\\n\\r\\nThank you for applying to show your garden in GardenWalk Cleveland 2018!\\r\\nA volunteer garden finder for [node:field-neighborhood] will review your application soon and let you know whether it has been accepted.\\r\\n\\r\\nGardenWalk Cleveland is organized by volunteers. If you are interested in helping out on GardenWalk weekend or in planning the event, please let us know -- http:\\/\\/www.gardenwalkcleveland.org\\/contact. And check out our Frequently Asked Questions -- http:\\/\\/www.gardenwalkcleveland.org\\/faq -- for more info.\\r\\n\\r\\nWe can\\u0027t wait to see you -- and hopefully your garden -- at GardenWalk 2018 on July 7th and 8th!\\r\\n\\r\\nSincerely,\\r\\n\\r\\nThe GardenWalk Cleveland team\\r\\n\\r\\n--\\r\\nLike us on Facebook - https:\\/\\/www.facebook.com\\/gardenwalk.cleveland\\r\\nFollow us on Twitter - https:\\/\\/twitter.com\\/GardenWalkCle\\r\\nSubscribe to our Mailing List - http:\\/\\/eepurl.com\\/uvMjX",
+              "body" : "Hi [node:field-gardener-name],\\r\\n\\r\\nThank you for applying to show your garden in GardenWalk Cleveland 2018!\\r\\nA volunteer garden finder for [node:field-neighborhood] will review your application soon and let you know whether it has been accepted.\\r\\n\\r\\nGardenWalk Cleveland is organized by volunteers. If you are interested in helping out on GardenWalk weekend or in planning the event, please let us know -- http:\\/\\/www.gardenwalkcleveland.org\\/contact. And check out our Frequently Asked Questions -- http:\\/\\/www.gardenwalkcleveland.org\\/faq -- for more info.\\r\\n\\r\\nHope to see you and your garden at GardenWalk Cleveland 2018 on July 7th and 8th!\\r\\n\\r\\nSincerely,\\r\\n\\r\\nThe GardenWalk Cleveland team\\r\\n\\r\\n--\\r\\nLike us on Facebook - https:\\/\\/www.facebook.com\\/gardenwalk.cleveland\\r\\nFollow us on Twitter - https:\\/\\/twitter.com\\/GardenWalkCle\\r\\nSubscribe to our Mailing List - http:\\/\\/eepurl.com\\/uvMjX",
               "language" : [ "" ]
             },
             "PROVIDE" : { "send_status" : { "send_status_gardener" : "Send status (Gardener)" } }
@@ -70,7 +71,7 @@ function gardenwalk_gardens_default_rules_configuration() {
         { "mail" : {
             "to" : "\\u0022[node:field-gardener-name]\\u0022 \\u003C[node:field-gardener-email]\\u003E",
             "subject" : "GardenWalk Cleveland: Application Approved!",
-            "message" : "Hi [node:field-gardener-name],\\r\\n\\r\\nCongratulations!\\r\\nYour garden GardenWalk Cleveland 2017 application for \\u0022[node:title]\\u0022 has been approved.\\r\\n\\r\\nThe volunteer garden finder for the [node:field-neighborhood] neighborhood will be in touch with any further concerns.\\r\\n\\r\\nPlease read through our Frequently Asked Questions -- http:\\/\\/www.gardenwalkcleveland.org\\/faq -- and let us know if you have any further questions. If you are interested in volunteering on GardenWalk weekend or in helping plan the event, please let us know.\\r\\n\\r\\nWe can\\u0027t wait to meet you and your garden at GardenWalk Cleveland 2017, on July 8th and 9th!\\r\\n\\r\\nSincerely,\\r\\n\\r\\nThe GardenWalk Cleveland team\\r\\n\\r\\n--\\r\\nLike us on Facebook - https:\\/\\/www.facebook.com\\/gardenwalk.cleveland\\r\\nFollow us on Twitter - https:\\/\\/twitter.com\\/GardenWalkCle\\r\\nSubscribe to our Mailing List - http:\\/\\/eepurl.com\\/uvMjX",
+            "message" : "Hi [node:field-gardener-name],\\r\\n\\r\\nCongratulations!\\r\\nYour garden GardenWalk Cleveland 2018 application for \\u0022[node:title]\\u0022 has been approved.\\r\\n\\r\\nThe volunteer garden finder for the [node:field-neighborhood] neighborhood will be in touch with any further concerns.\\r\\n\\r\\nPlease read through our Frequently Asked Questions -- http:\\/\\/www.gardenwalkcleveland.org\\/faq -- and let us know if you have any further questions. If you are interested in volunteering on GardenWalk weekend or in helping plan the event, please let us know.\\r\\n\\r\\nWe can\\u0027t wait to see you and your garden at GardenWalk Cleveland 2018 in July!\\r\\n\\r\\nSincerely,\\r\\n\\r\\nThe GardenWalk Cleveland team\\r\\n\\r\\n--\\r\\nLike us on Facebook - https:\\/\\/www.facebook.com\\/gardenwalk.cleveland\\r\\nFollow us on Twitter - https:\\/\\/twitter.com\\/GardenWalkCle\\r\\nSubscribe to our Mailing List - http:\\/\\/eepurl.com\\/uvMjX",
             "from" : "GardenWalk Cleveland \\u003Cinfo@gardenwalkcleveland.org\\u003E",
             "language" : [ "" ]
           }

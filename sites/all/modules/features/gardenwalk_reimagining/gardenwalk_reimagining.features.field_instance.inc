@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * gardenwalk_reimagining.features.field_instance.inc
@@ -499,6 +500,46 @@ function gardenwalk_reimagining_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance:
+  // 'taxonomy_term-neighborhood-field_refreshment_stations'.
+  $field_instances['taxonomy_term-neighborhood-field_refreshment_stations'] = array(
+    'bundle' => 'neighborhood',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 5,
+      ),
+    ),
+    'ds_extras_field_template' => '',
+    'entity_type' => 'taxonomy_term',
+    'field_name' => 'field_refreshment_stations',
+    'label' => 'Refreshment Stations',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 1,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'maxlength_js' => '',
+        'maxlength_js_enforce' => 0,
+        'maxlength_js_label' => 'Content limited to @limit characters, remaining: <strong>@remaining</strong>',
+        'maxlength_js_truncate_html' => 0,
+        'rows' => 5,
+      ),
+      'type' => 'text_textarea',
+      'weight' => 9,
+    ),
+  );
+
   // Translatables
   // Included for use with string extractors like potx.
   t('Email');
@@ -511,6 +552,7 @@ function gardenwalk_reimagining_field_default_field_instances() {
   t('Phone');
   t('Project Address');
   t('Project Coordinator');
+  t('Refreshment Stations');
   t('Year');
   t('Year(s)');
 
