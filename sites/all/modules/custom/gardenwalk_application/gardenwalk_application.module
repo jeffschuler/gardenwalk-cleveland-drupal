@@ -124,8 +124,13 @@ function gardenwalk_application_form_garden_node_form_alter(&$form, &$form_state
     $form['field_ok']['und']['#title'] = 'Is it okay to take photos of your garden for publicity purposes?';
     $form['field_past_gardenwalks']['und']['#title'] = 'In which past years of GardenWalk Cleveland your garden included, (if any)?';
 
-    $form['actions']['submit']['#submit'][] = 'gardenwalk_application_submit'; // Custom submit handler
-    $form['actions']['submit']['#value'] = 'Submit application'; // Save button
+    // Custom submit handler
+    $form['actions']['submit']['#submit'][] = 'gardenwalk_application_submit';
+
+    // Save button
+    $form['actions']['submit']['#value'] = 'Submit application';
+
+    // Agreement
     $form['agreement'] = array(
       '#type' => 'fieldset',
       '#collapsible' => FALSE,
@@ -144,6 +149,7 @@ function gardenwalk_application_form_garden_node_form_alter(&$form, &$form_state
        '#required' => TRUE,
     );
 
+    // Neighborhoods note
     $form['field_neighborhood']['und']['#description'] =
       t('Only gardens in the selected neighborhoods are eligible. If you would like to see your neighborhood included in GardenWalk, please <a href="/contact">contact us</a>.');
 
