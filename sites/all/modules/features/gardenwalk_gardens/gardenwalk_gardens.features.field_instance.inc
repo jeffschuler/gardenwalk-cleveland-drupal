@@ -733,7 +733,7 @@ function gardenwalk_gardens_field_default_field_instances() {
     'bundle' => 'garden',
     'default_value' => array(
       0 => array(
-        'tid' => 52,
+        'tid' => 54,
       ),
     ),
     'deleted' => 0,
