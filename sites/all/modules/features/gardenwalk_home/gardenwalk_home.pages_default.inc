@@ -152,6 +152,32 @@ function gardenwalk_home_default_page_manager_pages() {
   $display->content['new-ac57a59c-8681-4944-9699-bf95de2f1ef5'] = $pane;
   $display->panels['botleft'][2] = 'new-ac57a59c-8681-4944-9699-bf95de2f1ef5';
   $pane = new stdClass();
+  $pane->pid = 'new-fe1cb9d5-35b1-42f3-bfb4-899a844ce911';
+  $pane->panel = 'botleft';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Get your GardenWalk Guide',
+    'title' => 'Get your GardenWalk Guide',
+    'title_heading' => 'h2',
+    'body' => '<p>Pick up a Guide before the GardenWalk begins at most area Dave\'s Supermarkets,&nbsp;starting July 1st!</p><p>Guides with&nbsp;maps and details will be available in several garden site "refreshment stations"&nbsp;throughout the neighborhoods. See each neighborhood page from the <a href="/guide">Guide page</a>&nbsp;for refreshment station addresses.</p>',
+    'format' => '2',
+    'substitute' => 1,
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 3;
+  $pane->locks = array();
+  $pane->uuid = 'fe1cb9d5-35b1-42f3-bfb4-899a844ce911';
+  $display->content['new-fe1cb9d5-35b1-42f3-bfb4-899a844ce911'] = $pane;
+  $display->panels['botleft'][3] = 'new-fe1cb9d5-35b1-42f3-bfb4-899a844ce911';
+  $pane = new stdClass();
   $pane->pid = 'new-1523fd34-31e7-4813-bc2e-ff4e2f307daf';
   $pane->panel = 'botmid';
   $pane->type = 'custom';
@@ -178,98 +204,8 @@ function gardenwalk_home_default_page_manager_pages() {
   $display->content['new-1523fd34-31e7-4813-bc2e-ff4e2f307daf'] = $pane;
   $display->panels['botmid'][0] = 'new-1523fd34-31e7-4813-bc2e-ff4e2f307daf';
   $pane = new stdClass();
-  $pane->pid = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
-  $pane->panel = 'botmid';
-  $pane->type = 'custom';
-  $pane->subtype = 'custom';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'admin_title' => 'Sustainable Cleveland 2019',
-    'title' => '',
-    'body' => '<p>&nbsp;</p><p>[[{"fid":"347","view_mode":"default","fields":{"alt":"Sustainable Cleveland 2019","title":"Sustainable Cleveland 2019","height":135,"width":200,"style":"height: 135px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"3","format":"default","alignment":"center","field_file_image_alt_text[und][0][value]":"Sustainable Cleveland 2019","field_file_image_title_text[und][0][value]":"Sustainable Cleveland 2019","external_url":""},"type":"media","field_deltas":{"3":{"alt":"Sustainable Cleveland 2019","title":"Sustainable Cleveland 2019","height":135,"width":200,"style":"height: 135px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"3","format":"default","alignment":"center","field_file_image_alt_text[und][0][value]":"Sustainable Cleveland 2019","field_file_image_title_text[und][0][value]":"Sustainable Cleveland 2019","external_url":""}},"link_text":null,"attributes":{"alt":"Sustainable Cleveland 2019","title":"Sustainable Cleveland 2019","height":135,"width":200,"style":"height: 135px; width: 200px;","class":"media-element file-default media-wysiwyg-align-center","data-delta":"3"}}]]</p><h2><strong>Sustainable Cleveland 2019</strong></h2><p>Sustainable Cleveland 2019’s Celebration Year of People recognizes the many sustainability champions that have brought us this far in our journey. Since 2009, SC2019 has engaged more than 15,000 people through working groups, events, and social media.</p><p>We look to continue to grow this number in 2019 and beyond and we are proud to promote GardenWalk Cleveland as part of this Celebration Year. Cleveland gardeners in seven neighborhoods have created green spaces that bring together neighbors and sustain the natural beauty of our area.</p><h2><strong>Cuyahoga50</strong></h2><p>This year also marks the 50th anniversary of the last burning of the Cuyahoga River. To celebrate this significant anniversary, more than 200 organizations are coming together throughout 2019 to celebrate our progress and to ignite action to protect this most valuable resource.</p><p>&nbsp;</p>',
-    'format' => '2',
-    'substitute' => 1,
-    'title_heading' => 'h2',
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 1;
-  $pane->locks = array();
-  $pane->uuid = '7cc637fd-bd62-4210-b14e-bddae13fed3f';
-  $display->content['new-7cc637fd-bd62-4210-b14e-bddae13fed3f'] = $pane;
-  $display->panels['botmid'][1] = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
-  $pane = new stdClass();
-  $pane->pid = 'new-4d3a2199-cbcd-4353-9c79-4228b368f61c';
-  $pane->panel = 'botright';
-  $pane->type = 'views';
-  $pane->subtype = 'printable_maps';
-  $pane->shown = FALSE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'override_pager_settings' => 0,
-    'use_pager' => 0,
-    'nodes_per_page' => '0',
-    'pager_id' => '0',
-    'offset' => '0',
-    'more_link' => 0,
-    'feed_icons' => 0,
-    'panel_args' => 0,
-    'link_to_view' => 0,
-    'args' => '',
-    'url' => '',
-    'display' => 'block_1',
-    'context' => array(
-      0 => '',
-    ),
-    'override_title' => 0,
-    'override_title_text' => '',
-    'override_title_heading' => 'h2',
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 0;
-  $pane->locks = array();
-  $pane->uuid = '4d3a2199-cbcd-4353-9c79-4228b368f61c';
-  $display->content['new-4d3a2199-cbcd-4353-9c79-4228b368f61c'] = $pane;
-  $display->panels['botright'][0] = 'new-4d3a2199-cbcd-4353-9c79-4228b368f61c';
-  $pane = new stdClass();
-  $pane->pid = 'new-fe1cb9d5-35b1-42f3-bfb4-899a844ce911';
-  $pane->panel = 'botright';
-  $pane->type = 'custom';
-  $pane->subtype = 'custom';
-  $pane->shown = TRUE;
-  $pane->access = array();
-  $pane->configuration = array(
-    'admin_title' => 'Get your GardenWalk Guide',
-    'title' => 'Get your GardenWalk Guide',
-    'title_heading' => 'h2',
-    'body' => '<p>Pick up a Guide before the GardenWalk begins at most area Dave\'s Supermarkets,&nbsp;starting July 1st!</p><p>Guides with&nbsp;maps and details will be available in several garden site "refreshment stations"&nbsp;throughout the neighborhoods. See each neighborhood page from the <a href="/guide">Guide page</a>&nbsp;for refreshment station addresses.</p>',
-    'format' => '2',
-    'substitute' => 1,
-  );
-  $pane->cache = array();
-  $pane->style = array(
-    'settings' => NULL,
-  );
-  $pane->css = array();
-  $pane->extras = array();
-  $pane->position = 1;
-  $pane->locks = array();
-  $pane->uuid = 'fe1cb9d5-35b1-42f3-bfb4-899a844ce911';
-  $display->content['new-fe1cb9d5-35b1-42f3-bfb4-899a844ce911'] = $pane;
-  $display->panels['botright'][1] = 'new-fe1cb9d5-35b1-42f3-bfb4-899a844ce911';
-  $pane = new stdClass();
   $pane->pid = 'new-26103756-43f7-4c7b-a86c-29d2bf63d45d';
-  $pane->panel = 'botright';
+  $pane->panel = 'botmid';
   $pane->type = 'block';
   $pane->subtype = 'block-3';
   $pane->shown = TRUE;
@@ -288,11 +224,61 @@ function gardenwalk_home_default_page_manager_pages() {
     'css_class' => '',
   );
   $pane->extras = array();
-  $pane->position = 2;
+  $pane->position = 1;
   $pane->locks = array();
   $pane->uuid = '26103756-43f7-4c7b-a86c-29d2bf63d45d';
   $display->content['new-26103756-43f7-4c7b-a86c-29d2bf63d45d'] = $pane;
-  $display->panels['botright'][2] = 'new-26103756-43f7-4c7b-a86c-29d2bf63d45d';
+  $display->panels['botmid'][1] = 'new-26103756-43f7-4c7b-a86c-29d2bf63d45d';
+  $pane = new stdClass();
+  $pane->pid = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
+  $pane->panel = 'botmid';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Sustainable Cleveland 2019',
+    'title' => '',
+    'body' => '<p>[[{"fid":"401","view_mode":"1_3_pagewidth_pane_image","fields":{"format":"1_3_pagewidth_pane_image","alignment":"center","field_file_image_alt_text[und][0][value]":"Sustainable Cleveland 2019","field_file_image_title_text[und][0][value]":false},"link_text":null,"type":"media","field_deltas":{"6":{"format":"1_3_pagewidth_pane_image","alignment":"center","field_file_image_alt_text[und][0][value]":"Sustainable Cleveland 2019","field_file_image_title_text[und][0][value]":false}},"attributes":{"alt":"Sustainable Cleveland 2019","height":101,"width":290,"class":"media-element file-1-3-pagewidth-pane-image media-wysiwyg-align-center","data-delta":"6"}}]]</p><h2>Sustainable Cleveland 2019</h2><p>Sustainable Cleveland 2019’s Celebration Year of People recognizes the many sustainability champions that have brought us this far in our journey. Since 2009, SC2019 has engaged more than 15,000 people through working groups, events, and social media.</p><p>We look to continue to grow this number in 2019 and beyond and we are proud to promote GardenWalk Cleveland as part of this Celebration Year. Cleveland gardeners in seven neighborhoods have created green spaces that bring together neighbors and sustain the natural beauty of our area.</p><h2>Cuyahoga50</h2><p>This year also marks the 50th anniversary of the last burning of the Cuyahoga River. To celebrate this significant anniversary, more than 200 organizations are coming together throughout 2019 to celebrate our progress and to ignite action to protect this most valuable resource.</p>',
+    'format' => '2',
+    'substitute' => 1,
+    'title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 2;
+  $pane->locks = array();
+  $pane->uuid = '7cc637fd-bd62-4210-b14e-bddae13fed3f';
+  $display->content['new-7cc637fd-bd62-4210-b14e-bddae13fed3f'] = $pane;
+  $display->panels['botmid'][2] = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
+  $pane = new stdClass();
+  $pane->pid = 'new-39407617-a32b-47e5-9640-cfb5d23ad54b';
+  $pane->panel = 'botright';
+  $pane->type = 'custom';
+  $pane->subtype = 'custom';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'admin_title' => 'Show your garden in 2019',
+    'title' => 'Show your garden in 2019',
+    'title_heading' => 'h2',
+    'body' => '<p>If you live in one of the 2019 GardenWalk neighrborhoods, <a href="/apply">click here to apply to show your garden</a>.</p><p>Or, <a href="/sites/default/files/GardenWalkApplication2019.pdf">print the Garden&nbsp;Application Form.</a></p><p>Contact the <em>Garden Finder</em> for your neighborhood if you have questions.</p><p><strong>Broadway Slavic Village</strong><br />Marie Kittredge<br />mariekittredge@gmail.com&nbsp;<br />216-513-4002</p><p><strong>Collinwood</strong><br />Teri Dew<br />dewteri@yahoo.com<br />216 392-7937</p><p><strong>Detroit Shoreway</strong><br />Linda Warren<br />LWarren@clevelandnp.org<br />216-401-4037</p><p><strong>Fairfax</strong><br />Debbie Copeland<br />ddc819@aol.com&nbsp;<br />216-401-9981</p><p><strong>Little Italy</strong><br />Paulette Colarochio&nbsp;<br />colarochioprose@yahoo.com<br />216.798.3824&nbsp;</p><p><strong>Old Brooklyn</strong><br />Holly Rose<br />holly.rose99@yahoo.com<br />216-401-9981&nbsp;</p><p><strong>West Park</strong><br />David Horneck<br />dhorneck1@gmail.com<br />216.543.4277</p>',
+    'format' => '1',
+    'substitute' => 1,
+  );
+  $pane->cache = array();
+  $pane->style = array();
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '39407617-a32b-47e5-9640-cfb5d23ad54b';
+  $display->content['new-39407617-a32b-47e5-9640-cfb5d23ad54b'] = $pane;
+  $display->panels['botright'][0] = 'new-39407617-a32b-47e5-9640-cfb5d23ad54b';
   $pane = new stdClass();
   $pane->pid = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
   $pane->panel = 'botright';
@@ -303,7 +289,7 @@ function gardenwalk_home_default_page_manager_pages() {
   $pane->configuration = array(
     'admin_title' => 'GardenWalk Raffle is Back!',
     'title' => 'GardenWalk Raffle ',
-    'body' => '<p>Support GardenWalk Cleveland by entering this year\'s raffle. Buy tickets to <strong>win a wheelbarrow-load of gardening supplies</strong>. Tickets will be available at all&nbsp;neighborhood Refreshment Stations. Winner will be notified within a week of the Walk.</p><p>Consider donating some gardening supplies. <a href="/contact">Let us know</a> if you want to help with this fun raffle project.</p><p style="text-align: center;">&nbsp;</p><p>2018 Raffle Winner!</p>',
+    'body' => '<p>Support GardenWalk Cleveland by entering this year\'s raffle. Buy tickets to <strong>win a wheelbarrow-load of gardening supplies</strong>. Tickets will be available at all&nbsp;neighborhood Refreshment Stations. Winner will be notified within a week of the Walk.</p><p>Consider donating some gardening supplies. <a href="/contact">Let us know</a> if you want to help with this fun raffle project.</p><p style="text-align: center;">[[{"fid":"399","view_mode":"1_3_pagewidth_pane_image","fields":{"format":"1_3_pagewidth_pane_image","alignment":"center","field_file_image_alt_text[und][0][value]":"2018 GardenwWalk Raffle Winner","field_file_image_title_text[und][0][value]":false},"link_text":null,"type":"media","field_deltas":{"5":{"format":"1_3_pagewidth_pane_image","alignment":"center","field_file_image_alt_text[und][0][value]":"2018 GardenwWalk Raffle Winner","field_file_image_title_text[und][0][value]":false}},"attributes":{"alt":"2018 GardenwWalk Raffle Winner","height":290,"width":290,"class":"media-element file-1-3-pagewidth-pane-image media-wysiwyg-align-center","data-delta":"5"}}]]<em>2018 Raffle Winner!</em></p>',
     'format' => '2',
     'substitute' => 0,
     'title_heading' => 'h2',
@@ -314,11 +300,11 @@ function gardenwalk_home_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 3;
+  $pane->position = 1;
   $pane->locks = array();
   $pane->uuid = 'f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
   $display->content['new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7'] = $pane;
-  $display->panels['botright'][3] = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
+  $display->panels['botright'][1] = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
   $pane = new stdClass();
   $pane->pid = 'new-d3f31880-a34b-444a-a5dd-0a15bf45bcf3';
   $pane->panel = 'mid';
