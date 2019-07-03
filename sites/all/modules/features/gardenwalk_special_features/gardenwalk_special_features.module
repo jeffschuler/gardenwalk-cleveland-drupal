@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the GardenWalk Special Features feature.
- */
-
-include_once 'gardenwalk_special_features.features.inc';

@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the GardenWalk Urban Farms feature.
- */
-
-include_once 'gardenwalk_urban_farms.features.inc';

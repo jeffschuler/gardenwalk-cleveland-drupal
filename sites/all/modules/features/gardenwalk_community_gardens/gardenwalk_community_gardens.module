@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the GardenWalk Community Gardens feature.
- */
-
-include_once 'gardenwalk_community_gardens.features.inc';
