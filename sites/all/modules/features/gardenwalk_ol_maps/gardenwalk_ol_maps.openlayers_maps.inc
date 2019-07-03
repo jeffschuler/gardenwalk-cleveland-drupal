@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @file
  * gardenwalk_ol_maps.openlayers_maps.inc
@@ -211,7 +212,7 @@ function gardenwalk_ol_maps_openlayers_maps() {
   $export['all_map'] = $openlayers_maps;
 
   $openlayers_maps = new stdClass();
-  $openlayers_maps->disabled = FALSE; /* Edit this to true to make a default openlayers_maps disabled initially */
+  $openlayers_maps->disabled = TRUE; /* Edit this to true to make a default openlayers_maps disabled initially */
   $openlayers_maps->api_version = 1;
   $openlayers_maps->name = 'attractions';
   $openlayers_maps->title = 'Special Features Map';
@@ -410,7 +411,7 @@ function gardenwalk_ol_maps_openlayers_maps() {
   $export['attractions'] = $openlayers_maps;
 
   $openlayers_maps = new stdClass();
-  $openlayers_maps->disabled = FALSE; /* Edit this to true to make a default openlayers_maps disabled initially */
+  $openlayers_maps->disabled = TRUE; /* Edit this to true to make a default openlayers_maps disabled initially */
   $openlayers_maps->api_version = 1;
   $openlayers_maps->name = 'community_gardens';
   $openlayers_maps->title = 'Community Gardens';
@@ -1034,16 +1035,6 @@ function gardenwalk_ol_maps_openlayers_maps() {
         'zoomBoxEnabled' => 1,
         'documentDrag' => 1,
       ),
-      'openlayers_plus_behavior_popup' => array(
-        'layers' => array(
-          'urban_farms_openlayers_2' => 'urban_farms_openlayers_2',
-          'attractions_openlayers_2' => 'attractions_openlayers_2',
-          'headquarters_openlayers_1' => 'headquarters_openlayers_1',
-          'gardens_openlayers_1' => 'gardens_openlayers_1',
-          'community_gardens_openlayers_2' => 'community_gardens_openlayers_2',
-          'reimagining_projects_openlayers_2' => 'reimagining_projects_openlayers_2',
-        ),
-      ),
       'openlayers_behavior_panzoombar' => array(
         'zoomWorldIcon' => 0,
         'panIcons' => 1,
@@ -1051,13 +1042,13 @@ function gardenwalk_ol_maps_openlayers_maps() {
       'openlayers_behavior_scaleline' => array(),
       'openlayers_behavior_zoomtolayer' => array(
         'zoomtolayer' => array(
-          'urban_farms_openlayers_2' => 'urban_farms_openlayers_2',
-          'attractions_openlayers_2' => 'attractions_openlayers_2',
           'headquarters_openlayers_1' => 'headquarters_openlayers_1',
           'gardens_openlayers_1' => 'gardens_openlayers_1',
-          'community_gardens_openlayers_2' => 'community_gardens_openlayers_2',
-          'reimagining_projects_openlayers_2' => 'reimagining_projects_openlayers_2',
           'gardenwalk_mapbox' => 0,
+          'urban_farms_openlayers_2' => 0,
+          'attractions_openlayers_2' => 0,
+          'community_gardens_openlayers_2' => 0,
+          'reimagining_projects_openlayers_2' => 0,
         ),
         'point_zoom_level' => '1',
         'zoomtolayer_scale' => '1',
@@ -1066,11 +1057,6 @@ function gardenwalk_ol_maps_openlayers_maps() {
     'default_layer' => 'gardenwalk_mapbox',
     'layers' => array(
       'gardenwalk_mapbox' => 'gardenwalk_mapbox',
-      'urban_farms_openlayers_2' => 'urban_farms_openlayers_2',
-      'attractions_openlayers_2' => 'attractions_openlayers_2',
-      'headquarters_openlayers_1' => 'headquarters_openlayers_1',
-      'reimagining_projects_openlayers_2' => 'reimagining_projects_openlayers_2',
-      'community_gardens_openlayers_2' => 'community_gardens_openlayers_2',
       'gardens_openlayers_1' => 'gardens_openlayers_1',
     ),
     'layer_weight' => array(
@@ -1140,12 +1126,12 @@ function gardenwalk_ol_maps_openlayers_maps() {
       'reimagining_projects_openlayers_2' => '0',
     ),
     'layer_activated' => array(
-      'urban_farms_openlayers_2' => 'urban_farms_openlayers_2',
-      'attractions_openlayers_2' => 'attractions_openlayers_2',
-      'headquarters_openlayers_1' => 'headquarters_openlayers_1',
       'gardens_openlayers_1' => 'gardens_openlayers_1',
-      'community_gardens_openlayers_2' => 'community_gardens_openlayers_2',
-      'reimagining_projects_openlayers_2' => 'reimagining_projects_openlayers_2',
+      'urban_farms_openlayers_2' => 0,
+      'attractions_openlayers_2' => 0,
+      'headquarters_openlayers_1' => 0,
+      'community_gardens_openlayers_2' => 0,
+      'reimagining_projects_openlayers_2' => 0,
       'neighborhoods_geojson' => 0,
       'geofield_formatter' => 0,
       'openlayers_kml_example' => 0,
@@ -1162,12 +1148,12 @@ function gardenwalk_ol_maps_openlayers_maps() {
       'reimagining_projects_openlayers_1' => 0,
     ),
     'layer_switcher' => array(
-      'urban_farms_openlayers_2' => 'urban_farms_openlayers_2',
-      'attractions_openlayers_2' => 'attractions_openlayers_2',
-      'headquarters_openlayers_1' => 'headquarters_openlayers_1',
       'gardens_openlayers_1' => 'gardens_openlayers_1',
-      'community_gardens_openlayers_2' => 'community_gardens_openlayers_2',
-      'reimagining_projects_openlayers_2' => 'reimagining_projects_openlayers_2',
+      'urban_farms_openlayers_2' => 0,
+      'attractions_openlayers_2' => 0,
+      'headquarters_openlayers_1' => 0,
+      'community_gardens_openlayers_2' => 0,
+      'reimagining_projects_openlayers_2' => 0,
       'neighborhoods_geojson' => 0,
       'geofield_formatter' => 0,
       'openlayers_kml_example' => 0,
@@ -1194,7 +1180,7 @@ function gardenwalk_ol_maps_openlayers_maps() {
   $export['neighborhood_map'] = $openlayers_maps;
 
   $openlayers_maps = new stdClass();
-  $openlayers_maps->disabled = FALSE; /* Edit this to true to make a default openlayers_maps disabled initially */
+  $openlayers_maps->disabled = TRUE; /* Edit this to true to make a default openlayers_maps disabled initially */
   $openlayers_maps->api_version = 1;
   $openlayers_maps->name = 'reimagining_projects';
   $openlayers_maps->title = 'Reimagining Map';
@@ -1393,7 +1379,7 @@ function gardenwalk_ol_maps_openlayers_maps() {
   $export['reimagining_projects'] = $openlayers_maps;
 
   $openlayers_maps = new stdClass();
-  $openlayers_maps->disabled = FALSE; /* Edit this to true to make a default openlayers_maps disabled initially */
+  $openlayers_maps->disabled = TRUE; /* Edit this to true to make a default openlayers_maps disabled initially */
   $openlayers_maps->api_version = 1;
   $openlayers_maps->name = 'urban_farms';
   $openlayers_maps->title = 'Urban Farms Map';
