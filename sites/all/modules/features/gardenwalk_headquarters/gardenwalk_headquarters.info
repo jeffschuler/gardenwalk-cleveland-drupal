@@ -1,10 +1,7 @@
 name = GardenWalk Headquarters
 core = 7.x
 package = Features
-dependencies[] = addressfield
 dependencies[] = computed_field
-dependencies[] = gardenwalk_reimagining
-dependencies[] = geocoder
 dependencies[] = geofield_map
 dependencies[] = leaflet_views
 features[ctools][] = ds:ds:1
@@ -52,3 +49,4 @@ features[variable][] = xmlsitemap_settings_node_headquarters
 features[views_view][] = headquarters
 features_exclude[dependencies][openlayers_views] = openlayers_views
 features_exclude[dependencies][views] = views
+features_exclude[dependencies][gardenwalk_reimagining] = gardenwalk_reimagining
