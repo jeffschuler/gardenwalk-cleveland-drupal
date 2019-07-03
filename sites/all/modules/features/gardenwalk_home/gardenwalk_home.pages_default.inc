@@ -188,7 +188,7 @@ function gardenwalk_home_default_page_manager_pages() {
     'admin_title' => '2019 Neighborhoods and Dates',
     'title' => '2019 Neighborhoods and Dates',
     'title_heading' => 'h2',
-    'body' => '<p><strong>Saturday, July 13th</strong>:Detroit Shoreway, West Park, and Old Brooklyn</p><p><strong>Sunday, July 14th</strong>: Little Italy, Fairfax, Collinwood, Broadway Slavic Village</p>',
+    'body' => '<p><strong>Saturday, July 13th</strong>: Detroit Shoreway, West Park, and Old Brooklyn</p><p><strong>Sunday, July 14th</strong>: Little Italy, Fairfax, Collinwood, Broadway Slavic Village</p><p><strong><em>Pick up a GardenWalk Cleveland Guide NOW at your local Daves Market or&nbsp;refreshment stations in the neighborhoods. It is filled with maps and information.</em></strong></p>',
     'format' => '1',
     'substitute' => 1,
   );
@@ -256,6 +256,42 @@ function gardenwalk_home_default_page_manager_pages() {
   $display->content['new-7cc637fd-bd62-4210-b14e-bddae13fed3f'] = $pane;
   $display->panels['botmid'][2] = 'new-7cc637fd-bd62-4210-b14e-bddae13fed3f';
   $pane = new stdClass();
+  $pane->pid = 'new-596b21b8-dcaa-4d15-ac7d-0141a42a64ac';
+  $pane->panel = 'botright';
+  $pane->type = 'views';
+  $pane->subtype = 'printable_maps';
+  $pane->shown = TRUE;
+  $pane->access = array();
+  $pane->configuration = array(
+    'override_pager_settings' => 0,
+    'use_pager' => 0,
+    'nodes_per_page' => '0',
+    'pager_id' => '0',
+    'offset' => '0',
+    'more_link' => 0,
+    'feed_icons' => 0,
+    'panel_args' => 0,
+    'link_to_view' => 0,
+    'args' => '',
+    'url' => '',
+    'display' => 'block_1',
+    'context' => array(
+      0 => '',
+    ),
+    'override_title' => 0,
+    'override_title_text' => '',
+    'override_title_heading' => 'h2',
+  );
+  $pane->cache = array();
+  $pane->style = array();
+  $pane->css = array();
+  $pane->extras = array();
+  $pane->position = 0;
+  $pane->locks = array();
+  $pane->uuid = '596b21b8-dcaa-4d15-ac7d-0141a42a64ac';
+  $display->content['new-596b21b8-dcaa-4d15-ac7d-0141a42a64ac'] = $pane;
+  $display->panels['botright'][0] = 'new-596b21b8-dcaa-4d15-ac7d-0141a42a64ac';
+  $pane = new stdClass();
   $pane->pid = 'new-39407617-a32b-47e5-9640-cfb5d23ad54b';
   $pane->panel = 'botright';
   $pane->type = 'custom';
@@ -266,19 +302,21 @@ function gardenwalk_home_default_page_manager_pages() {
     'admin_title' => 'Show your garden in 2019',
     'title' => 'Show your garden in 2019',
     'title_heading' => 'h2',
-    'body' => '<p>If you live in one of the 2019 GardenWalk neighrborhoods, <a href="/apply">click here to apply to show your garden</a>.</p><p>Or, <a href="/sites/default/files/GardenWalkApplication2019.pdf">print the Garden&nbsp;Application Form.</a></p><p>Contact the <em>Garden Finder</em> for your neighborhood if you have questions.</p><p><strong>Broadway Slavic Village</strong><br />Marie Kittredge<br />mariekittredge@gmail.com&nbsp;<br />216-513-4002</p><p><strong>Collinwood</strong><br />Teri Dew<br />dewteri@yahoo.com<br />216 392-7937</p><p><strong>Detroit Shoreway</strong><br />Linda Warren<br />LWarren@clevelandnp.org<br />216-401-4037</p><p><strong>Fairfax</strong><br />Debbie Copeland<br />ddc819@aol.com&nbsp;<br />216-401-9981</p><p><strong>Little Italy</strong><br />Paulette Colarochio&nbsp;<br />colarochioprose@yahoo.com<br />216.798.3824&nbsp;</p><p><strong>Old Brooklyn</strong><br />Holly Rose<br />holly.rose99@yahoo.com<br />216-401-9981&nbsp;</p><p><strong>West Park</strong><br />David Horneck<br />dhorneck1@gmail.com<br />216.543.4277</p>',
+    'body' => '<p>Sorry, garden applications for the 2019 GardenWalk are closed. <strong><em>Please consider showing your garden on the 2020 GardenWalk Cleveland tour!</em></strong></p><p>Please contact the 2019&nbsp;<em>Garden Finder</em> for your neighborhood if you have questions.</p><p><strong>Broadway Slavic Village</strong><br />Marie Kittredge<br />mariekittredge@gmail.com&nbsp;<br />216-513-4002</p><p><strong>Collinwood</strong><br />Teri Dew<br />dewteri@yahoo.com<br />216 392-7937</p><p><strong>Detroit Shoreway</strong><br />Linda Warren<br />LWarren@clevelandnp.org<br />216-401-4037</p><p><strong>Fairfax</strong><br />Debbie Copeland<br />ddc819@aol.com&nbsp;<br />216-401-9981</p><p><strong>Little Italy</strong><br />Paulette Colarochio&nbsp;<br />colarochioprose@yahoo.com<br />216.798.3824&nbsp;</p><p><strong>Old Brooklyn</strong><br />Holly Rose<br />holly.rose99@yahoo.com<br />216-401-9981&nbsp;</p><p><strong>West Park</strong><br />David Horneck<br />dhorneck1@gmail.com<br />216.543.4277</p>',
     'format' => '1',
     'substitute' => 1,
   );
   $pane->cache = array();
-  $pane->style = array();
+  $pane->style = array(
+    'settings' => NULL,
+  );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 0;
+  $pane->position = 1;
   $pane->locks = array();
   $pane->uuid = '39407617-a32b-47e5-9640-cfb5d23ad54b';
   $display->content['new-39407617-a32b-47e5-9640-cfb5d23ad54b'] = $pane;
-  $display->panels['botright'][0] = 'new-39407617-a32b-47e5-9640-cfb5d23ad54b';
+  $display->panels['botright'][1] = 'new-39407617-a32b-47e5-9640-cfb5d23ad54b';
   $pane = new stdClass();
   $pane->pid = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
   $pane->panel = 'botright';
@@ -300,11 +338,11 @@ function gardenwalk_home_default_page_manager_pages() {
   );
   $pane->css = array();
   $pane->extras = array();
-  $pane->position = 1;
+  $pane->position = 2;
   $pane->locks = array();
   $pane->uuid = 'f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
   $display->content['new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7'] = $pane;
-  $display->panels['botright'][1] = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
+  $display->panels['botright'][2] = 'new-f4d239e7-93f5-4ade-bc81-70d9e0dc6ed7';
   $pane = new stdClass();
   $pane->pid = 'new-d3f31880-a34b-444a-a5dd-0a15bf45bcf3';
   $pane->panel = 'mid';
