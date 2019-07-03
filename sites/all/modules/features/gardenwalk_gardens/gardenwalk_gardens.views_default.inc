@@ -342,12 +342,6 @@ function gardenwalk_gardens_views_default_views() {
       'label' => '',
     ),
   );
-  /* Field: Content: Map Marker Label */
-  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
-  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
-  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
-  $handler->display->display_options['fields']['field_map_marker_label']['label'] = 'Label';
-  $handler->display->display_options['fields']['field_map_marker_label']['exclude'] = TRUE;
   /* Field: Content: Nid */
   $handler->display->display_options['fields']['nid']['id'] = 'nid';
   $handler->display->display_options['fields']['nid']['table'] = 'node';
@@ -358,7 +352,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Address';
-  /* Field: Content: Location Name */
+  /* Field: Content: Garden/Location Name */
   $handler->display->display_options['fields']['field_garden_name']['id'] = 'field_garden_name';
   $handler->display->display_options['fields']['field_garden_name']['table'] = 'field_data_field_garden_name';
   $handler->display->display_options['fields']['field_garden_name']['field'] = 'field_garden_name';
@@ -372,6 +366,11 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['id'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['field'] = 'field_neighborhood';
+  /* Field: Content: Map Marker Label */
+  $handler->display->display_options['fields']['field_map_marker_label']['id'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['table'] = 'field_data_field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['field'] = 'field_map_marker_label';
+  $handler->display->display_options['fields']['field_map_marker_label']['label'] = 'Label';
   /* Field: Content: Year */
   $handler->display->display_options['fields']['field_gardenwalk_year']['id'] = 'field_gardenwalk_year';
   $handler->display->display_options['fields']['field_gardenwalk_year']['table'] = 'field_data_field_gardenwalk_year';
