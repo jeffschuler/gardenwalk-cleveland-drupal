@@ -162,7 +162,7 @@ function gardenwalk_home_default_page_manager_pages() {
     'admin_title' => 'Get your GardenWalk Guide',
     'title' => 'Get your GardenWalk Guide',
     'title_heading' => 'h2',
-    'body' => '<p>Pick up a Guide before the GardenWalk begins at most area Dave\'s Supermarkets,&nbsp;starting July 1st!</p><p>Guides with&nbsp;maps and details will be available in several garden site "refreshment stations"&nbsp;throughout the neighborhoods. See each neighborhood page from the <a href="/guide">Guide page</a>&nbsp;for refreshment station addresses.</p>',
+    'body' => '<p>Pick up a Guide BEFORE the GardenWalk begins at most area Dave\'s Supermarkets,&nbsp;starting July 1st!</p><p>Download printable maps of each neighborhood (see 3rd column). Maps show where the Information Stations are located. GardenWalk Cleveland&nbsp;Guides with&nbsp;maps and other details will be available at these garden Information Stations.&nbsp;Watch for the question mark next to the garden on the&nbsp;garden map lists.&nbsp;</p>',
     'format' => '2',
     'substitute' => 1,
   );
@@ -188,7 +188,7 @@ function gardenwalk_home_default_page_manager_pages() {
     'admin_title' => '2019 Neighborhoods and Dates',
     'title' => '2019 Neighborhoods and Dates',
     'title_heading' => 'h2',
-    'body' => '<p><strong>Saturday, July 13th</strong>: Detroit Shoreway, West Park, and Old Brooklyn</p><p><strong>Sunday, July 14th</strong>: Little Italy, Fairfax, Collinwood, Broadway Slavic Village</p><p><strong><em>Pick up a GardenWalk Cleveland Guide NOW at your local Daves Market or&nbsp;refreshment stations in the neighborhoods. It is filled with maps and information.</em></strong></p>',
+    'body' => '<p><strong>Saturday, July 13th</strong>: Detroit Shoreway, West Park, and Old Brooklyn</p><p><strong>Sunday, July 14th</strong>: Little Italy, Fairfax, Collinwood, Broadway Slavic Village</p><p><strong><em>Pick up a GardenWalk Cleveland Guide NOW at your local Daves Market, print your own maps from the website,&nbsp;or stop at an Information Stations in the neighborhoods. Information Stations will have guides&nbsp;with maps and information. Don&#39;t forget to buy some raffle tickets for the GRAND PRIZE --a cart full of gardening materials.</em></strong></p>',
     'format' => '1',
     'substitute' => 1,
   );
@@ -299,10 +299,10 @@ function gardenwalk_home_default_page_manager_pages() {
   $pane->shown = TRUE;
   $pane->access = array();
   $pane->configuration = array(
-    'admin_title' => 'Show your garden in 2019',
-    'title' => 'Show your garden in 2019',
+    'admin_title' => 'Show your garden in 2020',
+    'title' => 'Show your garden in 2020',
     'title_heading' => 'h2',
-    'body' => '<p>Sorry, garden applications for the 2019 GardenWalk are closed. <strong><em>Please consider showing your garden on the 2020 GardenWalk Cleveland tour!</em></strong></p><p>Please contact the 2019&nbsp;<em>Garden Finder</em> for your neighborhood if you have questions.</p><p><strong>Broadway Slavic Village</strong><br />Marie Kittredge<br />mariekittredge@gmail.com&nbsp;<br />216-513-4002</p><p><strong>Collinwood</strong><br />Teri Dew<br />dewteri@yahoo.com<br />216 392-7937</p><p><strong>Detroit Shoreway</strong><br />Linda Warren<br />LWarren@clevelandnp.org<br />216-401-4037</p><p><strong>Fairfax</strong><br />Debbie Copeland<br />ddc819@aol.com&nbsp;<br />216-401-9981</p><p><strong>Little Italy</strong><br />Paulette Colarochio&nbsp;<br />colarochioprose@yahoo.com<br />216.798.3824&nbsp;</p><p><strong>Old Brooklyn</strong><br />Holly Rose<br />holly.rose99@yahoo.com<br />216-401-9981&nbsp;</p><p><strong>West Park</strong><br />David Horneck<br />dhorneck1@gmail.com<br />216.543.4277</p>',
+    'body' => '<p>Sorry, garden applications for the 2019&nbsp;GardenWalk are closed. <strong><em>Please consider showing your garden on the 2020 GardenWalk Cleveland tour!</em></strong></p><p>Please contact the 2019&nbsp;<em>Garden Finder</em> for your neighborhood if you have questions.</p><p><strong>Broadway Slavic Village</strong><br />Marie Kittredge<br />mariekittredge@gmail.com&nbsp;<br />216-513-4002</p><p><strong>Collinwood</strong><br />Teri Dew<br />dewteri@yahoo.com<br />216 392-7937</p><p><strong>Detroit Shoreway</strong><br />Linda Warren<br />LWarren@clevelandnp.org<br />216-401-4037</p><p><strong>Fairfax</strong><br />Debbie Copeland<br />ddc819@aol.com&nbsp;<br />216-401-9981</p><p><strong>Little Italy</strong><br />Paulette Colarochio&nbsp;<br />colarochioprose@yahoo.com<br />216.798.3824&nbsp;</p><p><strong>Old Brooklyn</strong><br />Holly Rose<br />holly.rose99@yahoo.com<br />216-401-9981&nbsp;</p><p><strong>West Park</strong><br />David Horneck<br />dhorneck1@gmail.com<br />216.543.4277</p>',
     'format' => '1',
     'substitute' => 1,
   );
