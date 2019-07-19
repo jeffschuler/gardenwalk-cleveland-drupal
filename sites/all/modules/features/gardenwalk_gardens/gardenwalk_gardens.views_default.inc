@@ -46,7 +46,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = '';
-  /* Field: Content: Contact Person */
+  /* Field: Content: Gardener Name */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -126,7 +126,7 @@ function gardenwalk_gardens_views_default_views() {
     3 => '3',
   );
   $handler->display->display_options['filters']['sid']['group'] = 1;
-  /* Filter criterion: Content: Published */
+  /* Filter criterion: Content: Published status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -352,7 +352,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Address';
-  /* Field: Content: Location Name */
+  /* Field: Content: Garden/Location Name */
   $handler->display->display_options['fields']['field_garden_name']['id'] = 'field_garden_name';
   $handler->display->display_options['fields']['field_garden_name']['table'] = 'field_data_field_garden_name';
   $handler->display->display_options['fields']['field_garden_name']['field'] = 'field_garden_name';
@@ -377,7 +377,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_gardenwalk_year']['field'] = 'field_gardenwalk_year';
   $handler->display->display_options['fields']['field_gardenwalk_year']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_gardenwalk_year']['delta_offset'] = '0';
-  /* Field: Content: Contact Person */
+  /* Field: Content: Gardener Name */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -401,7 +401,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['clone_node']['field'] = 'clone_node';
   $handler->display->display_options['fields']['clone_node']['label'] = 'Clone';
   $handler->display->display_options['fields']['clone_node']['text'] = 'Clone';
-  /* Field: Content: Edit link */
+  /* Field: Content: Link to edit content */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
@@ -709,7 +709,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Name';
-  /* Field: Content: Edit link */
+  /* Field: Content: Link to edit content */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
@@ -730,11 +730,11 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['state']['table'] = 'workflow_states';
   $handler->display->display_options['fields']['state']['field'] = 'state';
   $handler->display->display_options['fields']['state']['label'] = 'Workflow State';
-  /* Field: Content: Address */
+  /* Field: Content: Garden Address */
   $handler->display->display_options['fields']['field_address_1']['id'] = 'field_address_1';
   $handler->display->display_options['fields']['field_address_1']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_1']['field'] = 'field_address';
-  /* Field: Content: Address */
+  /* Field: Content: Garden Address */
   $handler->display->display_options['fields']['field_address_2']['id'] = 'field_address_2';
   $handler->display->display_options['fields']['field_address_2']['table'] = 'field_data_field_address';
   $handler->display->display_options['fields']['field_address_2']['field'] = 'field_address';
@@ -994,7 +994,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['arguments']['field_neighborhood_tid']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
-  /* Filter criterion: Content: Published */
+  /* Filter criterion: Content: Published status */
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
@@ -1116,7 +1116,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['field_neighborhood']['table'] = 'field_data_field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['field'] = 'field_neighborhood';
   $handler->display->display_options['fields']['field_neighborhood']['element_label_colon'] = FALSE;
-  /* Field: Content: Contact Person */
+  /* Field: Content: Gardener Name */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -1249,7 +1249,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['title']['table'] = 'node';
   $handler->display->display_options['fields']['title']['field'] = 'title';
   $handler->display->display_options['fields']['title']['label'] = 'Garden Address';
-  /* Field: Content: Contact Person */
+  /* Field: Content: Gardener Name */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -1364,7 +1364,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['nid']['alter']['text'] = 'http://www.gardenwalkcleveland.org/node/[nid]';
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Content: Contact Person */
+  /* Field: Content: Gardener Name */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';
@@ -1476,7 +1476,7 @@ function gardenwalk_gardens_views_default_views() {
   $handler->display->display_options['fields']['nid']['alter']['alter_text'] = TRUE;
   $handler->display->display_options['fields']['nid']['alter']['text'] = 'http://www.gardenwalkcleveland.org/node/[nid]';
   $handler->display->display_options['fields']['nid']['element_label_colon'] = FALSE;
-  /* Field: Content: Contact Person */
+  /* Field: Content: Gardener Name */
   $handler->display->display_options['fields']['field_gardener_name']['id'] = 'field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['table'] = 'field_data_field_gardener_name';
   $handler->display->display_options['fields']['field_gardener_name']['field'] = 'field_gardener_name';

@@ -134,6 +134,7 @@ features[variable][] = pathauto_node_garden_pattern
 features[variable][] = pathauto_taxonomy_term_attractions_pattern
 features[variable][] = pathauto_taxonomy_term_neighborhood_pattern
 features[variable][] = xmlsitemap_settings_node_garden
+features[variable][] = xmlsitemap_settings_taxonomy_term_attractions
 features[variable][] = xmlsitemap_settings_taxonomy_term_neighborhood
 features[views_view][] = gardens
 features[workflow][] = Garden Approval

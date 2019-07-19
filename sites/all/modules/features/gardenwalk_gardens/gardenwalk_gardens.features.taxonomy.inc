@@ -11,9 +11,9 @@
 function gardenwalk_gardens_taxonomy_default_vocabularies() {
   return array(
     'attractions' => array(
-      'name' => 'Features',
+      'name' => 'Special Attractions',
       'machine_name' => 'attractions',
-      'description' => '',
+      'description' => 'Features of a garden',
       'hierarchy' => 0,
       'module' => 'taxonomy',
       'weight' => 0,
